@@ -27,7 +27,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         Example.Criteria criteria = example.createCriteria();
 
         if (StringUtil.isNotEmpty(realname)) {
-            criteria.andLike("realname", "%" + realname + "%");
+            criteria.andLike("realname", StringUtil.bothPercent(realname));
         }
         example.setOrderByClause("login_time desc");
 
@@ -37,8 +37,11 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     public ShiroUser getShiroUser() {
-        ShiroUser shiroUser = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
-        return shiroUser;
+        try {
+            return (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

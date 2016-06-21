@@ -1,11 +1,14 @@
 package com.kangyonggan.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kangyonggan.mapper.RoleMapper;
 import com.kangyonggan.model.Role;
 import com.kangyonggan.service.RoleService;
+import com.kangyonggan.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -19,6 +22,18 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Override
+    public List<Role> searchRoles(int pageNum, int pageSize, String name) {
+        Example example = new Example(Role.class);
+        if (StringUtil.isNotEmpty(name)) {
+            example.createCriteria().andLike("name", StringUtil.bothPercent(name));
+        }
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, pageSize);
+        return super.selectByExample(example);
+    }
 
     @Override
     public List<Role> findRolesByUserId(Long userId) {

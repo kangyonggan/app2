@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface RoleService {
 
-    List<Role> findRolesByUserId(Long userId);
+    List<Role> searchRoles(int pageNum, int pageSize, String name);
 
+    List<Role> findRolesByUserId(Long userId);
 }

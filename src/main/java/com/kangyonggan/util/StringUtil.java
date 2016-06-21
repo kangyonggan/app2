@@ -104,4 +104,14 @@ public class StringUtil {
         return isEmpty(str) ? "" : str;
     }
 
+    /**
+     * 给字符串两边加上%
+     *
+     * @param str
+     * @return
+     */
+    public static String bothPercent(String str) {
+        return String.format("%%%s%%", str);
+    }
+
 }
