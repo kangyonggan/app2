@@ -1,6 +1,8 @@
 package com.kangyonggan.controller.web;
 
+import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.model.User;
+import com.kangyonggan.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -10,6 +12,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,9 @@ public class LoginController {
     private static final String PATH_ROOT = "web/login";
     private static final String PATH_INDEX = PATH_ROOT + "/index";
     private static final String PATH_FORGET = PATH_ROOT + "/forget";
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 登录界面
@@ -77,9 +83,10 @@ public class LoginController {
         SavedRequest savedRequest = WebUtils.getSavedRequest(request);
         // 获取保存的URL
         if (savedRequest == null || savedRequest.getRequestUrl() == null) {
-            return "redirect:/dashboard";
+            ShiroUser shiroUser = userService.getShiroUser();
+            return String.format("redirect:/user/%d", shiroUser.getId());
         }
-        return "redirect:" + savedRequest.getRequestUrl();
+        return String.format("redirect:%s", savedRequest.getRequestUrl());
     }
 
     /**
@@ -92,7 +99,7 @@ public class LoginController {
         final Subject subject = SecurityUtils.getSubject();
         log.info("logout {}", subject.getPrincipal());
         subject.logout();
-        return "redirect:login";
+        return "redirect:/";
     }
 
     /**

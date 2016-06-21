@@ -38,7 +38,7 @@ public class UserDirective extends SuperTag {
         User user = null;
         String result = null;
 
-        if(shiroUser != null) {
+        if (shiroUser != null) {
             Long userId = shiroUser.getId();
             user = userService.getUser(userId);
         }
@@ -53,6 +53,8 @@ public class UserDirective extends SuperTag {
             }
         }
 
-        env.getOut().write(result);
+        if (result != null) {
+            env.getOut().write(result);
+        }
     }
 }
