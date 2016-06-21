@@ -1,6 +1,6 @@
 <@override name="app-content">
 <div class="row">
-    <div class="col-sm-offset-4 col-sm-4 col-sm-offset-4">
+    <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="space-30"></div>
         <@block name="content"/>
     </div>

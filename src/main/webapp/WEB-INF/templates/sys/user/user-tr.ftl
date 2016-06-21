@@ -1,8 +1,5 @@
 <tr id="user-${user.id}">
     <td>${user.id}</td>
-    <td>
-        <a href="${ctx}sys/user/${user.id}" data-toggle="modal" data-target="#myModal">${user.email}</a>
-    </td>
     <td>${user.realname}</td>
     <td>${user.mobile}</td>
     <td><#include "locked.ftl"></td>

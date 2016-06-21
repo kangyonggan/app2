@@ -35,7 +35,6 @@ public class SysUserController {
      *
      * @param pageNum
      * @param realname
-     * @param email
      * @param model
      * @return
      */
@@ -43,9 +42,8 @@ public class SysUserController {
     @RequiresPermissions("sys-user")
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
                        @RequestParam(value = "realname", required = false, defaultValue = "") String realname,
-                       @RequestParam(value = "email", required = false, defaultValue = "") String email,
                        Model model) {
-        List<User> users = userService.searchUsers(pageNum, AppConstants.PAGE_SIZE, realname, email);
+        List<User> users = userService.searchUsers(pageNum, AppConstants.PAGE_SIZE, realname);
         PageInfo<User> page = new PageInfo(users);
 
         model.addAttribute("page", page);

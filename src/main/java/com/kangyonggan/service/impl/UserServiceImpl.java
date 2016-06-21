@@ -22,15 +22,12 @@ import java.util.List;
 public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
-    public List<User> searchUsers(int pageNum, int pageSize, String realname, String email) {
+    public List<User> searchUsers(int pageNum, int pageSize, String realname) {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
 
         if (StringUtil.isNotEmpty(realname)) {
             criteria.andLike("realname", "%" + realname + "%");
-        }
-        if (StringUtil.isNotEmpty(email)) {
-            criteria.andLike("email", "%" + email + "%");
         }
         example.setOrderByClause("login_time desc");
 

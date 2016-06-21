@@ -9,10 +9,6 @@
 
 <form class="form-inline" method="get" novalidate>
     <div class="form-group">
-        <input type="text" class="form-control" name="email" value="${email}" placeholder="邮箱"/>
-    </div>
-
-    <div class="form-group">
         <input type="text" class="form-control" name="realname" value="${realname}" placeholder="真实姓名"/>
     </div>
 
@@ -32,7 +28,6 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>电子邮箱</th>
         <th>真实姓名</th>
         <th>手机号</th>
         <th>是否锁定</th>
@@ -54,7 +49,7 @@
         </#if>
     </tbody>
 </table>
-<@c.pagination url="${ctx}sys/user" param="realname=${realname}&email=${email}"/>
+<@c.pagination url="${ctx}sys/user" param="realname=${realname}"/>
 </@override>
 
 <@extends name="../../app-layout.ftl"/>
