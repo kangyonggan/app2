@@ -111,7 +111,7 @@ public class StringUtil {
      * @return
      */
     public static String bothPercent(String str) {
-        return String.format("%%%s%%", str);
+        return String.format("%%%s%%", filter(str));
     }
 
 }

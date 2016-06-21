@@ -41,7 +41,7 @@ public class SysRoleController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    @RequiresPermissions("sys-user")
+    @RequiresPermissions("sys-role")
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
                        @RequestParam(value = "name", required = false, defaultValue = "") String name,
                        Model model) {

@@ -50,7 +50,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         ShiroUser shiroUser = (ShiroUser) principalCollection.getPrimaryPrincipal();
         log.info("Shiro权限认证, email={}", shiroUser.getEmail());
         List<Role> roles = roleService.findRolesByUserId(shiroUser.getId());
-        List<Menu> menus = menuService.findMenusByCodeAndUserId(null, shiroUser.getId());
+        List<Menu> menus = menuService.findMenusByUserId(shiroUser.getId());
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 基于Role的权限信息

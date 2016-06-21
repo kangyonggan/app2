@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface MenuMapper extends MyMapper<Menu> {
 
-    List<Menu> selectMenusByCodeAndUserId(@Param("code") String code, @Param("userId") Long userId);
+    List<Menu> findMenusByUserId(@Param("userId") Long userId);
 }

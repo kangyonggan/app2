@@ -10,5 +10,9 @@ import java.util.List;
  */
 public interface MenuService {
 
-    List<Menu> findMenusByCodeAndUserId(String code, Long userId);
+    List<Menu> findMenusByUserId(Long userId);
+
+    List<Menu> findMenusByPid(Long pid);
+
+    Menu findMenuByCode(String code);
 }

@@ -95,22 +95,20 @@
                     <@app_menus>
                         <li>
                             <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="${sys_menus[0].icon}"></i>
-                            ${sys_menus[0].name}
+                                <i class="${sys_parent_menu.icon}"></i>
+                            ${sys_parent_menu.name}
                                 &nbsp;
                                 <i class="ace-icon fa fa-angle-down bigger-140"></i>
                             </a>
 
                             <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                                 <#list sys_menus as menu>
-                                    <#if menu_index gt 0>
-                                        <li>
-                                            <a href="${ctx}${menu.url}">
-                                                <i class="${menu.icon!''}"></i>
-                                            ${menu.name}
-                                            </a>
-                                        </li>
-                                    </#if>
+                                    <li>
+                                        <a href="${ctx}${menu.url}">
+                                            <i class="${menu.icon!''}"></i>
+                                        ${menu.name}
+                                        </a>
+                                    </li>
                                 </#list>
                             </ul>
                         </li>

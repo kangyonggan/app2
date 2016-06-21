@@ -17,7 +17,7 @@
         <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
     </resultMap>
 
-    <select id="selectMenusByCodeAndUserId" resultMap="BaseResultMap">
+    <select id="findMenusByUserId" parameterType="Long" resultMap="BaseResultMap">
         SELECT
         DISTINCT m.*
         FROM
@@ -26,7 +26,6 @@
             m.id = rm.menu_id
             AND rm.role_id = ur.role_id
             AND ur.user_id = #{userId}
-            AND m.code LIKE #{code}
         </where>
         ORDER BY
         sort asc
