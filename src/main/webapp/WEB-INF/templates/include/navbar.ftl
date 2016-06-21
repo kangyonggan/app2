@@ -31,52 +31,52 @@
         <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="javascript:">
-                        <i class="ace-icon fa fa-user"></i>
-                        个人中心
-                    </a>
+                        <a href="${ctx}user/${app_user.id}">
+                            <i class="ace-icon fa fa-user bigger-140"></i>
+                            个人中心
+                        </a>
                 </li>
 
                 <li>
                     <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="ace-icon fa fa-home"></i>
-                        我的主页
+                        <i class="ace-icon fa fa-home bigger-140"></i>
+                        我的栏目
                         &nbsp;
-                        <i class="ace-icon fa fa-angle-down bigger-110"></i>
+                        <i class="ace-icon fa fa-angle-down bigger-140"></i>
                     </a>
 
                     <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                         <li>
                             <a href="javascript:">
-                                <i class="ace-icon fa fa-eye bigger-110 blue"></i>
+                                <i class="ace-icon fa fa-eye bigger-120"></i>
                                 博客
                             </a>
                         </li>
 
                         <li>
                             <a href="javascript:">
-                                <i class="ace-icon fa fa-user bigger-110 blue"></i>
+                                <i class="ace-icon fa fa-user bigger-120"></i>
                                 日志
                             </a>
                         </li>
 
                         <li>
                             <a href="javascript:">
-                                <i class="ace-icon fa fa-cog bigger-110 blue"></i>
+                                <i class="ace-icon fa fa-cog bigger-120"></i>
                                 相册
                             </a>
                         </li>
 
                         <li>
                             <a href="javascript:">
-                                <i class="ace-icon fa fa-cog bigger-110 blue"></i>
+                                <i class="ace-icon fa fa-cog bigger-120"></i>
                                 时光轴
                             </a>
                         </li>
 
                         <li>
                             <a href="javascript:">
-                                <i class="ace-icon fa fa-cog bigger-110 blue"></i>
+                                <i class="ace-icon fa fa-cog bigger-120"></i>
                                 留言板
                             </a>
                         </li>
@@ -85,11 +85,37 @@
 
                 <li>
                     <a href="javascript:">
-                        <i class="ace-icon fa fa-users"></i>
+                        <i class="ace-icon fa fa-users bigger-140"></i>
                         我的好友
                         <span class="badge badge-important">5</span>
                     </a>
                 </li>
+
+                <@shiro.hasPermission name="sys-manage">
+                    <@app_menus>
+                        <li>
+                            <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="${sys_menus[0].icon}"></i>
+                            ${sys_menus[0].name}
+                                &nbsp;
+                                <i class="ace-icon fa fa-angle-down bigger-140"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                                <#list sys_menus as menu>
+                                    <#if menu_index gt 0>
+                                        <li>
+                                            <a href="${ctx}${menu.url}">
+                                                <i class="${menu.icon!''}"></i>
+                                            ${menu.name}
+                                            </a>
+                                        </li>
+                                    </#if>
+                                </#list>
+                            </ul>
+                        </li>
+                    </@app_menus>
+                </@shiro.hasPermission>
             </ul>
 
             <ul class="nav navbar-nav">
@@ -314,7 +340,7 @@
             <ul class="nav navbar-nav">
             <@shiro.user>
                 <li>
-                    <a href="javascript:">康永敢</a>
+                    <a href="javascript:">${app_user.realname}</a>
                 </li>
                 <li>
                     <a href="${ctx}logout">

@@ -19,8 +19,8 @@
                         <label class="block clearfix">
                             <label>用户名</label>
                             <span class="block input-icon input-icon-right">
-                                <input type="text" id="username" name="username" class="form-control"
-                                       placeholder="请输入用户名">
+                                <input type="text" id="email" name="email" class="form-control"
+                                       placeholder="电子邮箱">
                                 <i class="ace-icon fa fa-user"></i>
                             </span>
                         </label>

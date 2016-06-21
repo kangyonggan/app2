@@ -1,7 +1,7 @@
 package com.kangyonggan.config.shiro;
 
 import com.kangyonggan.constants.ShiroConstants;
-import com.kangyonggan.constants.StatusEnum;
+import com.kangyonggan.exception.EmailNotVerifiedException;
 import com.kangyonggan.model.Menu;
 import com.kangyonggan.model.Role;
 import com.kangyonggan.model.ShiroUser;
@@ -11,8 +11,6 @@ import com.kangyonggan.service.RoleService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.Encodes;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -49,19 +47,19 @@ public class MyShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        log.info("##################执行Shiro权限认证##################");
         ShiroUser shiroUser = (ShiroUser) principalCollection.getPrimaryPrincipal();
+        log.info("Shiro权限认证, email={}", shiroUser.getEmail());
         List<Role> roles = roleService.findRolesByUserId(shiroUser.getId());
-        List<Menu> menus = menuService.findMenusByUserId(shiroUser.getId());
+        List<Menu> menus = menuService.findMenusByCodeAndUserId(null, shiroUser.getId());
 
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 基于Role的权限信息
         for (Role role : roles) {
-            info.addRole(role.getName());
+            info.addRole(role.getCode());
         }
         // 基于Permission的权限信息
         for (Menu menu : menus) {
-            info.addStringPermission(menu.getName());
+            info.addStringPermission(menu.getCode());
         }
 
         return info;
@@ -76,23 +74,27 @@ public class MyShiroRealm extends AuthorizingRealm {
         //UsernamePasswordToken对象用来存放提交的登录信息
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
-        log.info("验证当前Subject时获取到token为：" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+        log.info("Shiro登录认证, email={}", token.getUsername());
 
-        String username = token.getUsername();
-        User user = userService.findUserByUsername(username);
+        String email = token.getUsername();
+        User user = userService.findUserByEmail(email);
 
         if (null == user) {
             throw new UnknownAccountException();
         }
 
-        if (user.getStatus().equals(StatusEnum.DISABLE.getStatus())) {
+        if (user.getIsLocked() == 1) {
             throw new LockedAccountException();
+        }
+
+        if (user.getIsVerified() == 0) {
+            throw new EmailNotVerifiedException();
         }
 
         byte[] salt = Encodes.decodeHex(user.getSalt());
         ShiroUser shiroUser = new ShiroUser();
         shiroUser.setId(user.getId());
-        shiroUser.setUsername(user.getUsername());
+        shiroUser.setEmail(user.getEmail());
         shiroUser.setRealname(user.getRealname());
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(shiroUser,
                 user.getPassword(), ByteSource.Util.bytes(salt), getName());

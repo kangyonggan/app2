@@ -1,6 +1,5 @@
 package com.kangyonggan.service;
 
-import com.kangyonggan.model.Menu;
 import com.kangyonggan.model.Role;
 
 import java.util.List;
@@ -11,21 +10,6 @@ import java.util.List;
  */
 public interface RoleService {
 
-    List<Role> findAllRolesByPage(int pageNum);
-
     List<Role> findRolesByUserId(Long userId);
 
-    List<Role> findAllRoles();
-
-    Role getRole(Long id);
-
-    Role findRoleByName(String name);
-
-    int saveRole(Role role);
-
-    int updateRole(Role role);
-
-    int deleteRole(Long id);
-
-    void updateRoleMenus(Long roleId, String menuIds, List<Menu> menus);
 }

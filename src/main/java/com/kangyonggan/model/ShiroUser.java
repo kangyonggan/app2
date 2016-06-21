@@ -11,7 +11,7 @@ public class ShiroUser {
 
     private Long id;
 
-    private String username;
+    private String email;
 
     private String realname;
 }

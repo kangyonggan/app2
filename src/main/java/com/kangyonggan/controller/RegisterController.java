@@ -1,4 +1,4 @@
-package com.kangyonggan.controller.web;
+package com.kangyonggan.controller;
 
 import com.kangyonggan.model.User;
 import com.kangyonggan.service.UserService;
@@ -47,9 +47,8 @@ public class RegisterController {
     public String register(User user, Model model) {
         model.addAttribute("message", "注册失败, 请稍后重试!");
         try {
-            if (userService.saveUserAndRole(user) == 1) {
-                model.addAttribute("message", "注册成功");
-            }
+            userService.saveUserAndRole(user);
+            model.addAttribute("message", "注册成功");
         } catch (Exception e) {
             return PATH_INDEX;
         }

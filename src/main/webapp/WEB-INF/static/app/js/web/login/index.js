@@ -1,9 +1,9 @@
 $(function () {
     $("#login").click(function() {
-        var username = $("#username").val();
+        var email = $("#email").val();
         var password = $("#password").val();
 
-        if (!username) {
+        if (!email) {
             Notify.error("请输入用户名");
             return false;
         }

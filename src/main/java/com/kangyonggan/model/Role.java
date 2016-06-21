@@ -1,9 +1,8 @@
 package com.kangyonggan.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 public class Role {
@@ -15,19 +14,20 @@ public class Role {
     private Long id;
 
     /**
+     * 角色代码
+     */
+    private String code;
+
+    /**
      * 角色名称
      */
     private String name;
 
     /**
-     * 角色描述
+     * 是否删除 {0:未删除, 1:已删除}
      */
-    private String description;
-
-    /**
-     * 是否禁用, able:已启用, disable:已禁用
-     */
-    private String status;
+    @Column(name = "is_deleted")
+    private Byte isDeleted;
 
     /**
      * 创建时间

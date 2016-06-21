@@ -1,6 +1,11 @@
 package com.kangyonggan.config;
 
-import com.kangyonggan.config.freemarker.*;
+import com.kangyonggan.config.directive.MenuDirective;
+import com.kangyonggan.config.directive.UserDirective;
+import com.kangyonggan.config.freemarker.BlockDirective;
+import com.kangyonggan.config.freemarker.ExtendsDirective;
+import com.kangyonggan.config.freemarker.OverrideDirective;
+import com.kangyonggan.config.freemarker.SuperDirective;
 import com.kangyonggan.config.shiro.ShiroTags;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +37,21 @@ public class FreemarkerConfiguration extends FreeMarkerAutoConfiguration.FreeMar
     @Autowired
     private UserDirective userDirective;
 
+    @Autowired
+    private MenuDirective menuDirective;
+
     @Override
     public FreeMarkerConfigurer freeMarkerConfigurer() {
         FreeMarkerConfigurer configurer = super.freeMarkerConfigurer();
         Map<String, Object> sharedVariables = new HashMap();
         sharedVariables.put("appName", prop.get(0));
         sharedVariables.put("version", prop.get(1));
-        sharedVariables.put("author", prop.get(2));
+        sharedVariables.put("authorName", prop.get(2));
         sharedVariables.put("submit", prop.get(3));
         sharedVariables.put("cancel", prop.get(4));
         sharedVariables.put("ctx", ctx);
         sharedVariables.put("app_user", userDirective);
+        sharedVariables.put("app_menus", menuDirective);
         sharedVariables.put("block", new BlockDirective());
         sharedVariables.put("extends", new ExtendsDirective());
         sharedVariables.put("override", new OverrideDirective());

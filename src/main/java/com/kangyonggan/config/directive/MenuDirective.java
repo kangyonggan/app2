@@ -1,16 +1,19 @@
-package com.kangyonggan.config;
+package com.kangyonggan.config.directive;
 
 import com.kangyonggan.config.shiro.SuperTag;
+import com.kangyonggan.model.Menu;
 import com.kangyonggan.model.ShiroUser;
-import com.kangyonggan.model.User;
+import com.kangyonggan.service.MenuService;
 import com.kangyonggan.service.UserService;
 import freemarker.core.Environment;
+import freemarker.template.ObjectWrapper;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,7 +21,7 @@ import java.util.Map;
  * @since 16/5/18
  */
 @Component
-public class UserDirective extends SuperTag {
+public class MenuDirective extends SuperTag {
 
     String getProperty(Map params) {
         return getParam(params, "property");
@@ -27,34 +30,16 @@ public class UserDirective extends SuperTag {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MenuService menuService;
+
     @Override
     public void render(Environment env, Map params, TemplateDirectiveBody body) throws IOException, TemplateException {
-        ShiroUser shiroUser = null;
-        try {
-            shiroUser = userService.getShiroUser();
-        } catch (Exception E) {
-
-        }
-        User user = null;
-        String result = null;
-
-        if (shiroUser != null) {
-            Long userId = shiroUser.getId();
-            user = userService.getUser(userId);
-        }
-
+        ShiroUser user = userService.getShiroUser();
         if (user != null) {
-            String property = getProperty(params);
-
-            if (property == null) {
-                result = user.toString();
-            } else {
-                result = getPrincipalProperty(user, property);
-            }
+            List<Menu> menus = menuService.findMenusByCodeAndUserId("sys-", user.getId());
+            env.setVariable("sys_menus", ObjectWrapper.DEFAULT_WRAPPER.wrap(menus));
         }
-
-        if (result != null) {
-            env.getOut().write(result);
-        }
+        renderBody(env, body);
     }
 }

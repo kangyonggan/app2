@@ -2,9 +2,11 @@ package com.kangyonggan.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class Menu {
@@ -16,14 +18,14 @@ public class Menu {
     private Long id;
 
     /**
+     * 菜单代码
+     */
+    private String code;
+
+    /**
      * 菜单名称
      */
     private String name;
-
-    /**
-     * 菜单描述
-     */
-    private String description;
 
     /**
      * 父菜单ID
@@ -36,19 +38,20 @@ public class Menu {
     private String url;
 
     /**
-     * 是否禁用, able:已启用, disable:已禁用
-     */
-    private String status;
-
-    /**
      * 菜单排序
      */
     private Integer sort;
 
     /**
-     * 菜单图标的class
+     * 菜单图标的样式
      */
     private String icon;
+
+    /**
+     * 是否删除 {0:未删除, 1:已删除}
+     */
+    @Column(name = "is_deleted")
+    private Byte isDeleted;
 
     /**
      * 创建时间
@@ -61,7 +64,4 @@ public class Menu {
      */
     @Column(name = "updated_time")
     private Date updatedTime;
-
-    @Transient
-    private List<Menu> leaf;
 }

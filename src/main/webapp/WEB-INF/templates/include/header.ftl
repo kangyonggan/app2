@@ -1,10 +1,15 @@
+<#assign avatar=app_user.largeAvatar/>
+<#if app_user.largeAvatar == ''>
+    <#assign avatar='static/ace/dist/avatars/profile-pic.jpg'/>
+</#if>
+
 <div class="row">
     <div class="col-xs-12">
         <div id="user-profile-1" class="user-profile row">
             <div class="col-xs-12 col-sm-3 center">
                 <div>
                     <span class="profile-picture">
-                        <img id="avatar" src="${ctx}static/ace/dist/avatars/profile-pic.jpg"
+                        <img src="${ctx}${avatar}"
                              class="editable img-responsive editable-click editable-empty"/>
                     </span>
 
@@ -12,39 +17,11 @@
 
                     <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
                         <div class="inline position-relative">
-                            <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="user-title-label">
                                 <i class="ace-icon fa fa-circle light-green"></i>
                                 &nbsp;
-                                <span class="white">康永敢</span>
+                                <span class="white">${app_user.realname}</span>
                             </a>
-
-                            <ul class="align-left dropdown-menu dropdown-caret dropdown-lighter">
-                                <li class="dropdown-header"> 在线状态</li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-circle green"></i>
-                                        &nbsp;
-                                        <span class="green">在线</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-circle red"></i>
-                                        &nbsp;
-                                        <span class="red">繁忙</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-circle grey"></i>
-                                        &nbsp;
-                                        <span class="grey">隐身</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -58,10 +35,10 @@
                         <i class="ace-icon fa fa-times"></i>
                     </button>
 
-                    <i class="ace-icon fa fa-bullhorn green"></i>
+                    <i class="ace-icon fa fa-leaf green"></i>
 
                     <strong class="green">
-                        今天真TMD倒霉, 在世纪大道换乘的时候手机被偷了, 还好我是个穷光蛋...
+                    <@c.substring str="${app_user.mood}" len=60 default="这孩子太懒了, 尽然没有留下心情..."/>
                     </strong>
                 </div>
 

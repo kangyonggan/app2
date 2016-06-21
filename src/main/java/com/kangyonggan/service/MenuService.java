@@ -10,17 +10,5 @@ import java.util.List;
  */
 public interface MenuService {
 
-    List<Menu> findAllMenusByPage(int pageNum);
-
-    List<Menu> findMenusByUserId(Long userId);
-
-    Menu getMenu(Long id);
-
-    Menu findMenuByName(String name);
-
-    int saveMenu(Menu menu);
-
-    int updateMenu(Menu menu);
-
-    int deleteMenu(Long id);
+    List<Menu> findMenusByCodeAndUserId(String code, Long userId);
 }

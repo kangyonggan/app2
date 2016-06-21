@@ -11,28 +11,15 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> searchUsers(int pageNow, int pageSize, String status, String username, String realname, String mobile, String email);
-
-    List<User> findAllUsersByPage(int pageNum);
-
-    List<User> findAllUsers();
+    List<User> searchUsers(int pageNum, int pageSize, String realname, String email);
 
     ShiroUser getShiroUser();
 
     User getUser(Long id);
 
-    User findUserByUsername(String username);
+    User findUserByEmail(String email);
 
-    int saveUser(User user);
+    void saveUserAndRole(User user);
 
-    int saveUserAndRole(User user);
-
-    int updateUser(User user);
-
-    int updateUserPassword(User user);
-
-    int deleteUser(Long userId);
-
-    void updateUserRoles(Long userId, String roles);
-
+    void updateUser(User user);
 }

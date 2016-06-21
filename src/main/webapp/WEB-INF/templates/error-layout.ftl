@@ -33,4 +33,4 @@
 </div>
 </@override>
 
-<@extends name="../layout.ftl"/>
+<@extends name="layout.ftl"/>

@@ -9,13 +9,6 @@ import java.util.List;
 
 @Repository
 public interface MenuMapper extends MyMapper<Menu> {
-    /**
-     * 查找用户所有菜单
-     *
-     * @param userId
-     * @return
-     */
-    List<Menu> selectMenusByUserId(@Param("userId") Long userId);
 
-    List<Menu> selectMenusByRoleId(@Param("roleId") Long roleId);
+    List<Menu> selectMenusByCodeAndUserId(@Param("code") String code, @Param("userId") Long userId);
 }

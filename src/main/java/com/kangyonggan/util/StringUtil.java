@@ -94,4 +94,14 @@ public class StringUtil {
         return false;
     }
 
+    /**
+     * 过滤空数据
+     *
+     * @param str
+     * @return
+     */
+    public static String filter(String str) {
+        return isEmpty(str) ? "" : str;
+    }
+
 }

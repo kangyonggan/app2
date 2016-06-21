@@ -1,9 +1,8 @@
 package com.kangyonggan.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.*;
+import lombok.Data;
 
 @Data
 public class User {
@@ -15,9 +14,15 @@ public class User {
     private Long id;
 
     /**
-     * 用户名
+     * 电子邮箱
      */
-    private String username;
+    private String email;
+
+    /**
+     * 是否校验 {0:未校验, 1:已校验}
+     */
+    @Column(name = "is_verified")
+    private Byte isVerified;
 
     /**
      * 密码
@@ -35,19 +40,9 @@ public class User {
     private String realname;
 
     /**
-     * 电子邮箱
-     */
-    private String email;
-
-    /**
      * 手机号
      */
     private String mobile;
-
-    /**
-     * 是否禁用, able:已启用, disable:已禁用
-     */
-    private String status;
 
     /**
      * 小头像
@@ -68,6 +63,23 @@ public class User {
     private String largeAvatar;
 
     /**
+     * 心情
+     */
+    private String mood;
+
+    /**
+     * 是否锁定 {0:未锁定, 1:已锁定}
+     */
+    @Column(name = "is_locked")
+    private Byte isLocked;
+
+    /**
+     * 是否删除 {0:未删除, 1:已删除}
+     */
+    @Column(name = "is_deleted")
+    private Byte isDeleted;
+
+    /**
      * 创建时间
      */
     @Column(name = "created_time")
@@ -78,4 +90,10 @@ public class User {
      */
     @Column(name = "updated_time")
     private Date updatedTime;
+
+    /**
+     * 最近登录时间
+     */
+    @Column(name = "login_time")
+    private Date loginTime;
 }

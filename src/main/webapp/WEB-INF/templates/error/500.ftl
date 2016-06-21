@@ -6,4 +6,4 @@
 
 </@override>
 
-<@extends name="error-layout.ftl"/>
+<@extends name="../error-layout.ftl"/>

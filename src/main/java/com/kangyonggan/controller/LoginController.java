@@ -1,5 +1,6 @@
-package com.kangyonggan.controller.web;
+package com.kangyonggan.controller;
 
+import com.kangyonggan.exception.EmailNotVerifiedException;
 import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.model.User;
 import com.kangyonggan.service.UserService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * 登录
@@ -58,7 +60,7 @@ public class LoginController {
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(User user, Model model, HttpServletRequest request) {
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), user.getPassword());
         log.info("Authenticating {}", token.getUsername());
         final Subject subject = SecurityUtils.getSubject();
 
@@ -72,7 +74,10 @@ public class LoginController {
             model.addAttribute("message", "密码错误，请重新输入！");
             return PATH_INDEX;
         } catch (LockedAccountException lae) {
-            model.addAttribute("message", "账号已禁用！");
+            model.addAttribute("message", "账号已锁定！");
+            return PATH_INDEX;
+        } catch (EmailNotVerifiedException enve) {
+            model.addAttribute("message", "账号未激活！");
             return PATH_INDEX;
         } catch (Exception e) {
             model.addAttribute("message", "未知错误，请联系管理员。");
@@ -80,11 +85,15 @@ public class LoginController {
             return PATH_INDEX;
         }
 
+        user = userService.findUserByEmail(user.getEmail());
+        // 更新最近登录时间
+        user.setLoginTime(new Date());
+        userService.updateUser(user);
+
         SavedRequest savedRequest = WebUtils.getSavedRequest(request);
         // 获取保存的URL
         if (savedRequest == null || savedRequest.getRequestUrl() == null) {
-            ShiroUser shiroUser = userService.getShiroUser();
-            return String.format("redirect:/user/%d", shiroUser.getId());
+            return String.format("redirect:/user/%d", user.getId());
         }
         return String.format("redirect:%s", savedRequest.getRequestUrl());
     }

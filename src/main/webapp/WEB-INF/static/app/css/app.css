@@ -68,17 +68,16 @@ ul {
 }
 
 .article-buttons {
-    padding-left: 10px;
+    padding: 5px 10px;
 }
 
 .article-buttons > a {
     display: inline-block;
-    width: 60px;
-    height: 30px;
-    line-height: 30px;
+    width: 50px;
+    height: 27px;
+    line-height: 27px;
     text-align: center;
     color: #5d7895;
-    margin: 5px;
     border: 1px solid #F7F7F7;
 }
 
@@ -90,3 +89,21 @@ ul {
 }
 
 /*文章列表样式 结尾*/
+
+/*分页组件 开头*/
+.empty {
+    padding: 40px 0px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.page-info {
+    color: #000 !important;
+    background: #fff !important;
+    cursor: default;
+}
+
+.page-info:hover {
+    background: #fff !important;
+}
+/*分页组件 结尾*/
