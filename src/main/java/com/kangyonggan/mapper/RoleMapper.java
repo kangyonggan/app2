@@ -11,4 +11,5 @@ public interface RoleMapper extends MyMapper<Role> {
 
     List<Role> selectRolesByUserId(Long userId);
 
+    void deleteAllRolesByUserId(Long userId);
 }

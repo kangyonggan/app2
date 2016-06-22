@@ -2,9 +2,12 @@ package com.kangyonggan.controller.sys;
 
 import com.github.pagehelper.PageInfo;
 import com.kangyonggan.constants.AppConstants;
+import com.kangyonggan.model.Role;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.service.RoleService;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.Collections3;
 import com.kangyonggan.util.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +33,15 @@ public class SysUserController {
     private static final String PATH_ROOT = "sys/user/";
     private static final String PATH_LIST = PATH_ROOT + "list";
     private static final String PATH_FORM_MODAL = PATH_ROOT + "form-modal";
+    private static final String PATH_ROLES_MODAL = PATH_ROOT + "roles-modal";
     private static final String PATH_DETAIL_MODAL = PATH_ROOT + "detail-modal";
     private static final String PATH_TABLE_TR = PATH_ROOT + "table-tr";
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     /**
      * 用户列表
@@ -169,6 +176,42 @@ public class SysUserController {
     @RequiresPermissions("sys-user")
     public ValidationResponse delete(@PathVariable("id") Long id) {
         userService.deleteUser(id);
+        return new ValidationResponse(AppConstants.SUCCESS);
+    }
+
+    /**
+     * 设置角色
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}/roles", method = RequestMethod.GET)
+    @RequiresPermissions("sys-user")
+    public String roles(@PathVariable("id") Long id, Model model) {
+        List<Role> user_roles = roleService.findRolesByUserId(id);
+        user_roles = Collections3.extractToList(user_roles, "code");
+        List<Role> all_roles = roleService.findAllRoles();
+
+        model.addAttribute("id", id);
+        model.addAttribute("user_roles", user_roles);
+        model.addAttribute("all_roles", all_roles);
+        return PATH_ROLES_MODAL;
+    }
+
+    /**
+     * 保存角色
+     *
+     * @param id
+     * @param roles
+     * @return
+     */
+    @RequestMapping(value = "{id}/roles", method = RequestMethod.POST)
+    @RequiresPermissions("sys-user")
+    @ResponseBody
+    public ValidationResponse updateUserRoles(@PathVariable Long id,
+                                   @RequestParam(value = "roles", defaultValue = "") String roles) {
+        userService.updateUserRoles(id, roles);
         return new ValidationResponse(AppConstants.SUCCESS);
     }
 

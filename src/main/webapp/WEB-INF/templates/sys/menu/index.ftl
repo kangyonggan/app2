@@ -9,7 +9,7 @@
 
 <div class="widget-box widget-color-dark">
     <div class="widget-header">
-        <h4 class="widget-title lighter smaller">权限设置</h4>
+        <h4 class="widget-title lighter smaller">菜单管理</h4>
     </div>
 
     <div class="widget-body">

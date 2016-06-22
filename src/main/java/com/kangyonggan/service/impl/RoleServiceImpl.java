@@ -42,6 +42,14 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
     }
 
     @Override
+    public List<Role> findAllRoles() {
+        Role role = new Role();
+        role.setIsDeleted((byte) 0);
+
+        return super.select(role);
+    }
+
+    @Override
     public Role getRole(Long id) {
         return super.selectByPrimaryKey(id);
     }

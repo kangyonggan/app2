@@ -3,6 +3,7 @@ package com.kangyonggan.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.constants.RoleEnum;
 import com.kangyonggan.constants.ShiroConstants;
+import com.kangyonggan.mapper.RoleMapper;
 import com.kangyonggan.mapper.UserMapper;
 import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.model.User;
@@ -16,8 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author kangyonggan
@@ -29,6 +29,9 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
     public List<User> searchUsers(int pageNum, int pageSize, String realname) {
@@ -88,6 +91,15 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
+    public void updateUserRoles(Long id, String roleIds) {
+        roleMapper.deleteAllRolesByUserId(id);
+
+        if (StringUtil.isNotEmpty(roleIds)) {
+            saveUserRoles(id, roleIds);
+        }
+    }
+
+    @Override
     public void deleteUser(Long id) {
         super.deleteByPrimaryKey(id);
     }
@@ -114,11 +126,21 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     /**
-     * 保存用户角色
+     * 保存“普通用户”角色
      *
      * @param user
      */
     private void saveUserRole(User user) {
         userMapper.insertUserRole(user.getId(), RoleEnum.ROLE_USER.getId());
+    }
+
+    /**
+     * 批量保存用户角色
+     *
+     * @param userId
+     * @param roleIds
+     */
+    private void saveUserRoles(Long userId, String roleIds) {
+        userMapper.insertUserRoles(userId, Arrays.asList(roleIds.split(",")));
     }
 }

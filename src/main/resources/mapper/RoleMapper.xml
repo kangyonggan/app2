@@ -24,4 +24,8 @@
         </where>
     </select>
 
+    <delete id="deleteAllRolesByUserId" parameterType="Long">
+        DELETE FROM user_role WHERE user_id = #{userId}
+    </delete>
+
 </mapper>
