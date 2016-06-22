@@ -12,8 +12,8 @@ $(function () {
                         'email': function () {
                             return $('#email').val();
                         },
-                        'isEdit': function () {
-                            return isEdit;
+                        'oldEmail': function () {
+                            return $("#old_email").val();
                         }
                     }
                 }
@@ -40,8 +40,8 @@ $(function () {
                         'mobile': function () {
                             return $('#mobile').val();
                         },
-                        'isEdit': function () {
-                            return isEdit;
+                        'oldMobile': function () {
+                            return $("#old_mobile").val();
                         }
                     }
                 }

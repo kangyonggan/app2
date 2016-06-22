@@ -84,7 +84,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     public void updateUser(User user) {
         user.setUpdatedTime(new Date());
 
-        super.updateByPrimaryKey(user);
+        super.updateByPrimaryKeySelective(user);
     }
 
     @Override

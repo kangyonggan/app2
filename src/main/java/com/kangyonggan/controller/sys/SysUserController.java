@@ -110,17 +110,53 @@ public class SysUserController {
     }
 
     /**
+     * 编辑用户
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
+    @RequiresPermissions("sys-user")
+    public String create(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("item", userService.getUser(id));
+        return PATH_FORM_MODAL;
+    }
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     * @param result
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}/update", method = RequestMethod.POST)
+    @ResponseBody
+    @RequiresPermissions("sys-user")
+    public ValidationResponse update(@ModelAttribute("user") @Valid User user, BindingResult result) {
+        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+
+        if (!result.hasErrors()) {
+            userService.updateUser(user);
+        } else {
+            res.setStatus(AppConstants.FAIL);
+        }
+
+        return res;
+    }
+
+    /**
      * 电子邮箱唯一性校验
      *
      * @param email
-     * @param isEdit
+     * @param oldEmail
      * @return
      */
     @RequestMapping(value = "/verify-email", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("sys-user")
-    public boolean verifyEmail(@RequestParam String email, @RequestParam String isEdit) {
-        if ("yes".equals(isEdit)) {
+    public boolean verifyEmail(@RequestParam String email, @RequestParam String oldEmail) {
+        if (oldEmail.equals(email)) {
             return true;
         }
         return userService.findUserByEmail(email) == null;
@@ -130,14 +166,14 @@ public class SysUserController {
      * 手机号唯一性校验
      *
      * @param mobile
-     * @param isEdit
+     * @param oldMobile
      * @return
      */
     @RequestMapping(value = "/verify-mobile", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("sys-user")
-    public boolean verifyMobile(@RequestParam String mobile, @RequestParam String isEdit) {
-        if ("yes".equals(isEdit)) {
+    public boolean verifyMobile(@RequestParam String mobile, @RequestParam String oldMobile) {
+        if (oldMobile.equals(mobile)) {
             return true;
         }
         if (StringUtil.isEmpty(mobile)) {
