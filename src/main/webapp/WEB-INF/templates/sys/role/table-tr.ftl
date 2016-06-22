@@ -1,7 +1,7 @@
-<tr id="role-${item.id}">
+<tr>
     <td>${item.id}</td>
-    <td>${item.name}</td>
     <td>${item.code}</td>
+    <td>${item.name}</td>
     <td>${item.createdTime?datetime}</td>
     <td>
         <div class="btn-group">
@@ -18,7 +18,7 @@
                        data-backdrop="static">编辑角色信息</a>
                 </li>
                 <li>
-                    <a title="${item.name}" data-role="delete-item" data-url="${ctx}sys/role/${item.id}/delete">
+                    <a class="delete-item" title="${item.name}" data-url="${ctx}sys/role/${item.id}/delete">
                         删除角色
                     </a>
                 </li>

@@ -160,7 +160,7 @@ public class SysUserController {
     }
 
     /**
-     * 电子邮箱唯一性校验
+     * 校验电子邮箱唯一性
      *
      * @param email
      * @param oldEmail
@@ -177,7 +177,7 @@ public class SysUserController {
     }
 
     /**
-     * 手机号唯一性校验
+     * 校验手机号唯一性
      *
      * @param mobile
      * @param oldMobile
@@ -195,6 +195,5 @@ public class SysUserController {
         }
         return userService.findUserByMobile(mobile) == null;
     }
-
 
 }

@@ -17,7 +17,7 @@
     </button>
 
     <div class="pull-right">
-        <a href="#" class="btn btn-purple btn-sm">添加</a>
+        <a href="${ctx}sys/role/create" class="btn btn-purple btn-sm" data-backdrop="static" data-toggle="modal" data-target="#myModal">添加</a>
     </div>
 </form>
 
@@ -27,8 +27,8 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>角色名称</th>
         <th>角色代码</th>
+        <th>角色名称</th>
         <th>创建时间</th>
         <th>操作</th>
     </tr>

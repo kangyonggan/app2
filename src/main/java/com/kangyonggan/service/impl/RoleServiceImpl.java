@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,5 +39,38 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
     @Override
     public List<Role> findRolesByUserId(Long userId) {
         return roleMapper.selectRolesByUserId(userId);
+    }
+
+    @Override
+    public Role getRole(Long id) {
+        return super.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Role findRoleByCode(String code) {
+        Role role = new Role();
+        role.setCode(code);
+
+        return super.selectOne(role);
+    }
+
+    @Override
+    public void saveRole(Role role) {
+        role.setCreatedTime(new Date());
+        role.setUpdatedTime(new Date());
+
+        super.insertSelective(role);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        role.setUpdatedTime(new Date());
+
+        super.updateByPrimaryKeySelective(role);
+    }
+
+    @Override
+    public void deleteRole(Long id) {
+        super.deleteByPrimaryKey(id);
     }
 }
