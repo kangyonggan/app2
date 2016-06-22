@@ -6,9 +6,7 @@
     <div class="row">
         <@c.input id="code" label="菜单代码" val="${item.code!''}" required="true"/>
         <@c.input id="name" label="菜单名称" val="${item.name!''}" required="true"/>
-        <#if item.id??>
-            <input type="hidden" value="${item.code}" id="old_code"/>
-        </#if>
+        <input type="hidden" value="${item.code!''}" id="old_code"/>
     </div>
 </form>
 </@override>

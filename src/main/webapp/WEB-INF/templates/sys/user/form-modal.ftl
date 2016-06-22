@@ -9,12 +9,12 @@
         <#if !item.id??>
             <@c.passwod id="password" label="密码" required="true"/>
             <@c.passwod id="rePassword" label="确认密码" required="true"/>
-        <#else>
-            <input type="hidden" value="${item.email}" id="old_email"/>
-            <input type="hidden" value="${item.mobile}" id="old_mobile"/>
         </#if>
         <@c.input id="mobile" label="手机号" val="${item.mobile!''}"/>
         <@c.input id="sign" label="签名" val="${item.sign!''}"/>
+
+        <input type="hidden" value="${item.email!''}" id="old_email"/>
+        <input type="hidden" value="${item.mobile!''}" id="old_mobile"/>
     </div>
 </form>
 </@override>

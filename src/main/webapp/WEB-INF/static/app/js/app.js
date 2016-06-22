@@ -7,7 +7,7 @@ $(function () {
             $.get(url, function () {
                 $trigger.parents('tr').remove();
             }).success(function () {
-                Notify.success("删除用户成功");
+                Notify.success("删除成功");
             })
         });
     });

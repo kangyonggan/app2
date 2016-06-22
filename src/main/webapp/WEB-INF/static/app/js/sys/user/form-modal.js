@@ -9,12 +9,8 @@ $(function () {
                     url: ctx + "sys/user/verify-email",
                     type: 'post',
                     data: {
-                        'email': function () {
-                            return $('#email').val();
-                        },
-                        'oldEmail': function () {
-                            return $("#old_email").val();
-                        }
+                        'email': $('#email').val(),
+                        'oldEmail': $("#old_email").val()
                     }
                 }
             },
@@ -37,12 +33,8 @@ $(function () {
                     url: ctx + "sys/user/verify-mobile",
                     type: 'post',
                     data: {
-                        'mobile': function () {
-                            return $('#mobile').val();
-                        },
-                        'oldMobile': function () {
-                            return $("#old_mobile").val();
-                        }
+                        'mobile': $('#mobile').val(),
+                        'oldMobile': $("#old_mobile").val()
                     }
                 }
             },

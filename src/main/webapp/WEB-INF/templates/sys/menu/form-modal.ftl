@@ -1,39 +1,36 @@
-<@override name="modal-title"><#if !menu.id??>添加<#else>编辑</#if>菜单</@override>
+<#assign modal_title="${item.id???string('编辑菜单信息', '添加新菜单')}" />
 
 <@override name="modal-body">
 <form class="form-horizontal" role="form" id="modal-form" method="post"
-    <#if !menu.id??>
-      action="${ctx}admin/menu/save"
-    <#else>
-      action="${ctx}admin/menu/${menu.id}/update"
-    </#if>>
-    <input type="hidden" name="pid" value="${(parent_menu.id)!0}">
+      action="${ctx}sys/menu/<#if item.id??>${item.id}/update<#else>save</#if>">
+    <input type="hidden" name="pid" value="${parent_item.id!0}">
     <div class="row">
-        <#if parent_menu.id??>
-            <@c.readonlyInput id="parent_name" label="上级菜单" value="${parent_menu.description}"/>
+        <#if parent_item.id??>
+            <@c.input id="parent_name" label="父菜单名称" val="${parent_item.name}" readonly="true"/>
         </#if>
 
-        <@c.input id="description" label="菜单名称" value="${menu.description!''}"/>
+        <@c.input id="name" label="菜单名称" val="${item.name!''}" required="true"/>
 
-        <@c.input id="name" label="菜单代码" value="${menu.name!''}"/>
+        <@c.input id="code" label="菜单代码" val="${item.code!''}" required="true"/>
 
-        <input type="hidden" id="old_name" name="old_name" value="${menu.name!''}">
+        <@c.input id="url" label="路径" val="${item.url!''}"/>
 
-        <@c.input id="url" label="地址" value="${menu.url!''}"/>
+        <@c.input id="icon" label="图标" val="${item.icon!''}"/>
 
-        <@c.input id="icon" label="图标" value="${menu.icon!''}"/>
+        <@c.input id="sort" label="排序" val="${item.sort!'1'}" required="true"/>
 
-        <@c.input id="sort" label="排序" value="${menu.sort!'1'}"/>
+        <input type="hidden" id="old_code" value="${item.code!''}">
 
     </div>
 </form>
 </@override>
 
 <@override name="modal-footer">
+<button class="btn btn-inverse" data-toggle="modal-submit" data-loading-text="正在提交...">
+    <i class="ace-icon fa fa-check bigger-110"></i>
+${submit}
 
-    <@c.modalButton />
-
-<script src="${ctx}static/app/js/admin/menu/create-modal.js"></script>
+<script src="${ctx}static/app/js/sys/menu/form-modal.js"></script>
 </@override>
 
 <@extends name="../../modal-layout.ftl"/>

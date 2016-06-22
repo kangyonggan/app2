@@ -1,16 +1,12 @@
 $(function () {
     var showRemoveNotify = function (response) {
-        if (!response) {
-            Notify.error("菜单删除失败。");
-        } else {
-            Notify.success("菜单删除成功。");
-        }
+        Notify.success("菜单删除成功。");
     };
 
     var beforeRemove = function (treeId, treeNode) {
         if (confirm("确认删除菜单 " + treeNode.name + " 吗？")) {
             $.post(ctx + "sys/menu/" + treeNode.id + "/delete", function (data, status) {
-                if (status == "success") {
+                if (status == "success" && data.status == "success") {
                     return true;
                 } else {
                     return false;

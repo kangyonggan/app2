@@ -57,8 +57,8 @@ public class SysMenuController {
     @RequiresPermissions("sys-menu")
     public String create(@RequestParam(value = "pid", defaultValue = "0") Long pid,
                          Model model) {
-        model.addAttribute("menu", new Menu());
-        model.addAttribute("parent_menu", menuService.getMenu(pid));
+        model.addAttribute("item", new Menu());
+        model.addAttribute("parent_item", menuService.getMenu(pid));
         return PATH_FORM_MODAL;
     }
 
@@ -77,6 +77,7 @@ public class SysMenuController {
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
         if (!result.hasErrors()) {
             menuService.saveMenu(menu);
+            res.setStatus(AppConstants.SUCCESS);
         }
         return res;
     }
@@ -92,8 +93,8 @@ public class SysMenuController {
     @RequiresPermissions("sys-menu")
     public String edit(@PathVariable Long id, Model model) {
         Menu menu = menuService.getMenu(id);
-        model.addAttribute("menu", menu);
-        model.addAttribute("parent_menu", menuService.getMenu(menu.getPid()));
+        model.addAttribute("item", menu);
+        model.addAttribute("parent_item", menuService.getMenu(menu.getPid()));
         return PATH_FORM_MODAL;
     }
 
@@ -137,14 +138,14 @@ public class SysMenuController {
      * 校验菜单代码唯一性
      *
      * @param code
-     * @param old_code
+     * @param oldCode
      * @return
      */
     @RequestMapping(value = "verify-code", method = RequestMethod.POST)
     @RequiresPermissions("sys-menu")
     @ResponseBody
-    public boolean verifyCode(@RequestParam String code, @RequestParam String old_code) {
-        if (old_code.equals(code)) {
+    public boolean verifyCode(@RequestParam String code, @RequestParam String oldCode) {
+        if (oldCode.equals(code)) {
             return true;
         }
         return menuService.findMenuByCode(code) == null;
