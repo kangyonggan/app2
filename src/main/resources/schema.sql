@@ -95,7 +95,6 @@ CREATE TABLE menu
 );
 CREATE UNIQUE INDEX id_UNIQUE ON menu (id);
 CREATE UNIQUE INDEX code_UNIQUE ON menu (code);
-CREATE UNIQUE INDEX url_UNIQUE ON menu (url);
 
 INSERT INTO menu (id, code, name, pid, url, sort, icon, created_time, updated_time)
 VALUES (1, 'root', '根菜单', '0', 'root', 1, '', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),

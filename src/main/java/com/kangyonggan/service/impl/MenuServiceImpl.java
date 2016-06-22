@@ -3,12 +3,13 @@ package com.kangyonggan.service.impl;
 import com.kangyonggan.mapper.MenuMapper;
 import com.kangyonggan.model.Menu;
 import com.kangyonggan.service.MenuService;
-import com.kangyonggan.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,11 +30,25 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
 
     @Override
     public List<Menu> findMenusByPid(Long pid) {
+        // TODO 查出菜单, 点的时候到403, 修改403, 向管理员申请此权限
         Example example = new Example(Menu.class);
         example.createCriteria().andEqualTo("pid", pid).andEqualTo("isDeleted", 0);
         example.setOrderByClause("sort asc");
 
         return super.selectByExample(example);
+    }
+
+    @Override
+    public List<Menu> findAllMenus() {
+        Menu menu = new Menu();
+        menu.setIsDeleted((byte) 0);
+
+        return super.select(menu);
+    }
+
+    @Override
+    public Menu getMenu(Long id) {
+        return super.selectByPrimaryKey(id);
     }
 
     @Override
@@ -43,5 +58,25 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
         menu.setIsDeleted((byte) 0);
 
         return super.selectOne(menu);
+    }
+
+    @Override
+    public void saveMenu(Menu menu) {
+        menu.setCreatedTime(new Date());
+        menu.setUpdatedTime(new Date());
+
+        super.insertSelective(menu);
+    }
+
+    @Override
+    public void updateMenu(Menu menu) {
+        menu.setUpdatedTime(new Date());
+
+        super.updateByPrimaryKeySelective(menu);
+    }
+
+    @Override
+    public void deleteMenu(Long id) {
+        super.deleteByPrimaryKey(id);
     }
 }

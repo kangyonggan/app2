@@ -99,12 +99,11 @@ public class SysUserController {
     @ResponseBody
     @RequiresPermissions("sys-user")
     public ValidationResponse save(@ModelAttribute("user") @Valid User user, BindingResult result) {
-        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
 
         if (!result.hasErrors()) {
             userService.saveUserAndRole(user);
-        } else {
-            res.setStatus(AppConstants.FAIL);
+            res.setStatus(AppConstants.SUCCESS);
         }
 
         return res;
@@ -135,12 +134,11 @@ public class SysUserController {
     @ResponseBody
     @RequiresPermissions("sys-user")
     public ValidationResponse update(@ModelAttribute("user") @Valid User user, BindingResult result) {
-        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
 
         if (!result.hasErrors()) {
             userService.updateUser(user);
-        } else {
-            res.setStatus(AppConstants.FAIL);
+            res.setStatus(AppConstants.SUCCESS);
         }
 
         return res;

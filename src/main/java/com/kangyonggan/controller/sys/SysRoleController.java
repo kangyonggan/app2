@@ -77,12 +77,11 @@ public class SysRoleController {
     @ResponseBody
     @RequiresPermissions("sys-role")
     public ValidationResponse save(@ModelAttribute("role") @Valid Role role, BindingResult result) {
-        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
 
         if (!result.hasErrors()) {
             roleService.saveRole(role);
-        } else {
-            res.setStatus(AppConstants.FAIL);
+            res.setStatus(AppConstants.SUCCESS);
         }
 
         return res;
@@ -113,12 +112,11 @@ public class SysRoleController {
     @ResponseBody
     @RequiresPermissions("sys-role")
     public ValidationResponse update(@ModelAttribute("role") @Valid Role role, BindingResult result) {
-        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
 
         if (!result.hasErrors()) {
             roleService.updateRole(role);
-        } else {
-            res.setStatus(AppConstants.FAIL);
+            res.setStatus(AppConstants.SUCCESS);
         }
 
         return res;

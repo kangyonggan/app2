@@ -14,5 +14,15 @@ public interface MenuService {
 
     List<Menu> findMenusByPid(Long pid);
 
+    List<Menu> findAllMenus();
+
+    Menu getMenu(Long id);
+
     Menu findMenuByCode(String code);
+
+    void saveMenu(Menu menu);
+
+    void updateMenu(Menu menu);
+
+    void deleteMenu(Long id);
 }
