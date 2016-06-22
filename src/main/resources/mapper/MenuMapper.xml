@@ -17,7 +17,7 @@
         <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
     </resultMap>
 
-    <select id="findMenusByUserId" parameterType="Long" resultMap="BaseResultMap">
+    <select id="selectMenusByUserId" parameterType="Long" resultMap="BaseResultMap">
         SELECT
         DISTINCT m.*
         FROM
@@ -30,4 +30,13 @@
         ORDER BY
         sort asc
     </select>
+
+    <select id="selectMenusByRoleId" parameterType="Long" resultMap="BaseResultMap">
+        SELECT m.* FROM menu m, role_menu rm WHERE m.id = rm. menu_id AND rm.role_id = #{roleId}
+    </select>
+
+    <delete id="deleteAllMenusByRoleId" parameterType="Long">
+        DELETE FROM role_menu WHERE role_id = #{roleId}
+    </delete>
+
 </mapper>

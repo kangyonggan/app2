@@ -25,7 +25,7 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
 
     @Override
     public List<Menu> findMenusByUserId(Long userId) {
-        return menuMapper.findMenusByUserId(userId);
+        return menuMapper.selectMenusByUserId(userId);
     }
 
     @Override
@@ -36,6 +36,11 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
         example.setOrderByClause("sort asc");
 
         return super.selectByExample(example);
+    }
+
+    @Override
+    public List<Menu> findMenusByRoleId(Long roleId) {
+        return menuMapper.selectMenusByRoleId(roleId);
     }
 
     @Override

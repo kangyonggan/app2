@@ -2,9 +2,12 @@ package com.kangyonggan.controller.sys;
 
 import com.github.pagehelper.PageInfo;
 import com.kangyonggan.constants.AppConstants;
+import com.kangyonggan.model.Menu;
 import com.kangyonggan.model.Role;
 import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.service.MenuService;
 import com.kangyonggan.service.RoleService;
+import com.kangyonggan.util.Collections3;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,10 +31,14 @@ public class SysRoleController {
     private static final String PATH_ROOT = "sys/role/";
     private static final String PATH_LIST = PATH_ROOT + "list";
     private static final String PATH_FORM_MODAL = PATH_ROOT + "form-modal";
+    private static final String PATH_MENUS_MODAL = PATH_ROOT + "menus-modal";
     private static final String PATH_DETAIL_MODAL = PATH_ROOT + "detail-modal";
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MenuService menuService;
 
     /**
      * 角色列表
@@ -147,6 +154,42 @@ public class SysRoleController {
     @RequiresPermissions("sys-role")
     public ValidationResponse delete(@PathVariable("id") Long id) {
         roleService.deleteRole(id);
+        return new ValidationResponse(AppConstants.SUCCESS);
+    }
+
+    /**
+     * 设置菜单
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}/menus", method = RequestMethod.GET)
+    @RequiresPermissions("sys-role")
+    public String menus(@PathVariable("id") Long id, Model model) {
+        List<Menu> role_menus = menuService.findMenusByRoleId(id);
+        role_menus = Collections3.extractToList(role_menus, "code");
+        List<Menu> all_menus = menuService.findAllMenus();
+
+        model.addAttribute("id", id);
+        model.addAttribute("role_menus", role_menus);
+        model.addAttribute("all_menus", all_menus);
+        return PATH_MENUS_MODAL;
+    }
+
+    /**
+     * 保存菜单
+     *
+     * @param id
+     * @param menus
+     * @return
+     */
+    @RequestMapping(value = "{id}/menus", method = RequestMethod.POST)
+    @RequiresPermissions("sys-role")
+    @ResponseBody
+    public ValidationResponse updateRoleMenus(@PathVariable Long id,
+                                              @RequestParam(value = "menus", defaultValue = "") String menus) {
+        roleService.updateRoleMenus(id, menus);
         return new ValidationResponse(AppConstants.SUCCESS);
     }
 

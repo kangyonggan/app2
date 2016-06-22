@@ -1,6 +1,7 @@
 package com.kangyonggan.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.kangyonggan.mapper.MenuMapper;
 import com.kangyonggan.mapper.RoleMapper;
 import com.kangyonggan.model.Role;
 import com.kangyonggan.service.RoleService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private MenuMapper menuMapper;
 
     @Override
     public List<Role> searchRoles(int pageNum, int pageSize, String name) {
@@ -80,5 +85,24 @@ public class RoleServiceImpl extends BaseService<Role> implements RoleService {
     @Override
     public void deleteRole(Long id) {
         super.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateRoleMenus(Long roleId, String menuIds) {
+        menuMapper.deleteAllMenusByRoleId(roleId);
+
+        if (StringUtil.isNotEmpty(menuIds)) {
+            saveRoleMenus(roleId, menuIds);
+        }
+    }
+
+    /**
+     * 保存角色菜单
+     *
+     * @param roleId
+     * @param menuIds
+     */
+    private void saveRoleMenus(Long roleId, String menuIds) {
+        roleMapper.insertRoleMenus(roleId, Arrays.asList(menuIds.split(",")));
     }
 }

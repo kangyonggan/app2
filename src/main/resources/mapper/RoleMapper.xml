@@ -28,4 +28,15 @@
         DELETE FROM user_role WHERE user_id = #{userId}
     </delete>
 
+    <insert id="insertRoleMenus">
+        INSERT INTO role_menu
+        (role_id, menu_id)
+        VALUES
+        <foreach collection="menuIds" item="menuId" separator=",">
+            (
+            #{roleId}, #{menuId}
+            )
+        </foreach>
+    </insert>
+
 </mapper>

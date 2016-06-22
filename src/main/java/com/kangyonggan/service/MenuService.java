@@ -14,6 +14,8 @@ public interface MenuService {
 
     List<Menu> findMenusByPid(Long pid);
 
+    List<Menu> findMenusByRoleId(Long roleId);
+
     List<Menu> findAllMenus();
 
     Menu getMenu(Long id);

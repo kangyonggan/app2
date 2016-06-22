@@ -25,4 +25,6 @@ public interface RoleService {
     void updateRole(Role role);
 
     void deleteRole(Long id);
+
+    void updateRoleMenus(Long roleId, String menuIds);
 }
