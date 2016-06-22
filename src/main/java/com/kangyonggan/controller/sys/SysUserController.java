@@ -30,6 +30,7 @@ public class SysUserController {
     private static final String PATH_ROOT = "sys/user/";
     private static final String PATH_LIST = PATH_ROOT + "list";
     private static final String PATH_FORM_MODAL = PATH_ROOT + "form-modal";
+    private static final String PATH_DETAIL_MODAL = PATH_ROOT + "detail-modal";
     private static final String PATH_TABLE_TR = PATH_ROOT + "table-tr";
 
     @Autowired
@@ -143,6 +144,20 @@ public class SysUserController {
         }
 
         return res;
+    }
+
+    /**
+     * 查看用户详情
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
+    @RequiresPermissions("sys-user")
+    public String detail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("item", userService.getUser(id));
+        return PATH_DETAIL_MODAL;
     }
 
     /**

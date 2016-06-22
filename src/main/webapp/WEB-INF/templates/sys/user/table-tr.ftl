@@ -1,9 +1,9 @@
-<tr>
+<tr id="user-${item.id}">
     <td>${item.id}</td>
     <td>${item.realname}</td>
+    <td>${item.email}</td>
     <td>${item.mobile}</td>
     <td><#include "locked.ftl"></td>
-    <td>${item.loginTime?datetime}</td>
     <td>
         <div class="btn-group">
             <a data-toggle="modal" class="btn btn-xs btn-inverse" href="${ctx}sys/user/${item.id}"

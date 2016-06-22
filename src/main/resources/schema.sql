@@ -5,7 +5,7 @@ CREATE TABLE user
   email         VARCHAR(128)                          NOT NULL
   COMMENT '电子邮箱',
   is_verified   TINYINT                               NOT NULL         DEFAULT 0
-  COMMENT '是否校验 {0:未校验, 1:已校验}',
+  COMMENT '邮箱是否校验 {0:未校验, 1:已校验}',
   password      VARCHAR(128)                          NOT NULL
   COMMENT '密码',
   salt          VARCHAR(128)                          NOT NULL
@@ -21,7 +21,7 @@ CREATE TABLE user
   large_avatar  VARCHAR(255)                          NOT NULL         DEFAULT ''
   COMMENT '大头像',
   sign          VARCHAR(255)                          NOT NULL         DEFAULT ''
-  COMMENT 'sign',
+  COMMENT '个性签名',
   is_locked     TINYINT                               NOT NULL         DEFAULT 0
   COMMENT '是否锁定 {0:未锁定, 1:已锁定}',
   is_deleted    TINYINT                               NOT NULL         DEFAULT 0

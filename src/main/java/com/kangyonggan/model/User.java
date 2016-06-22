@@ -19,7 +19,7 @@ public class User {
     private String email;
 
     /**
-     * 是否校验 {0:未校验, 1:已校验}
+     * 邮箱是否校验 {0:未校验, 1:已校验}
      */
     @Column(name = "is_verified")
     private Byte isVerified;
@@ -63,7 +63,7 @@ public class User {
     private String largeAvatar;
 
     /**
-     * 签名
+     * 个性签名
      */
     private String sign;
 

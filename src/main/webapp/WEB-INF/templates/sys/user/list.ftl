@@ -29,9 +29,9 @@
     <tr>
         <th>ID</th>
         <th>真实姓名</th>
+        <th>电子邮箱</th>
         <th>手机号</th>
         <th>是否锁定</th>
-        <th>最近登录时间</th>
         <th>操作</th>
     </tr>
     </thead>
