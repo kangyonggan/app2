@@ -15,11 +15,16 @@
         <result column="small_avatar" jdbcType="VARCHAR" property="smallAvatar"/>
         <result column="medium_avatar" jdbcType="VARCHAR" property="mediumAvatar"/>
         <result column="large_avatar" jdbcType="VARCHAR" property="largeAvatar"/>
-        <result column="mood" jdbcType="VARCHAR" property="mood"/>
+        <result column="sign" jdbcType="VARCHAR" property="sign"/>
         <result column="is_locked" jdbcType="TINYINT" property="isLocked"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
         <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
         <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
         <result column="login_time" jdbcType="TIMESTAMP" property="loginTime"/>
     </resultMap>
+
+    <insert id="insertUserRole">
+        INSERT INTO user_role (user_id, role_id) VALUES (#{userId}, #{roleId})
+    </insert>
+
 </mapper>

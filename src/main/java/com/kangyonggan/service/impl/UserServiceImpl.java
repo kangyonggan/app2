@@ -1,11 +1,17 @@
 package com.kangyonggan.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.kangyonggan.constants.RoleEnum;
+import com.kangyonggan.constants.ShiroConstants;
+import com.kangyonggan.mapper.UserMapper;
 import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.model.User;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.Digests;
+import com.kangyonggan.util.Encodes;
 import com.kangyonggan.util.StringUtil;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -20,6 +26,9 @@ import java.util.List;
 @Service
 @Transactional
 public class UserServiceImpl extends BaseService<User> implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public List<User> searchUsers(int pageNum, int pageSize, String realname) {
@@ -58,7 +67,17 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 
     @Override
     public void saveUserAndRole(User user) {
-        // TODO
+        entryptPassword(user);
+        saveUser(user);
+        saveUserRole(user);
+    }
+
+    @Override
+    public int saveUser(User user) {
+        user.setCreatedTime(new Date());
+        user.setUpdatedTime(new Date());
+        user.setLoginTime(new Date());
+        return super.insertSelective(user);
     }
 
     @Override
@@ -66,5 +85,35 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         user.setUpdatedTime(new Date());
 
         super.updateByPrimaryKey(user);
+    }
+
+    @Override
+    public User findUserByMobile(String mobile) {
+        User user = new User();
+        user.setMobile(mobile);
+
+        return super.selectOne(user);
+    }
+
+    /**
+     * 设定安全的密码，生成随机的salt并经过N次 sha-1 hash
+     *
+     * @param user
+     */
+    public void entryptPassword(User user) {
+        byte[] salt = Digests.generateSalt(ShiroConstants.SALT_SIZE);
+        user.setSalt(Encodes.encodeHex(salt));
+
+        byte[] hashPassword = Digests.sha1(user.getPassword().getBytes(), salt, ShiroConstants.HASH_INTERATIONS);
+        user.setPassword(Encodes.encodeHex(hashPassword));
+    }
+
+    /**
+     * 保存用户角色
+     *
+     * @param user
+     */
+    private void saveUserRole(User user) {
+        userMapper.insertUserRole(user.getId(), RoleEnum.ROLE_USER.getId());
     }
 }

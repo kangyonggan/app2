@@ -21,5 +21,9 @@ public interface UserService {
 
     void saveUserAndRole(User user);
 
+    int saveUser(User user);
+
     void updateUser(User user);
+
+    User findUserByMobile(String mobile);
 }

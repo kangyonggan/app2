@@ -15,7 +15,7 @@
 
                     <div class="space-4"></div>
 
-                    <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                    <div class="width-80 label label-xlg arrowed-in arrowed-in-right">
                         <div class="inline position-relative">
                             <a href="#" class="user-title-label">
                                 <i class="ace-icon fa fa-circle light-green"></i>
@@ -38,7 +38,7 @@
                     <i class="ace-icon fa fa-leaf green"></i>
 
                     <strong class="green">
-                    <@c.substring str="${app_user.mood}" len=60 default="这孩子太懒了, 尽然没有留下心情..."/>
+                    <@c.substring str="${app_user.sign}" len=60 default="懒惰是一种美德!"/>
                     </strong>
                 </div>
 

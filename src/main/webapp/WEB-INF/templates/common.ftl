@@ -7,7 +7,7 @@
         ${str}
         </#if>
     <#else>
-        ${default}
+    ${default}
     </#if>
 </#macro>
 
@@ -65,4 +65,43 @@
         </ul>
     </div>
     </#if>
+</#macro>
+
+<#--普通输入框-->
+<#macro input id label val="" readonly="false" required="false">
+    <@startInput label required/>
+<input type="text" id="${id}" value="${val}" name="${id}" class="form-control" <#if readonly=="true">readonly</#if>>
+    <@endInput id />
+</#macro>
+
+<#--密码输入框-->
+<#macro passwod id label required="false">
+    <@startInput label required/>
+<input type="password" id="${id}" name="${id}" class="form-control">
+    <@endInput id />
+</#macro>
+
+
+<#---------------------------------------------------------------------------->
+<#---------------------------------------------------------------------------->
+<#---------------------------------------------------------------------------->
+<#---------------------------------------------------------------------------->
+<#---------------------------------------------------------------------------->
+<#--下面全是private, 表示不对外开放, 只供此文件内部调用-->
+
+<#--private输入框前部-->
+<#macro startInput label required>
+<div class="form-group">
+    <label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">${label}<#if required=="true"><span class="red">&nbsp;*</span></#if></label>
+<div class="col-xs-12 col-sm-6">
+<span class="block input-icon input-icon-right">
+</#macro>
+
+<#--private输入框后部-->
+<#macro endInput id>
+    <i class="ace-icon fa fa-times-circle hide"></i>
+    <label class="error hide" for="${id}"></label>
+</span>
+</div>
+</div>
 </#macro>

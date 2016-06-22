@@ -20,8 +20,8 @@ CREATE TABLE user
   COMMENT '中头像',
   large_avatar  VARCHAR(255)                          NOT NULL         DEFAULT ''
   COMMENT '大头像',
-  mood          VARCHAR(255)                          NOT NULL         DEFAULT ''
-  COMMENT '心情',
+  sign          VARCHAR(255)                          NOT NULL         DEFAULT ''
+  COMMENT 'sign',
   is_locked     TINYINT                               NOT NULL         DEFAULT 0
   COMMENT '是否锁定 {0:未锁定, 1:已锁定}',
   is_deleted    TINYINT                               NOT NULL         DEFAULT 0
@@ -36,18 +36,17 @@ CREATE TABLE user
 CREATE UNIQUE INDEX id_UNIQUE ON user (id);
 CREATE UNIQUE INDEX email_UNIQUE ON user (email);
 
-INSERT INTO user (id, email, is_verified, password, salt, realname, mobile, mood, created_time, updated_time, login_time)
+INSERT INTO user (id, email, is_verified, password, salt, realname, mobile, created_time, updated_time, login_time)
 VALUES
-  (1, 'kangyonggan@gmail.com', 1, '9606b0029ba4a8c9369f288cced0dc465eb5eabd', '3685072edcf8aad8', '康永敢', '18221372104',
-   '今天真TMD倒霉, 在世纪大道换乘的时候手机被偷了, 还好我是个穷光蛋, 要不要就不仅仅是丢手机了, 估计就连银行卡都要被盗刷了, 那人或那人后面的人绝逼是个程序员!!!',
+  (1, 'kangyonggan@gmail.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '康永敢', '18221372104',
    '2016-06-21 13:40:15', '2016-06-21 18:40:17',
    '2016-06-21 13:40:17'),
-  (2, 'kangyonggan@qq.com', 1, '9606b0029ba4a8c9369f288cced0dc465eb5eabd', '3685072edcf8aad8', '黄芳玲', '15151679072', '',
-      '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:12:26'),
-  (3, 'houbinbin@qq.com', 1, '9606b0029ba4a8c9369f288cced0dc465eb5eabd', '3685072edcf8aad8', '侯彬彬', '', '',
-      '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:11:26'),
-  (4, 'liujinfu@qq.com', 1, '9606b0029ba4a8c9369f288cced0dc465eb5eabd', '3685072edcf8aad8', '刘金甫', '', '',
-      '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:10:26');
+  (2, 'kangyonggan@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '黄芳玲', '15151679072',
+   '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:12:26'),
+  (3, 'houbinbin@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '侯宾宾', '',
+   '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:11:26'),
+  (4, 'liujinfu@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '刘晋甫', '',
+   '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:10:26');
 
 CREATE TABLE role
 (
@@ -68,7 +67,8 @@ CREATE UNIQUE INDEX id_UNIQUE ON role (id);
 CREATE UNIQUE INDEX code_UNIQUE ON role (code);
 
 INSERT INTO role (id, code, name, created_time, updated_time)
-VALUES (1, 'ROLE_ADMIN', '管理员', '2016-06-21 13:37:50', '2016-06-21 13:37:52');
+VALUES (1, 'ROLE_ADMIN', '管理员', '2016-06-21 13:37:50', '2016-06-21 13:37:52'),
+  (2, 'ROLE_USER', '普通用户', '2016-06-21 13:37:50', '2016-06-21 13:37:52');
 
 CREATE TABLE menu
 (

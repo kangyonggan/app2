@@ -12,4 +12,11 @@ public class ValidationResponse {
     private String status;
     private String message;
 
+    public ValidationResponse() {
+    }
+
+    public ValidationResponse(String status) {
+        this.status = status;
+    }
+
 }

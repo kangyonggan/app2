@@ -63,9 +63,9 @@ public class User {
     private String largeAvatar;
 
     /**
-     * 心情
+     * 签名
      */
-    private String mood;
+    private String sign;
 
     /**
      * 是否锁定 {0:未锁定, 1:已锁定}

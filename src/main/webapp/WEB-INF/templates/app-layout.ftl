@@ -33,6 +33,7 @@
 </@override>
 
 <@override name="app-script">
+    <script src="${ctx}static/app/js/item-status.js"></script>
     <@block name="script"/>
 </@override>
 

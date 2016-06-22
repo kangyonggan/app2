@@ -3,6 +3,10 @@ ul {
     list-style: none;
 }
 
+.error {
+    color: red;
+}
+
 .user-avator {
     border: 2px solid #C9D6E5;
     border-radius: 100%;

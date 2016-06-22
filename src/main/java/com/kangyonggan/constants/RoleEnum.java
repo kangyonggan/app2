@@ -11,7 +11,7 @@ public enum RoleEnum {
     /**
      * 系统管理员
      */
-    ROLE_SYS_ADMIN(1L, "ROLE_SYS_ADMIN"),
+    ROLE_SYS_ADMIN(1L, "ROLE_ADMIN"),
     /**
      * 普通用户
      */

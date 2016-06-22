@@ -1,7 +1,6 @@
 package com.kangyonggan.controller;
 
 import com.kangyonggan.exception.EmailNotVerifiedException;
-import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.model.User;
 import com.kangyonggan.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -74,13 +73,13 @@ public class LoginController {
             model.addAttribute("message", "密码错误，请重新输入！");
             return PATH_INDEX;
         } catch (LockedAccountException lae) {
-            model.addAttribute("message", "账号已锁定！");
+            model.addAttribute("message", "账号已锁定，请联系管理员！");
             return PATH_INDEX;
         } catch (EmailNotVerifiedException enve) {
-            model.addAttribute("message", "账号未激活！");
+            model.addAttribute("message", "账号未激活，请前往邮箱激活！");
             return PATH_INDEX;
         } catch (Exception e) {
-            model.addAttribute("message", "未知错误，请联系管理员。");
+            model.addAttribute("message", "未知错误，请联系管理员！");
             log.error("登录未知错误", e);
             return PATH_INDEX;
         }

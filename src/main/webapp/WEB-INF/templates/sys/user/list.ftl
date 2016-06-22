@@ -18,13 +18,13 @@
     </button>
 
     <div class="pull-right">
-        <a href="#" class="btn btn-purple btn-sm">添加</a>
+        <a href="${ctx}sys/user/create" class="btn btn-purple btn-sm" data-backdrop="static" data-toggle="modal" data-target="#myModal">添加</a>
     </div>
 </form>
 
 <div class="space-10"></div>
 
-<table class="table table-striped table-bordered table-hover">
+<table class="items-table table table-striped table-bordered table-hover">
     <thead>
     <tr>
         <th>ID</th>
