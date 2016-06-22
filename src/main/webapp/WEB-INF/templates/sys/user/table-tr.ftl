@@ -1,4 +1,4 @@
-<tr id="user-${item.id}">
+<tr>
     <td>${item.id}</td>
     <td>${item.realname}</td>
     <td>${item.mobile}</td>
@@ -19,7 +19,7 @@
                        data-backdrop="static">编辑用户信息</a>
                 </li>
                 <li>
-                    <a title="${item.realname}" data-role="delete-item" data-url="${ctx}sys/user/${item.id}/delete">
+                    <a class="delete-item" title="${item.realname}" data-url="${ctx}sys/user/${item.id}/delete">
                         删除用户
                     </a>
                 </li>

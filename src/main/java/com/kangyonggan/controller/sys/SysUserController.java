@@ -146,6 +146,20 @@ public class SysUserController {
     }
 
     /**
+     * 删除用户
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}/delete", method = RequestMethod.GET)
+    @ResponseBody
+    @RequiresPermissions("sys-user")
+    public ValidationResponse delete(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+        return new ValidationResponse(AppConstants.SUCCESS);
+    }
+
+    /**
      * 电子邮箱唯一性校验
      *
      * @param email

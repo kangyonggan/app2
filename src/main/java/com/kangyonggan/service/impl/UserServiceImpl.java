@@ -73,11 +73,11 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
-    public int saveUser(User user) {
+    public void saveUser(User user) {
         user.setCreatedTime(new Date());
         user.setUpdatedTime(new Date());
         user.setLoginTime(new Date());
-        return super.insertSelective(user);
+        super.insertSelective(user);
     }
 
     @Override
@@ -85,6 +85,11 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
         user.setUpdatedTime(new Date());
 
         super.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        super.deleteByPrimaryKey(id);
     }
 
     @Override

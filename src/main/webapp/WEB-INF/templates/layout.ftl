@@ -73,6 +73,7 @@
 <script>var ctx = '${ctx}';</script>
 <script src="${ctx}static/ace/dist/js/jquery.min.js"></script>
 <script src="${ctx}static/ace/dist/js/bootstrap.min.js"></script>
+<script src="${ctx}static/libs/jquery/jquery.bootstrap.min.js"></script>
 <script src="${ctx}static/ace/dist/js/jquery.gritter.min.js"></script>
 <script src="${ctx}static/libs/jquery/jquery.form.min.js"></script>
 <script src="${ctx}static/libs/jquery/jquery.validate.min.js"></script>

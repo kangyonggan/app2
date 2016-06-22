@@ -19,11 +19,13 @@ public interface UserService {
 
     User findUserByEmail(String email);
 
+    User findUserByMobile(String mobile);
+
     void saveUserAndRole(User user);
 
-    int saveUser(User user);
+    void saveUser(User user);
 
     void updateUser(User user);
 
-    User findUserByMobile(String mobile);
+    void deleteUser(Long id);
 }

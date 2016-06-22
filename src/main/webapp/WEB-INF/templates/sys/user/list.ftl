@@ -7,7 +7,7 @@
 <@override name="content">
 <div class="space-2"></div>
 
-<form class="form-inline" method="get" novalidate>
+<form class="form-inline items-form" method="get" novalidate>
     <div class="form-group">
         <input type="text" class="form-control" name="realname" value="${realname}" placeholder="真实姓名"/>
     </div>
