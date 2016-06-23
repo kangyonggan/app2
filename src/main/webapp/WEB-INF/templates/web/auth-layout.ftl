@@ -1,8 +1,15 @@
 <@override name="app-content">
 <div class="row">
-    <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="space-30"></div>
+    <div class="col-lg-4 col-md-3 col-sm-2 hidden-xs">
+        <@block name="content-left"/>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
         <@block name="content"/>
+    </div>
+
+    <div class="col-lg-4 col-md-3 col-sm-2 hidden-xs">
+        <@block name="content-right"/>
     </div>
 </div>
 </@override>

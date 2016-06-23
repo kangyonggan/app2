@@ -111,3 +111,17 @@ ul {
     background: #fff !important;
 }
 /*分页组件 结尾*/
+
+/*登录界面 开头*/
+.login-actions > div > a {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    font-size: 15px;
+}
+
+.login-actions > div > .go-register {
+    text-align: right;
+    margin-right: 12px;
+}
+/*登录界面 结尾*/

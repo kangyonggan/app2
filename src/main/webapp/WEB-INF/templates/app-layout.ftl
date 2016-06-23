@@ -13,19 +13,22 @@
 
 <div class="row">
     <#if no_right??>
-        <div class="col-xs-12 col-sm-3">
+        <div class="col-lg-3 col-md-2 col-xs-12">
             <#include "include/sidebar-left.ftl">
         </div>
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-lg-9 col-md-10 col-xs-12">
             <@block name="content"/>
         </div>
     <#else>
-        <div class="col-xs-6 col-sm-3">
+        <div class="col-lg-3 col-md-2 col-xs-6">
             <#include "include/sidebar-left.ftl">
         </div>
-        <#include "include/sidebar-right.ftl">
 
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-lg-3 col-md-2 col-xs-6 pull-right">
+            <#include "include/sidebar-right.ftl">
+        </div>
+
+        <div class="col-lg-6 col-md-8 col-xs-12">
             <@block name="content"/>
         </div>
     </#if>

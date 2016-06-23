@@ -1,81 +1,83 @@
-<#assign bodyClass="no-skin">
 <#assign title="登录">
 
 <@override name="content">
 
-<div class="position-relative">
-    <div id="login-box" class="login-box visible widget-box fa-border">
-        <div class="widget-body">
-            <div class="widget-main">
-                <h4 class="header blue lighter bigger">
-                    <i class="ace-icon fa fa-coffee green"></i>
-                    登录
-                </h4>
+<div class="space-28"></div>
 
-                <div class="space-14"></div>
+<div class="widget-box">
+    <div class="widget-header widget-header-flat">
+        <h4 class="widget-title smaller dark">
+            <i class="ace-icon fa fa-leaf"></i>
+            登录
+        </h4>
+    </div>
 
-                <form id="login-form" action="${ctx}login" method="post">
-                    <fieldset>
-                        <label class="block clearfix">
-                            <label>用户名</label>
-                            <span class="block input-icon input-icon-right">
-                                <input type="text" id="email" name="email" class="form-control"
-                                       placeholder="电子邮箱">
-                                <i class="ace-icon fa fa-user"></i>
-                            </span>
-                        </label>
-
-                        <div class="space-14"></div>
-
-                        <label class="block clearfix">
-                            <label>密码</label>
-                            <span class="block input-icon input-icon-right">
-                                <input type="password" id="password" name="password" class="form-control"
-                                       placeholder="请输入密码">
-                                <i class="ace-icon fa fa-lock"></i>
-                            </span>
-                        </label>
-
-                        <div class="space-14"></div>
-
-                        <div class="red">
-                        ${message!''}
-                        </div>
-
-                        <div class="space-10"></div>
-
-                        <div class="clearfix">
-                            <label class="inline">
-                                <input type="checkbox" class="ace">
-                                <span class="lbl"> 记住密码</span>
-                            </label>
-
-                            <button id="login" type="button" class="width-35 pull-right btn btn-sm btn-primary">
-                                <i class="ace-icon fa fa-key"></i>
-                                <span class="bigger-110">登录</span>
-                            </button>
-                        </div>
-
-                        <div class="space-4"></div>
-                    </fieldset>
-                </form>
-            </div>
-
-            <div class="toolbar clearfix">
-                <div>
-                    <a href="${ctx}forget" data-target="#forgot-box" class="forgot-password-link">
-                        <i class="ace-icon fa fa-arrow-left"></i>
-                        忘记密码?
-                    </a>
+    <div class="widget-body">
+        <div class="widget-main clearfix">
+            <form id="login-form" method="post" action="${ctx}login">
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">电子邮箱</label>
+                    <div class="col-xs-12">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="请用电子邮箱登录"/>
+                        <i class="ace-icon fa fa-user"></i>
+                        <label class="error hide" for="email"></label>
+                    </span>
+                    </div>
                 </div>
 
-                <div>
-                    <a href="${ctx}register" data-target="#signup-box" class="user-signup-link">
-                        注册
-                        <i class="ace-icon fa fa-arrow-right"></i>
-                    </a>
+                <div class="space-4"></div>
+
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">密码</label>
+                    <div class="col-xs-12">
+                    <span class="block input-icon input-icon-right">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码"/>
+                        <i class="ace-icon fa fa-lock"></i>
+                        <label class="error hide" for="password"></label>
+                    </span>
+                    </div>
                 </div>
-            </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">验证码</label>
+                    <div class="col-xs-7">
+                        <span class="block input-icon input-icon-right">
+                            <input value="开发阶段先不验" type="text" id="captcha" name="captcha" class="form-control"
+                                   placeholder="请输入图片中的数字"/>
+                            <i class="ace-icon fa fa-times-circle hide"></i>
+                            <label class="error hide" for="captcha"></label>
+                        </span>
+                    </div>
+                    <div class="col-xs-5">
+                        <img id="captcha-img" onclick="this.src='${ctx}captcha?' + Math.random();"
+                             src="${ctx}captcha">
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="col-xs-12 clearfix">
+                    <button class="btn btn-inverse btn-sm width-100">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="widget-header widget-header-flat login-actions">
+        <div class="col-xs-6">
+            <a href="${ctx}forget" class="infobox-black">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                忘记密码？
+            </a>
+        </div>
+        <div class="col-xs-6">
+            <a href="${ctx}register" class="go-register infobox-black">
+                注册
+                <i class="ace-icon fa fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 </div>
