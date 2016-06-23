@@ -10,7 +10,9 @@ $(function () {
                     type: 'post',
                     data: {
                         'code': $("code").val(),
-                        'oldCode': $("#old_code").val()
+                        'oldCode': function () {
+                            return $("#old_code").val();
+                        }
                     }
                 }
             },

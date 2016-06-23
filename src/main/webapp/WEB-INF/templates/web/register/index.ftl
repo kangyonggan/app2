@@ -1,87 +1,106 @@
 <#assign title="注册">
 
 <@override name="content">
-<div class="position-relative">
-    <div id="signup-box" class="signup-box widget-box fa-border">
-        <div class="widget-body">
-            <div class="widget-main">
-                <h4 class="header green lighter bigger">
-                    <i class="ace-icon fa fa-users blue"></i>
-                    新用户注册
-                </h4>
 
-                <div class="space-6"></div>
+<div class="space-4"></div>
 
-                <form id="register-form" action="${ctx}register" method="post">
-                    <fieldset>
-                        <label class="block clearfix">
-                            <label>用户名</label>
-                            <span class="block input-icon input-icon-right">
-                                <input type="text" id="username" name="username" class="form-control"
-                                       placeholder="请输入用户名"/>
-                                <i class="ace-icon fa fa-user"></i>
-                            </span>
-                        </label>
+<div class="widget-box">
+    <div class="widget-header widget-header-flat">
+        <h4 class="widget-title smaller dark">
+            <i class="ace-icon fa fa-users"></i>
+            注册
+        </h4>
+    </div>
 
-                        <label class="block clearfix">
-                            <label>密码</label>
-                            <span class="block input-icon input-icon-right">
-                                <input type="password" id="password" name="password" class="form-control"
-                                       placeholder="请输入密码"/>
-                                <i class="ace-icon fa fa-lock"></i>
-                            </span>
-                        </label>
+    <div class="widget-body">
+        <div class="widget-main clearfix">
+            <form id="register-form" method="post" action="${ctx}register">
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">电子邮箱<span class="red">*</span></label>
+                    <div class="col-xs-12">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="请输入电子邮箱"/>
+                        <i class="ace-icon fa fa-envelope"></i>
+                        <label class="error hide" for="email"></label>
+                    </span>
+                    </div>
+                </div>
 
-                        <label class="block clearfix">
-                            <label>确认密码</label>
-                            <span class="block input-icon input-icon-right">
-                                <input type="password" id="repassword" class="form-control"
-                                       placeholder="请重复输入密码"/>
-                                <i class="ace-icon fa fa-retweet"></i>
-                            </span>
-                        </label>
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">密码<span class="red">*</span></label>
+                    <div class="col-xs-12">
+                    <span class="block input-icon input-icon-right">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码"/>
+                        <i class="ace-icon fa fa-lock"></i>
+                        <label class="error hide" for="password"></label>
+                    </span>
+                    </div>
+                </div>
 
-                        <label class="block clearfix">
-                            <label>电子邮箱<span class="red">(可用于找回密码)</span></label>
-                            <span class="block input-icon input-icon-right">
-                                <input type="email" id="email" name="email" class="form-control"
-                                       placeholder="请输入电子邮箱"/>
-                                <i class="ace-icon fa fa-envelope"></i>
-                            </span>
-                        </label>
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">确认密码<span class="red">*</span></label>
+                    <div class="col-xs-12">
+                    <span class="block input-icon input-icon-right">
+                        <input type="password" id="rePassword" name="rePassword" class="form-control" placeholder="请再次输入密码"/>
+                        <i class="ace-icon fa fa-lock"></i>
+                        <label class="error hide" for="rePassword"></label>
+                    </span>
+                    </div>
+                </div>
 
-                        <label class="block">
-                            <input type="checkbox" id="accept" value="1" class="ace"/>
-                            <span class="lbl">
-                                我接受并阅读
-                                <a href="${ctx}register/protocol" target="_blank">注册协议</a>
-                            </span>
-                        </label>
-                        <div class="red" id="err-msg">${message!''}</div>
-                        <div class="space-24"></div>
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">真实姓名<span class="red">*</span></label>
+                    <div class="col-xs-12">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="realname" name="realname" class="form-control" placeholder="用户真实姓名"/>
+                        <i class="ace-icon fa fa-lock"></i>
+                        <label class="error hide" for="realname"></label>
+                    </span>
+                    </div>
+                </div>
 
-                        <div class="clearfix">
-                            <button type="reset" class="width-30 pull-left btn btn-sm">
-                                <i class="ace-icon fa fa-refresh"></i>
-                                <span class="bigger-110">清空</span>
-                            </button>
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">手机号</label>
+                    <div class="col-xs-12">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="mobile" name="mobile" class="form-control" placeholder="请输入手机号"/>
+                        <i class="ace-icon fa fa-lock"></i>
+                        <label class="error hide" for="mobile"></label>
+                    </span>
+                    </div>
+                </div>
 
-                            <button id="register" type="button" class="width-65 pull-right btn btn-sm btn-success">
-                                <span class="bigger-110">注册</span>
+                <div class="form-group clearfix">
+                    <label class="col-xs-12 control-label no-padding-right">验证码<span class="red">*</span></label>
+                    <div class="col-xs-7">
+                        <span class="block input-icon input-icon-right">
+                            <input value="开发阶段先不验" type="text" id="captcha" name="captcha" class="form-control"
+                                   placeholder="请输入图片中的数字"/>
+                            <i class="ace-icon fa fa-times-circle hide"></i>
+                            <label class="error hide" for="captcha"></label>
+                        </span>
+                    </div>
+                    <div class="col-xs-5">
+                        <img id="captcha-img" onclick="this.src='${ctx}captcha?' + Math.random();"
+                             src="${ctx}captcha"/>
+                    </div>
+                </div>
 
-                                <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
-                            </button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
+                <div class="space-4"></div>
 
-            <div class="toolbar center">
-                <a href="${ctx}login" data-target="#login-box" class="back-to-login-link">
-                    <i class="ace-icon fa fa-arrow-left"></i>
-                    已有账号?去登录
-                </a>
-            </div>
+                <div class="col-xs-12 clearfix">
+                    <button class="btn btn-inverse btn-sm width-100">注册</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="widget-header widget-header-flat login-actions">
+        <div class="col-xs-12">
+            <a href="${ctx}login" class="infobox-black center">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                已有账号？去登录
+            </a>
         </div>
     </div>
 </div>

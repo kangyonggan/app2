@@ -1,40 +1,100 @@
 $(function () {
+    function validElement($this, element) {
+        $(element).valid();
+        if ($this.element(element)) {
+            var $parent = $(element).parents(".form-group").removeClass("has-error");
+            $parent.find(".error").addClass("hide");
+            $parent.find(".fa-times-circle").addClass("hide");
+        }
+    }
 
-    $("#username").focus(function() {
-        $("#err-msg").hide();
-    });
+    var $form = $("#register-form");
 
-    $("#register").click(function() {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        var repassword = $("#repassword").val();
-        var email = $("#email").val();
-        var accept = $("#accept:checked").val();
+    $form.validate({
+        rules: {
+            email: {
+                required: true,
+                email: true,
+                maxlength: 64,
+                remote: {
+                    url: ctx + "user/verify-email",
+                    type: 'post',
+                    data: {
+                        'email': function () {
+                            return $('#email').val();
+                        },
+                        'oldEmail': function () {
+                            return $("#old_email").val();
+                        }
+                    }
 
-        if (!username) {
-            Notify.error("请输入用户名");
-            return false;
+                }
+            },
+            realname: {
+                required: true,
+                rangelength: [1, 32],
+                isChineseAndEnglish: true
+            },
+            password: {
+                required: true,
+                isPassword: true
+            },
+            rePassword: {
+                required: true,
+                equalTo: "#password"
+            },
+            mobile: {
+                isMobile: true,
+                remote: {
+                    url: ctx + "user/verify-mobile",
+                    type: 'post',
+                    data: {
+                        'mobile': function () {
+                            return $('#mobile').val();
+                        },
+                        'oldMobile': function () {
+                            return $("#old_mobile").val();
+                        }
+                    }
+
+                }
+            },
+            captcha: {
+                required: true
+            }
+        },
+        messages: {
+            captcha: {
+                remote: "验证码错误!"
+            }
+        },
+        onkeyup: function (element) {
+            validElement(this, element);
+        },
+        onfocusout: function (element) {
+            validElement(this, element);
+        },
+        showErrors: function (errorMap, errorList) {
+            for (var i = 0; i < errorList.length; i++) {
+                var $parent = $(errorList[i].element).parents(".form-group").addClass("has-error");
+                $parent.find(".error").removeClass("hide").text(errorList[i].message);
+                $parent.find(".fa-times-circle").removeClass("hide");
+            }
+        },
+        submitHandler: function () {
+            $form.ajaxSubmit({
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status == 'fail') {
+                        Notify.error(response.message);
+                    } else {
+                        window.location.href = "register/success";
+                    }
+                },
+                error: function () {
+                    Notify.error("服务器内部错误，请稍后再试。");
+                }
+            });
         }
-        if (!password) {
-            Notify.error("请输入密码");
-            return false;
-        }
-        if (!repassword) {
-            Notify.error("请输入确认密码");
-            return false;
-        }
-        if (repassword != password) {
-            Notify.error("两次密码不一致");
-            return false;
-        }
-        if (!email) {
-            Notify.error("请输入电子邮箱");
-            return false;
-        }
-        if (!accept || accept != 1) {
-            Notify.error("请阅读并同意注册协议");
-            return false;
-        }
-        $("#register-form").submit();
     });
 });

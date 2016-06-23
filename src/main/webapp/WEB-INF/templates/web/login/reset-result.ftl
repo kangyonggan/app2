@@ -1,11 +1,11 @@
-<#assign title="注册成功">
+<#assign title="找回密码处理中">
 
 <@override name="content">
 
 <div class="space-30"></div>
 
 <h1 class="green center">
-    注册成功!!!<br/> 😊请去邮箱激活账号...
+    找回密码处理中!!!<br/>请稍后去邮箱查看找回结果...
 </h1>
 
 <div class="space-20"></div>

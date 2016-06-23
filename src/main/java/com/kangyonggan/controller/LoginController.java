@@ -42,6 +42,7 @@ public class LoginController {
     private static final String PATH_ROOT = "web/login";
     private static final String PATH_INDEX = PATH_ROOT + "/index";
     private static final String PATH_FORGET = PATH_ROOT + "/forget";
+    private static final String PATH_RESET_RESULT = PATH_ROOT + "/reset-result";
 
     @Autowired
     private UserService userService;
@@ -143,6 +144,41 @@ public class LoginController {
     @RequestMapping(value = "forget", method = RequestMethod.GET)
     public String forget() {
         return PATH_FORGET;
+    }
+
+    /**
+     * 找回密码
+     *
+     * @param email
+     * @param captcha
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "reset", method = RequestMethod.POST)
+    @ResponseBody
+    public ValidationResponse reset(String email, String captcha, HttpServletRequest request) {
+        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        String realCaptcha = (String) request.getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
+
+//        if (!captcha.equalsIgnoreCase(realCaptcha)) {
+//            res.setMessage("验证码错误，请重新输入!");
+//            res.setStatus(AppConstants.FAIL);
+//            return res;
+//        }
+
+        // TODO 发送邮件
+        log.info(email);
+        return res;
+    }
+
+    /**
+     * 找回密码结果界面
+     *
+     * @return
+     */
+    @RequestMapping(value = "reset-result", method = RequestMethod.GET)
+    public String result() {
+        return PATH_RESET_RESULT;
     }
 
     /**

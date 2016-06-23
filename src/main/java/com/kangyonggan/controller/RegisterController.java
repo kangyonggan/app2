@@ -1,12 +1,17 @@
 package com.kangyonggan.controller;
 
+import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.User;
+import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.UserService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 注册
@@ -16,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("register")
+@Log4j2
 public class RegisterController {
 
     private static final String PATH_ROOT = "web/register";
     private static final String PATH_INDEX = PATH_ROOT + "/index";
     private static final String PATH_REGISTER_RESULT = PATH_ROOT + "/register-result";
-    private static final String PATH_PROTOCOL = PATH_ROOT + "/protocol";
 
     @Autowired
     private UserService userService;
@@ -40,29 +45,44 @@ public class RegisterController {
      * 注册
      *
      * @param user
-     * @param model
+     * @param captcha
+     * @param request
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public String register(User user, Model model) {
-        model.addAttribute("message", "注册失败, 请稍后重试!");
+    @ResponseBody
+    public ValidationResponse register(User user, String captcha,
+                                       HttpServletRequest request) {
+        ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
+        String realCaptcha = (String) request.getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
+
+//        if (!captcha.equalsIgnoreCase(realCaptcha)) {
+//            res.setMessage("验证码错误，请重新输入!");
+//            return res;
+//        }
+
+        res.setMessage("注册失败, 请稍后重试!");
+
         try {
             userService.saveUserAndRole(user);
-            model.addAttribute("message", "注册成功");
+            res.setStatus(AppConstants.SUCCESS);
+
+            // TODO 发送邮件
         } catch (Exception e) {
-            return PATH_INDEX;
+            log.error(e.getMessage());
         }
-        return PATH_REGISTER_RESULT;
+        return res;
     }
 
     /**
-     * 注册协议
+     * 注册成功
      *
      * @return
      */
-    @RequestMapping(value = "protocol", method = RequestMethod.GET)
-    public String protocol() {
-        return PATH_PROTOCOL;
+    @RequestMapping(value = "success", method = RequestMethod.GET)
+    public String success() {
+        return PATH_REGISTER_RESULT;
     }
+
 
 }

@@ -2,12 +2,11 @@ package com.kangyonggan.controller;
 
 import com.kangyonggan.model.User;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author kangyonggan
@@ -37,6 +36,41 @@ public class UserController {
 
         model.addAttribute("user", user);
         return PATH_INDEX;
+    }
+
+    /**
+     * 校验电子邮箱唯一性
+     *
+     * @param email
+     * @param oldEmail
+     * @return
+     */
+    @RequestMapping(value = "/verify-email", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean verifyEmail(@RequestParam String email, @RequestParam String oldEmail) {
+        if (oldEmail.equals(email)) {
+            return true;
+        }
+        return userService.findUserByEmail(email) == null;
+    }
+
+    /**
+     * 校验手机号唯一性
+     *
+     * @param mobile
+     * @param oldMobile
+     * @return
+     */
+    @RequestMapping(value = "/verify-mobile", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean verifyMobile(@RequestParam String mobile, @RequestParam String oldMobile) {
+        if (oldMobile.equals(mobile)) {
+            return true;
+        }
+        if (StringUtil.isEmpty(mobile)) {
+            return true;
+        }
+        return userService.findUserByMobile(mobile) == null;
     }
 
 }

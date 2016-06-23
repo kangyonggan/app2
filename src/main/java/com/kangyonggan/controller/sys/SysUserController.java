@@ -8,7 +8,6 @@ import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.RoleService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.Collections3;
-import com.kangyonggan.util.StringUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -210,46 +209,9 @@ public class SysUserController {
     @RequiresPermissions("sys-user")
     @ResponseBody
     public ValidationResponse updateUserRoles(@PathVariable Long id,
-                                   @RequestParam(value = "roles", defaultValue = "") String roles) {
+                                              @RequestParam(value = "roles", defaultValue = "") String roles) {
         userService.updateUserRoles(id, roles);
         return new ValidationResponse(AppConstants.SUCCESS);
-    }
-
-    /**
-     * 校验电子邮箱唯一性
-     *
-     * @param email
-     * @param oldEmail
-     * @return
-     */
-    @RequestMapping(value = "/verify-email", method = RequestMethod.POST)
-    @ResponseBody
-    @RequiresPermissions("sys-user")
-    public boolean verifyEmail(@RequestParam String email, @RequestParam String oldEmail) {
-        if (oldEmail.equals(email)) {
-            return true;
-        }
-        return userService.findUserByEmail(email) == null;
-    }
-
-    /**
-     * 校验手机号唯一性
-     *
-     * @param mobile
-     * @param oldMobile
-     * @return
-     */
-    @RequestMapping(value = "/verify-mobile", method = RequestMethod.POST)
-    @ResponseBody
-    @RequiresPermissions("sys-user")
-    public boolean verifyMobile(@RequestParam String mobile, @RequestParam String oldMobile) {
-        if (oldMobile.equals(mobile)) {
-            return true;
-        }
-        if (StringUtil.isEmpty(mobile)) {
-            return true;
-        }
-        return userService.findUserByMobile(mobile) == null;
     }
 
 }

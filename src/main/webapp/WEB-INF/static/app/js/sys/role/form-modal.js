@@ -8,8 +8,12 @@ $(function () {
                     url: ctx + "sys/role/verify-code",
                     type: 'post',
                     data: {
-                        'code': $("code").val(),
-                        'oldCode': $("#old_code").val()
+                        'code': function () {
+                            return $("code").val();
+                        },
+                        'oldCode': function () {
+                            return $("#old_code").val();
+                        }
                     }
                 }
             },

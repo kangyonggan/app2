@@ -2,10 +2,13 @@
 <#assign title="找回密码">
 
 <@override name="content">
+
+<div class="space-30"></div>
+
 <div class="position-relative">
     <div id="forgot-box" class="forgot-box widget-box fa-border">
         <div class="widget-body">
-            <div class="widget-main">
+            <div class="widget-main clearfix">
                 <h4 class="header red lighter bigger">
                     <i class="ace-icon fa fa-key"></i>
                     找回密码
@@ -13,29 +16,41 @@
 
                 <div class="space-14"></div>
 
-                <p>输入电子邮箱找回密码</p>
-
-                <form>
-                    <fieldset>
-                        <label class="block clearfix">
+                <form id="reset-form" method="post" action="${ctx}reset">
+                    <div class="form-group clearfix">
+                        <label class="col-xs-12 control-label no-padding-right">输入电子邮箱找回密码</label>
+                        <div class="col-xs-12">
                             <span class="block input-icon input-icon-right">
-                                <input type="email" class="form-control" placeholder="请输入电子邮箱"/>
+                                <input type="text" id="email" name="email" class="form-control" placeholder="请输入电子邮箱"/>
                                 <i class="ace-icon fa fa-envelope"></i>
+                                <label class="error hide" for="email"></label>
                             </span>
-                        </label>
-
-                        <div class="space-14"></div>
-
-                        <div class="clearfix">
-                            <button id="send" type="button" class="width-35 pull-right btn btn-sm btn-danger">
-                                <i class="ace-icon fa fa-lightbulb-o"></i>
-                                <span class="bigger-110">发送</span>
-                            </button>
                         </div>
+                    </div>
 
-                        <div class="space-14"></div>
+                    <div class="space-14"></div>
 
-                    </fieldset>
+                    <div class="form-group clearfix">
+                        <label class="col-xs-12 control-label no-padding-right">验证码</label>
+                        <div class="col-xs-7">
+                        <span class="block input-icon input-icon-right">
+                            <input value="开发阶段先不验" type="text" id="captcha" name="captcha" class="form-control"
+                                   placeholder="请输入图片中的数字"/>
+                            <i class="ace-icon fa fa-times-circle hide"></i>
+                            <label class="error hide" for="captcha"></label>
+                        </span>
+                        </div>
+                        <div class="col-xs-5">
+                            <img id="captcha-img" onclick="this.src='${ctx}captcha?' + Math.random();"
+                                 src="${ctx}captcha"/>
+                        </div>
+                    </div>
+
+                    <div class="space-14"></div>
+
+                    <div class="col-xs-4 col-xs-offset-8">
+                        <button class="btn btn-danger btn-sm width-100">发送</button>
+                    </div>
                 </form>
             </div>
 

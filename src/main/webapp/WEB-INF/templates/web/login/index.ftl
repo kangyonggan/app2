@@ -20,7 +20,7 @@
                     <div class="col-xs-12">
                     <span class="block input-icon input-icon-right">
                         <input type="text" id="email" name="email" class="form-control" placeholder="请用电子邮箱登录"/>
-                        <i class="ace-icon fa fa-user"></i>
+                        <i class="ace-icon fa fa-envelope"></i>
                         <label class="error hide" for="email"></label>
                     </span>
                     </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-xs-5">
                         <img id="captcha-img" onclick="this.src='${ctx}captcha?' + Math.random();"
-                             src="${ctx}captcha">
+                             src="${ctx}captcha"/>
                     </div>
                 </div>
 
