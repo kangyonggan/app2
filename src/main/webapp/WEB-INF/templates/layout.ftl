@@ -48,7 +48,7 @@
 <@block name="app-style"/>
 </head>
 <@app_user>
-<body class="${bodyClass!'skin-3'}">
+<body class="${bodyClass!'skin-3 no-skin'}">
 
     <#include "include/navbar.ftl">
 

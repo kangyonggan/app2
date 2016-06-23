@@ -1,11 +1,4 @@
 <div id="navbar" class="navbar navbar-default navbar-collapse h-navbar">
-    <script type="text/javascript">
-        try {
-            ace.settings.check('navbar', 'fixed')
-        } catch (e) {
-        }
-    </script>
-
     <div class="navbar-container" id="navbar-container">
         <div class="navbar-header pull-left">
             <a href="${ctx}" class="navbar-brand">

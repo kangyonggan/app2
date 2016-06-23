@@ -14,46 +14,12 @@
                         <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
                     </select>
                 </div>
-                <span>&nbsp; Choose Skin</span>
+                <span>&nbsp; 选择皮肤</span>
             </div>
 
             <div class="ace-settings-item">
                 <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar">
-                <label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-            </div>
-
-            <div class="ace-settings-item">
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs">
-                <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-            </div>
-
-            <div class="ace-settings-item">
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl">
-                <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-            </div>
-            <div class="ace-settings-item">
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container">
-                <label class="lbl" for="ace-settings-add-container">
-                    Inside
-                    <b>.container</b>
-                </label>
-            </div>
-        </div>
-
-        <div class="pull-left width-50">
-            <div class="ace-settings-item">
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover">
-                <label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
-            </div>
-
-            <div class="ace-settings-item">
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact">
-                <label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
-            </div>
-
-            <div class="ace-settings-item">
-                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight">
-                <label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+                <label class="lbl" for="ace-settings-navbar"> 固定导航条</label>
             </div>
         </div>
     </div>
