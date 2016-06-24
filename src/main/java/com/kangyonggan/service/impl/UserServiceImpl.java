@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -34,10 +36,13 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     private RoleMapper roleMapper;
 
     @Override
-    public List<User> searchUsers(int pageNum, int pageSize, String realname) {
+    public List<User> searchUsers(int pageNum, int pageSize, String email, String realname) {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
 
+        if (StringUtil.isNotEmpty(email)) {
+            criteria.andLike("email", StringUtil.bothPercent(email));
+        }
         if (StringUtil.isNotEmpty(realname)) {
             criteria.andLike("realname", StringUtil.bothPercent(realname));
         }

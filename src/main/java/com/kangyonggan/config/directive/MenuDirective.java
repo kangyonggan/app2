@@ -37,7 +37,7 @@ public class MenuDirective extends SuperTag {
     public void render(Environment env, Map params, TemplateDirectiveBody body) throws IOException, TemplateException {
         ShiroUser user = userService.getShiroUser();
         if (user != null) {
-            Menu sys_parent_menu = menuService.findMenuByCode("sys-manage");
+            Menu sys_parent_menu = menuService.findMenuByCode("sys");
             if (sys_parent_menu != null) {
                 List<Menu> menus = menuService.findMenusByPid(sys_parent_menu.getId());
                 env.setVariable("sys_parent_menu", ObjectWrapper.DEFAULT_WRAPPER.wrap(sys_parent_menu));

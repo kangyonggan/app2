@@ -91,7 +91,7 @@
                     </a>
                 </li>
 
-                <@shiro.hasPermission name="sys-manage">
+                <@shiro.hasPermission name="sys">
                     <@app_menus>
                         <li>
                             <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">

@@ -31,7 +31,7 @@
 
                     <div class="width-80 label label-xlg arrowed-in arrowed-in-right">
                         <div class="inline position-relative">
-                            <a href="#" class="user-title-label">
+                            <a href="javascript:" class="user-title-label">
                                 <i class="ace-icon fa fa-circle light-green"></i>
                                 &nbsp;
                                 <span class="white">${user.realname}</span>

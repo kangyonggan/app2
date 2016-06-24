@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> searchUsers(int pageNum, int pageSize, String realname);
+    List<User> searchUsers(int pageNum, int pageSize, String email, String realname);
 
     ShiroUser getShiroUser();
 

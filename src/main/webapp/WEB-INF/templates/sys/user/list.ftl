@@ -9,6 +9,10 @@
 
 <form class="form-inline items-form" method="get" novalidate>
     <div class="form-group">
+        <input type="text" class="form-control" name="email" value="${email}" placeholder="电子邮箱"/>
+    </div>
+
+    <div class="form-group">
         <input type="text" class="form-control" name="realname" value="${realname}" placeholder="真实姓名"/>
     </div>
 
@@ -49,7 +53,7 @@
         </#if>
     </tbody>
 </table>
-<@c.pagination url="${ctx}sys/user" param="realname=${realname}"/>
+<@c.pagination url="${ctx}sys/user" param="email=${email}&realname=${realname}"/>
 </@override>
 
 <@extends name="../../app-layout.ftl"/>

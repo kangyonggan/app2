@@ -98,7 +98,7 @@ CREATE UNIQUE INDEX code_UNIQUE ON menu (code);
 
 INSERT INTO menu (id, code, name, pid, url, sort, icon, created_time, updated_time)
 VALUES (1, 'root', '根菜单', '0', 'root', 1, '', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),
-  (2, 'sys-manage', '系统', '1', 'sys/manage', 1, 'ace-icon fa fa-cog bigger-140', '2016-06-21 15:14:35',
+  (2, 'sys', '系统', '1', 'sys/manage', 1, 'ace-icon fa fa-cog bigger-140', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
   (21, 'sys-user', '用户管理', '2', 'sys/user', 1, 'ace-icon fa fa-users bigger-120', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
