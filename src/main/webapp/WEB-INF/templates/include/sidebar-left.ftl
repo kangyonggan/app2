@@ -1,6 +1,6 @@
 <div class="widget-box">
     <div class="widget-header widget-header-flat">
-        <i class="ace-icon fa fa-bullhorn bigger-140 dark"></i>
+        <i class="skin-color ace-icon fa fa-bullhorn bigger-140 dark"></i>
         <h4 class="widget-title dark">热门活动</h4>
     </div>
 

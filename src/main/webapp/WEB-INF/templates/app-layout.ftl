@@ -3,9 +3,6 @@
 </@override>
 
 <@override name="app-content">
-    <@shiro.user>
-        <#include "include/settings.ftl">
-    </@shiro.user>
 
     <#include "include/header.ftl">
 

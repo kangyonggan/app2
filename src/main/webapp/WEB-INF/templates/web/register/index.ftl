@@ -89,7 +89,7 @@
                 <div class="space-4"></div>
 
                 <div class="col-xs-12 clearfix">
-                    <button class="btn btn-inverse btn-sm width-100">注册</button>
+                    <button class="btn btn-inverse btn-sm width-100 skin-btn">注册</button>
                 </div>
             </form>
         </div>
@@ -98,8 +98,8 @@
     <div class="widget-header widget-header-flat login-actions">
         <div class="col-xs-12">
             <a href="${ctx}login" class="infobox-black center">
-                <i class="ace-icon fa fa-arrow-left"></i>
-                已有账号？去登录
+                <i class="ace-icon fa fa-arrow-left skin-color"></i>
+                <span class="skin-color">已有账号？去登录</span>
             </a>
         </div>
     </div>

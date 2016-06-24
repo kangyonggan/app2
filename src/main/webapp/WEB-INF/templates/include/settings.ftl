@@ -5,6 +5,7 @@
 
     <div class="ace-settings-box clearfix" id="ace-settings-box">
         <div class="pull-left width-50">
+            <!-- #section:settings.skins -->
             <div class="ace-settings-item">
                 <div class="pull-left">
                     <select id="skin-colorpicker" class="hide">
@@ -14,13 +15,17 @@
                         <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
                     </select>
                 </div>
-                <span>&nbsp; 选择皮肤</span>
+                <span>&nbsp; 切换皮肤</span>
             </div>
 
+            <!-- /section:settings.skins -->
+
+            <!-- #section:settings.navbar -->
             <div class="ace-settings-item">
                 <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar">
                 <label class="lbl" for="ace-settings-navbar"> 固定导航条</label>
             </div>
+
         </div>
     </div>
 </div>

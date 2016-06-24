@@ -37,6 +37,7 @@
 
     <!-- ace settings handler -->
     <script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
+    <script src="${ctx}static/ace/dist/js/jquery.min.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -48,7 +49,15 @@
 <@block name="app-style"/>
 </head>
 <@app_user>
-<body class="${bodyClass!'skin-3 no-skin'}">
+<body class="${bodyClass!'skin-3'}">
+
+<script>
+    var skin_class = ace.cookie.get("skin");
+    if (skin_class) {
+        $("body").removeClass('no-skin skin-1 skin-2 skin-3');
+        $("body").addClass(skin_class);
+    }
+</script>
 
     <#include "include/navbar.ftl">
 
@@ -56,6 +65,7 @@
     <div class="main-content">
         <div class="main-content-inner">
             <div class="page-content">
+                <#include "include/settings.ftl">
                 <@block name="app-content"/>
             </div>
         </div>
@@ -71,7 +81,6 @@
 </a>
 
 <script>var ctx = '${ctx}';</script>
-<script src="${ctx}static/ace/dist/js/jquery.min.js"></script>
 <script src="${ctx}static/ace/dist/js/bootstrap.min.js"></script>
 <script src="${ctx}static/libs/jquery/jquery.bootstrap.min.js"></script>
 <script src="${ctx}static/ace/dist/js/jquery.gritter.min.js"></script>
@@ -81,6 +90,8 @@
 <script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
 <script src="${ctx}static/ace/dist/js/ace-elements.min.js"></script>
 <script src="${ctx}static/ace/dist/js/ace.min.js"></script>
+<script src="${ctx}static/ace/dist/js/ace.skin.js"></script>
+<script src="${ctx}static/app/js/config.js"></script>
 <script src="${ctx}static/app/js/app.js"></script>
     <@block name="app-script"/>
 </@app_user>

@@ -60,7 +60,7 @@
                 <div class="space-4"></div>
 
                 <div class="col-xs-12 clearfix">
-                    <button class="btn btn-inverse btn-sm width-100">登录</button>
+                    <button class="btn btn-inverse skin-btn btn-sm width-100">登录</button>
                 </div>
             </form>
         </div>
@@ -68,15 +68,15 @@
 
     <div class="widget-header widget-header-flat login-actions">
         <div class="col-xs-6">
-            <a href="${ctx}forget" class="infobox-black">
-                <i class="ace-icon fa fa-arrow-left"></i>
-                忘记密码？
+            <a href="${ctx}forget">
+                <i class="ace-icon fa fa-arrow-left skin-color"></i>
+                <span class="skin-color">忘记密码？</span>
             </a>
         </div>
         <div class="col-xs-6">
-            <a href="${ctx}register" class="go-register infobox-black">
-                注册
-                <i class="ace-icon fa fa-arrow-right"></i>
+            <a href="${ctx}register" class="go-register">
+                <i class="ace-icon fa fa-arrow-right skin-color"></i>
+                <span class="skin-color">注册</span>
             </a>
         </div>
     </div>

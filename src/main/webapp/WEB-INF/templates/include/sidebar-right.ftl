@@ -1,6 +1,6 @@
 <div class="widget-box">
     <div class="widget-header widget-header-flat">
-        <i class="ace-icon fa fa-lightbulb-o bigger-140 dark"></i>
+        <i class="skin-color ace-icon fa fa-lightbulb-o bigger-140 dark"></i>
         <h4 class="widget-title dark">常用导航</h4>
     </div>
 

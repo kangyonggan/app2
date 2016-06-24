@@ -70,7 +70,7 @@
 
         <div class="widget-toolbox padding-4 clearfix">
             <div class="btn-group pull-right">
-                <button class="btn btn-sm btn-inverse">
+                <button class="btn btn-sm btn-inverse skin-btn">
                     <i class="ace-icon fa fa-floppy-o bigger-125"></i>
                     发表
                 </button>

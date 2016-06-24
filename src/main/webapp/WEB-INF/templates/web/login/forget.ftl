@@ -1,4 +1,3 @@
-<#assign bodyClass="skin-2">
 <#assign title="找回密码">
 
 <@override name="content">
