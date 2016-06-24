@@ -50,7 +50,7 @@ public class FreemarkerConfiguration extends FreeMarkerAutoConfiguration.FreeMar
         sharedVariables.put("submit", prop.get(3));
         sharedVariables.put("cancel", prop.get(4));
         sharedVariables.put("ctx", ctx);
-        sharedVariables.put("app_user", userDirective);
+        sharedVariables.put("userDirective", userDirective);
         sharedVariables.put("app_menus", menuDirective);
         sharedVariables.put("block", new BlockDirective());
         sharedVariables.put("extends", new ExtendsDirective());

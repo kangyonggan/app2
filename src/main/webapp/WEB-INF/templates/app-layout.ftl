@@ -1,3 +1,5 @@
+
+
 <@override name="app-style">
     <@block name="style"/>
 </@override>
@@ -33,7 +35,13 @@
 </@override>
 
 <@override name="app-script">
-    <script src="${ctx}static/app/js/item-status.js"></script>
+<script>
+    var app_who = "${app_who}";
+</script>
+<script src="${ctx}static/ace/dist/js/x-editable/bootstrap-editable.min.js"></script>
+<script src="${ctx}static/ace/dist/js/x-editable/ace-editable.min.js"></script>
+<script src="${ctx}static/app/js/include/header.js"></script>
+<script src="${ctx}static/app/js/item-status.js"></script>
     <@block name="script"/>
 </@override>
 

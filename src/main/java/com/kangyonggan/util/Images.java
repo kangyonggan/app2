@@ -13,7 +13,7 @@ public class Images {
 
     //大Logo
     public static String large(String source) throws Exception {
-        return thumbnails(source, "l", 200, 200);
+        return thumbnails(source, "l", 182, 202);
     }
 
     //中Logo

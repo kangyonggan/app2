@@ -1,7 +1,6 @@
 package com.kangyonggan.config.directive;
 
 import com.kangyonggan.config.shiro.SuperTag;
-import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.model.User;
 import com.kangyonggan.service.UserService;
@@ -28,12 +27,12 @@ public class UserDirective extends SuperTag {
     @Override
     public void render(Environment env, Map params, TemplateDirectiveBody body) throws IOException, TemplateException {
         ShiroUser shiroUser = userService.getShiroUser();
-        Long id = AppConstants.AUTHOR_ID;
+        User user = null;
         if (shiroUser != null) {
-            id = shiroUser.getId();
+            user = userService.getUser(shiroUser.getId());
         }
-        User user = userService.getUser(id);
         env.setVariable("app_user", ObjectWrapper.DEFAULT_WRAPPER.wrap(user));
+        env.setVariable("app_author", ObjectWrapper.DEFAULT_WRAPPER.wrap(userService.getUser(1L)));
         renderBody(env, body);
     }
 }

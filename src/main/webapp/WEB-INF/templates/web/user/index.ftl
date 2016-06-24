@@ -1,4 +1,4 @@
-<#assign title="康永敢">
+<#assign title="${user.realname}">
 
 <@override name="content">
     <#include "../../include/markdown.ftl">

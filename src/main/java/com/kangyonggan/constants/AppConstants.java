@@ -29,11 +29,6 @@ public class AppConstants {
     public static final int PAGE_SIZE = 10;
 
     /**
-     * author用户的id
-     */
-    public static final Long AUTHOR_ID = 1L;
-
-    /**
      * 返回成功
      */
     public static final String SUCCESS = "success";

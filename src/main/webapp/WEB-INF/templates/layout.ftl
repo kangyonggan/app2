@@ -48,7 +48,7 @@
 
 <@block name="app-style"/>
 </head>
-<@app_user>
+<@userDirective>
 <body class="${bodyClass!'skin-3'}">
 
 <script>
@@ -91,9 +91,9 @@
 <script src="${ctx}static/ace/dist/js/ace-elements.min.js"></script>
 <script src="${ctx}static/ace/dist/js/ace.min.js"></script>
 <script src="${ctx}static/ace/dist/js/ace.skin.js"></script>
-<script src="${ctx}static/app/js/config.js"></script>
+<script src="${ctx}static/app/js/include/config.js"></script>
 <script src="${ctx}static/app/js/app.js"></script>
     <@block name="app-script"/>
-</@app_user>
+</@userDirective>
 </body>
 </html>

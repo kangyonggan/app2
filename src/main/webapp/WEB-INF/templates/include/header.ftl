@@ -1,5 +1,18 @@
-<#assign avatar=app_user.largeAvatar/>
-<#if app_user.largeAvatar == ''>
+<#if user??>
+    <#assign app_who="2"/>
+    <#if app_user?? && app_user.id == user.id>
+        <#assign app_who="1"/>
+    </#if>
+<#elseif app_user??>
+    <#assign user=app_user/>
+    <#assign app_who="1"/>
+<#else>
+    <#assign user=app_author/>
+    <#assign app_who="0"/>
+</#if>
+
+<#assign avatar=user.largeAvatar/>
+<#if user.largeAvatar == ''>
     <#assign avatar='static/ace/dist/avatars/profile-pic.jpg'/>
 </#if>
 
@@ -9,8 +22,9 @@
             <div class="col-xs-12 col-sm-3 center">
                 <div>
                     <span class="profile-picture">
-                        <img src="${ctx}${avatar}"
-                             class="editable img-responsive editable-click editable-empty"/>
+                        <img data-pk="13" src="${ctx}${avatar}" alt="${user.realname}"
+                             class="img-responsive editable editable-click editable-empty" id="avatar"
+                             style="display: block;"></img>
                     </span>
 
                     <div class="space-4"></div>
@@ -20,7 +34,7 @@
                             <a href="#" class="user-title-label">
                                 <i class="ace-icon fa fa-circle light-green"></i>
                                 &nbsp;
-                                <span class="white">${app_user.realname}</span>
+                                <span class="white">${user.realname}</span>
                             </a>
                         </div>
                     </div>
@@ -38,7 +52,7 @@
                     <i class="ace-icon fa fa-leaf green"></i>
 
                     <strong class="green">
-                    <@c.substring str="${app_user.sign}" len=60 default="懒惰是一种美德!"/>
+                    <@c.substring str="${user.sign}" len=60 default="懒惰是一种美德!"/>
                     </strong>
                 </div>
 

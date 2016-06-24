@@ -10,12 +10,6 @@ $(function () {
         ace.cookie.set("skin", skin_class, 604800000);
     });
 
-    var navbar_fixed = ace.cookie.get("navbar-fixed");
-    if (navbar_fixed == "checked") {
-        $("#ace-settings-navbar").attr("checked", "checked");
-        $("#navbar").addClass("navbar-fixed-top");
-    }
-
     $("#ace-settings-navbar").click(function () {
         if (ace.cookie.get("navbar-fixed")) {
             ace.cookie.remove("navbar-fixed");
