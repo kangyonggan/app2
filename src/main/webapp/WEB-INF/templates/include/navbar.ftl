@@ -1,7 +1,6 @@
 <div id="navbar" class="navbar navbar-default navbar-collapse h-navbar">
     <script>
-        var navbar_fixed = ace.cookie.get("navbar-fixed");
-        if (navbar_fixed == "checked") {
+        if (ace.storage.get("navbar-fixed") != null) {
             $("#ace-settings-navbar").attr("checked", "checked");
             $("#navbar").addClass("navbar-fixed-top");
         }
@@ -27,16 +26,16 @@
             </button>
         </div>
 
+    <@shiro.user>
         <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
             <ul class="nav navbar-nav">
-
-            <@app_category>
                 <#list app_category.childrens as category>
                     <#assign hasChildren=category.childrens?size gt 0>
                     <li>
-                        <a href="${ctx}category/${category.code}"<#if hasChildren> class="dropdown-toggle"
+                        <a href="${ctx}user/${app_user.id}/category/${category.code}"<#if hasChildren>
+                           class="dropdown-toggle"
                            data-toggle="dropdown"</#if>>
-                            <i class="${category.icon}"></i>
+                            <i class="${category.icon} bigger-140"></i>
                         ${category.name}
                             <#if hasChildren>
                                 &nbsp;
@@ -47,8 +46,8 @@
                             <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                                 <#list category.childrens as c>
                                     <li>
-                                        <a href="${ctx}category/${c.code}">
-                                            <i class="${c.icon}"></i>
+                                        <a href="${ctx}category/${c.code}/user/${app_user.id}">
+                                            <i class="${c.icon} bigger-120"></i>
                                         ${c.name}
                                         </a>
                                     </li>
@@ -57,33 +56,33 @@
                         </#if>
                     </li>
                 </#list>
-            </@app_category>
 
-            <@shiro.hasPermission name="sys">
-                <@app_menus>
-                    <li>
-                        <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="${sys_parent_menu.icon}"></i>
-                        ${sys_parent_menu.name}
-                            &nbsp;
-                            <i class="ace-icon fa fa-angle-down bigger-140"></i>
-                        </a>
+                <@shiro.hasPermission name="sys">
+                    <@app_menus>
+                        <li>
+                            <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="${sys_parent_menu.icon} bigger-140"></i>
+                            ${sys_parent_menu.name}
+                                &nbsp;
+                                <i class="ace-icon fa fa-angle-down bigger-140"></i>
+                            </a>
 
-                        <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
-                            <#list sys_menus as menu>
-                                <li>
-                                    <a href="${ctx}${menu.url}">
-                                        <i class="${menu.icon!''}"></i>
-                                    ${menu.name}
-                                    </a>
-                                </li>
-                            </#list>
-                        </ul>
-                    </li>
-                </@app_menus>
-            </@shiro.hasPermission>
+                            <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                                <#list sys_menus as menu>
+                                    <li>
+                                        <a href="${ctx}${menu.url}">
+                                            <i class="${menu.icon} bigger-120"></i>
+                                        ${menu.name}
+                                        </a>
+                                    </li>
+                                </#list>
+                            </ul>
+                        </li>
+                    </@app_menus>
+                </@shiro.hasPermission>
             </ul>
         </nav>
+    </@shiro.user>
 
         <nav role="navigation" class="navbar-menu pull-right collapse navbar-collapse">
             <ul class="nav navbar-nav">

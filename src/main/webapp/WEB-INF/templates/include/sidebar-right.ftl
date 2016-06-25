@@ -1,7 +1,7 @@
-<div class="widget-box">
+<div class="widget-box widget-color-dark">
     <div class="widget-header widget-header-flat">
-        <i class="skin-color ace-icon fa fa-lightbulb-o bigger-140 dark"></i>
-        <h4 class="widget-title dark">常用导航</h4>
+        <i class="skin-inverse ace-icon fa fa-lightbulb-o bigger-140 white"></i>
+        <h4 class="widget-title white">常用导航</h4>
     </div>
 
     <div class="widget-body">

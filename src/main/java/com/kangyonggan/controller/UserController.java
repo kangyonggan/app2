@@ -1,8 +1,11 @@
 package com.kangyonggan.controller;
 
 import com.kangyonggan.constants.AppConstants;
+import com.kangyonggan.model.Article;
+import com.kangyonggan.model.Category;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.FileUpload;
 import com.kangyonggan.util.Images;
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -29,6 +34,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ArticleService articleService;
+
     /**
      * Ta的主页
      *
@@ -40,8 +48,13 @@ public class UserController {
         if (user == null) {
             return "redirect:/404";
         }
+        Category category = new Category();
+        category.setName("全部栏目");
+        List<Article> articles = articleService.findArticesByCategoryCode(1, AppConstants.PAGE_SIZE, null);
 
         model.addAttribute("user", user);
+        model.addAttribute("category", category);
+        model.addAttribute("articles", articles);
         return PATH_INDEX;
     }
 

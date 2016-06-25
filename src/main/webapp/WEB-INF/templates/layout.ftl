@@ -38,6 +38,7 @@
     <!-- ace settings handler -->
     <script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
     <script src="${ctx}static/ace/dist/js/jquery.min.js"></script>
+    <script src="${ctx}static/app/js/include/cookie.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -48,52 +49,55 @@
 
 <@block name="app-style"/>
 </head>
-<@userDirective>
-<body class="${bodyClass!'skin-3'}">
+<@app_category>
+    <@userDirective>
+    <body class="${bodyClass!'skin-3'}">
 
-<script>
-    var skin_class = ace.cookie.get("skin");
-    if (skin_class) {
-        $("body").removeClass('no-skin skin-1 skin-2 skin-3');
-        $("body").addClass(skin_class);
-    }
-</script>
+    <script>
+        var skin_class = ace.storage.get("skin");
+        if (skin_class) {
+            $("body").removeClass('no-skin skin-1 skin-2 skin-3');
+            $("body").addClass(skin_class);
+        }
+    </script>
 
-    <#include "include/navbar.ftl">
+        <#include "include/navbar.ftl">
 
-<div id="main-container" class="main-container">
-    <div class="main-content">
-        <div class="main-content-inner">
-            <div class="page-content">
-                <#include "include/settings.ftl">
+    <div id="main-container" class="main-container">
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="page-content">
+                    <#include "include/settings.ftl">
                 <@block name="app-content"/>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    <#include "include/footer.ftl">
+        <#include "include/footer.ftl">
 
-    <#include "include/modal.ftl">
+        <#include "include/modal.ftl">
 
-<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-</a>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
 
-<script>var ctx = '${ctx}';</script>
-<script src="${ctx}static/ace/dist/js/bootstrap.min.js"></script>
-<script src="${ctx}static/libs/jquery/jquery.bootstrap.min.js"></script>
-<script src="${ctx}static/ace/dist/js/jquery.gritter.min.js"></script>
-<script src="${ctx}static/libs/jquery/jquery.form.min.js"></script>
-<script src="${ctx}static/libs/jquery/jquery.validate.min.js"></script>
-<script src="${ctx}static/libs/jquery/jquery.validate.extends.js"></script>
-<script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
-<script src="${ctx}static/ace/dist/js/ace-elements.min.js"></script>
-<script src="${ctx}static/ace/dist/js/ace.min.js"></script>
-<script src="${ctx}static/ace/dist/js/ace.skin.js"></script>
-<script src="${ctx}static/app/js/include/config.js"></script>
-<script src="${ctx}static/app/js/app.js"></script>
-    <@block name="app-script"/>
-</@userDirective>
-</body>
+    <script>var ctx = '${ctx}';</script>
+    <script src="${ctx}static/ace/dist/js/bootstrap.min.js"></script>
+    <script src="${ctx}static/libs/jquery/jquery.bootstrap.min.js"></script>
+    <script src="${ctx}static/ace/dist/js/jquery.gritter.min.js"></script>
+    <script src="${ctx}static/libs/jquery/jquery.form.min.js"></script>
+    <script src="${ctx}static/libs/jquery/jquery.validate.min.js"></script>
+    <script src="${ctx}static/libs/jquery/jquery.validate.extends.js"></script>
+    <script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
+    <script src="${ctx}static/ace/dist/js/ace-elements.min.js"></script>
+    <script src="${ctx}static/ace/dist/js/ace.min.js"></script>
+    <script src="${ctx}static/ace/dist/js/ace.skin.js"></script>
+    <script src="${ctx}static/app/js/include/config.js"></script>
+    <script src="${ctx}static/app/js/app.js"></script>
+        <@block name="app-script"/>
+
+    </body>
+    </@userDirective>
+</@app_category>
 </html>

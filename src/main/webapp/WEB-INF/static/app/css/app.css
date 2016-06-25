@@ -16,7 +16,7 @@ ul {
     border-radius: 100%;
     max-width: 40px;
     margin-right: 10px;
-    margin-left: 0px;
+    margin-left: 0;
     box-shadow: none;
 }
 
@@ -26,8 +26,18 @@ ul {
     word-spacing: 3px;
 }
 
+.text-article-body {
+    max-height: 160px;
+    overflow: hidden;
+}
+
 .split {
     color: #ccc;
+}
+
+input.app-date-input {
+    background: #fff !important;
+    cursor: pointer !important;
 }
 
 /*通用样式 结尾*/
@@ -60,19 +70,25 @@ ul {
     font-size: 15px;
 }
 
+.color-skin-1 {
+    color: #428bca;
+}
+
+.color-skin-2 {
+    color: #d6487e;
+}
+
+.color-skin-3 {
+    color: #404040;
+}
+
 /*边栏样式 结尾*/
 
 /*文章列表样式 开头*/
-.article-imgs-list > div > img {
-    width: 100%;
-    margin-bottom: 5%;
-}
-
 .article-action {
     clear: both;
     border-top: 1px solid #ddd;
     background: #F7F7F7;
-    margin-top: 8px;
 }
 
 .article-buttons {

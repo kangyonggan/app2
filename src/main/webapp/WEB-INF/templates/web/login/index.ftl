@@ -71,14 +71,14 @@
     <div class="widget-header widget-header-flat login-actions">
         <div class="col-xs-6">
             <a href="${ctx}forget">
-                <i class="ace-icon fa fa-arrow-left skin-color"></i>
-                <span class="skin-color">忘记密码？</span>
+                <i class="ace-icon fa fa-arrow-left skin-inverse"></i>
+                <span class="skin-inverse">忘记密码？</span>
             </a>
         </div>
         <div class="col-xs-6">
             <a href="${ctx}register" class="go-register">
-                <i class="ace-icon fa fa-arrow-right skin-color"></i>
-                <span class="skin-color">注册</span>
+                <i class="ace-icon fa fa-arrow-right skin-inverse"></i>
+                <span class="skin-inverse">注册</span>
             </a>
         </div>
     </div>

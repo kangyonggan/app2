@@ -29,6 +29,18 @@ public class Article {
     private String tags;
 
     /**
+     * 栏目代码
+     */
+    @Column(name = "category_code")
+    private String categoryCode;
+
+    /**
+     * 栏目名称
+     */
+    @Column(name = "category_name")
+    private String categoryName;
+
+    /**
      * 被转发文章的ID
      */
     private Long tid;
@@ -51,19 +63,19 @@ public class Article {
     /**
      * 是否置顶 {0:未置顶, 1:已置顶}
      */
-    private Byte stick;
+    private Byte sticky;
 
     /**
      * 置顶时间
      */
-    @Column(name = "stick_time")
-    private Date stickTime;
+    @Column(name = "sticky_time")
+    private Date stickyTime;
 
     /**
      * 发表人ID
      */
-    @Column(name = "created_user_id")
-    private Long createdUserId;
+    @Column(name = "user_id")
+    private Long userId;
 
     /**
      * 是否删除 {0:未删除, 1:已删除}
@@ -87,4 +99,13 @@ public class Article {
      * 文章内容
      */
     private String body;
+
+    @Transient
+    private String realname;
+
+    @Transient
+    private String sign;
+
+    @Transient
+    private String smallAvatar;
 }

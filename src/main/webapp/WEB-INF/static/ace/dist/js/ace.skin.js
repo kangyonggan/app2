@@ -1,6 +1,7 @@
 (function ($) {
     $.fn.ace = {
         skin: function(skin_class) {
+
             var skins = {'no-skin':'#438EB9', 'skin-1':'#222A2D', 'skin-2':'#C6487E', 'skin-3':'#D0D0D0'};
 
             $(".dropdown-caret li a").removeClass("selected");
@@ -37,10 +38,7 @@
             var i = 0;
             $('.sidebar-shortcuts .btn').each(function() {
                 $(this).find(ace.vars['.icon']).removeClass(skin3_colors[i++]);
-            })
-
-
-
+            });
 
             var skin0_buttons = ['btn-success', 'btn-info', 'btn-warning', 'btn-pink'];
             if(skin_class == 'no-skin') {
@@ -48,11 +46,14 @@
                 $(".widget-box").addClass("widget-color-blue");
                 $(".widget-box .widget-title").removeClass("dark white");
                 $(".widget-box .widget-title").addClass("dark");
-                $(".skin-color").removeClass("dark white");
-                $(".skin-color").addClass("dark");
+                $(".skin-inverse").removeClass("dark white");
+                $(".skin-inverse").addClass("dark");
 
                 $(".skin-btn").removeClass("btn-inverse btn-primary btn-pink");
                 $(".skin-btn").addClass("btn-primary");
+
+                $(".skin-color").removeClass("color-skin-1 color-skin-2 color-skin-3");
+                $(".skin-color").addClass("color-skin-1");
 
                 var i = 0;
                 $('.sidebar-shortcuts .btn').each(function() {
@@ -69,11 +70,14 @@
                 $(".widget-title").removeClass("dark white");
                 $(".widget-title").addClass("dark");
 
-                $(".skin-color").removeClass("dark white");
-                $(".skin-color").addClass("dark");
+                $(".skin-inverse").removeClass("dark white");
+                $(".skin-inverse").addClass("dark");
 
                 $(".skin-btn").removeClass("btn-inverse btn-primary btn-pink");
                 $(".skin-btn").addClass("btn-primary");
+
+                $(".skin-color").removeClass("color-skin-1 color-skin-2 color-skin-3");
+                $(".skin-color").addClass("color-skin-1");
 
                 $('.ace-nav > li.grey').addClass('dark');
                 var i = 0;
@@ -92,11 +96,14 @@
                 $(".widget-title").removeClass("dark white");
                 $(".widget-title").addClass("dark");
 
-                $(".skin-color").removeClass("dark white");
-                $(".skin-color").addClass("dark");
+                $(".skin-inverse").removeClass("dark white");
+                $(".skin-inverse").addClass("dark");
 
                 $(".skin-btn").removeClass("btn-inverse btn-primary btn-pink");
                 $(".skin-btn").addClass("btn-pink");
+
+                $(".skin-color").removeClass("color-skin-1 color-skin-2 color-skin-3");
+                $(".skin-color").addClass("color-skin-2");
 
                 $('.ace-nav > li').addClass('no-border margin-1');
                 $('.ace-nav > li:not(:last-child)').addClass('light-pink').find('> a > '+ace.vars['.icon']).addClass('pink').end().eq(0).find('.badge').addClass('badge-warning');
@@ -117,11 +124,14 @@
                 $(".widget-title").removeClass("dark white");
                 $(".widget-title").addClass("white");
 
-                $(".skin-color").removeClass("dark white");
-                $(".skin-color").addClass("white");
+                $(".skin-inverse").removeClass("dark white");
+                $(".skin-inverse").addClass("white");
 
                 $(".skin-btn").removeClass("btn-inverse btn-primary btn-pink");
                 $(".skin-btn").addClass("btn-inverse");
+
+                $(".skin-color").removeClass("color-skin-1 color-skin-2 color-skin-3");
+                $(".skin-color").addClass("color-skin-3");
 
                 body.addClass('no-skin');//because skin-3 has many parts of no-skin as well
 

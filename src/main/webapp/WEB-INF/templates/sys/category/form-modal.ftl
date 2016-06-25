@@ -13,6 +13,8 @@
 
         <@c.input id="code" label="栏目代码" val="${item.code!''}" required="true"/>
 
+        <@c.select id="isAjax" label="是否异步" items=[{'key':'0', 'val':'不异步'}, {'key':'1', 'val':'异步'}] key="key" val="val" selected="${item.isAjax!'0'}"/>
+
         <@c.input id="icon" label="图标" val="${item.icon!''}"/>
 
         <@c.input id="sort" label="排序" val="${item.sort!'1'}" required="true"/>
@@ -28,7 +30,7 @@
     <i class="ace-icon fa fa-check bigger-110"></i>
 ${submit}
 
-<script src="${ctx}static/app/js/sys/category/form-modal.js"></script>
+    <script src="${ctx}static/app/js/sys/category/form-modal.js"></script>
 </@override>
 
 <@extends name="../../modal-layout.ftl"/>

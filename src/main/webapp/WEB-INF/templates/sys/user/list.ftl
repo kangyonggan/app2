@@ -16,13 +16,13 @@
         <input type="text" class="form-control" name="realname" value="${realname}" placeholder="真实姓名"/>
     </div>
 
-    <button class="btn btn-purple btn-sm">
+    <button class="btn btn-sm btn-inverse skin-btn">
         搜索
         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
     </button>
 
     <div class="pull-right">
-        <a href="${ctx}sys/user/create" class="btn btn-purple btn-sm" data-backdrop="static" data-toggle="modal" data-target="#myModal">添加</a>
+        <a href="${ctx}sys/user/create" class="btn btn-sm btn-inverse skin-btn" data-backdrop="static" data-toggle="modal" data-target="#myModal">添加</a>
     </div>
 </form>
 

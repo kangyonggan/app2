@@ -1,54 +1,23 @@
-<div class="widget-box">
+<div class="widget-box widget-color-dark">
     <div class="widget-header widget-header-flat">
-        <i class="skin-color ace-icon fa fa-bullhorn bigger-140 dark"></i>
-        <h4 class="widget-title dark">热门活动</h4>
+        <i class="skin-inverse ace-icon fa fa-bullhorn bigger-140 white"></i>
+        <h4 class="widget-title white">热门推荐</h4>
     </div>
 
     <div class="widget-body">
         <div class="widget-main">
             <ul class="sidebar-list">
-                <li class="active">
-                    <a href="#">
-                        <i class="ace-icon fa fa-th"></i>
-                        全部动态
-                    </a>
-                </li>
                 <li>
-                    <a href="#">
-                        <i class="ace-icon fa fa-video-camera green"></i>
-                        视频广场
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="ace-icon fa fa-download"></i>
-                        资源下载
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="ace-icon fa fa-calendar purple"></i>
-                        那年今日
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="ace-icon fa fa-comments"></i>
-                        懒人论坛
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="ace-icon fa fa-comment-o red2"></i>
-                        互助问答
+                    <a href="${ctx}category">
+                        <i class="ace-icon fa fa-list dark"></i>
+                        全部栏目
                     </a>
                 </li>
             <@shiro.user>
-                <li></li>
-                <li>
+                <li class="active">
                     <a href="#">
-                        <i class="ace-icon fa fa-users"></i>
-                        好友动态
+                        <i class="ace-icon fa fa-rss"></i>
+                        我的订阅
                     </a>
                 </li>
                 <li>
@@ -63,7 +32,23 @@
                         特别关心
                     </a>
                 </li>
+                <li></li>
             </@shiro.user>
+            <#assign colors=["dark", "purple", "green", "red2"]/>
+            <#list app_category.childrens as category>
+                <#assign hasChildren=category.childrens?size gt 0>
+                <#if hasChildren>
+                    <#list category.childrens as c>
+                        <li>
+                            <a href="${ctx}category?code=${c.code}">
+                                <i class="${c.icon} ${colors[c_index%colors?size]}"></i>
+                            ${c.name}
+                            </a>
+                        </li>
+                    </#list>
+                    <li></li>
+                </#if>
+            </#list>
             </ul>
         </div>
     </div>

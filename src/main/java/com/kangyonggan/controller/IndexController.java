@@ -1,8 +1,16 @@
 package com.kangyonggan.controller;
 
+import com.kangyonggan.constants.AppConstants;
+import com.kangyonggan.model.Article;
+import com.kangyonggan.model.Category;
+import com.kangyonggan.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * 网站首页
@@ -17,13 +25,22 @@ public class IndexController {
     private static final String PATH_ROOT = "web/index/";
     private static final String PATH_INDEX = PATH_ROOT + "index";
 
+    @Autowired
+    private ArticleService articleService;
+
     /**
      * 网站首页
      *
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String index() {
+    public String index(Model model) {
+        Category category = new Category();
+        category.setName("全部栏目");
+        List<Article> articles = articleService.findArticesByCategoryCode(1, AppConstants.PAGE_SIZE, null);
+
+        model.addAttribute("category", category);
+        model.addAttribute("articles", articles);
         return PATH_INDEX;
     }
 

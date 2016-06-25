@@ -2,7 +2,7 @@
 
 <@override name="error">
 
-<h3 class="lighter smaller"><#if exception??>${exception.message!'发生未知错误，请联系网站管理员或稍后再次尝试！'}<#else>发生未知错误，请联系网站管理员或稍后再次尝试！</#if></h3>
+<h3 class="lighter smaller"><#if exception??>${exception.message!'发生未知错误，请联系网站管理员或<a href="/login">重新登录</a>后再次尝试！'}<#else>发生未知错误，请联系网站管理员或<a href="/login">重新登录</a>后再次尝试！</#if></h3>
 
 </@override>
 

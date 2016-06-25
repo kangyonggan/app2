@@ -81,14 +81,32 @@
     <@endInput id />
 </#macro>
 
+<#--下拉选择框-->
+<#macro select id label items key val selected="" >
+    <@startInput label "false"/>
+<select id="${id}" name="${id}" class="form-control">
+    <#list items as item>
+        <option value="${item[key]}" <#if item[key]==selected>selected</#if>>${item[val]}</option>
+    </#list>
+</select>
+    <@endInput id />
+</#macro>
+
+<#--文本域输入框-->
+<#macro textarea id label rows="5" required="false" empty="">
+    <@startInput label required/>
+<textarea id="${id}" rows="${rows}" name="${id}" class="form-control" placeholder="${empty}"></textarea>
+    <@endInput id />
+</#macro>
+
 <#--显示绿色对号或红色大×-->
 <#macro textIcon flag trueText falseText>
     <#if flag>
-        ${trueText}
-        <i class="ace-icon fa fa-check-circle green"></i>
+    ${trueText}
+    <i class="ace-icon fa fa-check-circle green"></i>
     <#else>
-        ${falseText}
-        <i class="ace-icon fa fa-times-circle red"></i>
+    ${falseText}
+    <i class="ace-icon fa fa-times-circle red"></i>
     </#if>
 </#macro>
 
@@ -99,7 +117,8 @@
 <#--private输入框前部-->
 <#macro startInput label required>
 <div class="form-group">
-    <label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">${label}<#if required=="true"><span class="red">&nbsp;*</span></#if></label>
+    <label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">${label}<#if required=="true"><span
+            class="red">&nbsp;*</span></#if></label>
 <div class="col-xs-12 col-sm-6">
 <span class="block input-icon input-icon-right">
 </#macro>

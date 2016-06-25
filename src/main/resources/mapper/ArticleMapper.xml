@@ -1,24 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kangyonggan.mapper.ArticleMapper">
     <resultMap id="BaseResultMap" type="com.kangyonggan.model.Article">
         <!--
           WARNING - @mbggenerated
         -->
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="title" property="title" jdbcType="VARCHAR"/>
-        <result column="summary" property="summary" jdbcType="VARCHAR"/>
-        <result column="tags" property="tags" jdbcType="VARCHAR"/>
-        <result column="tid" property="tid" jdbcType="BIGINT"/>
-        <result column="visitors" property="visitors" jdbcType="VARCHAR"/>
-        <result column="top" property="top" jdbcType="INTEGER"/>
-        <result column="low" property="low" jdbcType="INTEGER"/>
-        <result column="stick" property="stick" jdbcType="TINYINT"/>
-        <result column="stick_time" property="stickTime" jdbcType="TIMESTAMP"/>
-        <result column="created_user_id" property="createdUserId" jdbcType="BIGINT"/>
-        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
-        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
-        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
-        <result column="body" property="body" jdbcType="LONGVARCHAR"/>
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="tags" jdbcType="VARCHAR" property="tags"/>
+        <result column="category_code" jdbcType="VARCHAR" property="categoryCode"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+        <result column="tid" jdbcType="BIGINT" property="tid"/>
+        <result column="visitors" jdbcType="VARCHAR" property="visitors"/>
+        <result column="top" jdbcType="INTEGER" property="top"/>
+        <result column="low" jdbcType="INTEGER" property="low"/>
+        <result column="sticky" jdbcType="TINYINT" property="sticky"/>
+        <result column="sticky_time" jdbcType="TIMESTAMP" property="stickyTime"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+        <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+        <result column="body" jdbcType="LONGVARCHAR" property="body"/>
     </resultMap>
+
+    <select id="selectArticlesByCategoryCode" resultType="Article">
+        SELECT
+        a.id, a.title, a.category_code AS caregoryCode, a.category_name AS catogoryName,
+        a.sticky, a.sticky_time AS stickyTime, a.visitors, a.user_id AS userId,
+        a.created_time AS createdTime, a.summary, a.body, a.top, a.low,
+        u.realname, u.sign, u.small_avatar AS smallAvatar
+        FROM
+        article a, user u
+        <where>
+            a.user_id = u.id
+            AND a.is_deleted = 0
+            <if test="categoryCode != null">
+                AND a.category_code = #{categoryCode}
+            </if>
+        </where>
+        ORDER BY
+        a.sticky desc, a.sticky_time desc, a.top desc, a.id desc
+    </select>
+
 </mapper>

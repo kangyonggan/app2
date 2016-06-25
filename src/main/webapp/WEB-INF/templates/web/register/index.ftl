@@ -98,8 +98,8 @@
     <div class="widget-header widget-header-flat login-actions">
         <div class="col-xs-12">
             <a href="${ctx}login" class="infobox-black center">
-                <i class="ace-icon fa fa-arrow-left skin-color"></i>
-                <span class="skin-color">已有账号？去登录</span>
+                <i class="ace-icon fa fa-arrow-left skin-inverse"></i>
+                <span class="skin-inverse">已有账号？去登录</span>
             </a>
         </div>
     </div>

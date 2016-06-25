@@ -1,20 +1,22 @@
 $(function () {
-    var skin_class = ace.cookie.get("skin");
+    var skin_class = ace.storage.get("skin");
     if (skin_class) {
         $.fn.ace.skin(skin_class);
+    } else {
+        $.fn.ace.skin("skin-3");
     }
 
     $('#skin-colorpicker').on('change', function () {
         var skin_class = $(this).find('option:selected').data('skin');
         $.fn.ace.skin(skin_class);
-        ace.cookie.set("skin", skin_class, 604800000);
+        ace.storage.set("skin", skin_class);
     });
 
     $("#ace-settings-navbar").click(function () {
-        if (ace.cookie.get("navbar-fixed")) {
-            ace.cookie.remove("navbar-fixed");
+        if ($(this).is(":checked")) {
+            ace.storage.set("navbar-fixed", "checked");
         } else {
-            ace.cookie.set("navbar-fixed", "checked", 604800000);
+            ace.storage.remove("navbar-fixed");
         }
     });
 });

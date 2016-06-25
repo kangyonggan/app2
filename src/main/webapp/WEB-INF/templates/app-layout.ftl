@@ -12,11 +12,11 @@
 
 <div class="row">
     <#if no_right??>
+        <div class="col-lg-9 col-md-10 col-xs-12 pull-right">
+            <@block name="content"/>
+        </div>
         <div class="col-lg-3 col-md-2 col-xs-12">
             <#include "include/sidebar-left.ftl">
-        </div>
-        <div class="col-lg-9 col-md-10 col-xs-12">
-            <@block name="content"/>
         </div>
     <#else>
         <div class="col-lg-3 col-md-2 col-xs-6">
@@ -41,7 +41,7 @@
 <script src="${ctx}static/ace/dist/js/x-editable/bootstrap-editable.min.js"></script>
 <script src="${ctx}static/ace/dist/js/x-editable/ace-editable.min.js"></script>
 <script src="${ctx}static/app/js/include/header.js"></script>
-<script src="${ctx}static/app/js/item-status.js"></script>
+<script src="${ctx}static/app/js/include/item-status.js"></script>
     <@block name="script"/>
 </@override>
 

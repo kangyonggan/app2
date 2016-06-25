@@ -4,7 +4,7 @@
         <div class="error-container">
             <div class="well">
                 <h1 class="grey lighter smaller">
-                    <span class="blue bigger-125">
+                    <span class="bigger-125 dark skin-color">
                         <i class="ace-icon fa fa-sitemap"></i>
                         错误
                     </span>
@@ -22,9 +22,9 @@
                         <i class="ace-icon fa fa-arrow-left"></i>
                         返回
                     </a>
-                    <a href="/dashboard" class="btn btn-primary">
-                        <i class="ace-icon fa fa-tachometer"></i>
-                        工作台
+                    <a href="${ctx}" class="btn btn-inverse skin-btn">
+                        <i class="ace-icon fa fa-home"></i>
+                        首页
                     </a>
                 </div>
             </div>
