@@ -1,11 +1,13 @@
 package com.kangyonggan.model;
 
-import java.util.Date;
-import javax.persistence.*;
 import lombok.Data;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
 @Data
-public class Menu {
+public class Category {
     /**
      * 主键, 自增
      */
@@ -14,27 +16,22 @@ public class Menu {
     private Long id;
 
     /**
-     * 菜单代码
+     * 栏目代码
      */
     private String code;
 
     /**
-     * 菜单名称
+     * 栏目名称
      */
     private String name;
 
     /**
-     * 父菜单ID
+     * 父栏目ID
      */
     private Long pid;
 
     /**
-     * 菜单URL
-     */
-    private String url;
-
-    /**
-     * 菜单排序(从1开始)
+     * 栏目排序(从1开始)
      */
     private Integer sort;
 
@@ -42,6 +39,12 @@ public class Menu {
      * 菜单图标的样式
      */
     private String icon;
+
+    /**
+     * 是否需要审核 {0:不需要, 1:需要}
+     */
+    @Column(name = "is_need_approval")
+    private Byte isNeedApproval;
 
     /**
      * 是否删除 {0:未删除, 1:已删除}
@@ -60,4 +63,7 @@ public class Menu {
      */
     @Column(name = "updated_time")
     private Date updatedTime;
+
+    @Transient
+    private List<Category> childrens;
 }

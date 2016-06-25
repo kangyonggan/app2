@@ -23,10 +23,6 @@ import java.util.Map;
 @Component
 public class MenuDirective extends SuperTag {
 
-    String getProperty(Map params) {
-        return getParam(params, "property");
-    }
-
     @Autowired
     private UserService userService;
 

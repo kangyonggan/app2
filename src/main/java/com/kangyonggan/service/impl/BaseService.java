@@ -1,7 +1,5 @@
 package com.kangyonggan.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.util.MyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -135,19 +133,6 @@ public abstract class BaseService<T> {
     public int updateByPrimaryKeySelective(T entity) {
         return mapper.updateByPrimaryKeySelective(entity);
     }
-
-    /**
-     * 单表分页查询并排序
-     *
-     * @param pageNum
-     * @param example
-     * @return
-     */
-    public List<T> selectByExample4Page(int pageNum, Object example) {
-        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
-        return this.selectByExample(example);
-    }
-
 
 }
 

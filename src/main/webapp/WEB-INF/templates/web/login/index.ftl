@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="space-4"></div>
+                <div class="space-8"></div>
 
                 <div class="form-group clearfix">
                     <label class="col-xs-12 control-label no-padding-right">密码</label>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="space-4"></div>
+                <div class="space-8"></div>
 
                 <div class="form-group clearfix">
                     <label class="col-xs-12 control-label no-padding-right">验证码</label>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="space-4"></div>
+                <div class="space-8"></div>
 
                 <div class="col-xs-12 clearfix">
                     <button class="btn btn-inverse skin-btn btn-sm width-100">登录</button>
@@ -65,6 +65,8 @@
             </form>
         </div>
     </div>
+
+    <div class="space-8"></div>
 
     <div class="widget-header widget-header-flat login-actions">
         <div class="col-xs-6">

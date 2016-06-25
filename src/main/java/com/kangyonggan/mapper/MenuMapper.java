@@ -14,5 +14,7 @@ public interface MenuMapper extends MyMapper<Menu> {
 
     List<Menu> selectMenusByRoleId(Long roleId);
 
+    List<Menu> selectMenusByPid(@Param("pid") Long pid, @Param("userId") Long userId);
+
     void deleteAllMenusByRoleId(Long roleId);
 }

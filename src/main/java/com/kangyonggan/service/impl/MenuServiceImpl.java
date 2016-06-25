@@ -3,6 +3,7 @@ package com.kangyonggan.service.impl;
 import com.kangyonggan.mapper.MenuMapper;
 import com.kangyonggan.model.Menu;
 import com.kangyonggan.service.MenuService;
+import com.kangyonggan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,9 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public List<Menu> findMenusByUserId(Long userId) {
         return menuMapper.selectMenusByUserId(userId);
@@ -30,12 +34,7 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
 
     @Override
     public List<Menu> findMenusByPid(Long pid) {
-        // TODO 查出菜单, 点的时候到403, 修改403, 向管理员申请此权限
-        Example example = new Example(Menu.class);
-        example.createCriteria().andEqualTo("pid", pid).andEqualTo("isDeleted", 0);
-        example.setOrderByClause("sort asc");
-
-        return super.selectByExample(example);
+        return menuMapper.selectMenusByPid(pid, userService.getShiroUser().getId());
     }
 
     @Override

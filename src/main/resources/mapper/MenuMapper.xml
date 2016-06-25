@@ -31,6 +31,22 @@
         sort asc
     </select>
 
+    <select id="selectMenusByPid" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT m.*
+        FROM
+        menu m, role_menu rm, user_role ur
+        <where>
+            m.id = rm.menu_id
+            AND rm.role_id = ur.role_id
+            AND ur.user_id = #{userId}
+            AND m.pid = #{pid}
+            AND m.is_deleted = 0
+        </where>
+        ORDER BY
+        sort asc
+    </select>
+
     <select id="selectMenusByRoleId" parameterType="Long" resultMap="BaseResultMap">
         SELECT m.* FROM menu m, role_menu rm WHERE m.id = rm. menu_id AND rm.role_id = #{roleId}
     </select>

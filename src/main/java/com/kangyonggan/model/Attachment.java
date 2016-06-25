@@ -5,7 +5,7 @@ import javax.persistence.*;
 import lombok.Data;
 
 @Data
-public class Menu {
+public class Attachment {
     /**
      * 主键, 自增
      */
@@ -14,34 +14,15 @@ public class Menu {
     private Long id;
 
     /**
-     * 菜单代码
+     * 附件所属的文章ID
      */
-    private String code;
+    @Column(name = "article_id")
+    private Long articleId;
 
     /**
-     * 菜单名称
+     * 附件路径
      */
-    private String name;
-
-    /**
-     * 父菜单ID
-     */
-    private Long pid;
-
-    /**
-     * 菜单URL
-     */
-    private String url;
-
-    /**
-     * 菜单排序(从1开始)
-     */
-    private Integer sort;
-
-    /**
-     * 菜单图标的样式
-     */
-    private String icon;
+    private String path;
 
     /**
      * 是否删除 {0:未删除, 1:已删除}
