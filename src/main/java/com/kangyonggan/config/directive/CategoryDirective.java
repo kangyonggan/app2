@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,8 +25,8 @@ public class CategoryDirective extends SuperTag {
 
     @Override
     public void render(Environment env, Map params, TemplateDirectiveBody body) throws IOException, TemplateException {
-        List<Category> categories = categoryService.findTreeCategories();
-        env.setVariable("app_category", ObjectWrapper.DEFAULT_WRAPPER.wrap(categories.get(0)));
+        Category category = categoryService.findTreeCategory();
+        env.setVariable("app_category", ObjectWrapper.DEFAULT_WRAPPER.wrap(category));
         renderBody(env, body);
     }
 }

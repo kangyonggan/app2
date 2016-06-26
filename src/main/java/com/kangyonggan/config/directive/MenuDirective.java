@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,13 +32,11 @@ public class MenuDirective extends SuperTag {
     public void render(Environment env, Map params, TemplateDirectiveBody body) throws IOException, TemplateException {
         ShiroUser user = userService.getShiroUser();
         if (user != null) {
-            Menu sys_parent_menu = menuService.findMenuByCode("sys");
-            if (sys_parent_menu != null) {
-                List<Menu> menus = menuService.findMenusByPid(sys_parent_menu.getId());
-                env.setVariable("sys_parent_menu", ObjectWrapper.DEFAULT_WRAPPER.wrap(sys_parent_menu));
-                env.setVariable("sys_menus", ObjectWrapper.DEFAULT_WRAPPER.wrap(menus));
+            Menu menu = menuService.findTreeMenu();
+            if (menu != null) {
+                env.setVariable("app_menu", ObjectWrapper.DEFAULT_WRAPPER.wrap(menu));
+                renderBody(env, body);
             }
         }
-        renderBody(env, body);
     }
 }

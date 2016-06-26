@@ -50,7 +50,7 @@
 <@block name="app-style"/>
 </head>
 <@app_category>
-    <@userDirective>
+    <@current_user>
     <body class="${bodyClass!'skin-3'}">
 
     <script>
@@ -98,6 +98,6 @@
         <@block name="app-script"/>
 
     </body>
-    </@userDirective>
+    </@current_user>
 </@app_category>
 </html>

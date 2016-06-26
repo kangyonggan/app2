@@ -12,7 +12,7 @@
                 <div>
                     <div>
                         <a href="${ctx}user/${articles[0].userId}">
-                            <#if user.largeAvatar == ''>
+                            <#if articles[0].smallAvatar == ''>
                                 <img class="pull-left user-avator" src="${ctx}static/ace/dist/avatars/avatar5.png"/>
                             <#else>
                                 <img class="pull-left user-avator" src="${ctx}${articles[0].smallAvatar}"/>
@@ -82,7 +82,7 @@
                     <div>
                         <div>
                             <a href="${ctx}user/${article.userId}">
-                                <#if user.largeAvatar == ''>
+                                <#if article.smallAvatar == ''>
                                     <img class="pull-left user-avator"
                                          src="${ctx}static/ace/dist/avatars/avatar5.png"/>
                                 <#else>

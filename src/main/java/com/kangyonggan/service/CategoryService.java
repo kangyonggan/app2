@@ -12,15 +12,15 @@ public interface CategoryService {
 
     List<Category> findAllCategories();
 
-    List<Category> findTreeCategories();
-
     Category getCategory(Long id);
+
+    Category findCategoryByCode(String code);
+
+    Category findTreeCategory();
 
     void saveCategory(Category category);
 
     void updateCategory(Category category);
 
     void deleteCategory(Long id);
-
-    Category findCategoryByCode(String code);
 }

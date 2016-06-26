@@ -1,4 +1,4 @@
-package com.kangyonggan.controller.sys;
+package com.kangyonggan.controller.pits;
 
 import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.Category;
@@ -21,10 +21,10 @@ import java.util.List;
  * @since 16/6/21
  */
 @Controller
-@RequestMapping("sys/category")
-public class SysCategoryController {
+@RequestMapping("pits/category")
+public class PitsCategoryController {
 
-    private static final String PATH_ROOT = "sys/category/";
+    private static final String PATH_ROOT = "pits/category/";
     private static final String PATH_INDEX = PATH_ROOT + "index";
     private static final String PATH_FORM_MODAL = PATH_ROOT + "form-modal";
 
@@ -38,7 +38,7 @@ public class SysCategoryController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    @RequiresPermissions("sys-category")
+    @RequiresPermissions("pits-category")
     public String index(Model model) {
         List<Category> categories = categoryService.findAllCategories();
 
@@ -54,7 +54,7 @@ public class SysCategoryController {
      * @return
      */
     @RequestMapping(value = "create", method = RequestMethod.GET)
-    @RequiresPermissions("sys-category")
+    @RequiresPermissions("pits-category")
     public String create(@RequestParam(value = "pid", defaultValue = "0") Long pid,
                          Model model) {
         model.addAttribute("item", new Category());
@@ -71,7 +71,7 @@ public class SysCategoryController {
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @ResponseBody
-    @RequiresPermissions("sys-category")
+    @RequiresPermissions("pits-category")
     public ValidationResponse save(@ModelAttribute("category") @Valid Category category,
                                    BindingResult result) {
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
@@ -90,7 +90,7 @@ public class SysCategoryController {
      * @return
      */
     @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
-    @RequiresPermissions("sys-category")
+    @RequiresPermissions("pits-category")
     public String edit(@PathVariable Long id, Model model) {
         Category category = categoryService.getCategory(id);
         model.addAttribute("item", category);
@@ -107,7 +107,7 @@ public class SysCategoryController {
      */
     @RequestMapping(value = "{id:[\\d]+}/update", method = RequestMethod.POST)
     @ResponseBody
-    @RequiresPermissions("sys-category")
+    @RequiresPermissions("pits-category")
     public ValidationResponse update(@ModelAttribute("category") @Valid Category category,
                                      BindingResult result) {
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
@@ -128,7 +128,7 @@ public class SysCategoryController {
      */
     @RequestMapping(value = "{id:[\\d]+}/delete", method = RequestMethod.POST)
     @ResponseBody
-    @RequiresPermissions("sys-category")
+    @RequiresPermissions("pits-category")
     public ValidationResponse delete(@PathVariable Long id) {
         categoryService.deleteCategory(id);
         return new ValidationResponse(AppConstants.SUCCESS);
@@ -142,7 +142,7 @@ public class SysCategoryController {
      * @return
      */
     @RequestMapping(value = "verify-code", method = RequestMethod.POST)
-    @RequiresPermissions("sys-category")
+    @RequiresPermissions("pits-category")
     @ResponseBody
     public boolean verifyCode(@RequestParam String code, @RequestParam String oldCode) {
         if (oldCode.equals(code)) {

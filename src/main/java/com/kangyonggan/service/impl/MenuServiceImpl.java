@@ -2,12 +2,13 @@ package com.kangyonggan.service.impl;
 
 import com.kangyonggan.mapper.MenuMapper;
 import com.kangyonggan.model.Menu;
+import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.service.MenuService;
 import com.kangyonggan.service.UserService;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,11 +31,6 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
     @Override
     public List<Menu> findMenusByUserId(Long userId) {
         return menuMapper.selectMenusByUserId(userId);
-    }
-
-    @Override
-    public List<Menu> findMenusByPid(Long pid) {
-        return menuMapper.selectMenusByPid(pid, userService.getShiroUser().getId());
     }
 
     @Override
@@ -65,6 +61,15 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
     }
 
     @Override
+    public Menu findTreeMenu() {
+        ShiroUser user = userService.getShiroUser();
+        List<Menu> menus = new ArrayList();
+        recursionTreeList(findMenusByUserId(user.getId()), menus, 0L);
+
+        return menus.isEmpty() ? null : menus.get(0);
+    }
+
+    @Override
     public void saveMenu(Menu menu) {
         menu.setCreatedTime(new Date());
         menu.setUpdatedTime(new Date());
@@ -82,5 +87,22 @@ public class MenuServiceImpl extends BaseService<Menu> implements MenuService {
     @Override
     public void deleteMenu(Long id) {
         super.deleteByPrimaryKey(id);
+    }
+
+    private List<Menu> recursionTreeList(List<Menu> from, List<Menu> toList, Long parentId) {
+        if (CollectionUtils.isEmpty(from)) {
+            return null;
+        }
+
+        for (int i = 0; i < from.size(); i++) {
+            Menu menu = from.get(i);
+            if (parentId.equals(menu.getPid())) {
+                List<Menu> childrens = new ArrayList();
+                menu.setChildrens(childrens);
+                toList.add(menu);
+                recursionTreeList(from, childrens, menu.getId());
+            }
+        }
+        return toList;
     }
 }

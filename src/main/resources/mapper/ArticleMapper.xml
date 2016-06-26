@@ -35,7 +35,7 @@
         <where>
             a.user_id = u.id
             AND a.is_deleted = 0
-            <if test="categoryCode != null">
+            <if test="categoryCode != null and categoryCode != ''">
                 AND a.category_code = #{categoryCode}
             </if>
         </where>

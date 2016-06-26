@@ -26,7 +26,7 @@
 </@override>
 
 <@override name="modal-footer">
-<button class="btn btn-inverse" data-toggle="modal-submit" data-loading-text="正在提交...">
+<button class="btn btn-inverse skin-btn" data-toggle="modal-submit" data-loading-text="正在提交...">
     <i class="ace-icon fa fa-check bigger-110"></i>
 ${submit}
 

@@ -1,6 +1,7 @@
 package com.kangyonggan.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
@@ -60,4 +61,7 @@ public class Menu {
      */
     @Column(name = "updated_time")
     private Date updatedTime;
+
+    @Transient
+    private List<Menu> childrens;
 }

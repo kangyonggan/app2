@@ -24,14 +24,14 @@ public class CategoryServiceImpl extends BaseService<Category> implements Catego
     }
 
     @Override
-    public List<Category> findTreeCategories() {
+    public Category findTreeCategory() {
         Category category = new Category();
         category.setIsDeleted((byte) 0);
 
         List<Category> categories = new ArrayList();
         recursionTreeList(super.select(category), categories, 0L);
 
-        return categories;
+        return categories.get(0);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class CategoryServiceImpl extends BaseService<Category> implements Catego
         for (int i = 0; i < from.size(); i++) {
             Category category = from.get(i);
             if (parentId.equals(category.getPid())) {
-                List<Category> childrens = new ArrayList<Category>();
+                List<Category> childrens = new ArrayList();
                 category.setChildrens(childrens);
                 toList.add(category);
                 recursionTreeList(from, childrens, category.getId());

@@ -84,6 +84,7 @@ public class ShiroConfiguration extends WebMvcConfigurerAdapter {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // authc：该过滤器下的页面必须验证后才能访问，它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter
         filterChainDefinitionMap.put("/sys/**", "authc");
+        filterChainDefinitionMap.put("/pits/**", "authc");
 //        filterChainDefinitionMap.put("/admin/**", "authc");
         // anon：它对应的过滤器里面是空的,什么都没做
         filterChainDefinitionMap.put("/**", "anon");
@@ -105,7 +106,6 @@ public class ShiroConfiguration extends WebMvcConfigurerAdapter {
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的连接
-        shiroFilterFactoryBean.setSuccessUrl("/dashbord");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
         loadShiroFilterChain(shiroFilterFactoryBean);

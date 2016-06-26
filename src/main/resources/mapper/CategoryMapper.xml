@@ -12,7 +12,6 @@
         <result column="sort" property="sort" jdbcType="INTEGER"/>
         <result column="icon" property="icon" jdbcType="VARCHAR"/>
         <result column="is_need_approval" property="isNeedApproval" jdbcType="TINYINT"/>
-        <result column="is_ajax" property="isAjax" jdbcType="TINYINT"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>

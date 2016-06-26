@@ -6,7 +6,7 @@ $(function () {
                 required: true,
                 maxlength: 64,
                 remote: {
-                    url: ctx + "sys/category/verify-code",
+                    url: ctx + "pits/category/verify-code",
                     type: 'post',
                     data: {
                         'code': $("code").val(),

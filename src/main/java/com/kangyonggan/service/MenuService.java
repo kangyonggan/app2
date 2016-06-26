@@ -12,8 +12,6 @@ public interface MenuService {
 
     List<Menu> findMenusByUserId(Long userId);
 
-    List<Menu> findMenusByPid(Long pid);
-
     List<Menu> findMenusByRoleId(Long roleId);
 
     List<Menu> findAllMenus();
@@ -21,6 +19,8 @@ public interface MenuService {
     Menu getMenu(Long id);
 
     Menu findMenuByCode(String code);
+
+    Menu findTreeMenu();
 
     void saveMenu(Menu menu);
 

@@ -84,4 +84,15 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
         super.updateByPrimaryKeySelective(article);
     }
+
+    @Override
+    public void updateArticle(Article article) {
+        article.setUpdatedTime(new Date());
+        super.updateByPrimaryKeySelective(article);
+    }
+
+    @Override
+    public void deleteArticle(Long id) {
+        super.deleteByPrimaryKey(id);
+    }
 }

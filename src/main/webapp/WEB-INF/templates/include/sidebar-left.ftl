@@ -9,10 +9,11 @@
             <ul class="sidebar-list">
                 <li>
                     <a href="${ctx}category">
-                        <i class="ace-icon fa fa-list dark"></i>
+                        <i class="ace-icon fa fa-th dark"></i>
                         全部栏目
                     </a>
                 </li>
+                <li></li>
             <@shiro.user>
                 <li class="active">
                     <a href="#">

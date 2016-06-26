@@ -84,7 +84,7 @@ CREATE TABLE menu
   COMMENT '父菜单ID',
   url          VARCHAR(128)                          NOT NULL
   COMMENT '菜单URL',
-  sort         INT(11)                               NOT NULL
+  sort         INT(11)                               NOT NULL         DEFAULT 1
   COMMENT '菜单排序(从1开始)',
   icon         VARCHAR(128)                          NOT NULL         DEFAULT ''
   COMMENT '菜单图标的样式',
@@ -101,15 +101,17 @@ CREATE UNIQUE INDEX code_UNIQUE ON menu (code);
 
 INSERT INTO menu (id, code, name, pid, url, sort, icon, created_time, updated_time)
 VALUES (1, 'root', '根菜单', '0', 'root', 1, '', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),
-  (2, 'sys', '系统', '1', 'sys/manage', 1, 'ace-icon fa fa-cog bigger-140', '2016-06-21 15:14:35',
+  (2, 'sys', '系统', 1, 'sys/manage', 1, 'ace-icon fa fa-cog', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (21, 'sys-user', '用户管理', '2', 'sys/user', 1, 'ace-icon fa fa-users', '2016-06-21 15:14:35',
+  (20, 'sys-user', '用户管理', 2, 'sys/user', 1, 'ace-icon fa fa-users', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (22, 'sys-role', '角色管理', '2', 'sys/role', 2, 'ace-icon fa fa-hdd-o', '2016-06-21 15:14:35',
+  (21, 'sys-role', '角色管理', 2, 'sys/role', 2, 'ace-icon fa fa-hdd-o', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (23, 'sys-menu', '菜单管理', '2', 'sys/menu', 3, 'ace-icon fa fa-tachometer', '2016-06-21 15:14:35',
+  (22, 'sys-menu', '菜单管理', 2, 'sys/menu', 3, 'ace-icon fa fa-tachometer', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (24, 'sys-category', '栏目管理', '2', 'sys/category', 4, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
+
+  (3, 'pits', '维护', 1, 'pits/manage', 2, 'ace-icon fa fa-wrench', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),
+  (30, 'pits-category', '栏目管理', 3, 'pits/category', 1, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38');
 
 CREATE TABLE user_role
@@ -121,7 +123,7 @@ CREATE TABLE user_role
   CONSTRAINT `PRIMARY` PRIMARY KEY (user_id, role_id)
 );
 
-INSERT INTO user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_role (user_id, role_id) VALUES (1, 1), (2, 2), (3, 2), (4, 2);
 
 CREATE TABLE role_menu
 (
@@ -147,12 +149,10 @@ CREATE TABLE category
   COMMENT '栏目名称',
   pid              BIGINT(20)                             NOT NULL
   COMMENT '父栏目ID',
-  sort             INT(11)                                NOT NULL
+  sort             INT(11)                                NOT NULL         DEFAULT 1
   COMMENT '栏目排序(从1开始)',
   icon             VARCHAR(128)                           NOT NULL         DEFAULT ''
   COMMENT '菜单图标的样式',
-  is_ajax          TINYINT                                NOT NULL         DEFAULT 0
-  COMMENT '是否异步 {0:不异步, 1:异步}',
   is_need_approval TINYINT                                NOT NULL         DEFAULT 0
   COMMENT '是否需要审核 {0:不需要, 1:需要}',
   is_deleted       TINYINT                                NOT NULL         DEFAULT 0
@@ -166,28 +166,28 @@ CREATE TABLE category
 CREATE UNIQUE INDEX id_UNIQUE ON category (id);
 CREATE UNIQUE INDEX code_UNIQUE ON category (code);
 
-INSERT INTO category (id, code, name, pid, sort, icon, is_ajax, is_need_approval, is_deleted, created_time, updated_time)
-VALUES (1, 'root', '根栏目', 0, 1, 'ace-icon fa fa-leaf', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (2, 'pancil', '随笔', 1, 1, 'ace-icon fa fa-pencil', 1, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (20, 'word', '每日一句', 2, 1, 'ace-icon fa fa-pencil-square-o', 1, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (21, 'diary', '每周一记', 2, 2, 'ace-icon fa fa-book', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (22, 'message', '我的留言', 2, 3, 'ace-icon fa fa-comment', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+INSERT INTO category (id, code, name, pid, sort, icon, is_need_approval, is_deleted, created_time, updated_time)
+VALUES (1, 'root', '根栏目', 0, 1, 'ace-icon fa fa-leaf', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (2, 'pancil', '随笔', 1, 1, 'ace-icon fa fa-pencil', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (20, 'word', '每日一句', 2, 1, 'ace-icon fa fa-pencil-square-o', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (21, 'diary', '每周一记', 2, 2, 'ace-icon fa fa-book', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (22, 'message', '我的留言', 2, 3, 'ace-icon fa fa-comment', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
 
-  (3, 'enjoy', '娱乐', 1, 2, 'ace-icon fa fa-film', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (30, 'picture', '花样相册', 3, 1, 'ace-icon fa fa-picture-o', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (31, 'music', '音乐盛会', 3, 2, 'ace-icon fa fa-music', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (32, 'video', '视频专区', 3, 3, 'ace-icon fa fa-video-camera', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (3, 'enjoy', '娱乐', 1, 2, 'ace-icon fa fa-film', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (30, 'picture', '花样相册', 3, 1, 'ace-icon fa fa-picture-o', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (31, 'music', '音乐盛会', 3, 2, 'ace-icon fa fa-music', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (32, 'video', '视频专区', 3, 3, 'ace-icon fa fa-video-camera', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
 
-  (4, 'res', '资源', 1, 3, 'ace-icon fa fa-cloud', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (40, 'download', '资源下载', 4, 1, 'ace-icon fa fa-download', 0, 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (41, 'exchange', '学术交流', 4, 2, 'ace-icon fa fa-comments', 0, 0, 0, '2016-06-24 21:12:51',
-       '2016-06-24 21:12:53'),
-  (42, 'share', '经验分享', 4, 3, 'ace-icon fa fa-external-link', 0, 0, 0, '2016-06-24 21:12:51',
-       '2016-06-24 21:12:53'),
-  (43, 'note', '学习笔记', 4, 4, 'ace-icon fa fa-pencil', 0, 0, 0, '2016-06-24 21:12:51',
-       '2016-06-24 21:12:53'),
-  (44, 'course', '图文教程', 4, 5, 'ace-icon fa fa-lightbulb-o', 0, 0, 0, '2016-06-24 21:12:51',
-       '2016-06-24 21:12:53');
+  (4, 'res', '资源', 1, 3, 'ace-icon fa fa-cloud', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (40, 'download', '资源下载', 4, 1, 'ace-icon fa fa-download', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
+  (41, 'exchange', '学术交流', 4, 2, 'ace-icon fa fa-comments', 0, 0, '2016-06-24 21:12:51',
+   '2016-06-24 21:12:53'),
+  (42, 'share', '经验分享', 4, 3, 'ace-icon fa fa-external-link', 0, 0, '2016-06-24 21:12:51',
+   '2016-06-24 21:12:53'),
+  (43, 'note', '学习笔记', 4, 4, 'ace-icon fa fa-pencil', 0, 0, '2016-06-24 21:12:51',
+   '2016-06-24 21:12:53'),
+  (44, 'course', '图文教程', 4, 5, 'ace-icon fa fa-lightbulb-o', 0, 0, '2016-06-24 21:12:51',
+   '2016-06-24 21:12:53');
 
 
 CREATE TABLE article
@@ -229,21 +229,3 @@ CREATE TABLE article
 )
   COMMENT '文章表';
 CREATE UNIQUE INDEX id_UNIQUE ON article (id);
-
-CREATE TABLE attachment
-(
-  id           BIGINT(20) PRIMARY KEY  AUTO_INCREMENT NOT NULL
-  COMMENT '主键, 自增',
-  article_id   BIGINT(20)                             NOT NULL
-  COMMENT '附件所属的文章ID',
-  path         VARCHAR(500)                           NOT NULL
-  COMMENT '附件路径',
-  is_deleted   TINYINT                                NOT NULL         DEFAULT 0
-  COMMENT '是否删除 {0:未删除, 1:已删除}',
-  created_time DATETIME                               NOT NULL
-  COMMENT '创建时间',
-  updated_time DATETIME                               NOT NULL
-  COMMENT '最后更新时间'
-)
-  COMMENT '附件表';
-CREATE UNIQUE INDEX id_UNIQUE ON attachment (id);

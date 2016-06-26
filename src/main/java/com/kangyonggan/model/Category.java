@@ -41,12 +41,6 @@ public class Category {
     private String icon;
 
     /**
-     * 是否异步 {0:不异步, 1:异步}
-     */
-    @Column(name = "is_ajax")
-    private Byte isAjax;
-
-    /**
      * 是否需要审核 {0:不需要, 1:需要}
      */
     @Column(name = "is_need_approval")

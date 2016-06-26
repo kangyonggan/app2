@@ -30,19 +30,15 @@
         <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <#list app_category.childrens as category>
-                    <#assign hasChildren=category.childrens?size gt 0>
-                    <li>
-                        <a href="${ctx}user/${app_user.id}/category/${category.code}"<#if hasChildren>
-                           class="dropdown-toggle"
-                           data-toggle="dropdown"</#if>>
-                            <i class="${category.icon} bigger-140"></i>
-                        ${category.name}
-                            <#if hasChildren>
+                    <#if category.childrens?size gt 0>
+                        <li>
+                            <a href="${ctx}user/${app_user.id}/category/${category.code}"
+                               class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="${category.icon} bigger-140"></i>
+                            ${category.name}
                                 &nbsp;
                                 <i class="ace-icon fa fa-angle-down bigger-140"></i>
-                            </#if>
-                        </a>
-                        <#if hasChildren>
+                            </a>
                             <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                                 <#list category.childrens as c>
                                     <li>
@@ -53,33 +49,37 @@
                                     </li>
                                 </#list>
                             </ul>
-                        </#if>
-                    </li>
+                        </li>
+                    </#if>
                 </#list>
 
-                <@shiro.hasPermission name="sys">
-                    <@app_menus>
-                        <li>
-                            <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="${sys_parent_menu.icon} bigger-140"></i>
-                            ${sys_parent_menu.name}
-                                &nbsp;
-                                <i class="ace-icon fa fa-angle-down bigger-140"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
-                                <#list sys_menus as menu>
-                                    <li>
-                                        <a href="${ctx}${menu.url}">
-                                            <i class="${menu.icon} bigger-120"></i>
-                                        ${menu.name}
-                                        </a>
-                                    </li>
-                                </#list>
-                            </ul>
-                        </li>
-                    </@app_menus>
-                </@shiro.hasPermission>
+                <@app_menu>
+                    <#if app_menu??>
+                        <#list app_menu.childrens as menu>
+                            <#if menu.childrens?size gt 0>
+                                <li>
+                                    <a href="${ctx}${menu.url}"
+                                       class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="${menu.icon} bigger-140"></i>
+                                    ${menu.name}
+                                        &nbsp;
+                                        <i class="ace-icon fa fa-angle-down bigger-140"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                                        <#list menu.childrens as m>
+                                            <li>
+                                                <a href="${ctx}${m.url}">
+                                                    <i class="${m.icon} bigger-120"></i>
+                                                ${m.name}
+                                                </a>
+                                            </li>
+                                        </#list>
+                                    </ul>
+                                </li>
+                            </#if>
+                        </#list>
+                    </#if>
+                </@app_menu>
             </ul>
         </nav>
     </@shiro.user>
