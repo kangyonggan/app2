@@ -53,7 +53,7 @@ var skins = [{'name': 'dark', 'color': '#404040'},
 function loadSkinCss(skin) {
     var head = document.getElementsByTagName('head')[0];
     var link = document.createElement('link');
-    link.href = ctx + "static/app/css/skin-" + skin + ".css";
+    link.href = ctx + "static/app/css/skin/skin-" + skin + ".css";
     link.rel = 'stylesheet';
     link.type = 'text/css';
     head.appendChild(link);

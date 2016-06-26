@@ -88,7 +88,6 @@ input.app-date-input {
 .article-action {
     clear: both;
     border-top: 1px solid #ddd;
-    background: #F7F7F7;
 }
 
 .article-buttons {
@@ -102,7 +101,7 @@ input.app-date-input {
     line-height: 27px;
     text-align: center;
     color: #5d7895;
-    border: 1px solid #F7F7F7;
+    border: 1px solid #fff;
 }
 
 .article-buttons > a:hover {

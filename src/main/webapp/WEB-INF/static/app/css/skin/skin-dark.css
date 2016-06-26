@@ -37,3 +37,17 @@
     color: #f5f5f5 !important;
     background-color: #404040 !important;
 }
+
+.pagination > li > a {
+    border-color: #bbb !important;
+    color: #404040;
+}
+
+.pagination > li.active > a {
+    background: #636363 !important;
+}
+
+.pagination > li:hover > a {
+    background: #636363;
+    color: #fff;
+}

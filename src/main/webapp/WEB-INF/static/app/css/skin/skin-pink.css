@@ -8,7 +8,7 @@
 }
 
 .skin-inverse {
-    color: #000 !important;
+    color: #333 !important;
 }
 
 .skin-border {
@@ -18,22 +18,36 @@
 .skin-btn {
     background: #FFC0CB !important;
     border-color: palevioletred !important;
-    color: #000 !important;
+    color: #333 !important;
 }
 
 .skin-btn:hover {
     background: #ddc0cb !important;
     border-color: #a87093 !important;
-    color: #000 !important;
+    color: #333 !important;
 }
 
 .skin-a {
-    color: #000 !important;
-    text-decoration-color: #000 !important;
+    color: #333 !important;
+    text-decoration-color: #333 !important;
 }
 
 .skin-hover:hover {
     text-decoration: none !important;
-    color: #000 !important;
+    color: #333 !important;
     background-color: #FFC0CB !important;
+}
+
+.pagination > li > a {
+    border-color: #FFC0CB !important;
+    color: #333;
+}
+
+.pagination > li.active > a {
+    background: #FFC0CB !important;
+}
+
+.pagination > li:hover > a {
+    background: #FFC0CB;
+    color: #333;
 }
