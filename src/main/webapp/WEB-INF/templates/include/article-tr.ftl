@@ -26,7 +26,11 @@
     <div class="row">
         <div class="col-sm-12">
             <p class="text-article">
-            <h4><a href="${ctx}article/${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
+            <#if article.categoryCode=="word">
+                <h4>${article.title}</h4>
+            <#else>
+                <h4><a href="${ctx}article/${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
+            </#if>
             </p>
             <div class="space-16"></div>
         </div>
@@ -58,7 +62,7 @@
                     收藏(19)
                 </a>
                 <span class="split">|</span>
-                <a href="#" class="skin-color">
+                <a href="javascript:" class="skin-color">
                     . . .
                 </a>
             </div>

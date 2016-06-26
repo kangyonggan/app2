@@ -97,14 +97,16 @@ input.app-date-input {
     line-height: 35px;
     text-align: center;
     color: #5d7895;
-    border: 1px solid #fff;
 }
 
 .article-buttons > a:hover {
     text-decoration: none;
-    border: 1px solid #d7d7d7;
     border-radius: 3px;
     background: #FdFdFd;
+}
+
+.article-back {
+    margin-right: 15px;
 }
 
 /*文章列表样式 结尾*/

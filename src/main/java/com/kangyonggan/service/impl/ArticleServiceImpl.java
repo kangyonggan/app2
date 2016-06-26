@@ -3,6 +3,7 @@ package com.kangyonggan.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.mapper.ArticleMapper;
 import com.kangyonggan.model.Article;
+import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.DateUtil;
@@ -69,6 +70,11 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
+    public Article findArticleById(Long id) {
+        return articleMapper.selectArticleById(id);
+    }
+
+    @Override
     public void saveArticle(Article article) {
         article.setCreatedTime(new Date());
         article.setUpdatedTime(new Date());
@@ -92,7 +98,37 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
-    public void deleteArticle(Long id) {
-        super.deleteByPrimaryKey(id);
+    public boolean updateArticleActions(Long id, String action) {
+        ShiroUser user = userService.getShiroUser();
+        Byte type = (byte) (action.equals("top") ? 0 : 1);
+
+        int count = articleMapper.selectArticleUser(id, user.getId(), type);
+
+        if (count > 0) {
+            // 已经顶/踩, 不可重复
+            return false;
+        }
+
+        Article article = this.getArticle(id);
+        if ("top".equals(action)) {
+            article.setTop(article.getTop() + 1);
+        } else if ("low".equals(action)) {
+            article.setLow(article.getLow() + 1);
+        }
+        this.updateArticle(article);
+
+        this.saveArticleUser(id, user.getId(), type);
+        return true;
+    }
+
+    /**
+     * 保存顶踩记录
+     *
+     * @param articleId
+     * @param userId
+     * @param type
+     */
+    private void saveArticleUser(Long articleId, Long userId, Byte type) {
+        articleMapper.insertArticleUser(articleId, userId, type);
     }
 }

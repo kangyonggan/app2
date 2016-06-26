@@ -34,7 +34,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
     public String detail(@PathVariable("id") Long id, Model model) {
-        Article article = articleService.getArticle(id);
+        Article article = articleService.findArticleById(id);
 
         model.addAttribute("article", article);
         return PATH_DETAIL;
@@ -50,15 +50,15 @@ public class ArticleController {
     @RequestMapping(value = "{id:[\\d]+}/{action:\\btop\\b|\\blow\\b}", method = RequestMethod.GET)
     @ResponseBody
     public ValidationResponse actions(@PathVariable("id") Long id, @PathVariable("action") String action) {
-        Article article = articleService.getArticle(id);
-        if ("top".equals(action)) {
-            article.setTop(article.getTop() + 1);
-        } else if ("low".equals(action)) {
-            article.setLow(article.getLow() + 1);
-        }
-        articleService.updateArticle(article);
+        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
 
-        return new ValidationResponse(AppConstants.SUCCESS);
+        boolean success = articleService.updateArticleActions(id, action);
+
+        if (!success) {
+            res.setStatus(AppConstants.FAIL);
+        }
+
+        return res;
     }
 
 }

@@ -121,7 +121,8 @@ CREATE TABLE user_role
   role_id BIGINT(20) NOT NULL
   COMMENT '角色ID',
   CONSTRAINT `PRIMARY` PRIMARY KEY (user_id, role_id)
-);
+)
+  COMMENT '用户角色中间表';
 
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1), (2, 2), (3, 2), (4, 2);
 
@@ -132,7 +133,8 @@ CREATE TABLE role_menu
   menu_id BIGINT(20) NOT NULL
   COMMENT '菜单ID',
   CONSTRAINT `PRIMARY` PRIMARY KEY (role_id, menu_id)
-);
+)
+  COMMENT '角色菜单中间表';
 
 INSERT INTO role_menu (role_id, menu_id) SELECT
                                            1,
@@ -206,8 +208,6 @@ CREATE TABLE article
   COMMENT '栏目代码',
   category_name VARCHAR(128)                           NOT NULL
   COMMENT '栏目名称',
-  tid           BIGINT(20)                             NOT NULL         DEFAULT 0
-  COMMENT '被转发文章的ID',
   visitors      VARCHAR(500)                           NOT NULL         DEFAULT '0'
   COMMENT '可访问者',
   top           INT(11)                                NOT NULL         DEFAULT 0
@@ -229,3 +229,15 @@ CREATE TABLE article
 )
   COMMENT '文章表';
 CREATE UNIQUE INDEX id_UNIQUE ON article (id);
+
+CREATE TABLE article_user
+(
+  article_id BIGINT(20) NOT NULL
+  COMMENT '文章ID',
+  user_id    BIGINT(20) NOT NULL
+  COMMENT '用户ID',
+  type       TINYINT    NOT NULL
+  COMMENT '顶/踩 {0:顶, 1:踩}',
+  CONSTRAINT `PRIMARY` PRIMARY KEY (article_id, user_id, type)
+)
+  COMMENT '文章顶踩表';

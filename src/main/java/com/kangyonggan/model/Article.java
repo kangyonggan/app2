@@ -1,8 +1,9 @@
 package com.kangyonggan.model;
 
-import java.util.Date;
-import javax.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
 public class Article {
@@ -39,11 +40,6 @@ public class Article {
      */
     @Column(name = "category_name")
     private String categoryName;
-
-    /**
-     * 被转发文章的ID
-     */
-    private Long tid;
 
     /**
      * 可访问者

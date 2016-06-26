@@ -4,6 +4,9 @@ $(function () {
             title: {
                 required: true,
                 maxlength: 100
+            },
+            summary: {
+                maxlength: 200
             }
         },
         submitHandler: function (form) {

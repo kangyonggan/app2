@@ -28,11 +28,13 @@ public interface ArticleService {
 
     Article getArticle(Long id);
 
+    Article findArticleById(Long id);
+
     void saveArticle(Article article);
 
     void deleteArticleWithLogic(Article article);
 
     void updateArticle(Article article);
 
-    void deleteArticle(Long id);
+    boolean updateArticleActions(Long id, String action);
 }

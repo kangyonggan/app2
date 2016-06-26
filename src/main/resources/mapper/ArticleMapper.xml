@@ -11,7 +11,6 @@
         <result column="tags" jdbcType="VARCHAR" property="tags"/>
         <result column="category_code" jdbcType="VARCHAR" property="categoryCode"/>
         <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
-        <result column="tid" jdbcType="BIGINT" property="tid"/>
         <result column="visitors" jdbcType="VARCHAR" property="visitors"/>
         <result column="top" jdbcType="INTEGER" property="top"/>
         <result column="low" jdbcType="INTEGER" property="low"/>
@@ -26,7 +25,7 @@
 
     <select id="selectArticlesByCategoryCode" resultType="Article">
         SELECT
-        a.id, a.title, a.category_code AS caregoryCode, a.category_name AS catogoryName,
+        a.id, a.title, a.category_code AS categoryCode, a.category_name AS categoryName,
         a.sticky, a.sticky_time AS stickyTime, a.visitors, a.user_id AS userId,
         a.created_time AS createdTime, a.summary, a.body, a.top, a.low,
         u.realname, u.sign, u.small_avatar AS smallAvatar
@@ -41,6 +40,38 @@
         </where>
         ORDER BY
         a.sticky desc, a.sticky_time desc, a.id desc
+    </select>
+
+    <select id="selectArticleById" resultType="Article">
+        SELECT
+        a.id, a.title, a.category_code AS categoryCode, a.category_name AS categoryName,
+        a.sticky, a.sticky_time AS stickyTime, a.visitors, a.user_id AS userId,
+        a.created_time AS createdTime, a.summary, a.body, a.top, a.low,
+        u.realname, u.sign, u.small_avatar AS smallAvatar
+        FROM
+        article a, user u
+        <where>
+            a.user_id = u.id
+            AND a.is_deleted = 0
+            AND a.id = #{id}
+        </where>
+    </select>
+
+    <insert id="insertArticleUser">
+        INSERT INTO
+        article_user (article_id, user_id, type)
+        VALUES
+        (#{articleId}, #{userId}, #{type})
+    </insert>
+
+    <select id="selectArticleUser" resultType="Integer">
+        SELECT COUNT(*)
+        FROM article_user
+        <where>
+            article_id = #{articleId}
+            AND user_id = #{userId}
+            AND type = #{type}
+        </where>
     </select>
 
 </mapper>

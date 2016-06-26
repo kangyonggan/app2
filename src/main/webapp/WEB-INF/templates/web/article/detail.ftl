@@ -2,64 +2,76 @@
 <#assign title="${article.title}">
 
 <@override name="content">
-<div class="widget-box skin-border">
-    <div class="widget-body">
-        <div class="widget-main no-padding-bottom">
-            <div class="row">
-                <div class="col-sm-12">
-                    <p class="text-article">
-                    <div class="pull-left">
-                        <a href="javascript:history.back()" class="no-text-decoration skin-color">
-                            <h4>
-                                <i class="ace-icon fa fa-arrow-left"></i>
-                                返回
-                            </h4>
-                        </a>
-                    </div>
-                    <h3 class="center">
-                        <@c.substring str="${article.title}" len=30/>
-                    </h3>
-                    <div class="center">
-                        康永敢
-                        <em>${article.createdTime?datetime}</em>
-                    </div>
-                    </p>
-                    <div class="space-10"></div>
-                    <hr>
-                    <div class="space-10"></div>
-                    <div>
-                    ${article.body}
-                        <div class="space-20"></div>
-                    </div>
-                </div>
+<div class="widget-box transparent">
+    <div class="widget-header">
+        <div class="article-buttons pull-left">
+            <a href="javascript:history.back(-1);" class="skin-color">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                返回
+            </a>
+            <a href="#" class="skin-color">
+                <i class="ace-icon fa fa-comment-o"></i>
+                评论(1)
+            </a>
+            <span class="split">|</span>
+            <a href="#" class="skin-color">
+                <i class="ace-icon fa fa-external-link"></i>
+                转发(2)
+            </a>
+            <span class="split">|</span>
+            <a href="${ctx}article/${article.id}/top" class="skin-color action">
+                <i class="ace-icon fa fa-upload"></i>
+                顶(<span class="attion-count">${article.top}</span>)
+            </a>
+            <span class="split">|</span>
+            <a href="${ctx}article/${article.id}/low" class="skin-color action">
+                <i class="ace-icon fa fa-download"></i>
+                踩(<span class="attion-count">${article.low}</span>)
+            </a>
+            <span class="split">|</span>
+            <a href="#" class="skin-color">
+                <i class="ace-icon fa fa-star-o"></i>
+                收藏(19)
+            </a>
+        </div>
 
-                <div class="article-action">
-                    <div class="article-buttons">
-                        <a href="#" class="skin-color">
-                            <i class="ace-icon fa fa-comment-o"></i>
-                            评论
-                        </a>
-                        <span class="split">|</span>
-                        <a href="#" class="skin-color">
-                            <i class="ace-icon fa fa-external-link"></i>
-                            转发
-                        </a>
-                        <span class="split">|</span>
-                        <a href="#" class="skin-color">
-                            <i class="ace-icon fa fa-heart-o"></i>
-                            赞
-                        </a>
-                        <span class="split">|</span>
-                        <a href="#" class="skin-color">
-                            <i class="ace-icon fa fa-star-o"></i>
-                            收藏
-                        </a>
-                        <span class="split">|</span>
-                        <a href="#" class="skin-color">
-                            . . .
-                        </a>
-                    </div>
-                </div>
+        <div class="widget-toolbar invoice-info">
+            <span class="invoice-info-label">来源:</span>
+            <span class="red">${article.realname}</span>
+
+            <br>
+            <span class="invoice-info-label">时间:</span>
+            <span>${article.createdTime?datetime}</span>
+        </div>
+    </div>
+
+    <div class="widget-body">
+        <div class="widget-main padding-24">
+
+            <h2 class="text-center">
+                <i class="ace-icon fa fa-leaf green"></i>
+            ${article.title}
+            </h2>
+
+            <div class="space-6"></div>
+
+            <div class="hr hr8 hr-dotted"></div>
+
+            <div class="space-10"></div>
+
+            <div class="well">
+                摘要:
+                <#if article.summary==''>
+                    无
+                <#else>
+                ${article.summary}
+                </#if>
+            </div>
+
+            <div class="space-10"></div>
+
+            <div class="row">
+                ${article.body}
             </div>
         </div>
     </div>

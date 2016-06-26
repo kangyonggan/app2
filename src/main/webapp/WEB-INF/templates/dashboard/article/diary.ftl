@@ -10,6 +10,16 @@
 
 <div class="form-group">
     <div class="col-xs-12">
+        <label class="col-xs-12 align-left">摘要</label>
+
+        <input id="summary" name="summary" value="${article.summary!''}" class="form-control" placeholder="用简短的话概括主要内容..."/>
+
+        <label class="error hide" for="summary"></label>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-xs-12">
         <label class="col-xs-12 align-left">内容<span class="red">&nbsp;*</span></label>
 
         <textarea id="body" rows="16" name="body" class="form-control" placeholder="随手写一句吧...">${article.body!''}</textarea>
