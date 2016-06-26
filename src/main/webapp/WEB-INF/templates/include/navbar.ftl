@@ -1,12 +1,8 @@
 <div id="navbar" class="navbar navbar-collapse h-navbar skin-bg">
     <script>
         var navbar = ace.storage.get("navbar");
-        console.log(navbar);
-        if (navbar != null) {
-            $("#ace-settings-navbar").prop("checked", true);
+        if (navbar == null || navbar == "on") {
             $("#navbar").addClass("navbar-fixed-top");
-        } else {
-            $("#ace-settings-navbar").prop("checked", false);
         }
     </script>
     <div class="navbar-container" id="navbar-container">

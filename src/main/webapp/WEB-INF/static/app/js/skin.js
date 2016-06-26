@@ -35,9 +35,14 @@ $(function () {
         if ($(this).is(":checked")) {
             ace.storage.set("navbar", "on");
         } else {
-            ace.storage.remove("navbar");
+            ace.storage.set("navbar", "off");
         }
     });
+
+    var navbar = ace.storage.get("navbar");
+    if (navbar == null || navbar == "on") {
+        $("#ace-settings-navbar").prop("checked", true);
+    }
 
     /**
      * 设置皮肤
