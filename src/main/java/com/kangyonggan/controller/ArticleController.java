@@ -8,7 +8,6 @@ import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.CategoryService;
 import com.kangyonggan.service.UserService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +26,7 @@ public class ArticleController {
 
     private static final String PATH_ROOT = "web/article/";
     private static final String PATH_FORM = PATH_ROOT + "form";
+    private static final String PATH_DETAIL = PATH_ROOT + "detail";
 
     @Autowired
     private CategoryService categoryService;
@@ -91,6 +91,34 @@ public class ArticleController {
         }
 
         return res;
+    }
+
+    /**
+     * 文章详情
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
+    public String detail(@PathVariable("id") Long id, Model model) {
+        Article article = articleService.getArticle(id);
+
+        model.addAttribute("article", article);
+        return PATH_DETAIL;
+    }
+
+    @RequestMapping(value = "{id:[\\d]+}/{action:\\btop\\b|\\blow\\b}", method = RequestMethod.GET)
+    @ResponseBody
+    public ValidationResponse actions(@PathVariable("id") Long id, @PathVariable("action") String action) {
+        Article article = articleService.getArticle(id);
+        if ("top".equals(action)) {
+            article.setTop(article.getTop() + 1);
+        } else if ("low".equals(action)) {
+            article.setLow(article.getLow() + 1);
+        }
+        articleService.updateArticle(article);
+
+        return new ValidationResponse(AppConstants.SUCCESS);
     }
 
 }

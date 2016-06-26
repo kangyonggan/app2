@@ -42,6 +42,7 @@
 <script src="${ctx}static/ace/dist/js/x-editable/ace-editable.min.js"></script>
 <script src="${ctx}static/app/js/include/header.js"></script>
 <script src="${ctx}static/app/js/include/item-status.js"></script>
+<script src="${ctx}static/app/js/include/article.js"></script>
     <@block name="script"/>
 </@override>
 

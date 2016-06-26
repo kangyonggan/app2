@@ -40,7 +40,7 @@
             </if>
         </where>
         ORDER BY
-        a.sticky desc, a.sticky_time desc, a.top desc, a.id desc
+        a.sticky desc, a.sticky_time desc, a.id desc
     </select>
 
 </mapper>

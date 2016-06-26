@@ -11,6 +11,14 @@ ul {
     color: #000;
 }
 
+.no-text-decoration {
+    text-decoration: none;
+}
+
+.no-text-decoration:hover {
+    text-decoration: none;
+}
+
 .user-avator {
     border: 2px solid #C9D6E5;
     border-radius: 100%;
@@ -70,18 +78,6 @@ input.app-date-input {
     font-size: 15px;
 }
 
-.color-skin-1 {
-    color: #428bca;
-}
-
-.color-skin-2 {
-    color: #d6487e;
-}
-
-.color-skin-3 {
-    color: #404040;
-}
-
 /*边栏样式 结尾*/
 
 /*文章列表样式 开头*/
@@ -96,9 +92,9 @@ input.app-date-input {
 
 .article-buttons > a {
     display: inline-block;
-    width: 50px;
-    height: 27px;
-    line-height: 27px;
+    width: 80px;
+    height: 35px;
+    line-height: 35px;
     text-align: center;
     color: #5d7895;
     border: 1px solid #fff;
@@ -129,6 +125,7 @@ input.app-date-input {
 .page-info:hover {
     background: #fff !important;
 }
+
 /*分页组件 结尾*/
 
 /*登录界面 开头*/
@@ -143,4 +140,5 @@ input.app-date-input {
     text-align: right;
     margin-right: 12px;
 }
+
 /*登录界面 结尾*/
