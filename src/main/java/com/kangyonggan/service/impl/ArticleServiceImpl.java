@@ -30,16 +30,16 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     private UserService userService;
 
     @Override
-    public List<Article> searchArticles(int pageNum, int pageSize, String code, Long userId, String title, String startTime, String endTime) throws Exception {
+    public List<Article> searchArticles(int pageNum, int pageSize, String code, String title, String startTime, String endTime) throws Exception {
         Example example = new Example(Article.class);
         Example.Criteria criteria = example.createCriteria();
 
         criteria.andEqualTo("categoryCode", code);
-        criteria.andEqualTo("userId", userId);
+        criteria.andEqualTo("userId", userService.getShiroUser().getId());
         criteria.andEqualTo("isDeleted", 0);
 
         if (StringUtil.isNotEmpty(title)) {
-            criteria.andEqualTo("title", title);
+            criteria.andLike("title", StringUtil.bothPercent(title));
         }
         if (StringUtil.isNotEmpty(startTime)) {
             Date start = DateUtil.parse(startTime);

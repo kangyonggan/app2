@@ -1,4 +1,14 @@
 <div id="navbar" class="navbar navbar-collapse h-navbar skin-bg">
+    <script>
+        var navbar = ace.storage.get("navbar");
+        console.log(navbar);
+        if (navbar != null) {
+            $("#ace-settings-navbar").prop("checked", true);
+            $("#navbar").addClass("navbar-fixed-top");
+        } else {
+            $("#ace-settings-navbar").prop("checked", false);
+        }
+    </script>
     <div class="navbar-container" id="navbar-container">
         <div class="navbar-header pull-left">
             <a href="${ctx}" class="navbar-brand">
@@ -26,9 +36,9 @@
                 <#list app_category.childrens as category>
                     <#if category.childrens?size gt 0>
                         <li>
-                            <a href="${ctx}user/${app_user.id}/category/${category.code}"
+                            <a href="#"
                                class="dropdown-toggle skin-inverse" data-toggle="dropdown">
-                                <i class="${category.icon} bigger-140 skin-inverse"></i>
+                                <i class="${category.icon} bigger-140"></i>
                             ${category.name}
                                 &nbsp;
                                 <i class="ace-icon fa fa-angle-down bigger-140 skin-inverse"></i>
@@ -36,7 +46,7 @@
                             <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                                 <#list category.childrens as c>
                                     <li>
-                                        <a href="${ctx}category/${c.code}/user/${app_user.id}">
+                                        <a href="${ctx}dashboard/category/${c.code}">
                                             <i class="${c.icon} bigger-120"></i>
                                         ${c.name}
                                         </a>

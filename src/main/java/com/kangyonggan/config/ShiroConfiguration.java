@@ -85,6 +85,7 @@ public class ShiroConfiguration extends WebMvcConfigurerAdapter {
         // authc：该过滤器下的页面必须验证后才能访问，它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter
         filterChainDefinitionMap.put("/sys/**", "authc");
         filterChainDefinitionMap.put("/pits/**", "authc");
+        filterChainDefinitionMap.put("/dashboard/**", "authc");
 //        filterChainDefinitionMap.put("/admin/**", "authc");
         // anon：它对应的过滤器里面是空的,什么都没做
         filterChainDefinitionMap.put("/**", "anon");

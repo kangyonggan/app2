@@ -34,7 +34,7 @@
     </button>
 
     <div class="pull-right">
-        <a href="${ctx}article/category/${category.code}/create" class="btn btn-sm btn-inverse skin-btn">发表</a>
+        <a href="${ctx}dashboard/article/create?code=${category.code}" class="btn btn-sm skin-btn">发表</a>
     </div>
 </form>
 
@@ -64,13 +64,13 @@
         </#if>
     </tbody>
 </table>
-    <@c.pagination url="${ctx}category/${category.code}/user/${app_user.id}" param="title=${title2}"/>
+    <@c.pagination url="${ctx}dashboard/category/${category.code}" param="title=${title2}"/>
 </@override>
 
 <@override name="script">
 <script src="${ctx}static/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 <script src="${ctx}static/libs/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
-<script src="${ctx}static/app/js/web/category/my-list.js"></script>
+<script src="${ctx}static/app/js/dashboard/category/list.js"></script>
 </@override>
 
 <@extends name="../../app-layout.ftl"/>

@@ -31,6 +31,14 @@ $(function () {
         }
     });
 
+    $("#ace-settings-navbar").change(function () {
+        if ($(this).is(":checked")) {
+            ace.storage.set("navbar", "on");
+        } else {
+            ace.storage.remove("navbar");
+        }
+    });
+
     /**
      * 设置皮肤
      *

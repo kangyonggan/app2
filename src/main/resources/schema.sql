@@ -194,7 +194,7 @@ CREATE TABLE article
 (
   id            BIGINT(20) PRIMARY KEY  AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
-  title         VARCHAR(255)                           NOT NULL
+  title         VARCHAR(500)                           NOT NULL         DEFAULT ''
   COMMENT '文章标题',
   summary       VARCHAR(500)                           NOT NULL         DEFAULT ''
   COMMENT '文章摘要',

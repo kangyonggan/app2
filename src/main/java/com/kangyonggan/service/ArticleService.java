@@ -11,19 +11,18 @@ import java.util.List;
 public interface ArticleService {
 
     /**
-     * 按条件查找用户自己的文章
+     * 按条件查找文章
      *
      * @param pageNum
      * @param pageSize
      * @param code
-     * @param userId
      * @param title
      * @param startTime
      * @param endTime
      * @return
      * @throws Exception
      */
-    List<Article> searchArticles(int pageNum, int pageSize, String code, Long userId, String title, String startTime, String endTime) throws Exception;
+    List<Article> searchArticles(int pageNum, int pageSize, String code, String title, String startTime, String endTime) throws Exception;
 
     List<Article> findArticesByCategoryCode(int pageNum, int pageSize, String categoryCode);
 
