@@ -11,13 +11,13 @@
         <input type="text" class="form-control" name="name" value="${name}" placeholder="角色名称"/>
     </div>
 
-    <button class="btn btn-sm btn-inverse skin-btn">
+    <button class="btn btn-sm skin-btn">
         搜索
         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
     </button>
 
     <div class="pull-right">
-        <a href="${ctx}sys/role/create" class="btn btn-sm btn-inverse skin-btn" data-backdrop="static" data-toggle="modal" data-target="#myModal">添加</a>
+        <a href="${ctx}sys/role/create" class="btn btn-sm skin-btn" data-backdrop="static" data-toggle="modal" data-target="#myModal">添加</a>
     </div>
 </form>
 

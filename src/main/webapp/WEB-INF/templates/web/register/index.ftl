@@ -4,10 +4,10 @@
 
 <div class="space-4"></div>
 
-<div class="widget-box">
-    <div class="widget-header widget-header-flat">
-        <h4 class="widget-title smaller dark">
-            <i class="ace-icon fa fa-users"></i>
+<div class="widget-box skin-border">
+    <div class="widget-header widget-header-flat skin-bg">
+        <h4 class="widget-title smaller skin-inverse">
+            <i class="ace-icon fa fa-users skin-inverse"></i>
             注册
         </h4>
     </div>
@@ -89,17 +89,17 @@
                 <div class="space-4"></div>
 
                 <div class="col-xs-12 clearfix">
-                    <button class="btn btn-inverse btn-sm width-100 skin-btn">注册</button>
+                    <button class="btn btn-sm width-100 skin-btn">注册</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="widget-header widget-header-flat login-actions">
+    <div class="widget-header widget-header-flat login-actions skin-border skin-bg">
         <div class="col-xs-12">
-            <a href="${ctx}login" class="infobox-black center">
-                <i class="ace-icon fa fa-arrow-left skin-inverse"></i>
-                <span class="skin-inverse">已有账号？去登录</span>
+            <a href="${ctx}login" class="infobox-black center skin-a">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                已有账号？去登录
             </a>
         </div>
     </div>

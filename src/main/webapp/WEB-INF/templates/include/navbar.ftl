@@ -1,14 +1,8 @@
-<div id="navbar" class="navbar navbar-default navbar-collapse h-navbar">
-    <script>
-        if (ace.storage.get("navbar-fixed") != null) {
-            $("#ace-settings-navbar").attr("checked", "checked");
-            $("#navbar").addClass("navbar-fixed-top");
-        }
-    </script>
+<div id="navbar" class="navbar navbar-collapse h-navbar skin-bg">
     <div class="navbar-container" id="navbar-container">
         <div class="navbar-header pull-left">
             <a href="${ctx}" class="navbar-brand">
-                <small>
+                <small class="skin-inverse">
                     <i class="fa fa-leaf"></i>
                 ${appName}
                 </small>
@@ -33,11 +27,11 @@
                     <#if category.childrens?size gt 0>
                         <li>
                             <a href="${ctx}user/${app_user.id}/category/${category.code}"
-                               class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="${category.icon} bigger-140"></i>
+                               class="dropdown-toggle skin-inverse" data-toggle="dropdown">
+                                <i class="${category.icon} bigger-140 skin-inverse"></i>
                             ${category.name}
                                 &nbsp;
-                                <i class="ace-icon fa fa-angle-down bigger-140"></i>
+                                <i class="ace-icon fa fa-angle-down bigger-140 skin-inverse"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                                 <#list category.childrens as c>
@@ -59,7 +53,7 @@
                             <#if menu.childrens?size gt 0>
                                 <li>
                                     <a href="${ctx}${menu.url}"
-                                       class="dropdown-toggle" data-toggle="dropdown">
+                                       class="dropdown-toggle skin-inverse" data-toggle="dropdown">
                                         <i class="${menu.icon} bigger-140"></i>
                                     ${menu.name}
                                         &nbsp;
@@ -88,10 +82,10 @@
             <ul class="nav navbar-nav">
             <@shiro.user>
                 <li>
-                    <a href="${ctx}user/${app_user.id}">${app_user.realname}</a>
+                    <a href="${ctx}user/${app_user.id}" class="skin-inverse">${app_user.realname}</a>
                 </li>
                 <li>
-                    <a href="${ctx}logout">
+                    <a href="${ctx}logout" class="skin-inverse">
                         <i class="ace-icon fa fa-power-off"></i>
                         退出
                     </a>
@@ -99,13 +93,13 @@
             </@shiro.user>
             <@shiro.guest>
                 <li>
-                    <a href="${ctx}login">
+                    <a href="${ctx}login" class="skin-inverse">
                         <i class="ace-icon fa fa-sign-in"></i>
                         登录
                     </a>
                 </li>
                 <li>
-                    <a href="${ctx}register">
+                    <a href="${ctx}register" class="skin-inverse">
                         <i class="ace-icon fa fa-users"></i>
                         注册
                     </a>

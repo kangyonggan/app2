@@ -1,5 +1,4 @@
 $(function () {
-    $.fn.ace.skin("skin-2");
 
     function validElement($this, element) {
         $(element).valid();

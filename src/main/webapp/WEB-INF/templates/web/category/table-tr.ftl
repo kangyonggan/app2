@@ -5,7 +5,7 @@
     <td>${item.createdTime?datetime}</td>
     <td>
         <div class="hidden-sm hidden-xs btn-group">
-            <a class="btn btn-xs btn-inverse skin-btn" href="${ctx}article/${item.id}">
+            <a class="btn btn-xs skin-btn" href="${ctx}article/${item.id}">
                 <i class="ace-icon fa fa-eye bigger-120"></i>
             </a>
 

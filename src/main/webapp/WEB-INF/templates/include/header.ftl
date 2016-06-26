@@ -31,10 +31,10 @@
 
                     <div class="width-80 label label-xlg arrowed-in arrowed-in-right">
                         <div class="inline position-relative">
-                            <a href="javascript:" class="user-title-label">
-                                <i class="ace-icon fa fa-circle light-green"></i>
+                            <a href="javascript:" class="user-title-label skin-inverse">
+                                <i class="ace-icon fa fa-circle green"></i>
                                 &nbsp;
-                                <span class="white">${user.realname}</span>
+                                ${user.realname}
                             </a>
                         </div>
                     </div>

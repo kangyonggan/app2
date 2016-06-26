@@ -93,8 +93,13 @@ public class SysMenuController {
     @RequiresPermissions("sys-menu")
     public String edit(@PathVariable Long id, Model model) {
         Menu menu = menuService.getMenu(id);
+        Menu parent_menu = menuService.getMenu(menu.getPid());
+        if (parent_menu == null) {
+            parent_menu = new Menu();
+        }
+
         model.addAttribute("item", menu);
-        model.addAttribute("parent_item", menuService.getMenu(menu.getPid()));
+        model.addAttribute("parent_item", parent_menu);
         return PATH_FORM_MODAL;
     }
 

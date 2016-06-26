@@ -17,9 +17,6 @@
     <!-- text fonts -->
     <link rel="stylesheet" href="${ctx}static/ace/dist/css/ace-fonts.min.css"/>
 
-    <!-- skins -->
-    <link rel="stylesheet" href="${ctx}static/ace/dist/css/ace-skins.min.css"/>
-
     <!-- ace styles -->
     <link rel="stylesheet" href="${ctx}static/ace/dist/css/ace.min.css" class="ace-main-stylesheet"
           id="main-ace-style"/>
@@ -36,9 +33,9 @@
     <link rel="stylesheet" href="${ctx}static/app/css/app.css"/>
 
     <!-- ace settings handler -->
+    <script>var ctx = '${ctx}';</script>
     <script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
     <script src="${ctx}static/ace/dist/js/jquery.min.js"></script>
-    <script src="${ctx}static/app/js/include/cookie.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -47,19 +44,13 @@
     <script src="${ctx}static/ace/dist/js/respond.min.js"></script>
     <![endif]-->
 
+    <!--加载皮肤-->
+    <script src="${ctx}static/app/js/skin.js"></script>
 <@block name="app-style"/>
 </head>
 <@app_category>
     <@current_user>
-    <body class="${bodyClass!'skin-3'}">
-
-    <script>
-        var skin_class = ace.storage.get("skin");
-        if (skin_class) {
-            $("body").removeClass('no-skin skin-1 skin-2 skin-3');
-            $("body").addClass(skin_class);
-        }
-    </script>
+    <body>
 
         <#include "include/navbar.ftl">
 
@@ -82,7 +73,6 @@
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 
-    <script>var ctx = '${ctx}';</script>
     <script src="${ctx}static/ace/dist/js/bootstrap.min.js"></script>
     <script src="${ctx}static/libs/jquery/jquery.bootstrap.min.js"></script>
     <script src="${ctx}static/ace/dist/js/jquery.gritter.min.js"></script>
@@ -92,8 +82,6 @@
     <script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
     <script src="${ctx}static/ace/dist/js/ace-elements.min.js"></script>
     <script src="${ctx}static/ace/dist/js/ace.min.js"></script>
-    <script src="${ctx}static/ace/dist/js/ace.skin.js"></script>
-    <script src="${ctx}static/app/js/include/config.js"></script>
     <script src="${ctx}static/app/js/app.js"></script>
         <@block name="app-script"/>
 

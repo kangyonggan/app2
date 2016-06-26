@@ -1,0 +1,39 @@
+/*少女粉 默认*/
+.skin-bg {
+    background: #FFC0CB !important;
+}
+
+.skin-color {
+    color: #FFC0CB !important;
+}
+
+.skin-inverse {
+    color: #000 !important;
+}
+
+.skin-border {
+    border-color: #FFC0CB !important;
+}
+
+.skin-btn {
+    background: #FFC0CB !important;
+    border-color: palevioletred !important;
+    color: #000 !important;
+}
+
+.skin-btn:hover {
+    background: #ddc0cb !important;
+    border-color: #a87093 !important;
+    color: #000 !important;
+}
+
+.skin-a {
+    color: #000 !important;
+    text-decoration-color: #000 !important;
+}
+
+.skin-hover:hover {
+    text-decoration: none !important;
+    color: #000 !important;
+    background-color: #FFC0CB !important;
+}

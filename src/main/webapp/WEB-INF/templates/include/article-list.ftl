@@ -1,13 +1,20 @@
 <div>
-    <div class="widget-box widget-color-dark">
-        <div class="widget-header widget-header-flat">
-            <h4 class="widget-title smaller white">${category.name}</h4>
+    <div class="widget-box skin-border">
+        <div class="widget-header widget-header-flat skin-bg">
+            <h4 class="widget-title smaller skin-inverse">
+            <#if category.icon??>
+                <i class="${category.icon}"></i>
+            <#else>
+                <i class="ace-icon fa fa-th"></i>
+            </#if>
+            ${category.name}
+            </h4>
         </div>
 
     <#if articles?size == 0>
         <div class="empty">此栏目没有文章</div>
     <#else>
-        <div class="widget-body">
+        <div class="widget-body skin-border">
             <div class="widget-main no-padding-bottom">
                 <div>
                     <div>
@@ -41,27 +48,27 @@
 
                     <div class="article-action">
                         <div class="article-buttons">
-                            <a href="#">
+                            <a href="#" class="skin-color">
                                 <i class="ace-icon fa fa-comment-o"></i>
                                 评论
                             </a>
                             <span class="split">|</span>
-                            <a href="#">
+                            <a href="#" class="skin-color">
                                 <i class="ace-icon fa fa-external-link"></i>
                                 转发
                             </a>
                             <span class="split">|</span>
-                            <a href="#">
+                            <a href="#" class="skin-color">
                                 <i class="ace-icon fa fa-heart-o"></i>
                                 赞
                             </a>
                             <span class="split">|</span>
-                            <a href="#">
+                            <a href="#" class="skin-color">
                                 <i class="ace-icon fa fa-star-o"></i>
                                 收藏
                             </a>
                             <span class="split">|</span>
-                            <a href="#">
+                            <a href="#" class="skin-color">
                                 . . .
                             </a>
                         </div>
@@ -76,7 +83,7 @@
     <#if article_index gt 0>
         <div class="space-10"></div>
 
-        <div class="widget-box widget-color-dark">
+        <div class="widget-box skin-border">
             <div class="widget-body">
                 <div class="widget-main no-padding-bottom">
                     <div>
@@ -112,27 +119,27 @@
 
                         <div class="article-action">
                             <div class="article-buttons">
-                                <a href="#">
+                                <a href="#" class="skin-color">
                                     <i class="ace-icon fa fa-comment-o"></i>
                                     评论
                                 </a>
                                 <span class="split">|</span>
-                                <a href="#">
+                                <a href="#" class="skin-color">
                                     <i class="ace-icon fa fa-external-link"></i>
                                     转发
                                 </a>
                                 <span class="split">|</span>
-                                <a href="#">
+                                <a href="#" class="skin-color">
                                     <i class="ace-icon fa fa-heart-o"></i>
                                     赞
                                 </a>
                                 <span class="split">|</span>
-                                <a href="#">
+                                <a href="#" class="skin-color">
                                     <i class="ace-icon fa fa-star-o"></i>
                                     收藏
                                 </a>
                                 <span class="split">|</span>
-                                <a href="#">
+                                <a href="#" class="skin-color">
                                     . . .
                                 </a>
                             </div>

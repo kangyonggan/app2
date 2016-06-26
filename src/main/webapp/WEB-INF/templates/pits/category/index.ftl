@@ -7,9 +7,9 @@
 <@override name="content">
 <div class="space-2"></div>
 
-<div class="widget-box widget-color-dark">
-    <div class="widget-header">
-        <h4 class="widget-title lighter smaller">栏目管理</h4>
+<div class="widget-box skin-border">
+    <div class="widget-header skin-bg">
+        <h4 class="widget-title lighter smaller skin-inverse">栏目管理</h4>
     </div>
 
     <div class="widget-body">

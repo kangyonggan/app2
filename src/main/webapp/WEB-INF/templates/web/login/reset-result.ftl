@@ -4,7 +4,7 @@
 
 <div class="space-30"></div>
 
-<h1 class="green center">
+<h1 class="center skin-color">
     找回密码处理中!!!<br/>请稍后去邮箱查看找回结果...
 </h1>
 

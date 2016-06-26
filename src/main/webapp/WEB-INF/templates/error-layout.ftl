@@ -3,8 +3,8 @@
     <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
         <div class="error-container">
             <div class="well">
-                <h1 class="grey lighter smaller">
-                    <span class="bigger-125 dark skin-color">
+                <h1 class="lighter smaller">
+                    <span class="bigger-125 skin-color">
                         <i class="ace-icon fa fa-sitemap"></i>
                         错误
                     </span>
@@ -22,7 +22,7 @@
                         <i class="ace-icon fa fa-arrow-left"></i>
                         返回
                     </a>
-                    <a href="${ctx}" class="btn btn-inverse skin-btn">
+                    <a href="${ctx}" class="btn skin-btn">
                         <i class="ace-icon fa fa-home"></i>
                         首页
                     </a>

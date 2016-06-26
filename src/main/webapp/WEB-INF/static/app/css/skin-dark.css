@@ -1,0 +1,39 @@
+/*炫酷黑 默认*/
+.skin-bg {
+    background: #404040 !important;
+}
+
+.skin-color {
+    color: #404040 !important;
+}
+
+.skin-inverse {
+    color: #fff !important;
+}
+
+.skin-border {
+    border-color: #404040 !important;
+}
+
+.skin-btn {
+    background: #404040 !important;
+    border-color: #737373 !important;
+    color: #fff !important;
+}
+
+.skin-btn:hover {
+    background: #303030 !important;
+    border-color: #555 !important;
+    color: #fff !important;
+}
+
+.skin-a {
+    color: #fff !important;
+    text-decoration-color: #fff !important;
+}
+
+.skin-hover:hover {
+    text-decoration: none !important;
+    color: #f5f5f5 !important;
+    background-color: #404040 !important;
+}

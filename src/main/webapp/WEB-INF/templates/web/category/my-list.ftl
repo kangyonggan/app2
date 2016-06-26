@@ -28,7 +28,7 @@
         <input type="text" class="form-control" name="title" value="${title2}" placeholder="标题"/>
     </div>
 
-    <button class="btn btn-sm btn-inverse skin-btn">
+    <button class="btn btn-sm skin-btn">
         搜索
         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
     </button>

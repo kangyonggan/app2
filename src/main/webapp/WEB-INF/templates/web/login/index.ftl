@@ -4,10 +4,10 @@
 
 <div class="space-28"></div>
 
-<div class="widget-box">
-    <div class="widget-header widget-header-flat">
-        <h4 class="widget-title smaller dark">
-            <i class="ace-icon fa fa-leaf"></i>
+<div class="widget-box skin-border">
+    <div class="widget-header widget-header-flat skin-bg">
+        <h4 class="widget-title smaller skin-inverse">
+            <i class="ace-icon fa fa-leaf skin-inverse"></i>
             登录
         </h4>
     </div>
@@ -60,7 +60,7 @@
                 <div class="space-8"></div>
 
                 <div class="col-xs-12 clearfix">
-                    <button class="btn btn-inverse skin-btn btn-sm width-100">登录</button>
+                    <button class="btn btn-sm width-100 skin-btn">登录</button>
                 </div>
             </form>
         </div>
@@ -68,17 +68,17 @@
 
     <div class="space-8"></div>
 
-    <div class="widget-header widget-header-flat login-actions">
+    <div class="widget-header widget-header-flat login-actions skin-bg">
         <div class="col-xs-6">
-            <a href="${ctx}forget">
-                <i class="ace-icon fa fa-arrow-left skin-inverse"></i>
-                <span class="skin-inverse">忘记密码？</span>
+            <a href="${ctx}forget" class="skin-a">
+                <i class="ace-icon fa fa-arrow-left"></i>
+                忘记密码？
             </a>
         </div>
         <div class="col-xs-6">
-            <a href="${ctx}register" class="go-register">
-                <i class="ace-icon fa fa-arrow-right skin-inverse"></i>
-                <span class="skin-inverse">注册</span>
+            <a href="${ctx}register" class="go-register skin-a">
+                <i class="ace-icon fa fa-arrow-right"></i>
+                注册
             </a>
         </div>
     </div>

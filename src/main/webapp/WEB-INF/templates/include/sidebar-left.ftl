@@ -1,7 +1,7 @@
-<div class="widget-box widget-color-dark">
-    <div class="widget-header widget-header-flat">
-        <i class="skin-inverse ace-icon fa fa-bullhorn bigger-140 white"></i>
-        <h4 class="widget-title white">热门推荐</h4>
+<div class="widget-box skin-border">
+    <div class="widget-header widget-header-flat skin-bg skin-inverse">
+        <i class="ace-icon fa fa-bullhorn bigger-140"></i>
+        <h4 class="widget-title">热门推荐</h4>
     </div>
 
     <div class="widget-body">

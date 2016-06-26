@@ -4,7 +4,7 @@
 
 <div class="space-30"></div>
 
-<h1 class="green center">
+<h1 class="center skin-color">
     注册成功!!!<br/> 😊请去邮箱激活账号...
 </h1>
 

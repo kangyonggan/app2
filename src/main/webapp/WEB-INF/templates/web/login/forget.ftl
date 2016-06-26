@@ -5,11 +5,11 @@
 <div class="space-30"></div>
 
 <div class="position-relative">
-    <div id="forgot-box" class="forgot-box widget-box fa-border">
+    <div id="forgot-box" class="forgot-box widget-box fa-border skin-border">
         <div class="widget-body">
             <div class="widget-main clearfix">
-                <h4 class="header red lighter bigger">
-                    <i class="ace-icon fa fa-key"></i>
+                <h4 class="header lighter bigger skin-color">
+                    <i class="ace-icon fa fa-key skin-color"></i>
                     找回密码
                 </h4>
 
@@ -48,13 +48,13 @@
                     <div class="space-14"></div>
 
                     <div class="col-xs-4 col-xs-offset-8">
-                        <button class="btn btn-danger btn-sm width-100">发送</button>
+                        <button class="btn btn-sm width-100 skin-btn">发送</button>
                     </div>
                 </form>
             </div>
 
-            <div class="toolbar center">
-                <a href="${ctx}login" data-target="#login-box" class="back-to-login-link">
+            <div class="toolbar center skin-bg skin-border">
+                <a href="${ctx}login" data-target="#login-box" class="back-to-login-link skin-a">
                     去登录
                     <i class="ace-icon fa fa-arrow-right"></i>
                 </a>
