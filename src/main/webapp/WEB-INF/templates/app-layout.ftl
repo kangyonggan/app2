@@ -13,15 +13,15 @@
         <div class="col-lg-9 col-md-10 col-xs-12 pull-right">
             <@block name="content"/>
         </div>
-        <div class="col-lg-3 col-md-2 col-xs-12">
+        <div class="col-lg-3 col-md-2 hidden-sm hidden-xs">
             <#include "include/sidebar-left.ftl">
         </div>
     <#else>
-        <div class="col-lg-3 col-md-2 col-xs-6">
+        <div class="col-lg-3 col-md-2 hidden-sm hidden-xs">
             <#include "include/sidebar-left.ftl">
         </div>
 
-        <div class="col-lg-3 col-md-2 col-xs-6 pull-right">
+        <div class="col-lg-3 col-md-2 hidden-sm hidden-xs pull-right">
             <#include "include/sidebar-right.ftl">
         </div>
 

@@ -28,7 +28,34 @@
 
     <@shiro.user>
         <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
+
             <ul class="nav navbar-nav">
+                <li class="visible-xs visible-sm">
+                    <a href="#"
+                       class="dropdown-toggle skin-inverse" data-toggle="dropdown">
+                        <i class="fa fa-th bigger-140"></i>
+                        热门推荐
+                        &nbsp;
+                        <i class="ace-icon fa fa-angle-down bigger-140 skin-inverse"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                        <#list app_category.childrens as category>
+                            <#assign hasChildren=category.childrens?size gt 0>
+                            <#if hasChildren>
+                                <#list category.childrens as c>
+                                    <li>
+                                        <a href="${ctx}category/list?code=${c.code}">
+                                            <i class="${c.icon} bigger-120"></i>
+                                        ${c.name}
+                                        </a>
+                                    </li>
+                                </#list>
+                                <li></li>
+                            </#if>
+                        </#list>
+                    </ul>
+                </li>
+                <li></li>
                 <#list app_category.childrens as category>
                     <#if category.childrens?size gt 0>
                         <li>
