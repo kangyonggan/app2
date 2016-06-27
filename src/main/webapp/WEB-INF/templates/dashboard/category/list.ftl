@@ -4,6 +4,7 @@
 <#assign startTime = RequestParameters.startTime!'' />
 <#assign endTime = RequestParameters.endTime!'' />
 <#assign title2 = RequestParameters.title!'' />
+<#assign code = RequestParameters.code!'' />
 
 <@override name="style">
 <link rel="stylesheet" href="${ctx}static/ace/dist/css/bootstrap-datetimepicker.min.css"/>
@@ -13,6 +14,8 @@
 <div class="space-2"></div>
 
 <form class="form-inline items-form" method="get" novalidate>
+
+    <input type="hidden" name="code" value="${code}"/>
 
     <div class="form-group">
         <input type="datetime" name="startTime" id="startTime" value="${startTime}" class="form-control app-date-input"
@@ -28,10 +31,10 @@
         <input type="text" class="form-control" name="title" value="${title2}" placeholder="标题"/>
     </div>
 
-    <a href="?code=${category.code}&title=${title2}&startTime=${startTime}&endTime=${endTime}" class="btn btn-sm skin-btn">
+    <button class="btn btn-sm skin-btn">
         搜索
         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
-    </a>
+    </button>
 
     <div class="pull-right">
         <a href="${ctx}dashboard/article/create?code=${category.code}" class="btn btn-sm skin-btn">发表</a>
