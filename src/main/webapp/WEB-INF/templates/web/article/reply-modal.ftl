@@ -1,8 +1,9 @@
-<#assign modal_title="正在评论来自${article.realname}的${article.categoryName}" />
+<#assign modal_title="评论 ${article.realname} 的 ${article.categoryName}"/>
 
 <@override name="modal-body">
-<form class="form-horizontal" role="form" id="modal-form" method="post" enctype="multipart/form-data" action="${ctx}article/reply">
-<@c.textarea id="content" label="评论内容" rows="8" empty="随手评论一句吧..." required="true"/>
+<form class="form-horizontal" role="form" id="modal-form" method="post" enctype="multipart/form-data"
+      action="${ctx}article/reply">
+    <@c.textarea id="content" label="评论内容" rows="8" empty="随便说一句吧..." required="true"/>
     <input type="hidden" name="articleId" value="${article.id}"/>
 </form>
 </@override>

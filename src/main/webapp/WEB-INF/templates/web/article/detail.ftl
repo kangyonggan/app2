@@ -5,18 +5,14 @@
 <div class="widget-box transparent">
     <div class="widget-header">
         <div class="article-buttons pull-left">
-            <a href="javascript:history.back(-1);" class="skin-color">
+            <a href="${ctx}category/list?code=${article.categoryCode}" class="skin-color">
                 <i class="ace-icon fa fa-arrow-left"></i>
                 返回
             </a>
-            <a href="${ctx}article/reply?id=${article.id}" class="skin-color">
+            <a href="${ctx}article/reply?id=${article.id}" class="skin-color" data-toggle="modal"
+               data-target="#myModal">
                 <i class="ace-icon fa fa-comment-o"></i>
-                评论(1)
-            </a>
-            <span class="split">|</span>
-            <a href="#" class="skin-color">
-                <i class="ace-icon fa fa-external-link"></i>
-                转发(2)
+                评论(${article.reply})
             </a>
             <span class="split">|</span>
             <a href="${ctx}article/top?id=${article.id}" class="skin-color action">
@@ -71,7 +67,58 @@
             <div class="space-10"></div>
 
             <div class="row">
-                ${article.body}
+            ${article.body}
+            </div>
+
+            <div class="hr hr8 hr-double hr-dotted"></div>
+
+            <div class="row">
+                <#list replies as reply>
+                    <div class="well">
+                        <div class="row">
+                            <a href="${ctx}user?id=${reply.userId}">
+                                <#if reply.smallAvatar == ''>
+                                    <img class="pull-left user-avator"
+                                         src="${ctx}static/ace/dist/avatars/avatar5.png"/>
+                                <#else>
+                                    <img class="pull-left user-avator" src="${ctx}${reply.smallAvatar}"/>
+                                </#if>
+                            </a>
+                            <h4>
+                                <a class="dark" href="${ctx}user?id=${reply.userId}"> ${reply.realname}
+                                    / ${reply_index + 1}F</a>
+                            </h4>
+                            <small>
+                                <div class="time">
+                                    <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                ${reply.createdTime?datetime}
+                                </div>
+                            </small>
+                        </div>
+                        <div class="row reply-content">
+                        ${reply.content}
+                        </div>
+                    </div>
+                </#list>
+            </div>
+
+            <div class="row">
+                <form class="form-horizontal" role="form" id="form" method="post" enctype="multipart/form-data"
+                      action="${ctx}article/reply2">
+                    <input type="hidden" name="articleId" value="${article.id}"/>
+                    <div class="form-group">
+                        <label class="col-xs-12 align-left">评论内容<span class="red">&nbsp;*</span></label>
+                        <div class="col-xs-12">
+                        <span class="block input-icon input-icon-right">
+                        <textarea id="content" rows="10" name="content" class="form-control"
+                                  placeholder="我也来说一句..."></textarea>
+                            <i class="ace-icon fa fa-times-circle hide"></i>
+                            <label class="error hide" for="content"></label>
+                        </span>
+                        </div>
+                    </div>
+                    <#include "../../dashboard/article/form-actions.ftl">
+                </form>
             </div>
         </div>
     </div>
@@ -79,7 +126,9 @@
 </@override>
 
 <@override name="script">
-
+<script src="${ctx}static/libs/kindeditor/kindeditor-min.js"></script>
+<script src="${ctx}static/libs/kindeditor/lang/zh_CN.js"></script>
+<script src="${ctx}static/app/js/web/article/detail.js"></script>
 </@override>
 
 <@extends name="../../app-layout.ftl"/>

@@ -3,8 +3,10 @@ package com.kangyonggan.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.mapper.ArticleMapper;
 import com.kangyonggan.model.Article;
+import com.kangyonggan.model.Reply;
 import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.service.ArticleService;
+import com.kangyonggan.service.ReplyService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.DateUtil;
 import com.kangyonggan.util.StringUtil;
@@ -29,6 +31,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ReplyService replyService;
 
     @Override
     public List<Article> searchArticles(int pageNum, int pageSize, String code, String title, String startTime, String endTime) throws Exception {

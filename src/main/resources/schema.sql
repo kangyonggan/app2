@@ -214,6 +214,8 @@ CREATE TABLE article
   COMMENT '顶',
   low           INT(11)                                NOT NULL         DEFAULT 0
   COMMENT '踩',
+  reply         INT(11)                                NOT NULL         DEFAULT 0
+  COMMENT '评论',
   sticky        TINYINT                                NOT NULL         DEFAULT 0
   COMMENT '是否置顶 {0:未置顶, 1:已置顶}',
   sticky_time   DATETIME                               NOT NULL         DEFAULT '1900-01-01 00:00:00'

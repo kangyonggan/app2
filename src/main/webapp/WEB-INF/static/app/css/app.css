@@ -48,6 +48,12 @@ input.app-date-input {
     cursor: pointer !important;
 }
 
+.reply-content {
+    margin-left: 38px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
 /*通用样式 结尾*/
 
 /*边栏样式 开头*/

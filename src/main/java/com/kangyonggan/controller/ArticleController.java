@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -46,8 +47,10 @@ public class ArticleController {
     @RequestMapping(method = RequestMethod.GET)
     public String detail(@RequestParam("id") Long id, Model model) {
         Article article = articleService.findArticleById(id);
+        List<Reply> replies = replyService.findRepliesByArticleId(id);
 
         model.addAttribute("article", article);
+        model.addAttribute("replies", replies);
         return PATH_DETAIL;
     }
 
@@ -86,14 +89,33 @@ public class ArticleController {
     }
 
     /**
-     * 提交评论
+     * 提交评论common
+     *
+     * @param reply
+     * @return
+     */
+    @RequestMapping(value = "reply2", method = RequestMethod.POST)
+    public String reply(@ModelAttribute("reply") @Valid Reply reply, BindingResult result) {
+
+        if (!result.hasErrors()) {
+            ShiroUser user = userService.getShiroUser();
+            reply.setUserId(user.getId());
+
+            replyService.saveReply(reply);
+        }
+
+        return String.format("redirect:/article?id=%d", reply.getArticleId());
+    }
+
+    /**
+     * 提交评论ajax
      *
      * @param reply
      * @return
      */
     @RequestMapping(value = "reply", method = RequestMethod.POST)
     @ResponseBody
-    public ValidationResponse reply(@ModelAttribute("reply") @Valid Reply reply, BindingResult result) {
+    public ValidationResponse replyAjax(@ModelAttribute("reply") @Valid Reply reply, BindingResult result) {
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
 
         if (!result.hasErrors()) {

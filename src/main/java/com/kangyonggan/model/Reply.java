@@ -1,8 +1,9 @@
 package com.kangyonggan.model;
 
-import java.util.Date;
-import javax.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
 public class Reply {
@@ -57,5 +58,11 @@ public class Reply {
      * 评论内容
      */
     private String content;
+
+    @Transient
+    private String realname;
+
+    @Transient
+    private String smallAvatar;
 
 }

@@ -14,6 +14,7 @@
         <result column="visitors" jdbcType="VARCHAR" property="visitors"/>
         <result column="top" jdbcType="INTEGER" property="top"/>
         <result column="low" jdbcType="INTEGER" property="low"/>
+        <result column="reply" jdbcType="INTEGER" property="reply"/>
         <result column="sticky" jdbcType="TINYINT" property="sticky"/>
         <result column="sticky_time" jdbcType="TIMESTAMP" property="stickyTime"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
@@ -21,14 +22,16 @@
         <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
         <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
         <result column="body" jdbcType="LONGVARCHAR" property="body"/>
+
+        <result column="realname" jdbcType="VARCHAR" property="realname"/>
+        <result column="sign" jdbcType="VARCHAR" property="sign"/>
+        <result column="small_avatar" jdbcType="VARCHAR" property="smallAvatar"/>
+
     </resultMap>
 
-    <select id="selectArticlesByCategoryCode" resultType="Article">
+    <select id="selectArticlesByCategoryCode" resultMap="BaseResultMap">
         SELECT
-        a.id, a.title, a.category_code AS categoryCode, a.category_name AS categoryName,
-        a.sticky, a.sticky_time AS stickyTime, a.visitors, a.user_id AS userId,
-        a.created_time AS createdTime, a.summary, a.body, a.top, a.low,
-        u.realname, u.sign, u.small_avatar AS smallAvatar
+        a.*, u.realname, u.sign, u.small_avatar
         FROM
         article a, user u
         <where>
@@ -42,12 +45,9 @@
         a.sticky desc, a.sticky_time desc, a.id desc
     </select>
 
-    <select id="selectArticleById" resultType="Article">
+    <select id="selectArticleById" resultMap="BaseResultMap">
         SELECT
-        a.id, a.title, a.category_code AS categoryCode, a.category_name AS categoryName,
-        a.sticky, a.sticky_time AS stickyTime, a.visitors, a.user_id AS userId,
-        a.created_time AS createdTime, a.summary, a.body, a.top, a.low,
-        u.realname, u.sign, u.small_avatar AS smallAvatar
+        a.*, u.realname, u.sign, u.small_avatar
         FROM
         article a, user u
         <where>

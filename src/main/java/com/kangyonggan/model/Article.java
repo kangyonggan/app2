@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Article {
@@ -55,6 +56,11 @@ public class Article {
      * 踩
      */
     private Integer low;
+
+    /**
+     * 评论
+     */
+    private Integer reply;
 
     /**
      * 是否置顶 {0:未置顶, 1:已置顶}
