@@ -33,4 +33,5 @@
     </#if>
 </#list>
 <div class="space-10"></div>
+<@c.pagination url="${ctx}category/list" param="code=${category.code}"/>
 </div>

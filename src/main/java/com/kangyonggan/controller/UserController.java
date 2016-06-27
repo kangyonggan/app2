@@ -45,14 +45,16 @@ public class UserController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String index(@RequestParam("id") Long id, Model model) {
+    public String index(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
+                        @RequestParam("id") Long id, Model model) {
         User user = userService.getUser(id);
         if (user == null) {
             return "redirect:/404";
         }
         Category category = new Category();
         category.setName("全部栏目");
-        List<Article> articles = articleService.findArticesByCategoryCode(1, AppConstants.PAGE_SIZE, null);
+        category.setCode("");
+        List<Article> articles = articleService.findArticesByCategoryCode(pageNum, AppConstants.PAGE_SIZE, null);
         PageInfo<Article> page = new PageInfo(articles);
 
         model.addAttribute("user", user);

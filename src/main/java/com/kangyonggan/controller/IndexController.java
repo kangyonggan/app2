@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -35,10 +36,12 @@ public class IndexController {
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
+    public String index(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
+                        Model model) {
         Category category = new Category();
         category.setName("全部栏目");
-        List<Article> articles = articleService.findArticesByCategoryCode(1, AppConstants.PAGE_SIZE, null);
+        category.setCode("");
+        List<Article> articles = articleService.findArticesByCategoryCode(pageNum, AppConstants.PAGE_SIZE, null);
         PageInfo<Article> page = new PageInfo(articles);
 
         model.addAttribute("category", category);

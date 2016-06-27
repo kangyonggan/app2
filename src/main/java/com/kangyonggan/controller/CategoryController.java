@@ -40,14 +40,16 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public String allList(@RequestParam(value = "code", required = false, defaultValue = "") String code,
+    public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
+                          @RequestParam(value = "code", required = false, defaultValue = "") String code,
                           Model model) {
         Category category = categoryService.findCategoryByCode(code);
         if (category == null) {
             category = new Category();
             category.setName("全部栏目");
+            category.setCode("");
         }
-        List<Article> articles = articleService.findArticesByCategoryCode(1, AppConstants.PAGE_SIZE, code);
+        List<Article> articles = articleService.findArticesByCategoryCode(pageNum, AppConstants.PAGE_SIZE, code);
         PageInfo<Article> page = new PageInfo(articles);
 
         model.addAttribute("category", category);
