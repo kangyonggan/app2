@@ -73,7 +73,11 @@
             ${article.body}
             </div>
 
+            <div class="space-10"></div>
+
             <div class="hr hr8 hr-double hr-dotted"></div>
+
+            <div class="space-10"></div>
 
             <div class="row">
                 <#list replies as reply>

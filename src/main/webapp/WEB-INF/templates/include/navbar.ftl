@@ -5,7 +5,7 @@
             $("#navbar").addClass("navbar-fixed-top");
         }
     </script>
-    <div class="navbar-container" id="navbar-container">
+    <div class="navbar-container skin-bg" id="navbar-container">
         <div class="navbar-header pull-left">
             <a href="${ctx}" class="navbar-brand">
                 <small class="skin-inverse">
