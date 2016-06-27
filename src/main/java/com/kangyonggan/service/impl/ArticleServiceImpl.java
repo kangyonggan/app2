@@ -70,6 +70,14 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
+    public List<Article> findStarArticles(int pageNum, int pageSize) {
+        ShiroUser user = userService.getShiroUser();
+
+        PageHelper.startPage(pageNum, pageSize);
+        return articleMapper.selectStarArticles(user.getId());
+    }
+
+    @Override
     public Article getArticle(Long id) {
         return super.selectByPrimaryKey(id);
     }

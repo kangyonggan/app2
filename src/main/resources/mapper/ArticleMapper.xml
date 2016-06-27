@@ -85,4 +85,20 @@
         </where>
     </delete>
 
+    <select id="selectStarArticles" resultMap="BaseResultMap">
+        SELECT
+        a.*, u.realname, u.sign, u.small_avatar
+        FROM
+        article a, user u, article_user au
+        <where>
+            au.user_id = #{userId}
+            AND au.article_id = a.id
+            AND a.user_id = u.id
+            AND au.type = 'star'
+            AND a.is_deleted = 0
+        </where>
+        ORDER BY
+        a.sticky desc, a.sticky_time desc, a.id desc
+    </select>
+
 </mapper>

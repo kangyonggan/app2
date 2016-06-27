@@ -1,5 +1,6 @@
 package com.kangyonggan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.Article;
 import com.kangyonggan.model.Category;
@@ -38,9 +39,10 @@ public class IndexController {
         Category category = new Category();
         category.setName("全部栏目");
         List<Article> articles = articleService.findArticesByCategoryCode(1, AppConstants.PAGE_SIZE, null);
+        PageInfo<Article> page = new PageInfo(articles);
 
         model.addAttribute("category", category);
-        model.addAttribute("articles", articles);
+        model.addAttribute("page", page);
         return PATH_INDEX;
     }
 

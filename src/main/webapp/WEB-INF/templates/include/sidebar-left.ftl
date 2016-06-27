@@ -16,25 +16,25 @@
                 <li></li>
             <@shiro.user>
                 <li class="active">
-                    <a href="#">
+                    <a href="${ctx}user/article/rss">
                         <i class="ace-icon fa fa-rss"></i>
                         我的订阅
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${ctx}user/article/star">
                         <i class="ace-icon fa fa-star-o green"></i>
                         我的收藏
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${ctx}user/article/about">
                         <i class="ace-icon fa fa-bell purple"></i>
-                        与我相关
+                        我参与的
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${ctx}user/article/follow">
                         <i class="ace-icon fa fa-heart red"></i>
                         特别关心
                     </a>

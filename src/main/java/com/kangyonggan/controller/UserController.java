@@ -1,5 +1,6 @@
 package com.kangyonggan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.Article;
 import com.kangyonggan.model.Category;
@@ -30,6 +31,7 @@ public class UserController {
 
     private static final String PATH_ROOT = "web/user/";
     private static final String PATH_INDEX = PATH_ROOT + "index";
+    private static final String PATH_STAR = PATH_ROOT + "star";
 
     @Autowired
     private UserService userService;
@@ -51,11 +53,32 @@ public class UserController {
         Category category = new Category();
         category.setName("全部栏目");
         List<Article> articles = articleService.findArticesByCategoryCode(1, AppConstants.PAGE_SIZE, null);
+        PageInfo<Article> page = new PageInfo(articles);
 
         model.addAttribute("user", user);
         model.addAttribute("category", category);
-        model.addAttribute("articles", articles);
+        model.addAttribute("page", page);
         return PATH_INDEX;
+    }
+
+    /**
+     * 我的收藏
+     *
+     * @param pageNum
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "article/star", method = RequestMethod.GET)
+    public String star(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum, Model model) {
+        List<Article> articles = articleService.findStarArticles(pageNum, AppConstants.PAGE_SIZE);
+        PageInfo<Article> page = new PageInfo(articles);
+        Category category = new Category();
+        category.setName("我的收藏");
+        category.setIcon("ace-icon fa fa-star-o");
+
+        model.addAttribute("category", category);
+        model.addAttribute("page", page);
+        return PATH_STAR;
     }
 
     /**

@@ -12,11 +12,13 @@ public interface ArticleMapper extends MyMapper<Article> {
 
     List<Article> selectArticlesByCategoryCode(@Param("categoryCode") String categoryCode);
 
+    List<Article> selectStarArticles(@Param("userId") Long userId);
+
     Article selectArticleById(Long id);
 
-    void insertArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
-
     int selectArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
+
+    void insertArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
 
     void deleteArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
 }

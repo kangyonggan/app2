@@ -14,6 +14,8 @@ public interface ArticleService {
 
     List<Article> findArticesByCategoryCode(int pageNum, int pageSize, String categoryCode);
 
+    List<Article> findStarArticles(int pageNum, int pageSize);
+
     Article getArticle(Long id);
 
     Article findArticleById(Long id);
