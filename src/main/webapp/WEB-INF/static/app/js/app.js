@@ -71,8 +71,12 @@ $(function () {
     };
 });
 
+var last_gritter;
 var showMessage = function (type, message) {
-    $.gritter.add({
+    if (last_gritter) {
+        $.gritter.remove(last_gritter);
+    }
+    last_gritter = $.gritter.add({
         title: '通知',
         text: message,
         class_name: type

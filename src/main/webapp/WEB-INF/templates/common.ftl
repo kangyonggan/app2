@@ -75,9 +75,9 @@
 </#macro>
 
 <#--密码输入框-->
-<#macro passwod id label required="false">
+<#macro password id label required="false" empty="">
     <@startInput label required/>
-<input type="password" id="${id}" name="${id}" class="form-control">
+<input type="password" id="${id}" name="${id}" class="form-control" placeholder="${empty}">
     <@endInput id />
 </#macro>
 

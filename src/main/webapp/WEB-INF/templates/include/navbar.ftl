@@ -50,12 +50,11 @@
                                         </a>
                                     </li>
                                 </#list>
-                                <li></li>
                             </#if>
                         </#list>
                     </ul>
                 </li>
-                <li></li>
+
                 <#list app_category.childrens as category>
                     <#if category.childrens?size gt 0>
                         <li>

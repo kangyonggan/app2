@@ -41,6 +41,7 @@ public class LoginController {
 
     private static final String PATH_ROOT = "web/login";
     private static final String PATH_INDEX = PATH_ROOT + "/index";
+    private static final String PATH_AJAX_MODAL = PATH_ROOT + "/ajax-modal";
     private static final String PATH_FORGET = PATH_ROOT + "/forget";
     private static final String PATH_RESET_RESULT = PATH_ROOT + "/reset-result";
 
@@ -55,6 +56,16 @@ public class LoginController {
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String index() {
         return PATH_INDEX;
+    }
+
+    /**
+     * 登录界面ajax
+     *
+     * @return
+     */
+    @RequestMapping(value = "login/ajax", method = RequestMethod.GET)
+    public String ajaxLogin() {
+        return PATH_AJAX_MODAL;
     }
 
     /**

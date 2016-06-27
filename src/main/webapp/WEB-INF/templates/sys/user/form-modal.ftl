@@ -7,8 +7,8 @@
         <@c.input id="email" label="电子邮件" val="${item.email!''}" required="true"/>
         <@c.input id="realname" label="真实姓名" val="${item.realname!''}" required="true"/>
         <#if !item.id??>
-            <@c.passwod id="password" label="密码" required="true"/>
-            <@c.passwod id="rePassword" label="确认密码" required="true"/>
+            <@c.password id="password" label="密码" required="true"/>
+            <@c.password id="rePassword" label="确认密码" required="true"/>
         </#if>
         <@c.input id="mobile" label="手机号" val="${item.mobile!''}"/>
         <@c.input id="sign" label="签名" val="${item.sign!''}"/>

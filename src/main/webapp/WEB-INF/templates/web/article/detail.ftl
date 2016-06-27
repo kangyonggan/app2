@@ -9,7 +9,7 @@
                 <i class="ace-icon fa fa-arrow-left"></i>
                 返回
             </a>
-            <a href="${ctx}article/reply?id=${article.id}" class="skin-color" data-toggle="modal"
+            <a href="${ctx}article/reply?id=${article.id}" class="skin-color article-reply" data-toggle="modal"
                data-target="#myModal">
                 <i class="ace-icon fa fa-comment-o"></i>
                 评论(${article.reply})
@@ -109,24 +109,32 @@
                 </#list>
             </div>
 
-            <div class="row">
-                <form class="form-horizontal" role="form" id="form" method="post" enctype="multipart/form-data"
-                      action="${ctx}article/reply2">
-                    <input type="hidden" name="articleId" value="${article.id}"/>
-                    <div class="form-group">
-                        <label class="col-xs-12 align-left">评论内容<span class="red">&nbsp;*</span></label>
-                        <div class="col-xs-12">
+            <#if app_who=="1">
+                <div class="row">
+                    <form class="form-horizontal" role="form" id="form" method="post" enctype="multipart/form-data"
+                          action="${ctx}article/reply2">
+                        <input type="hidden" name="articleId" value="${article.id}"/>
+                        <div class="form-group">
+                            <label class="col-xs-12 align-left">评论内容<span class="red">&nbsp;*</span></label>
+                            <div class="col-xs-12">
                         <span class="block input-icon input-icon-right">
                         <textarea id="content" rows="10" name="content" class="form-control"
                                   placeholder="我也来说一句..."></textarea>
                             <i class="ace-icon fa fa-times-circle hide"></i>
                             <label class="error hide" for="content"></label>
                         </span>
+                            </div>
                         </div>
-                    </div>
-                    <#include "../../dashboard/article/form-actions.ftl">
-                </form>
-            </div>
+                        <#include "../../dashboard/article/form-actions.ftl">
+                    </form>
+                </div>
+            <#else>
+                <div class="row">
+                    <a href="javascript:" class="article-reply">
+                        <h4><i class="fa fa-lock bigger-130 skin-color"></i>&nbsp; 登录后评论</h4>
+                    </a>
+                </div>
+            </#if>
         </div>
     </div>
 </div>

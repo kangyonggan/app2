@@ -37,7 +37,7 @@
 
         <div class="article-action">
             <div class="article-buttons">
-                <a href="${ctx}article/reply?id=${article.id}" class="skin-color" data-toggle="modal"
+                <a href="${ctx}article/reply?id=${article.id}" class="skin-color article-reply" data-toggle="modal"
                    data-target="#myModal">
                     <i class="ace-icon fa fa-comment-o"></i>
                     评论(${article.reply})
