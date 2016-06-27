@@ -44,27 +44,30 @@
     <div class="widget-body">
         <div class="widget-main padding-24">
 
-            <h2 class="text-center">
-                <i class="ace-icon fa fa-leaf green"></i>
-            ${article.title}
-            </h2>
+            <#if article.categoryCode!='word'>
+                <h2 class="text-center">
+                    <i class="ace-icon fa fa-leaf green"></i>
+                ${article.title}
+                </h2>
 
-            <div class="space-6"></div>
+                <div class="space-6"></div>
 
-            <div class="hr hr8 hr-dotted"></div>
+                <div class="hr hr8 hr-dotted"></div>
 
-            <div class="space-10"></div>
+                <div class="space-10"></div>
 
-            <div class="well">
-                摘要:
-                <#if article.summary==''>
-                    无
-                <#else>
-                ${article.summary}
-                </#if>
-            </div>
+                <div class="row well">
+                    摘要:
+                    <#if article.summary==''>
+                        无
+                    <#else>
+                    ${article.summary}
+                    </#if>
+                </div>
 
-            <div class="space-10"></div>
+                <div class="space-10"></div>
+
+            </#if>
 
             <div class="row">
             ${article.body}

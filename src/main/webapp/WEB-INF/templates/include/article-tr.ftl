@@ -27,7 +27,7 @@
         <div class="col-sm-12">
             <p class="text-article">
             <#if article.categoryCode=="word">
-                <h4>${article.title}</h4>
+                <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.body}</a></h4>
             <#else>
                 <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
             </#if>
@@ -37,7 +37,8 @@
 
         <div class="article-action">
             <div class="article-buttons">
-                <a href="${ctx}article/reply?id=${article.id}" class="skin-color" data-toggle="modal" data-target="#myModal">
+                <a href="${ctx}article/reply?id=${article.id}" class="skin-color" data-toggle="modal"
+                   data-target="#myModal">
                     <i class="ace-icon fa fa-comment-o"></i>
                     评论(${article.reply})
                 </a>

@@ -23,6 +23,7 @@
 <@override name="script">
 <script src="${ctx}static/libs/kindeditor/kindeditor-min.js"></script>
 <script src="${ctx}static/libs/kindeditor/lang/zh_CN.js"></script>
+<script src="${ctx}static/app/js/dashboard/article/form.js"></script>
     <#if category.code=="word">
     <script src="${ctx}static/app/js/dashboard/article/word.js"></script>
     <#elseif category.code=="diary">

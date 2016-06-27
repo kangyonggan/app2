@@ -47,7 +47,11 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>标题</th>
+        <#if category.code=="word">
+            <th>内容</th>
+        <#else>
+            <th>标题</th>
+        </#if>
         <th>顶/踩</th>
         <th>创建时间</th>
         <th>操作</th>
