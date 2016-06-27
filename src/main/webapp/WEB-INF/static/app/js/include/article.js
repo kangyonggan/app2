@@ -11,10 +11,11 @@ $(function () {
         var $this = $(this);
         $.get($this.attr("href"), function (result) {
             if (result.status == "success") {
-                var count = $this.find(".attion-count").text() * 1;
-                $this.find(".attion-count").text(count + 1);
+                var count = $this.find(".action-count").text() * 1;
+                $this.find(".action-count").text(count + 1);
             } else {
-                Notify.warning("机会只有那么一次, 稍纵即逝...");
+                var count = $this.find(".action-count").text() * 1;
+                $this.find(".action-count").text(count - 1);
             }
         });
 

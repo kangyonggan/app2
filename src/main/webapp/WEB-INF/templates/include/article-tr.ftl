@@ -45,17 +45,17 @@
                 <span class="split">|</span>
                 <a href="${ctx}article/top?id=${article.id}" class="skin-color action">
                     <i class="ace-icon fa fa-upload"></i>
-                    顶(<span class="attion-count">${article.top}</span>)
+                    顶(<span class="action-count">${article.top}</span>)
                 </a>
                 <span class="split">|</span>
                 <a href="${ctx}article/low?id=${article.id}" class="skin-color action">
                     <i class="ace-icon fa fa-download"></i>
-                    踩(<span class="attion-count">${article.low}</span>)
+                    踩(<span class="action-count">${article.low}</span>)
                 </a>
                 <span class="split">|</span>
-                <a href="#" class="skin-color">
+                <a href="${ctx}article/star?id=${article.id}" class="skin-color action">
                     <i class="ace-icon fa fa-star-o"></i>
-                    收藏(19)
+                    收藏(<span class="action-count">${article.star}</span>)
                 </a>
                 <span class="split">|</span>
                 <a href="javascript:" class="skin-color">

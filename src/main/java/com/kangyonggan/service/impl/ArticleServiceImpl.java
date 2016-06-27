@@ -103,27 +103,38 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
-    public boolean updateArticleActions(Long id, String action) {
+    public boolean updateArticleActions(Long id, String type) {
         ShiroUser user = userService.getShiroUser();
-        Byte type = (byte) (action.equals("top") ? 0 : 1);
 
         int count = articleMapper.selectArticleUser(id, user.getId(), type);
 
-        if (count > 0) {
-            // 已经顶/踩, 不可重复
-            return false;
-        }
-
         Article article = this.getArticle(id);
-        if ("top".equals(action)) {
-            article.setTop(article.getTop() + 1);
-        } else if ("low".equals(action)) {
-            article.setLow(article.getLow() + 1);
+        if ("top".equals(type)) {
+            article.setTop(article.getTop() + (count > 0 ? -1 : 1));
+        } else if ("low".equals(type)) {
+            article.setLow(article.getLow() + (count > 0 ? -1 : 1));
+        } else if ("star".equals(type)) {
+            article.setStar(article.getStar() + (count > 0 ? -1 : 1));
         }
         this.updateArticle(article);
 
-        this.saveArticleUser(id, user.getId(), type);
-        return true;
+        if (count > 0) {
+            this.deleteArticleUser(id, user.getId(), type);
+        } else {
+            this.saveArticleUser(id, user.getId(), type);
+        }
+        return count == 0;
+    }
+
+    /**
+     * 删除顶踩记录
+     *
+     * @param articleId
+     * @param userId
+     * @param type
+     */
+    private void deleteArticleUser(Long articleId, Long userId, String type) {
+        articleMapper.deleteArticleUser(articleId, userId, type);
     }
 
     /**
@@ -133,7 +144,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
      * @param userId
      * @param type
      */
-    private void saveArticleUser(Long articleId, Long userId, Byte type) {
+    private void saveArticleUser(Long articleId, Long userId, String type) {
         articleMapper.insertArticleUser(articleId, userId, type);
     }
 }

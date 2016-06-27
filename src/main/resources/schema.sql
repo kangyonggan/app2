@@ -214,6 +214,8 @@ CREATE TABLE article
   COMMENT '顶',
   low           INT(11)                                NOT NULL         DEFAULT 0
   COMMENT '踩',
+  star          INT(11)                                NOT NULL         DEFAULT 0
+  COMMENT '收藏',
   reply         INT(11)                                NOT NULL         DEFAULT 0
   COMMENT '评论',
   sticky        TINYINT                                NOT NULL         DEFAULT 0
@@ -238,11 +240,11 @@ CREATE TABLE article_user
   COMMENT '文章ID',
   user_id    BIGINT(20) NOT NULL
   COMMENT '用户ID',
-  type       TINYINT    NOT NULL
-  COMMENT '顶/踩 {0:顶, 1:踩}',
+  type       VARCHAR(32)    NOT NULL
+  COMMENT '顶/踩 {top:顶, low:踩, star:收藏}',
   CONSTRAINT `PRIMARY` PRIMARY KEY (article_id, user_id, type)
 )
-  COMMENT '文章顶踩表';
+  COMMENT '文章顶踩收藏表';
 
 CREATE TABLE reply
 (

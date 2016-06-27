@@ -14,6 +14,7 @@
         <result column="visitors" jdbcType="VARCHAR" property="visitors"/>
         <result column="top" jdbcType="INTEGER" property="top"/>
         <result column="low" jdbcType="INTEGER" property="low"/>
+        <result column="star" jdbcType="INTEGER" property="star"/>
         <result column="reply" jdbcType="INTEGER" property="reply"/>
         <result column="sticky" jdbcType="TINYINT" property="sticky"/>
         <result column="sticky_time" jdbcType="TIMESTAMP" property="stickyTime"/>
@@ -73,5 +74,15 @@
             AND type = #{type}
         </where>
     </select>
+
+    <delete id="deleteArticleUser">
+        DELETE FROM
+        article_user
+        <where>
+            article_id = #{articleId}
+            AND user_id = #{userId}
+            AND type = #{type}
+        </where>
+    </delete>
 
 </mapper>

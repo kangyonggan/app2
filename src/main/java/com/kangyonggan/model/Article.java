@@ -58,6 +58,11 @@ public class Article {
     private Integer low;
 
     /**
+     * 收藏
+     */
+    private Integer star;
+
+    /**
      * 评论
      */
     private Integer reply;

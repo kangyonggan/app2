@@ -23,6 +23,12 @@
                 </li>
                 <li>
                     <a href="#">
+                        <i class="ace-icon fa fa-star-o green"></i>
+                        我的收藏
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
                         <i class="ace-icon fa fa-bell purple"></i>
                         与我相关
                     </a>

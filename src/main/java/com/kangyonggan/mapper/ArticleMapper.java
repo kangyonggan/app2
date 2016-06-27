@@ -14,7 +14,9 @@ public interface ArticleMapper extends MyMapper<Article> {
 
     Article selectArticleById(Long id);
 
-    void insertArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") Byte type);
+    void insertArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
 
-    int selectArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") Byte type);
+    int selectArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
+
+    void deleteArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
 }

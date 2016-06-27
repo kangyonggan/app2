@@ -61,7 +61,7 @@ public class ArticleController {
      * @param action
      * @return
      */
-    @RequestMapping(value = "{action:\\btop\\b|\\blow\\b}", method = RequestMethod.GET)
+    @RequestMapping(value = "{action:\\btop\\b|\\blow\\b|\\bstar\\b}", method = RequestMethod.GET)
     @ResponseBody
     public ValidationResponse actions(@RequestParam("id") Long id, @PathVariable("action") String action) {
         ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
