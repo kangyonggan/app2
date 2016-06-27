@@ -15,7 +15,7 @@ $(function () {
         }
     }
 
-    var skin = ace.storage.get("skin");
+    var skin = ace.storage.get("skin") || "dark";
     changeSkinPicker(skin);
 
     /**
@@ -71,5 +71,5 @@ function loadSkinCss(skin) {
     link.type = 'text/css';
     head.appendChild(link);
 }
-var skin = ace.storage.get("skin");
+var skin = ace.storage.get("skin") || "dark";
 loadSkinCss(skin);
