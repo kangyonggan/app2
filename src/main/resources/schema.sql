@@ -103,15 +103,15 @@ INSERT INTO menu (id, code, name, pid, url, sort, icon, created_time, updated_ti
 VALUES (1, 'root', '根菜单', '0', 'root', 1, '', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),
   (2, 'sys', '系统', 1, 'sys/manage', 1, 'ace-icon fa fa-cog', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (20, 'sys-user', '用户管理', 2, 'sys/user', 1, 'ace-icon fa fa-users', '2016-06-21 15:14:35',
+  (20, 'sys-user', '用户管理', 2, 'sys/user/list', 1, 'ace-icon fa fa-users', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (21, 'sys-role', '角色管理', 2, 'sys/role', 2, 'ace-icon fa fa-hdd-o', '2016-06-21 15:14:35',
+  (21, 'sys-role', '角色管理', 2, 'sys/role/list', 2, 'ace-icon fa fa-hdd-o', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (22, 'sys-menu', '菜单管理', 2, 'sys/menu', 3, 'ace-icon fa fa-tachometer', '2016-06-21 15:14:35',
+  (22, 'sys-menu', '菜单管理', 2, 'sys/menu/list', 3, 'ace-icon fa fa-tachometer', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
 
   (3, 'pits', '维护', 1, 'pits/manage', 2, 'ace-icon fa fa-wrench', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),
-  (30, 'pits-category', '栏目管理', 3, 'pits/category', 1, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
+  (30, 'pits-category', '栏目管理', 3, 'pits/category/list', 1, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38');
 
 CREATE TABLE user_role
@@ -241,3 +241,27 @@ CREATE TABLE article_user
   CONSTRAINT `PRIMARY` PRIMARY KEY (article_id, user_id, type)
 )
   COMMENT '文章顶踩表';
+
+CREATE TABLE reply
+(
+  id           BIGINT(20) PRIMARY KEY  AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  article_id   BIGINT(20)                             NOT NULL
+  COMMENT '被评论文章的ID',
+  content      LONGTEXT                               NOT NULL
+  COMMENT '评论内容',
+  top          INT(11)                                NOT NULL         DEFAULT 0
+  COMMENT '顶',
+  low          INT(11)                                NOT NULL         DEFAULT 0
+  COMMENT '踩',
+  user_id      BIGINT(20)                             NOT NULL         DEFAULT 0
+  COMMENT '评论人ID',
+  is_deleted   TINYINT                                NOT NULL         DEFAULT 0
+  COMMENT '是否删除 {0:未删除, 1:已删除}',
+  created_time DATETIME                               NOT NULL
+  COMMENT '创建时间',
+  updated_time DATETIME                               NOT NULL
+  COMMENT '最后更新时间'
+)
+  COMMENT '评论表';
+CREATE UNIQUE INDEX id_UNIQUE ON reply (id);

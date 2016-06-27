@@ -53,7 +53,7 @@
         </#if>
     </tbody>
 </table>
-<@c.pagination url="${ctx}sys/user" param="email=${email}&realname=${realname}"/>
+<@c.pagination url="${ctx}sys/user/list" param="email=${email}&realname=${realname}"/>
 </@override>
 
 <@extends name="../../app-layout.ftl"/>

@@ -1,5 +1,11 @@
 $(function () {
     $(".article-buttons > a.action").click(function () {
+
+        if (app_who != 1) {
+            // TODO 弹出登录窗
+            return false;
+        }
+
         var $this = $(this);
         $.get($this.attr("href"), function (result) {
             if (result.status == "success") {

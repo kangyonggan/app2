@@ -14,8 +14,6 @@
         <#include "word.ftl"/>
     <#elseif category.code=="diary">
         <#include "diary.ftl"/>
-    <#else>
-        <#include "default.ftl"/>
     </#if>
 
     <#include "form-actions.ftl"/>

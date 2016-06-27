@@ -30,7 +30,7 @@
 </script>
 <script src="${ctx}static/libs/ztree/js/jquery.ztree.core-3.5.min.js"></script>
 <script src="${ctx}static/libs/ztree/js/jquery.ztree.exedit-3.5.min.js"></script>
-<script src="${ctx}static/app/js/sys/menu/index.js"></script>
+<script src="${ctx}static/app/js/sys/menu/list.js"></script>
 </@override>
 
 <@extends name="../../app-layout.ftl"/>

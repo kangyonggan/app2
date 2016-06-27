@@ -51,7 +51,7 @@ public class SysUserController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     @RequiresPermissions("sys-user")
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
                        @RequestParam(value = "email", required = false, defaultValue = "") String email,
@@ -72,11 +72,11 @@ public class SysUserController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/locked/{isLocked:[01]}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(value = "{isLocked:\\bunlock\\b|\\block\\b}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     @RequiresPermissions("sys-user")
-    public String lock(@PathVariable("id") Long id, @PathVariable("isLocked") Byte isLocked, Model model) {
+    public String lock(@RequestParam("id") Long id, @PathVariable("isLocked") String isLocked, Model model) {
         User user = userService.getUser(id);
-        user.setIsLocked(isLocked);
+        user.setIsLocked((byte) (isLocked.equals("unlock") ? 0 : 1));
         userService.updateUser(user);
 
         model.addAttribute("item", user);
@@ -124,9 +124,9 @@ public class SysUserController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
     @RequiresPermissions("sys-user")
-    public String create(@PathVariable("id") Long id, Model model) {
+    public String create(@RequestParam("id") Long id, Model model) {
         model.addAttribute("item", userService.getUser(id));
         return PATH_FORM_MODAL;
     }
@@ -138,7 +138,7 @@ public class SysUserController {
      * @param result
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/update", method = RequestMethod.POST)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("sys-user")
     public ValidationResponse update(@ModelAttribute("user") @Valid User user, BindingResult result) {
@@ -159,9 +159,9 @@ public class SysUserController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @RequiresPermissions("sys-user")
-    public String detail(@PathVariable("id") Long id, Model model) {
+    public String detail(@RequestParam("id") Long id, Model model) {
         model.addAttribute("item", userService.getUser(id));
         return PATH_DETAIL_MODAL;
     }
@@ -172,10 +172,10 @@ public class SysUserController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     @ResponseBody
     @RequiresPermissions("sys-user")
-    public ValidationResponse delete(@PathVariable("id") Long id) {
+    public ValidationResponse delete(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return new ValidationResponse(AppConstants.SUCCESS);
     }
@@ -187,9 +187,9 @@ public class SysUserController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/roles", method = RequestMethod.GET)
+    @RequestMapping(value = "roles", method = RequestMethod.GET)
     @RequiresPermissions("sys-user")
-    public String roles(@PathVariable("id") Long id, Model model) {
+    public String roles(@RequestParam("id") Long id, Model model) {
         List<Role> user_roles = roleService.findRolesByUserId(id);
         user_roles = Collections3.extractToList(user_roles, "code");
         List<Role> all_roles = roleService.findAllRoles();
@@ -207,10 +207,10 @@ public class SysUserController {
      * @param roles
      * @return
      */
-    @RequestMapping(value = "{id}/roles", method = RequestMethod.POST)
+    @RequestMapping(value = "roles", method = RequestMethod.POST)
     @RequiresPermissions("sys-user")
     @ResponseBody
-    public ValidationResponse updateUserRoles(@PathVariable Long id,
+    public ValidationResponse updateUserRoles(@RequestParam(value = "id", required = true) Long id,
                                               @RequestParam(value = "roles", defaultValue = "") String roles) {
         userService.updateUserRoles(id, roles);
         return new ValidationResponse(AppConstants.SUCCESS);

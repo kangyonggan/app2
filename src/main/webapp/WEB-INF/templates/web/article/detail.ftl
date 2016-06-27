@@ -9,7 +9,7 @@
                 <i class="ace-icon fa fa-arrow-left"></i>
                 返回
             </a>
-            <a href="#" class="skin-color">
+            <a href="${ctx}article/reply?id=${article.id}" class="skin-color">
                 <i class="ace-icon fa fa-comment-o"></i>
                 评论(1)
             </a>
@@ -19,12 +19,12 @@
                 转发(2)
             </a>
             <span class="split">|</span>
-            <a href="${ctx}article/${article.id}/top" class="skin-color action">
+            <a href="${ctx}article/top?id=${article.id}" class="skin-color action">
                 <i class="ace-icon fa fa-upload"></i>
                 顶(<span class="attion-count">${article.top}</span>)
             </a>
             <span class="split">|</span>
-            <a href="${ctx}article/${article.id}/low" class="skin-color action">
+            <a href="${ctx}article/low?id=${article.id}" class="skin-color action">
                 <i class="ace-icon fa fa-download"></i>
                 踩(<span class="attion-count">${article.low}</span>)
             </a>

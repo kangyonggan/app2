@@ -28,10 +28,10 @@
         <input type="text" class="form-control" name="title" value="${title2}" placeholder="标题"/>
     </div>
 
-    <button class="btn btn-sm skin-btn">
+    <a href="?code=${category.code}&title=${title2}&startTime=${startTime}&endTime=${endTime}" class="btn btn-sm skin-btn">
         搜索
         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
-    </button>
+    </a>
 
     <div class="pull-right">
         <a href="${ctx}dashboard/article/create?code=${category.code}" class="btn btn-sm skin-btn">发表</a>
@@ -64,7 +64,7 @@
         </#if>
     </tbody>
 </table>
-    <@c.pagination url="${ctx}dashboard/category/${category.code}" param="title=${title2}"/>
+    <@c.pagination url="${ctx}dashboard/category/list" param="code=${category.code}&title=${title2}&startTime=${startTime}&endTime=${endTime}"/>
 </@override>
 
 <@override name="script">

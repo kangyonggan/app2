@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${ctx}static/libs/ztree/css/zTreeStyle.css"/>
 
 <@override name="modal-body">
-<form class="form-horizontal" role="form" id="modal-form" method="post" action="${ctx}sys/role/${id}/menus">
+<form class="form-horizontal" role="form" id="modal-form" method="post" action="${ctx}sys/role/menus?id=${id}">
     <input type="hidden" name="menus"/>
     <div class="control-group">
         <div>

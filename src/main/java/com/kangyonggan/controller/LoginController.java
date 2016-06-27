@@ -116,7 +116,7 @@ public class LoginController {
         res.setStatus(AppConstants.SUCCESS);
         // 获取之前访问的URL
         if (savedRequest == null || savedRequest.getRequestUrl() == null) {
-            res.setMessage(String.format("user/%d", user.getId()));
+            res.setMessage(String.format("user?id=%d", user.getId()));
             return res;
         }
         res.setMessage(String.format("%s", savedRequest.getRequestUrl()));

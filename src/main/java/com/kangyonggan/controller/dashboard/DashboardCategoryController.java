@@ -9,7 +9,6 @@ import com.kangyonggan.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,12 +46,12 @@ public class DashboardCategoryController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "{code:[\\w]+}", method = RequestMethod.GET)
-    public String myList(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
-                         @RequestParam(value = "title", required = false, defaultValue = "") String title,
-                         @RequestParam(value = "startTime", required = false, defaultValue = "") String startTime,
-                         @RequestParam(value = "endTime", required = false, defaultValue = "") String endTime,
-                         @PathVariable("code") String code, Model model) throws Exception {
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
+                       @RequestParam(value = "title", required = false, defaultValue = "") String title,
+                       @RequestParam(value = "startTime", required = false, defaultValue = "") String startTime,
+                       @RequestParam(value = "endTime", required = false, defaultValue = "") String endTime,
+                       @RequestParam(value = "code", required = true) String code, Model model) throws Exception {
         Category category = categoryService.findCategoryByCode(code);
         List<Article> articles = articleService.searchArticles(pageNum, AppConstants.PAGE_SIZE, code, title.trim(), startTime, endTime);
         PageInfo<Article> page = new PageInfo(articles);

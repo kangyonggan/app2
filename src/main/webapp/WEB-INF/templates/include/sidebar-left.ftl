@@ -8,7 +8,7 @@
         <div class="widget-main">
             <ul class="sidebar-list">
                 <li>
-                    <a href="${ctx}category">
+                    <a href="${ctx}category/list">
                         <i class="ace-icon fa fa-th dark"></i>
                         全部栏目
                     </a>
@@ -41,7 +41,7 @@
                 <#if hasChildren>
                     <#list category.childrens as c>
                         <li>
-                            <a href="${ctx}category?code=${c.code}">
+                            <a href="${ctx}category/list?code=${c.code}">
                                 <i class="${c.icon} ${colors[c_index%colors?size]}"></i>
                             ${c.name}
                             </a>

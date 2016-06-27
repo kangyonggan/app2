@@ -25,7 +25,7 @@ import java.util.List;
 public class PitsCategoryController {
 
     private static final String PATH_ROOT = "pits/category/";
-    private static final String PATH_INDEX = PATH_ROOT + "index";
+    private static final String PATH_LIST = PATH_ROOT + "list";
     private static final String PATH_FORM_MODAL = PATH_ROOT + "form-modal";
 
     @Autowired
@@ -37,13 +37,13 @@ public class PitsCategoryController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     @RequiresPermissions("pits-category")
     public String index(Model model) {
         List<Category> categories = categoryService.findAllCategories();
 
         model.addAttribute("categories", categories);
-        return PATH_INDEX;
+        return PATH_LIST;
     }
 
 
@@ -55,7 +55,7 @@ public class PitsCategoryController {
      */
     @RequestMapping(value = "create", method = RequestMethod.GET)
     @RequiresPermissions("pits-category")
-    public String create(@RequestParam(value = "pid", defaultValue = "0") Long pid,
+    public String create(@RequestParam(value = "pid", required = false, defaultValue = "0") Long pid,
                          Model model) {
         model.addAttribute("item", new Category());
         model.addAttribute("parent_item", categoryService.getCategory(pid));
@@ -89,9 +89,9 @@ public class PitsCategoryController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
     @RequiresPermissions("pits-category")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@RequestParam("id") Long id, Model model) {
         Category category = categoryService.getCategory(id);
         model.addAttribute("item", category);
         model.addAttribute("parent_item", categoryService.getCategory(category.getPid()));
@@ -105,7 +105,7 @@ public class PitsCategoryController {
      * @param result
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/update", method = RequestMethod.POST)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("pits-category")
     public ValidationResponse update(@ModelAttribute("category") @Valid Category category,
@@ -126,10 +126,10 @@ public class PitsCategoryController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("pits-category")
-    public ValidationResponse delete(@PathVariable Long id) {
+    public ValidationResponse delete(@RequestParam("id") Long id) {
         categoryService.deleteCategory(id);
         return new ValidationResponse(AppConstants.SUCCESS);
     }
@@ -144,7 +144,7 @@ public class PitsCategoryController {
     @RequestMapping(value = "verify-code", method = RequestMethod.POST)
     @RequiresPermissions("pits-category")
     @ResponseBody
-    public boolean verifyCode(@RequestParam String code, @RequestParam String oldCode) {
+    public boolean verifyCode(@RequestParam("code") String code, @RequestParam("oldCode") String oldCode) {
         if (oldCode.equals(code)) {
             return true;
         }

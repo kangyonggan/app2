@@ -1,5 +1,3 @@
-
-
 <@override name="app-style">
     <@block name="style"/>
 </@override>

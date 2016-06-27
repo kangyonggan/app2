@@ -42,8 +42,8 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
-    public String index(@PathVariable("id") Long id, Model model) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(@RequestParam("id") Long id, Model model) {
         User user = userService.getUser(id);
         if (user == null) {
             return "redirect:/404";
@@ -65,9 +65,9 @@ public class UserController {
      * @param oldEmail
      * @return
      */
-    @RequestMapping(value = "/verify-email", method = RequestMethod.POST)
+    @RequestMapping(value = "verify-email", method = RequestMethod.POST)
     @ResponseBody
-    public boolean verifyEmail(@RequestParam String email, @RequestParam String oldEmail) {
+    public boolean verifyEmail(@RequestParam("email") String email, @RequestParam("oldEmail") String oldEmail) {
         if (oldEmail.equals(email)) {
             return true;
         }
@@ -81,9 +81,9 @@ public class UserController {
      * @param oldMobile
      * @return
      */
-    @RequestMapping(value = "/verify-mobile", method = RequestMethod.POST)
+    @RequestMapping(value = "verify-mobile", method = RequestMethod.POST)
     @ResponseBody
-    public boolean verifyMobile(@RequestParam String mobile, @RequestParam String oldMobile) {
+    public boolean verifyMobile(@RequestParam("mobile") String mobile, @RequestParam("oldMobile") String oldMobile) {
         if (oldMobile.equals(mobile)) {
             return true;
         }

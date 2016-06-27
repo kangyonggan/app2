@@ -1,11 +1,11 @@
 $(function () {
-    var showRemoveNotify = function (response) {
+    var showRemoveNotify = function () {
         Notify.success("菜单删除成功。");
     };
 
     var beforeRemove = function (treeId, treeNode) {
         if (confirm("确认删除菜单 " + treeNode.name + " 吗？")) {
-            $.post(ctx + "sys/menu/" + treeNode.id + "/delete", function (data, status) {
+            $.post(ctx + "sys/menu/delete?id=" + treeNode.id, function (data, status) {
                 if (status == "success" && data.status == "success") {
                     return true;
                 } else {
@@ -39,7 +39,7 @@ $(function () {
         if (editBtn) {
             editBtn.bind("click", function () {
                 $("#myModal").modal({
-                    remote: ctx + 'sys/menu/' + treeNode.id + '/edit'
+                    remote: ctx + 'sys/menu/edit?id=' + treeNode.id
                 });
             });
         }

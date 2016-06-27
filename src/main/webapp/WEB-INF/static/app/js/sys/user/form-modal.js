@@ -6,7 +6,7 @@ $(function () {
                 email: true,
                 maxlength: 64,
                 remote: {
-                    url: ctx + "sys/user/verify-email",
+                    url: ctx + "user/verify-email",
                     type: 'post',
                     data: {
                         'email': function() {
@@ -34,7 +34,7 @@ $(function () {
             mobile: {
                 isMobile: true,
                 remote: {
-                    url: ctx + "sys/user/verify-mobile",
+                    url: ctx + "user/verify-mobile",
                     type: 'post',
                     data: {
                         'mobile': function () {

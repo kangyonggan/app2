@@ -38,7 +38,7 @@
         </javaClientGenerator>
 
         <!--table name-->
-        <table tableName="article">
+        <table tableName="reply">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

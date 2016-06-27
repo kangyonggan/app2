@@ -2,7 +2,7 @@
 
 <@override name="modal-body">
 <form class="form-horizontal" role="form" id="modal-form" method="post"
-      action="${ctx}sys/user/<#if item.id??>${item.id}/update<#else>save</#if>">
+      action="${ctx}sys/user/${item.id???string('update', 'save')}">
     <div class="row">
         <@c.input id="email" label="电子邮件" val="${item.email!''}" required="true"/>
         <@c.input id="realname" label="真实姓名" val="${item.realname!''}" required="true"/>

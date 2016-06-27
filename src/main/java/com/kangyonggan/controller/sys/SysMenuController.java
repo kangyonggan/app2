@@ -25,7 +25,7 @@ import java.util.List;
 public class SysMenuController {
 
     private static final String PATH_ROOT = "sys/menu/";
-    private static final String PATH_INDEX = PATH_ROOT + "index";
+    private static final String PATH_LIST = PATH_ROOT + "list";
     private static final String PATH_FORM_MODAL = PATH_ROOT + "form-modal";
 
     @Autowired
@@ -37,13 +37,13 @@ public class SysMenuController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     @RequiresPermissions("sys-menu")
-    public String index(Model model) {
+    public String list(Model model) {
         List<Menu> menus = menuService.findAllMenus();
 
         model.addAttribute("menus", menus);
-        return PATH_INDEX;
+        return PATH_LIST;
     }
 
 
@@ -89,9 +89,9 @@ public class SysMenuController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
     @RequiresPermissions("sys-menu")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@RequestParam("id") Long id, Model model) {
         Menu menu = menuService.getMenu(id);
         Menu parent_menu = menuService.getMenu(menu.getPid());
         if (parent_menu == null) {
@@ -110,7 +110,7 @@ public class SysMenuController {
      * @param result
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/update", method = RequestMethod.POST)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("sys-menu")
     public ValidationResponse update(@ModelAttribute("menu") @Valid Menu menu,
@@ -131,10 +131,10 @@ public class SysMenuController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("sys-menu")
-    public ValidationResponse delete(@PathVariable Long id) {
+    public ValidationResponse delete(@RequestParam("id") Long id) {
         menuService.deleteMenu(id);
         return new ValidationResponse(AppConstants.SUCCESS);
     }
@@ -149,7 +149,7 @@ public class SysMenuController {
     @RequestMapping(value = "verify-code", method = RequestMethod.POST)
     @RequiresPermissions("sys-menu")
     @ResponseBody
-    public boolean verifyCode(@RequestParam String code, @RequestParam String oldCode) {
+    public boolean verifyCode(@RequestParam("code") String code, @RequestParam("oldCode") String oldCode) {
         if (oldCode.equals(code)) {
             return true;
         }

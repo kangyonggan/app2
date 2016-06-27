@@ -5,13 +5,13 @@
     <td>${item.createdTime?datetime}</td>
     <td>
         <div class="btn-group">
-            <a class="btn btn-xs skin-btn" href="${ctx}article/${item.id}">
+            <a class="btn btn-xs skin-btn" href="${ctx}article?id=${item.id}">
                 <i class="ace-icon fa fa-eye bigger-120"></i>
             </a>
-            <a class="btn btn-xs skin-btn" href="${ctx}dashboard/article/${item.id}/edit">
+            <a class="btn btn-xs skin-btn" href="${ctx}dashboard/article/edit?id=${item.id}">
                 <i class="ace-icon fa fa-pencil bigger-120"></i>
             </a>
-            <a class="btn btn-xs btn-danger delete-item" title="${item.title}" data-url="${ctx}dashboard/article/${item.id}/delete">
+            <a class="btn btn-xs btn-danger delete-item" title="${item.title}" data-url="${ctx}dashboard/article/delete?id=${item.id}">
                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
             </a>
         </div>

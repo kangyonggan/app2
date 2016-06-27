@@ -5,7 +5,7 @@ $(function () {
 
     var beforeRemove = function (treeId, treeNode) {
         if (confirm("确认删除栏目 " + treeNode.name + " 吗？")) {
-            $.post(ctx + "pits/category/" + treeNode.id + "/delete", function (data, status) {
+            $.post(ctx + "pits/category/delete?id=" + treeNode.id, function (data, status) {
                 if (status == "success" && data.status == "success") {
                     return true;
                 } else {
@@ -39,7 +39,7 @@ $(function () {
         if (editBtn) {
             editBtn.bind("click", function () {
                 $("#myModal").modal({
-                    remote: ctx + 'pits/category/' + treeNode.id + '/edit'
+                    remote: ctx + 'pits/category/edit?id=' + treeNode.id
                 });
             });
         }

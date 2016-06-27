@@ -68,9 +68,9 @@
 </#macro>
 
 <#--普通输入框-->
-<#macro input id label val="" readonly="false" required="false">
+<#macro input id label val="" readonly="false" required="false" empty="">
     <@startInput label required/>
-<input type="text" id="${id}" value="${val}" name="${id}" class="form-control" <#if readonly=="true">readonly</#if>>
+<input type="text" id="${id}" value="${val}" name="${id}" class="form-control" <#if readonly=="true">readonly</#if> placeholder="${empty}">
     <@endInput id />
 </#macro>
 
@@ -93,9 +93,9 @@
 </#macro>
 
 <#--文本域输入框-->
-<#macro textarea id label rows="5" required="false" empty="">
+<#macro textarea id label val="" rows="5" required="false" empty="">
     <@startInput label required/>
-<textarea id="${id}" rows="${rows}" name="${id}" class="form-control" placeholder="${empty}"></textarea>
+<textarea id="${id}" rows="${rows}" name="${id}" class="form-control" placeholder="${empty}">${val}</textarea>
     <@endInput id />
 </#macro>
 
@@ -117,9 +117,9 @@
 <#--private输入框前部-->
 <#macro startInput label required>
 <div class="form-group">
-    <label class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">${label}<#if required=="true"><span
+    <label class="col-xs-10 col-xs-offset-1 align-left">${label}<#if required=="true"><span
             class="red">&nbsp;*</span></#if></label>
-<div class="col-xs-12 col-sm-6">
+<div class="col-xs-10 col-xs-offset-1 ">
 <span class="block input-icon input-icon-right">
 </#macro>
 

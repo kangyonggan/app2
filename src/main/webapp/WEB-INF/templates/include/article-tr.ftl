@@ -1,7 +1,7 @@
 <div class="widget-main no-padding-bottom">
     <div>
         <div>
-            <a href="${ctx}user/${article.userId}">
+            <a href="${ctx}user?id=${article.userId}">
             <#if article.smallAvatar == ''>
                 <img class="pull-left user-avator"
                      src="${ctx}static/ace/dist/avatars/avatar5.png"/>
@@ -10,8 +10,8 @@
             </#if>
             </a>
             <h4>
-                <a class="dark" href="${ctx}user/${article.userId}"> ${article.realname} </a>
-                <small><@c.substring str="${article.sign}" len=30 default="懒惰是一种美德!"/></small>
+                <a class="dark" href="${ctx}user?id=${article.userId}"> ${article.realname} </a>
+                <small><@c.substring str="${article.sign}" len=30 default="懒惰是一种美德"/></small>
             </h4>
             <small>
                 <div class="time">
@@ -29,7 +29,7 @@
             <#if article.categoryCode=="word">
                 <h4>${article.title}</h4>
             <#else>
-                <h4><a href="${ctx}article/${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
+                <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
             </#if>
             </p>
             <div class="space-16"></div>
@@ -37,22 +37,17 @@
 
         <div class="article-action">
             <div class="article-buttons">
-                <a href="#" class="skin-color">
+                <a href="${ctx}article/reply?id=${article.id}" class="skin-color" data-toggle="modal" data-target="#myModal">
                     <i class="ace-icon fa fa-comment-o"></i>
                     评论(1)
                 </a>
                 <span class="split">|</span>
-                <a href="#" class="skin-color">
-                    <i class="ace-icon fa fa-external-link"></i>
-                    转发(2)
-                </a>
-                <span class="split">|</span>
-                <a href="${ctx}article/${article.id}/top" class="skin-color action">
+                <a href="${ctx}article/top?id=${article.id}" class="skin-color action">
                     <i class="ace-icon fa fa-upload"></i>
                     顶(<span class="attion-count">${article.top}</span>)
                 </a>
                 <span class="split">|</span>
-                <a href="${ctx}article/${article.id}/low" class="skin-color action">
+                <a href="${ctx}article/low?id=${article.id}" class="skin-color action">
                     <i class="ace-icon fa fa-download"></i>
                     踩(<span class="attion-count">${article.low}</span>)
                 </a>

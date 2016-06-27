@@ -2,7 +2,7 @@
 
 <@override name="modal-body">
 <form class="form-horizontal" role="form" id="modal-form" method="post"
-      action="${ctx}pits/category/<#if item.id??>${item.id}/update<#else>save</#if>">
+      action="${ctx}pits/category/${item.id???string('update', 'save')}">
     <input type="hidden" name="pid" value="${parent_item.id!0}">
     <div class="row">
         <#if parent_item.id??>

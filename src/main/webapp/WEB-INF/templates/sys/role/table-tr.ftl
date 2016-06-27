@@ -5,7 +5,7 @@
     <td>${item.createdTime?datetime}</td>
     <td>
         <div class="btn-group">
-            <a data-toggle="modal" class="btn btn-xs skin-btn" href="${ctx}sys/role/${item.id}"
+            <a data-toggle="modal" class="btn btn-xs skin-btn" href="${ctx}sys/role?id=${item.id}"
                data-target="#myModal">详情</a>
 
             <button data-toggle="dropdown" class="btn btn-xs dropdown-toggle skin-btn">
@@ -14,16 +14,16 @@
 
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
-                    <a href="${ctx}sys/role/${item.id}/edit" data-toggle="modal" data-target="#myModal"
+                    <a href="${ctx}sys/role/edit?id=${item.id}" data-toggle="modal" data-target="#myModal"
                        data-backdrop="static" class="skin-hover">编辑角色信息</a>
                 </li>
                 <li>
-                    <a class="delete-item skin-hover" title="${item.name}" data-url="${ctx}sys/role/${item.id}/delete">
+                    <a class="delete-item skin-hover" title="${item.name}" data-url="${ctx}sys/role/delete?id=${item.id}">
                         删除角色
                     </a>
                 </li>
                 <li>
-                    <a href="${ctx}sys/role/${item.id}/menus" data-toggle="modal" data-target="#myModal"
+                    <a href="${ctx}sys/role/menus?id=${item.id}" data-toggle="modal" data-target="#myModal"
                        data-backdrop="static" class="skin-hover">设置菜单</a>
                 </li>
             </ul>

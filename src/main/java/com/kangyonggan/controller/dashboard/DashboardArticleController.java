@@ -64,7 +64,7 @@ public class DashboardArticleController {
             articleService.saveArticle(article);
         }
 
-        return String.format("redirect:/dashboard/category/%s", article.getCategoryCode());
+        return String.format("redirect:/dashboard/category/list?code=%s", article.getCategoryCode());
     }
 
     /**
@@ -74,8 +74,8 @@ public class DashboardArticleController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
-    public String edit(@PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    public String edit(@RequestParam("id") Long id, Model model) {
         Article article = articleService.getArticle(id);
         Category category = categoryService.findCategoryByCode(article.getCategoryCode());
 
@@ -96,7 +96,7 @@ public class DashboardArticleController {
             articleService.updateArticle(article);
         }
 
-        return String.format("redirect:/dashboard/category/%s", article.getCategoryCode());
+        return String.format("redirect:/dashboard/category/list?code=%s", article.getCategoryCode());
     }
 
     /**
@@ -105,9 +105,9 @@ public class DashboardArticleController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     @ResponseBody
-    public ValidationResponse logicDelete(@PathVariable("id") Long id) {
+    public ValidationResponse logicDelete(@RequestParam("id") Long id) {
         ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
 
         ShiroUser user = userService.getShiroUser();

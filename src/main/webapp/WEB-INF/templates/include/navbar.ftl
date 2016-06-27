@@ -42,7 +42,7 @@
                             <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                                 <#list category.childrens as c>
                                     <li>
-                                        <a href="${ctx}dashboard/category/${c.code}">
+                                        <a href="${ctx}dashboard/category/list?code=${c.code}">
                                             <i class="${c.icon} bigger-120"></i>
                                         ${c.name}
                                         </a>
@@ -88,7 +88,7 @@
             <ul class="nav navbar-nav">
             <@shiro.user>
                 <li>
-                    <a href="${ctx}user/${app_user.id}" class="skin-inverse">${app_user.realname}</a>
+                    <a href="${ctx}user?id=${app_user.id}" class="skin-inverse">${app_user.realname}</a>
                 </li>
                 <li>
                     <a href="${ctx}logout" class="skin-inverse">

@@ -48,7 +48,7 @@ public class SysRoleController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     @RequiresPermissions("sys-role")
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
                        @RequestParam(value = "name", required = false, defaultValue = "") String name,
@@ -101,9 +101,9 @@ public class SysRoleController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
     @RequiresPermissions("sys-role")
-    public String create(@PathVariable("id") Long id, Model model) {
+    public String create(@RequestParam(value = "id", required = true) Long id, Model model) {
         model.addAttribute("item", roleService.getRole(id));
         return PATH_FORM_MODAL;
     }
@@ -115,7 +115,7 @@ public class SysRoleController {
      * @param result
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/update", method = RequestMethod.POST)
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("sys-role")
     public ValidationResponse update(@ModelAttribute("role") @Valid Role role, BindingResult result) {
@@ -136,9 +136,9 @@ public class SysRoleController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @RequiresPermissions("sys-role")
-    public String detail(@PathVariable("id") Long id, Model model) {
+    public String detail(@RequestParam("id") Long id, Model model) {
         model.addAttribute("item", roleService.getRole(id));
         return PATH_DETAIL_MODAL;
     }
@@ -149,10 +149,10 @@ public class SysRoleController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     @ResponseBody
     @RequiresPermissions("sys-role")
-    public ValidationResponse delete(@PathVariable("id") Long id) {
+    public ValidationResponse delete(@RequestParam("id") Long id) {
         roleService.deleteRole(id);
         return new ValidationResponse(AppConstants.SUCCESS);
     }
@@ -164,9 +164,9 @@ public class SysRoleController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{id:[\\d]+}/menus", method = RequestMethod.GET)
+    @RequestMapping(value = "menus", method = RequestMethod.GET)
     @RequiresPermissions("sys-role")
-    public String menus(@PathVariable("id") Long id, Model model) {
+    public String menus(@RequestParam("id") Long id, Model model) {
         List<Menu> role_menus = menuService.findMenusByRoleId(id);
         role_menus = Collections3.extractToList(role_menus, "code");
         List<Menu> all_menus = menuService.findAllMenus();
@@ -184,10 +184,10 @@ public class SysRoleController {
      * @param menus
      * @return
      */
-    @RequestMapping(value = "{id}/menus", method = RequestMethod.POST)
+    @RequestMapping(value = "menus", method = RequestMethod.POST)
     @RequiresPermissions("sys-role")
     @ResponseBody
-    public ValidationResponse updateRoleMenus(@PathVariable Long id,
+    public ValidationResponse updateRoleMenus(@RequestParam("id") Long id,
                                               @RequestParam(value = "menus", defaultValue = "") String menus) {
         roleService.updateRoleMenus(id, menus);
         return new ValidationResponse(AppConstants.SUCCESS);
@@ -200,10 +200,10 @@ public class SysRoleController {
      * @param oldCode
      * @return
      */
-    @RequestMapping(value = "/verify-code", method = RequestMethod.POST)
+    @RequestMapping(value = "verify-code", method = RequestMethod.POST)
     @ResponseBody
     @RequiresPermissions("sys-role")
-    public boolean verifyCode(@RequestParam String code, @RequestParam String oldCode) {
+    public boolean verifyCode(@RequestParam("code") String code, @RequestParam("oldCode") String oldCode) {
         if (oldCode.equals(code)) {
             return true;
         }

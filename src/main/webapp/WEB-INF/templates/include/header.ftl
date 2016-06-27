@@ -52,7 +52,7 @@
                     <i class="ace-icon fa fa-leaf green"></i>
 
                     <strong class="green">
-                    <@c.substring str="${user.sign}" len=60 default="懒惰是一种美德!"/>
+                    <@c.substring str="${user.sign}" len=60 default="懒惰是一种美德"/>
                     </strong>
                 </div>
 

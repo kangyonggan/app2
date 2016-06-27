@@ -38,7 +38,7 @@ public class CategoryController {
      * @param model
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public String allList(@RequestParam(value = "code", required = false, defaultValue = "") String code,
                           Model model) {
         Category category = categoryService.findCategoryByCode(code);
