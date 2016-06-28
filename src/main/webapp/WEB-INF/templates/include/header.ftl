@@ -31,7 +31,7 @@
 
                     <div class="width-80 label label-xlg arrowed-in arrowed-in-right">
                         <div class="inline position-relative">
-                            <a href="javascript:" class="user-title-label skin-inverse">
+                            <a href="${ctx}user?id=${user.id}" class="user-title-label skin-inverse">
                                 <i class="ace-icon fa fa-circle green"></i>
                                 &nbsp;
                                 ${user.realname}

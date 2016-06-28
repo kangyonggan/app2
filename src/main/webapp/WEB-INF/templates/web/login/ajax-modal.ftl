@@ -24,8 +24,11 @@
 
 <@override name="modal-footer">
 <button class="btn skin-btn" data-toggle="modal-submit" data-loading-text="正在提交...">
-登录
+    登录
 </button>
+<a class="btn btn-success" href="${ctx}register">
+去注册
+</a>
 <script src="${ctx}static/app/js/web/login/ajax-modal.js"></script>
 </@override>
 
