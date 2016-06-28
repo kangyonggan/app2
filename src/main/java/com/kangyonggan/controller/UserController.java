@@ -32,7 +32,7 @@ public class UserController {
 
     private static final String PATH_ROOT = "web/user/";
     private static final String PATH_INDEX = PATH_ROOT + "index";
-    private static final String PATH_STAR = PATH_ROOT + "star";
+    private static final String PATH_MY = PATH_ROOT + "my";
 
     @Autowired
     private UserService userService;
@@ -82,7 +82,7 @@ public class UserController {
 
         model.addAttribute("category", category);
         model.addAttribute("page", page);
-        return PATH_STAR;
+        return PATH_MY;
     }
 
     /**

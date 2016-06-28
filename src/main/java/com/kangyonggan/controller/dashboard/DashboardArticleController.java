@@ -8,13 +8,17 @@ import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.CategoryService;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -58,10 +62,18 @@ public class DashboardArticleController {
      * @return
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String create(@ModelAttribute("article") @Valid Article article, BindingResult result) {
+    public String create(@RequestParam(value = "attachment[]", required = false) List<MultipartFile> attachments,
+                         @ModelAttribute("article") @Valid Article article, BindingResult result) throws Exception {
 
         if (!result.hasErrors()) {
-            articleService.saveArticle(article);
+            List<String> filenames = new ArrayList();
+            if (attachments != null && !attachments.isEmpty()) {
+                for (MultipartFile file : attachments) {
+                    String filename = FileUpload.upload(file);
+                    filenames.add(filename);
+                }
+            }
+            articleService.saveArticle(article, filenames);
         }
 
         return String.format("redirect:/dashboard/category/list?code=%s", article.getCategoryCode());

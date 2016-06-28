@@ -54,6 +54,17 @@
             ${article.body}
             </div>
 
+            <#if article.categoryCode=="download">
+                <div class="space-10"></div>
+                <div class="row">
+                    <ul>
+                        <#list attachments as attachment>
+                            <a href="${ctx}${attachment.path}" target="_blank">${attachment.path}</a>
+                        </#list>
+                    </ul>
+                </div>
+            </#if>
+
             <div class="space-10"></div>
 
             <div class="row">

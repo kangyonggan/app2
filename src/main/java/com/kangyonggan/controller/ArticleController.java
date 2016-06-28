@@ -1,11 +1,9 @@
 package com.kangyonggan.controller;
 
 import com.kangyonggan.constants.AppConstants;
-import com.kangyonggan.model.Article;
-import com.kangyonggan.model.Reply;
-import com.kangyonggan.model.ShiroUser;
-import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.model.*;
 import com.kangyonggan.service.ArticleService;
+import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.service.ReplyService;
 import com.kangyonggan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +36,9 @@ public class ArticleController {
     @Autowired
     private ReplyService replyService;
 
+    @Autowired
+    private AttachmentService attachmentService;
+
     /**
      * 文章详情
      *
@@ -47,9 +48,11 @@ public class ArticleController {
     @RequestMapping(method = RequestMethod.GET)
     public String detail(@RequestParam("id") Long id, Model model) {
         Article article = articleService.findArticleById(id);
+        List<Attachment> attachments = attachmentService.findAttachmentsByArticleId(article.getId());
         List<Reply> replies = replyService.findRepliesByArticleId(id);
 
         model.addAttribute("article", article);
+        model.addAttribute("attachments", attachments);
         model.addAttribute("replies", replies);
         return PATH_DETAIL;
     }

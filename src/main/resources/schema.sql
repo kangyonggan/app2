@@ -185,7 +185,6 @@ VALUES (1, 'root', '根栏目', 0, 1, 'ace-icon fa fa-leaf', 0, 0, '2016-06-24 2
   (13, 'pancil', '随笔', 1, 4, 'ace-icon fa fa-pencil', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
   (130, 'word', '每日一句', 13, 1, 'ace-icon fa fa-pencil-square-o', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
   (131, 'diary', '每周一记', 13, 2, 'ace-icon fa fa-book', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-  (132, 'message', '我的留言', 13, 3, 'ace-icon fa fa-comment', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
 
   (14, 'enjoy', '娱乐', 1, 5, 'ace-icon fa fa-film', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
   (140, 'picture', '花样相册', 14, 1, 'ace-icon fa fa-picture-o', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
@@ -282,3 +281,23 @@ CREATE TABLE reply
 )
   COMMENT '评论表';
 CREATE UNIQUE INDEX id_UNIQUE ON reply (id);
+
+CREATE TABLE attachment
+(
+  id           BIGINT(20) PRIMARY KEY  AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  article_id   BIGINT(20)                             NOT NULL
+  COMMENT '附件所属的文章ID',
+  path         VARCHAR(500)                           NOT NULL
+  COMMENT '附件路径',
+  user_id      BIGINT(20)                             NOT NULL         DEFAULT 0
+  COMMENT '上传人ID',
+  is_deleted   TINYINT                                NOT NULL         DEFAULT 0
+  COMMENT '是否删除 {0:未删除, 1:已删除}',
+  created_time DATETIME                               NOT NULL
+  COMMENT '创建时间',
+  updated_time DATETIME                               NOT NULL
+  COMMENT '最后更新时间'
+)
+  COMMENT '附件表';
+CREATE UNIQUE INDEX id_UNIQUE ON attachment (id);

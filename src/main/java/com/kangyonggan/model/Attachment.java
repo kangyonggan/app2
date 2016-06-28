@@ -25,6 +25,12 @@ public class Attachment {
     private String path;
 
     /**
+     * 上传人ID
+     */
+    @Column(name = "user_id")
+    private Long userId;
+
+    /**
      * 是否删除 {0:未删除, 1:已删除}
      */
     @Column(name = "is_deleted")

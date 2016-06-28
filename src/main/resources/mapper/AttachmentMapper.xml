@@ -1,15 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kangyonggan.mapper.AttachmentMapper">
-    <resultMap id="BaseResultMap" type="com.kangyonggan.model.Attachment">
-        <!--
-          WARNING - @mbggenerated
-        -->
-        <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="article_id" property="articleId" jdbcType="BIGINT"/>
-        <result column="path" property="path" jdbcType="VARCHAR"/>
-        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
-        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
-        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
-    </resultMap>
+  <resultMap id="BaseResultMap" type="com.kangyonggan.model.Attachment">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="article_id" jdbcType="BIGINT" property="articleId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+
+  <insert id="insertAttachments">
+    INSERT INTO
+    attachment
+    (article_id, path, user_id, created_time, updated_time)
+    VALUES
+    <foreach collection="filenames" item="filename" separator=",">
+      (#{articleId}, #{filename}, #{userId}, #{now}, #{now})
+    </foreach>
+  </insert>
+
 </mapper>

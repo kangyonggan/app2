@@ -6,6 +6,7 @@ import com.kangyonggan.model.Article;
 import com.kangyonggan.model.Reply;
 import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.service.ArticleService;
+import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.service.ReplyService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.Collections3;
@@ -16,10 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author kangyonggan
@@ -37,6 +35,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Autowired
     private ReplyService replyService;
+
+    @Autowired
+    private AttachmentService attachmentService;
 
     @Override
     public List<Article> searchArticles(int pageNum, int pageSize, String code, String title, String startTime, String endTime) throws Exception {
@@ -84,6 +85,10 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     public List<Article> findBellArticles(int pageNum, int pageSize) {
         Map<String, Object> param = new HashMap();
         List<Reply> replies = replyService.findUserReplies();
+        if (replies.isEmpty()) {
+            return new ArrayList();
+        }
+
         param.put("articleIds", Collections3.extractToList(replies, "articleId"));
 
         PageHelper.startPage(pageNum, pageSize);
@@ -107,6 +112,16 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         article.setUserId(userService.getShiroUser().getId());
 
         super.insertSelective(article);
+    }
+
+    @Override
+    public void saveArticle(Article article, List<String> filenames) {
+        article.setCreatedTime(new Date());
+        article.setUpdatedTime(new Date());
+        article.setUserId(userService.getShiroUser().getId());
+
+        super.insertSelective(article);
+        attachmentService.saveAttachments(article.getId(), filenames);
     }
 
     @Override

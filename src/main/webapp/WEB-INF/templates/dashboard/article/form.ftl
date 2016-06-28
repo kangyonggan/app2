@@ -14,6 +14,8 @@
         <#include "word.ftl"/>
     <#elseif category.code=="diary">
         <#include "diary.ftl"/>
+    <#elseif category.code=="download">
+        <#include "download.ftl"/>
     </#if>
 
     <#include "form-actions.ftl"/>
@@ -28,6 +30,8 @@
     <script src="${ctx}static/app/js/dashboard/article/word.js"></script>
     <#elseif category.code=="diary">
     <script src="${ctx}static/app/js/dashboard/article/diary.js"></script>
+    <#elseif category.code=="download">
+    <script src="${ctx}static/app/js/dashboard/article/download.js"></script>
     </#if>
 </@override>
 

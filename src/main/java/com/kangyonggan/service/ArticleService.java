@@ -24,6 +24,8 @@ public interface ArticleService {
 
     void saveArticle(Article article);
 
+    void saveArticle(Article article, List<String> filenames);
+
     void deleteArticleWithLogic(Article article);
 
     void updateArticle(Article article);
