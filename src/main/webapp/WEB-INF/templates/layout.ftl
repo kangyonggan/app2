@@ -82,7 +82,6 @@
     <script src="${ctx}static/ace/dist/js/ace-extra.min.js"></script>
     <script src="${ctx}static/ace/dist/js/ace-elements.min.js"></script>
     <script src="${ctx}static/ace/dist/js/ace.min.js"></script>
-    <script src="${ctx}static/libs/jquery/mouse.js" id="mymouse"></script>
     <script src="${ctx}static/app/js/app.js"></script>
         <@block name="app-script"/>
 
