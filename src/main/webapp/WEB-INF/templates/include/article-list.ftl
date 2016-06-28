@@ -9,6 +9,13 @@
             </#if>
             ${category.name}
             </h4>
+            <#if category.code != ''>
+                <div class="widget-toolbar no-border">
+                    <a href="${ctx}dashboard/article/create?code=${category.code}" class="skin-inverse">
+                        发表
+                    </a>
+                </div>
+            </#if>
         </div>
 
     <#if page.list?size == 0>
@@ -32,6 +39,4 @@
         </div>
     </#if>
 </#list>
-<div class="space-10"></div>
-<@c.pagination url="${ctx}category/list" param="code=${category.code}"/>
 </div>

@@ -9,7 +9,5 @@ import java.util.List;
 @Repository
 public interface ReplyMapper extends MyMapper<Reply> {
 
-    Reply selectReplyById(Long id);
-
     List<Reply> selectReplyByArticleId(Long articleId);
 }

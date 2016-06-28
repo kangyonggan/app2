@@ -7,6 +7,7 @@ import com.kangyonggan.model.Category;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.ArticleService;
+import com.kangyonggan.service.CategoryService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.FileUpload;
 import com.kangyonggan.util.Images;
@@ -37,6 +38,9 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private ArticleService articleService;
 
     /**
@@ -51,15 +55,8 @@ public class UserController {
         if (user == null) {
             return "redirect:/404";
         }
-        Category category = new Category();
-        category.setName("全部栏目");
-        category.setCode("");
-        List<Article> articles = articleService.findArticesByCategoryCode(pageNum, AppConstants.PAGE_SIZE, null);
-        PageInfo<Article> page = new PageInfo(articles);
 
         model.addAttribute("user", user);
-        model.addAttribute("category", category);
-        model.addAttribute("page", page);
         return PATH_INDEX;
     }
 
@@ -70,13 +67,16 @@ public class UserController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "article/star", method = RequestMethod.GET)
-    public String star(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum, Model model) {
-        List<Article> articles = articleService.findStarArticles(pageNum, AppConstants.PAGE_SIZE);
+    @RequestMapping(value = "article/{code:\\bstar\\b|\\brss\\b|\\bbell\\b}", method = RequestMethod.GET)
+    public String star(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
+                       @PathVariable("code") String code,
+                       Model model) {
+        List<Article> articles = null;
+        if (code.equals("star")) {
+            articles = articleService.findStarArticles(pageNum, AppConstants.PAGE_SIZE);
+        }
         PageInfo<Article> page = new PageInfo(articles);
-        Category category = new Category();
-        category.setName("我的收藏");
-        category.setIcon("ace-icon fa fa-star-o");
+        Category category = categoryService.findCategoryByCode(code);
 
         model.addAttribute("category", category);
         model.addAttribute("page", page);

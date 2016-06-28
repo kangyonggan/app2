@@ -129,4 +129,20 @@ public class ArticleController {
         return res;
     }
 
+    @RequestMapping(value = "reply/delete", method = RequestMethod.GET)
+    @ResponseBody
+    public ValidationResponse replyDelete(@RequestParam("id") Long id) {
+        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        ShiroUser user = userService.getShiroUser();
+        Reply reply = replyService.getReply(id);
+
+        if (!user.getId().equals(reply.getUserId())) {
+            res.setStatus(AppConstants.FAIL);
+            return res;
+        }
+
+        replyService.deleteArticleReplyById(id);
+        return res;
+    }
+
 }

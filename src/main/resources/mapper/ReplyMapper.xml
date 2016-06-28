@@ -19,17 +19,6 @@
         <result column="small_avatar" jdbcType="VARCHAR" property="smallAvatar"/>
     </resultMap>
 
-    <select id="selectReplyById" resultMap="BaseResultMap">
-        SELECT
-        r.*, u.realname
-        FROM
-        reply r, user u
-        <where>
-            r.user_id = u.id
-            AND r.id = #{id}
-        </where>
-    </select>
-
     <select id="selectReplyByArticleId" resultMap="BaseResultMap">
       SELECT
       r.*, u.small_avatar, u.realname

@@ -23,4 +23,15 @@ $(function () {
         });
     });
 
+    $(".reply-delete").click(function () {
+        $this = $(this);
+        $.get($this.attr("href"), function (result) {
+            if (result.status == "success") {
+                window.location.reload();
+            }
+        });
+
+        return false;
+    });
+
 });

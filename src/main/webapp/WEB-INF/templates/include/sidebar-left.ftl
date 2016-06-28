@@ -13,38 +13,13 @@
                         全部栏目
                     </a>
                 </li>
-                <li></li>
-            <@shiro.user>
-                <li class="active">
-                    <a href="${ctx}user/article/rss">
-                        <i class="ace-icon fa fa-rss"></i>
-                        我的订阅
-                    </a>
-                </li>
-                <li>
-                    <a href="${ctx}user/article/star">
-                        <i class="ace-icon fa fa-star-o green"></i>
-                        我的收藏
-                    </a>
-                </li>
-                <li>
-                    <a href="${ctx}user/article/about">
-                        <i class="ace-icon fa fa-bell purple"></i>
-                        我参与的
-                    </a>
-                </li>
-                <li>
-                    <a href="${ctx}user/article/follow">
-                        <i class="ace-icon fa fa-heart red"></i>
-                        特别关心
-                    </a>
-                </li>
-                <li></li>
-            </@shiro.user>
+
             <#assign colors=["dark", "purple", "green", "red2"]/>
+
             <#list app_category.childrens as category>
                 <#assign hasChildren=category.childrens?size gt 0>
                 <#if hasChildren>
+                    <li></li>
                     <#list category.childrens as c>
                         <li>
                             <a href="${ctx}category/list?code=${c.code}">
@@ -53,7 +28,15 @@
                             </a>
                         </li>
                     </#list>
-                    <li></li>
+                <#else>
+                    <@shiro.user>
+                        <li>
+                            <a href="${ctx}user/article/${category.code}">
+                                <i class="${category.icon} ${colors[category_index%colors?size]}"></i>
+                            ${category.name}
+                            </a>
+                        </li>
+                    </@shiro.user>
                 </#if>
             </#list>
             </ul>

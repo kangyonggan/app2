@@ -6,7 +6,9 @@ $(function () {
         var title = $trigger.attr("title");
         $.messager.confirm("警告", "确定删除" + title + "吗?", function () {
             $.get(url, function () {
-                $trigger.parents('tr').remove();
+                if ($trigger.parents('tr')) {
+                    $trigger.parents('tr').remove();
+                }
             }).success(function () {
                 Notify.success("删除成功");
             })

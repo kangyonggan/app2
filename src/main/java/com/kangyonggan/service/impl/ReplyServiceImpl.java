@@ -5,12 +5,10 @@ import com.kangyonggan.model.Article;
 import com.kangyonggan.model.Reply;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.ReplyService;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +32,8 @@ public class ReplyServiceImpl extends BaseService<Reply> implements ReplyService
     }
 
     @Override
-    public Reply findReplyById(Long id) {
-        return replyMapper.selectReplyById(id);
+    public Reply getReply(Long id) {
+        return super.selectByPrimaryKey(id);
     }
 
     @Override
@@ -46,6 +44,23 @@ public class ReplyServiceImpl extends BaseService<Reply> implements ReplyService
         super.insertSelective(reply);
 
         updateArticleReplyCount(reply);
+    }
+
+    @Override
+    public void deleteArticleReplyById(Long id) {
+        Reply reply = getReply(id);
+        reply.setIsDeleted((byte) 1);
+        updateReply(reply);
+
+        Article article = articleService.getArticle(reply.getArticleId());
+        article.setReply(article.getReply() - 1);
+        articleService.updateArticle(article);
+    }
+
+    @Override
+    public void updateReply(Reply reply) {
+        reply.setUpdatedTime(new Date());
+        super.updateByPrimaryKeySelective(reply);
     }
 
     private void updateArticleReplyCount(Reply reply) {

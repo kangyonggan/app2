@@ -12,7 +12,12 @@ public interface ReplyService {
 
     List<Reply> findRepliesByArticleId(Long articleId);
 
-    Reply findReplyById(Long id);
+    Reply getReply(Long id);
 
     void saveReply(Reply reply);
+
+    void deleteArticleReplyById(Long id);
+
+    void updateReply(Reply reply);
+
 }

@@ -56,35 +56,37 @@
 
             <div class="space-10"></div>
 
-            <div class="hr hr8 hr-double hr-dotted"></div>
-
-            <div class="space-10"></div>
-
             <div class="row">
                 <#list replies as reply>
-                    <div class="well">
-                        <div class="row">
-                            <a href="${ctx}user?id=${reply.userId}">
-                                <#if reply.smallAvatar == ''>
-                                    <img class="pull-left user-avator"
-                                         src="${ctx}static/ace/dist/avatars/avatar5.png"/>
-                                <#else>
-                                    <img class="pull-left user-avator" src="${ctx}${reply.smallAvatar}"/>
-                                </#if>
-                            </a>
-                            <h4>
-                                <a class="dark" href="${ctx}user?id=${reply.userId}"> ${reply.realname}
-                                    / ${reply_index + 1}F</a>
-                            </h4>
-                            <small>
-                                <div class="time">
-                                    <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                    <div class="profile-activity clearfix">
+                        <div>
+                            <#if reply.smallAvatar == ''>
+                                <img class="pull-left user-avator"
+                                     src="${ctx}static/ace/dist/avatars/avatar5.png"/>
+                            <#else>
+                                <img class="pull-left user-avator" src="${ctx}${reply.smallAvatar}"/>
+                            </#if>
+                            <a class="user" href="#"> ${reply.realname} </a>
+                            ${reply_index + 1} / F
+
+                            <div class="time">
+                                <i class="ace-icon fa fa-clock-o bigger-110"></i>
                                 ${reply.createdTime?datetime}
-                                </div>
-                            </small>
+                            </div>
+
+                            <div class="space-6"></div>
+
+                            <p class="reply-content">
+                            ${reply.content}
+                            </p>
                         </div>
-                        <div class="row reply-content">
-                        ${reply.content}
+
+                        <div class="tools action-buttons">
+                            <#if app_who=='1' && reply.userId==app_user.id>
+                                <a href="${ctx}article/reply/delete?id=${reply.id}" class="red reply-delete" title="删除评论">
+                                    <i class="ace-icon fa fa-times bigger-125"></i>
+                                </a>
+                            </#if>
                         </div>
                     </div>
                 </#list>
