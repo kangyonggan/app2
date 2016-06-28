@@ -129,6 +129,12 @@ public class ArticleController {
         return res;
     }
 
+    /**
+     * 删除评论
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "reply/delete", method = RequestMethod.GET)
     @ResponseBody
     public ValidationResponse replyDelete(@RequestParam("id") Long id) {

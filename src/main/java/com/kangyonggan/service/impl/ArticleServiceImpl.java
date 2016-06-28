@@ -8,6 +8,7 @@ import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.ReplyService;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.Collections3;
 import com.kangyonggan.util.DateUtil;
 import com.kangyonggan.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -75,6 +78,16 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
         PageHelper.startPage(pageNum, pageSize);
         return articleMapper.selectStarArticles(user.getId());
+    }
+
+    @Override
+    public List<Article> findBellArticles(int pageNum, int pageSize) {
+        Map<String, Object> param = new HashMap();
+        List<Reply> replies = replyService.findUserReplies();
+        param.put("articleIds", Collections3.extractToList(replies, "articleId"));
+
+        PageHelper.startPage(pageNum, pageSize);
+        return articleMapper.selectArticlesInIds(param);
     }
 
     @Override

@@ -101,4 +101,19 @@
         a.sticky desc, a.sticky_time desc, a.id desc
     </select>
 
+    <select id="selectArticlesInIds" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT a.*, u.realname, u.sign, u.small_avatar
+        FROM
+        article a, user u
+        <where>
+            a.user_id = u.id
+            AND a.is_deleted = 0
+            AND a.id IN
+            <foreach collection="articleIds" item="articleId" open="(" close=")" separator=",">
+                #{articleId}
+            </foreach>
+        </where>
+    </select>
+
 </mapper>

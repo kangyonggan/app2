@@ -12,6 +12,8 @@ public interface ReplyService {
 
     List<Reply> findRepliesByArticleId(Long articleId);
 
+    List<Reply> findUserReplies();
+
     Reply getReply(Long id);
 
     void saveReply(Reply reply);

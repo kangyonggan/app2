@@ -1,7 +1,8 @@
+<#assign no_right="">
 <#assign title="首页">
 
 <@override name="content">
-    <#include "../../include/article-list.ftl">
+网站首页
 </@override>
 
 <@extends name="../../app-layout.ftl"/>

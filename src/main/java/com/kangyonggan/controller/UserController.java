@@ -61,7 +61,7 @@ public class UserController {
     }
 
     /**
-     * 我的收藏
+     * 我收藏的/我订阅的/我参与的
      *
      * @param pageNum
      * @param model
@@ -74,6 +74,8 @@ public class UserController {
         List<Article> articles = null;
         if (code.equals("star")) {
             articles = articleService.findStarArticles(pageNum, AppConstants.PAGE_SIZE);
+        } else if (code.equals("bell")) {
+            articles = articleService.findBellArticles(pageNum, AppConstants.PAGE_SIZE);
         }
         PageInfo<Article> page = new PageInfo(articles);
         Category category = categoryService.findCategoryByCode(code);
