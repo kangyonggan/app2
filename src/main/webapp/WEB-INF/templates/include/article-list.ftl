@@ -12,6 +12,7 @@
             <#if category.code != ''>
                 <div class="widget-toolbar no-border">
                     <a href="${ctx}dashboard/article/create?code=${category.code}" class="skin-inverse">
+                        <i class="ace-icon fa fa-edit"></i>
                         发表
                     </a>
                 </div>
