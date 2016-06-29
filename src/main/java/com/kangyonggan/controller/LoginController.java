@@ -36,7 +36,6 @@ import java.util.Date;
 @Log4j2
 public class LoginController {
 
-    private static final String PASSWORD_ERROR_KEY = "password-error-key";
     private static final int PASSWORD_ERROR_COUNT = 3;
 
     private static final String PATH_ROOT = "web/login";
@@ -100,10 +99,10 @@ public class LoginController {
             res.setMessage("该电子邮箱不存在！");
             return res;
         } catch (IncorrectCredentialsException ice) {
-            int count = doErrorPassword(session, user.getEmail());
-            res.setMessage(String.format("密码错误%d次，错误%d次将锁定账户！", count, PASSWORD_ERROR_COUNT));
+            int count = doErrorPassword(user.getEmail());
+            res.setMessage(String.format("密码错误%d次，错误%d次将锁定账户三十分钟！", count, PASSWORD_ERROR_COUNT));
             if (count >= PASSWORD_ERROR_COUNT) {
-                res.setMessage(String.format("密码错误%d次，账户已锁定, 请前往邮箱激活！", count));
+                res.setMessage(String.format("密码错误%d次，账户已锁定, 请在三十分钟后重试或前往邮箱激活！", count));
             }
             return res;
         } catch (LockedAccountException lae) {
@@ -195,24 +194,28 @@ public class LoginController {
     /**
      * 处理密码错误, 防止暴力破解
      *
-     * @param session
      * @param email
      * @return 已错误次数
      */
-    private int doErrorPassword(HttpSession session, String email) {
+    private int doErrorPassword(String email) {
         int count;
+        User user = userService.findUserByEmail(email);
         try {
-            count = (int) session.getAttribute(PASSWORD_ERROR_KEY);
+            if (new Date().getTime() - user.getErrorPasswordTime().getTime() > 30 * 60 * 1000) {
+                count = 0;
+            } else {
+                count = user.getErrorPasswordCount();
+            }
         } catch (Exception e) {
             count = 0;
         }
         if (++count >= PASSWORD_ERROR_COUNT) {
-            User user = userService.findUserByEmail(email);
             user.setIsLocked((byte) 1);
-            userService.updateUser(user);
             // TODO 因为可能是其他人恶意破坏, 所以需要发邮箱通知用户
         }
-        session.setAttribute(PASSWORD_ERROR_KEY, count % PASSWORD_ERROR_COUNT);
+        user.setErrorPasswordCount(count);
+        user.setErrorPasswordTime(new Date());
+        userService.updateUser(user);
         return count;
     }
 

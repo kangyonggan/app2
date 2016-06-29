@@ -21,6 +21,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -84,7 +85,15 @@ public class MyShiroRealm extends AuthorizingRealm {
         }
 
         if (user.getIsLocked() == 1) {
-            throw new LockedAccountException();
+            // 锁定超过30分钟后, 再次登录将解锁
+            if (new Date().getTime() - user.getErrorPasswordTime().getTime() < 30 * 60 * 1000) {
+                throw new LockedAccountException();
+            } else {
+                user.setIsLocked((byte) 0);
+                user.setErrorPasswordCount(0);
+                user.setLoginTime(new Date());
+                userService.updateUser(user);
+            }
         }
 
         if (user.getIsVerified() == 0) {

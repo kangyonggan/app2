@@ -6,54 +6,62 @@ USE app;
 
 CREATE TABLE user
 (
-  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  id                   BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
-  email         VARCHAR(128)                          NOT NULL
+  email                VARCHAR(128)                          NOT NULL
   COMMENT '电子邮箱',
-  is_verified   TINYINT                               NOT NULL         DEFAULT 0
+  is_verified          TINYINT                               NOT NULL         DEFAULT 0
   COMMENT '邮箱是否校验 {0:未校验, 1:已校验}',
-  password      VARCHAR(128)                          NOT NULL
+  password             VARCHAR(128)                          NOT NULL
   COMMENT '密码',
-  salt          VARCHAR(128)                          NOT NULL
+  salt                 VARCHAR(128)                          NOT NULL
   COMMENT '密码盐',
-  realname      VARCHAR(64)                           NOT NULL         DEFAULT ''
+  error_password_count INT(11)                               NOT NULL         DEFAULT 0
+  COMMENT '密码错误次数',
+  error_password_time  DATETIME                              NULL
+  COMMENT '最后密码错误时间',
+  realname             VARCHAR(64)                           NOT NULL         DEFAULT ''
   COMMENT '真实姓名',
-  mobile        VARCHAR(20)                           NOT NULL         DEFAULT ''
+  mobile               VARCHAR(20)                           NOT NULL         DEFAULT ''
   COMMENT '手机号',
-  small_avatar  VARCHAR(255)                          NOT NULL         DEFAULT ''
+  small_avatar         VARCHAR(255)                          NOT NULL         DEFAULT ''
   COMMENT '小头像',
-  medium_avatar VARCHAR(255)                          NOT NULL         DEFAULT ''
+  medium_avatar        VARCHAR(255)                          NOT NULL         DEFAULT ''
   COMMENT '中头像',
-  large_avatar  VARCHAR(255)                          NOT NULL         DEFAULT ''
+  large_avatar         VARCHAR(255)                          NOT NULL         DEFAULT ''
   COMMENT '大头像',
-  sign          VARCHAR(255)                          NOT NULL         DEFAULT ''
+  sign                 VARCHAR(255)                          NOT NULL         DEFAULT ''
   COMMENT '个性签名',
-  is_locked     TINYINT                               NOT NULL         DEFAULT 0
+  is_locked            TINYINT                               NOT NULL         DEFAULT 0
   COMMENT '是否锁定 {0:未锁定, 1:已锁定}',
-  is_deleted    TINYINT                               NOT NULL         DEFAULT 0
+  is_deleted           TINYINT                               NOT NULL         DEFAULT 0
   COMMENT '是否删除 {0:未删除, 1:已删除}',
-  created_time  DATETIME                              NOT NULL
+  created_time         DATETIME                              NOT NULL
   COMMENT '创建时间',
-  updated_time  DATETIME                              NOT NULL
+  updated_time         DATETIME                              NOT NULL
   COMMENT '最后更新时间',
-  login_time    DATETIME                              NOT NULL
+  login_time           DATETIME                              NOT NULL
   COMMENT '最近登录时间'
 )
   COMMENT '用户表';
 CREATE UNIQUE INDEX id_UNIQUE ON user (id);
 CREATE UNIQUE INDEX email_UNIQUE ON user (email);
 
-INSERT INTO user (id, email, is_verified, password, salt, realname, mobile, created_time, updated_time, login_time)
+INSERT INTO user (id, email, is_verified, password, salt, error_password_time, realname, mobile, created_time, updated_time, login_time)
 VALUES
-  (1, 'kangyonggan@gmail.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '康永敢', '18221372104',
-   '2016-06-21 13:40:15', '2016-06-21 18:40:17',
-   '2016-06-21 13:40:17'),
-  (2, 'kangyonggan@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '黄芳玲', '15151679072',
-   '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:12:26'),
-  (3, 'houbinbin@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '侯宾宾', '',
-   '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:11:26'),
-  (4, 'liujinfu@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '刘晋甫', '',
-   '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:10:26');
+  (1, 'kangyonggan@gmail.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '2016-06-21 18:40:17',
+      '康永敢', '18221372104',
+      '2016-06-21 13:40:15', '2016-06-21 18:40:17',
+      '2016-06-21 13:40:17'),
+  (2, 'kangyonggan@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '2016-06-21 18:40:17',
+      '黄芳玲', '15151679072',
+      '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:12:26'),
+  (3, 'houbinbin@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '2016-06-21 18:40:17',
+      '侯宾宾', '',
+      '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:11:26'),
+  (4, 'liujinfu@qq.com', 1, '341047a77b46b72db791287a0d3beeb9c771bfdf', '3d30f9ce25f02d0a', '2016-06-21 18:40:17',
+      '刘晋甫', '',
+      '2016-06-21 17:12:16', '2016-06-21 17:12:23', '2016-06-21 17:10:26');
 
 CREATE TABLE role
 (

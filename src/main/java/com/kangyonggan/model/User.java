@@ -1,8 +1,12 @@
 package com.kangyonggan.model;
 
-import java.util.Date;
-import javax.persistence.*;
 import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Date;
 
 @Data
 public class User {
@@ -33,6 +37,18 @@ public class User {
      * 密码盐
      */
     private String salt;
+
+    /**
+     * 密码错误次数
+     */
+    @Column(name = "error_password_count")
+    private Integer errorPasswordCount;
+
+    /**
+     * 最后密码错误时间
+     */
+    @Column(name = "error_password_time")
+    private Date errorPasswordTime;
 
     /**
      * 真实姓名

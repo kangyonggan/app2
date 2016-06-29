@@ -10,6 +10,8 @@
         <result column="is_verified" jdbcType="TINYINT" property="isVerified"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="salt" jdbcType="VARCHAR" property="salt"/>
+        <result column="error_password_count" jdbcType="INTEGER" property="errorPasswordCount"/>
+        <result column="error_password_time" jdbcType="TIMESTAMP" property="errorPasswordTime"/>
         <result column="realname" jdbcType="VARCHAR" property="realname"/>
         <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
         <result column="small_avatar" jdbcType="VARCHAR" property="smallAvatar"/>
