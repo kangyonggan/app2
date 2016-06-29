@@ -5,7 +5,7 @@
 <#else>
     <td title="${item.title}"><@c.substring str="${item.title}" len=25/></td>
 </#if>
-    <td>${item.top}/${item.low}</td>
+    <td>${item.top}/${item.low}/${item.star}</td>
     <td>${item.createdTime?datetime}</td>
     <td>
         <div class="btn-group">

@@ -12,10 +12,10 @@
 
     <#if category.code=="word">
         <#include "word.ftl"/>
-    <#elseif category.code=="diary">
-        <#include "diary.ftl"/>
     <#elseif category.code=="download">
         <#include "download.ftl"/>
+    <#else>
+        <#include "default.ftl"/>
     </#if>
 
     <#include "form-actions.ftl"/>
@@ -28,10 +28,10 @@
 <script src="${ctx}static/app/js/dashboard/article/form.js"></script>
     <#if category.code=="word">
     <script src="${ctx}static/app/js/dashboard/article/word.js"></script>
-    <#elseif category.code=="diary">
-    <script src="${ctx}static/app/js/dashboard/article/diary.js"></script>
     <#elseif category.code=="download">
     <script src="${ctx}static/app/js/dashboard/article/download.js"></script>
+    <#else>
+    <script src="${ctx}static/app/js/dashboard/article/default.js"></script>
     </#if>
 </@override>
 

@@ -27,9 +27,11 @@
                placeholder="结束日期" readonly/>
     </div>
 
-    <div class="form-group">
-        <input type="text" class="form-control" name="title" value="${title2}" placeholder="标题"/>
-    </div>
+    <#if category.code!='word'>
+        <div class="form-group">
+            <input type="text" class="form-control" name="title" value="${title2}" placeholder="标题"/>
+        </div>
+    </#if>
 
     <button class="btn btn-sm skin-btn">
         搜索
@@ -52,7 +54,7 @@
         <#else>
             <th>标题</th>
         </#if>
-        <th>顶/踩</th>
+        <th>顶/踩/收藏</th>
         <th>创建时间</th>
         <th>操作</th>
     </tr>
