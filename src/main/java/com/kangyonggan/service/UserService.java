@@ -1,6 +1,7 @@
 package com.kangyonggan.service;
 
 import com.kangyonggan.model.ShiroUser;
+import com.kangyonggan.model.Token;
 import com.kangyonggan.model.User;
 
 import java.util.List;
@@ -30,4 +31,6 @@ public interface UserService {
     void updateUserRoles(Long id, String roleIds);
 
     void deleteUser(Long id);
+
+    void updateUserEmailVerified(Token token);
 }

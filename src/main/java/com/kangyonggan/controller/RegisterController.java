@@ -3,7 +3,9 @@ package com.kangyonggan.controller;
 import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.service.MailService;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.IPUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class RegisterController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MailService mailService;
 
     /**
      * 注册界面
@@ -67,7 +72,7 @@ public class RegisterController {
             userService.saveUserAndRole(user);
             res.setStatus(AppConstants.SUCCESS);
 
-            // TODO 发送邮件
+            mailService.sendVerifyMail(user, IPUtil.getServerHost(request) + "/validator/email/");
         } catch (Exception e) {
             log.error(e.getMessage());
         }

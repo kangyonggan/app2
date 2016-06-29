@@ -35,3 +35,8 @@ app:
     - 康永敢
     - 提交
     - 取消
+    - smtp.qq.com
+    - 587
+    - kangyonggan@qq.com
+    - app2016
+    - 25000

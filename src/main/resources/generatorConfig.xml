@@ -38,7 +38,7 @@
         </javaClientGenerator>
 
         <!--table name-->
-        <table tableName="attachment">
+        <table tableName="token">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

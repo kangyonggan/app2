@@ -6,6 +6,7 @@ import com.kangyonggan.constants.ShiroConstants;
 import com.kangyonggan.mapper.RoleMapper;
 import com.kangyonggan.mapper.UserMapper;
 import com.kangyonggan.model.ShiroUser;
+import com.kangyonggan.model.Token;
 import com.kangyonggan.model.User;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.Digests;
@@ -107,6 +108,14 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     @Override
     public void deleteUser(Long id) {
         super.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void updateUserEmailVerified(Token token) {
+        User user = new User();
+        user.setId(token.getUserId());
+        user.setIsVerified((byte) 1);
+        this.updateUser(user);
     }
 
     @Override

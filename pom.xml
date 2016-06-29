@@ -161,6 +161,12 @@
             <version>${thumbnailator.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${java-mail.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -234,5 +240,6 @@
         <commons-collections.version>3.2.1</commons-collections.version>
         <commons-io.version>2.4</commons-io.version>
         <commons-beanutils.version>1.9.2</commons-beanutils.version>
+        <java-mail.version>1.4.7</java-mail.version>
     </properties>
 </project>
