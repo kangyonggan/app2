@@ -154,3 +154,13 @@ input.app-date-input {
 }
 
 /*登录界面 结尾*/
+
+/*附件列表样式*/
+.attachments > li:hover > div {
+    background: #e5e5e5;
+}
+.attachments > li > div {
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+}

@@ -20,6 +20,11 @@ public class Attachment {
     private Long articleId;
 
     /**
+     * 附件名称
+     */
+    private String name;
+
+    /**
      * 附件路径
      */
     private String path;

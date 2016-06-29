@@ -1,4 +1,6 @@
-CREATE DATABASE app DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE app
+  DEFAULT CHARACTER SET utf8
+  COLLATE utf8_general_ci;
 
 USE app;
 
@@ -203,7 +205,6 @@ VALUES (1, 'root', '根栏目', 0, 1, 'ace-icon fa fa-leaf', 0, 0, '2016-06-24 2
    '2016-06-24 21:12:53');
 
 
-
 CREATE TABLE article
 (
   id            BIGINT(20) PRIMARY KEY  AUTO_INCREMENT NOT NULL
@@ -248,11 +249,11 @@ CREATE UNIQUE INDEX id_UNIQUE ON article (id);
 
 CREATE TABLE article_user
 (
-  article_id BIGINT(20) NOT NULL
+  article_id BIGINT(20)  NOT NULL
   COMMENT '文章ID',
-  user_id    BIGINT(20) NOT NULL
+  user_id    BIGINT(20)  NOT NULL
   COMMENT '用户ID',
-  type       VARCHAR(32)    NOT NULL
+  type       VARCHAR(32) NOT NULL
   COMMENT '顶/踩 {top:顶, low:踩, star:收藏}',
   CONSTRAINT `PRIMARY` PRIMARY KEY (article_id, user_id, type)
 )
@@ -288,7 +289,9 @@ CREATE TABLE attachment
   COMMENT '主键, 自增',
   article_id   BIGINT(20)                             NOT NULL
   COMMENT '附件所属的文章ID',
-  path         VARCHAR(500)                           NOT NULL
+  name         VARCHAR(500)                           NOT NULL         DEFAULT ''
+  COMMENT '附件名称',
+  path         VARCHAR(500)                           NOT NULL         DEFAULT ''
   COMMENT '附件路径',
   user_id      BIGINT(20)                             NOT NULL         DEFAULT 0
   COMMENT '上传人ID',

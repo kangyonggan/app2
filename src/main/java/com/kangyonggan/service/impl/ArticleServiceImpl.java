@@ -3,6 +3,7 @@ package com.kangyonggan.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.mapper.ArticleMapper;
 import com.kangyonggan.model.Article;
+import com.kangyonggan.model.Attachment;
 import com.kangyonggan.model.Reply;
 import com.kangyonggan.model.ShiroUser;
 import com.kangyonggan.service.ArticleService;
@@ -115,13 +116,13 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
-    public void saveArticle(Article article, List<String> filenames) {
+    public void saveArticle(Article article, List<Attachment> files) {
         article.setCreatedTime(new Date());
         article.setUpdatedTime(new Date());
         article.setUserId(userService.getShiroUser().getId());
 
         super.insertSelective(article);
-        attachmentService.saveAttachments(article.getId(), filenames);
+        attachmentService.saveAttachments(article.getId(), files);
     }
 
     @Override

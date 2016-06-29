@@ -1,6 +1,5 @@
 package com.kangyonggan.service;
 
-import com.kangyonggan.model.Article;
 import com.kangyonggan.model.Attachment;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  */
 public interface AttachmentService {
 
-    void saveAttachments(Long articleId, List<String> filenames);
+    void saveAttachments(Long articleId, List<Attachment> files);
 
     List<Attachment> findAttachmentsByArticleId(Long articleId);
 

@@ -35,16 +35,17 @@
 
                 <div class="hr hr8 hr-dotted"></div>
 
-                <div class="space-10"></div>
+                <#if article.summary!=''>
+                    <div class="space-10"></div>
 
-                <div class="row well">
-                    摘要:
-                    <#if article.summary==''>
-                        无
-                    <#else>
-                    ${article.summary}
-                    </#if>
-                </div>
+                    <div class="row">
+                        摘要:
+
+                        <div class="row well">
+                        ${article.summary}
+                        </div>
+                    </div>
+                </#if>
 
                 <div class="space-10"></div>
 
@@ -57,9 +58,15 @@
             <#if article.categoryCode=="download">
                 <div class="space-10"></div>
                 <div class="row">
-                    <ul>
+                    <ul class="attachments">
                         <#list attachments as attachment>
-                            <a href="${ctx}${attachment.path}" target="_blank">${attachment.path}</a>
+                            <li>
+                                <div class="col-xs-6">${attachment.createdTime?datetime}</div>
+                                <div class="col-xs-5">${attachment.name}</div>
+                                <div class="col-xs-1 text-center">
+                                    <a href="${ctx}${attachment.path}"><i class="fa fa-download bigger-120 skin-color"></i></a>
+                                </div>
+                            </li>
                         </#list>
                     </ul>
                 </div>
@@ -78,11 +85,11 @@
                                 <img class="pull-left user-avator" src="${ctx}${reply.smallAvatar}"/>
                             </#if>
                             <a class="user" href="#"> ${reply.realname} </a>
-                            ${reply_index + 1} / F
+                        ${reply_index + 1} / F
 
                             <div class="time">
                                 <i class="ace-icon fa fa-clock-o bigger-110"></i>
-                                ${reply.createdTime?datetime}
+                            ${reply.createdTime?datetime}
                             </div>
 
                             <div class="space-6"></div>
@@ -94,7 +101,8 @@
 
                         <div class="tools action-buttons">
                             <#if app_who=='1' && reply.userId==app_user.id>
-                                <a href="${ctx}article/reply/delete?id=${reply.id}" class="red reply-delete" title="删除评论">
+                                <a href="${ctx}article/reply/delete?id=${reply.id}" class="red reply-delete"
+                                   title="删除评论">
                                     <i class="ace-icon fa fa-times bigger-125"></i>
                                 </a>
                             </#if>

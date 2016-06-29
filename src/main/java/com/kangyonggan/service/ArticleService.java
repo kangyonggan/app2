@@ -1,6 +1,7 @@
 package com.kangyonggan.service;
 
 import com.kangyonggan.model.Article;
+import com.kangyonggan.model.Attachment;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface ArticleService {
 
     void saveArticle(Article article);
 
-    void saveArticle(Article article, List<String> filenames);
+    void saveArticle(Article article, List<Attachment> files);
 
     void deleteArticleWithLogic(Article article);
 

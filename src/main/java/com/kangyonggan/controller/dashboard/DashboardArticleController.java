@@ -1,10 +1,7 @@
 package com.kangyonggan.controller.dashboard;
 
 import com.kangyonggan.constants.AppConstants;
-import com.kangyonggan.model.Article;
-import com.kangyonggan.model.Category;
-import com.kangyonggan.model.ShiroUser;
-import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.model.*;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.CategoryService;
 import com.kangyonggan.service.UserService;
@@ -66,14 +63,19 @@ public class DashboardArticleController {
                          @ModelAttribute("article") @Valid Article article, BindingResult result) throws Exception {
 
         if (!result.hasErrors()) {
-            List<String> filenames = new ArrayList();
+            List<Attachment> files = new ArrayList();
             if (attachments != null && !attachments.isEmpty()) {
                 for (MultipartFile file : attachments) {
-                    String filename = FileUpload.upload(file);
-                    filenames.add(filename);
+                    String path = FileUpload.upload(file);
+
+                    Attachment attachment = new Attachment();
+                    attachment.setName(file.getOriginalFilename());
+                    attachment.setPath(path);
+
+                    files.add(attachment);
                 }
             }
-            articleService.saveArticle(article, filenames);
+            articleService.saveArticle(article, files);
         }
 
         return String.format("redirect:/dashboard/category/list?code=%s", article.getCategoryCode());
