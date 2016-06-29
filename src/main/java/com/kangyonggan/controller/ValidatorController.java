@@ -1,6 +1,7 @@
 package com.kangyonggan.controller;
 
 import com.kangyonggan.model.Token;
+import com.kangyonggan.model.User;
 import com.kangyonggan.service.TokenService;
 import com.kangyonggan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import java.util.Date;
 @RequestMapping("validator")
 public class ValidatorController {
 
+    private static final String PATH_RESULT = "web/email-result";
+
     @Autowired
     private TokenService tokenService;
 
@@ -35,16 +38,19 @@ public class ValidatorController {
         } else if (token.getExpireTime().before(new Date())) {
             model.addAttribute("message", "验证地址已过期");
         } else if (token.getIsDeleted() == 1) {
-            model.addAttribute("message", "验证码已失效");
+            model.addAttribute("message", "验证码已失效, 点击下面的按钮重新发送邮件");
         } else {
             userService.updateUserEmailVerified(token);
             model.addAttribute("message", "邮箱验证成功");
+            model.addAttribute("status", "success");
         }
 
         token.setIsDeleted((byte) 1);
         tokenService.updateToken(token);
 
-        return "web/email-verify";
+        model.addAttribute("code", token.getCode());
+        model.addAttribute("header", "邮箱验证结果");
+        return PATH_RESULT;
     }
 
     @RequestMapping(value = "reset/{code}", method = RequestMethod.GET)
@@ -56,16 +62,47 @@ public class ValidatorController {
         } else if (token.getExpireTime().before(new Date())) {
             model.addAttribute("message", "验证码已过期");
         } else if (token.getIsDeleted() == 1) {
-            model.addAttribute("message", "验证码已失效, 请重新申请密码找回!");
+            model.addAttribute("message", "验证码已失效, 点击下面的按钮重新发送邮件");
         } else {
             model.addAttribute("userId", token.getUserId());
             model.addAttribute("message", "重置密码");
+            model.addAttribute("status", "success");
         }
 
         token.setIsDeleted((byte) 1);
         tokenService.updateToken(token);
 
-        return "web/password-reset";
+        model.addAttribute("code", token.getCode());
+        model.addAttribute("header", "重置密码");
+        return PATH_RESULT;
+    }
+
+    @RequestMapping(value = "locked/{code}", method = RequestMethod.GET)
+    public String locked(@PathVariable String code, Model model) {
+        Token token = tokenService.findTokenByCode(code);
+
+        if (token == null) {
+            model.addAttribute("message", "验证码不合法");
+        } else if (token.getExpireTime().before(new Date())) {
+            model.addAttribute("message", "验证码已过期");
+        } else if (token.getIsDeleted() == 1) {
+            model.addAttribute("message", "验证码已失效, 点击下面的按钮重新发送邮件");
+        } else {
+            User user = userService.getUser(token.getUserId());
+            user.setIsLocked((byte) 0);
+            user.setErrorPasswordCount(0);
+            userService.updateUser(user);
+
+            model.addAttribute("message", "已解除锁定， 请重新登录， 如果记不得密码， 可以点击“忘记密码”。");
+            model.addAttribute("status", "success");
+        }
+
+        token.setIsDeleted((byte) 1);
+        tokenService.updateToken(token);
+
+        model.addAttribute("code", token.getCode());
+        model.addAttribute("header", "解除用户锁定");
+        return PATH_RESULT;
     }
 
 }

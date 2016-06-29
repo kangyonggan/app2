@@ -2,9 +2,11 @@ package com.kangyonggan.controller;
 
 import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.exception.EmailNotVerifiedException;
+import com.kangyonggan.model.Token;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.MailService;
+import com.kangyonggan.service.TokenService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.IPUtil;
 import lombok.extern.log4j.Log4j2;
@@ -51,6 +53,9 @@ public class LoginController {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private TokenService tokenService;
 
     /**
      * 登录界面
@@ -104,7 +109,7 @@ public class LoginController {
             res.setMessage("该电子邮箱不存在！");
             return res;
         } catch (IncorrectCredentialsException ice) {
-            int count = doErrorPassword(user.getEmail());
+            int count = doErrorPassword(request, user.getEmail());
             res.setMessage(String.format("密码错误%d次，错误%d次将锁定账户三十分钟！", count, PASSWORD_ERROR_COUNT));
             if (count >= PASSWORD_ERROR_COUNT) {
                 res.setMessage(String.format("密码错误%d次，账户已锁定, 请在三十分钟后重试或前往邮箱激活！", count));
@@ -190,7 +195,7 @@ public class LoginController {
             return res;
         }
 
-        mailService.sendResetMail(user, IPUtil.getServerHost(request) + "/validator/reset/");
+        mailService.sendMail(user, "password-reset", IPUtil.getServerHost(request));
         return res;
     }
 
@@ -205,12 +210,37 @@ public class LoginController {
     }
 
     /**
+     * 重新发送邮件
+     *
+     * @param code
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "resend", method = RequestMethod.GET)
+    @ResponseBody
+    public ValidationResponse resend(@RequestParam("code") String code, HttpServletRequest request) {
+        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        Token token = tokenService.findTokenByCode(code);
+        User user = userService.getUser(token.getUserId());
+        Token t = tokenService.findTokenByEmailAndType(user.getId(), token.getType());
+        if (t == null) {
+            mailService.sendMail(user, token.getType(), IPUtil.getServerHost(request));
+        } else {
+            res.setStatus(AppConstants.FAIL);
+            res.setMessage("不可重复发送， 请前往邮箱查看");
+        }
+
+        return res;
+    }
+
+    /**
      * 处理密码错误, 防止暴力破解
      *
+     * @param request
      * @param email
      * @return 已错误次数
      */
-    private int doErrorPassword(String email) {
+    private int doErrorPassword(HttpServletRequest request, String email) {
         int count;
         User user = userService.findUserByEmail(email);
         try {
@@ -222,13 +252,20 @@ public class LoginController {
         } catch (Exception e) {
             count = 0;
         }
-        if (++count >= PASSWORD_ERROR_COUNT) {
-            user.setIsLocked((byte) 1);
-            // TODO 因为可能是其他人恶意破坏, 所以需要发邮箱通知用户
+
+        if (++count >= 3 && user.getIsLocked() == 0) {
+            mailService.sendMail(user, "user-locked", IPUtil.getServerHost(request));
         }
+
         user.setErrorPasswordCount(count);
         user.setErrorPasswordTime(new Date());
-        userService.updateUser(user);
+        if (user.getIsLocked() == 0) {
+            if (count >= PASSWORD_ERROR_COUNT) {
+                user.setIsLocked((byte) 1);
+            }
+            userService.updateUser(user);
+        }
+
         return count;
     }
 

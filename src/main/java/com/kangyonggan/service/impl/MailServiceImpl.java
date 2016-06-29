@@ -46,10 +46,19 @@ public class MailServiceImpl implements MailService {
     private TokenService tokenService;
 
     @Override
-    public void sendVerifyMail(User user, String callbackUrl) {
-        String code = tokenService.saveToken("email-verify", user.getId());
+    public void sendMail(User user, String type, String callbackUrl) {
+        String code = tokenService.saveToken(type, user.getId());
         Map<String, Object> map = new HashMap();
-        map.put("title", "请点击下面的链接完成邮箱激活。");
+        if ("user-locked".equals(type)) {
+            callbackUrl += "/validator/locked/";
+            map.put("title", "请点击下面的链接解除账号锁定");
+        } else if ("password-reset".equals(type)) {
+            callbackUrl += "/validator/reset/";
+            map.put("title", "请点击下面的链接重置密码");
+        } else if ("".equals(type)) {
+            callbackUrl += "/validator/email/";
+            map.put("title", "请点击下面的链接完成邮箱激活");
+        }
         map.put("url", callbackUrl + code);
         map.put("appName", prop.get(0));
         map.put("author", prop.get(2));
@@ -58,40 +67,20 @@ public class MailServiceImpl implements MailService {
         try {
             text = getString(map, "email.ftl");
         } catch (Exception e) {
-            log.error("激活邮件模板出错！", e);
+            log.error("邮件模板出错！", e);
             return;
         }
 
-        sendMail(user.getEmail(), "邮箱激活", text, true);
+        send(user.getEmail(), text, true);
     }
 
-    @Override
-    public void sendResetMail(User user, String callbackUrl) {
-        String code = tokenService.saveToken("email-verify", user.getId());
-        Map<String, Object> map = new HashMap();
-        map.put("title", "请点击下面的链接重置密码。");
-        map.put("url", callbackUrl + code);
-        map.put("appName", prop.get(0));
-        map.put("author", prop.get(2));
-
-        String text;
-        try {
-            text = getString(map, "email.ftl");
-        } catch (Exception e) {
-            log.error("重置密码模板出错！", e);
-            return;
-        }
-
-        sendMail(user.getEmail(), "重置密码", text, true);
-    }
-
-    private void sendMail(String to, String title, String text, boolean isHtml) {
+    private void send(String to, String text, boolean isHtml) {
         MimeMessage msg = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
             helper.setFrom(prop.get(7), prop.get(0));
             helper.setTo(to);
-            helper.setSubject(title);
+            helper.setSubject(prop.get(0));
 
             helper.setText(text, isHtml);
         } catch (Exception e) {

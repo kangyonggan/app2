@@ -8,7 +8,5 @@ import com.kangyonggan.model.User;
  */
 public interface MailService {
 
-    void sendVerifyMail(User user, String callbackUrl);
-
-    void sendResetMail(User user, String callbackUrl);
+    void sendMail(User user, String type, String callbackUrl);
 }

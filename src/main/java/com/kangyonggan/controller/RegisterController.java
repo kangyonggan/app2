@@ -72,7 +72,7 @@ public class RegisterController {
             userService.saveUserAndRole(user);
             res.setStatus(AppConstants.SUCCESS);
 
-            mailService.sendVerifyMail(user, IPUtil.getServerHost(request) + "/validator/email/");
+            mailService.sendMail(user, "email-verify", IPUtil.getServerHost(request));
         } catch (Exception e) {
             log.error(e.getMessage());
         }

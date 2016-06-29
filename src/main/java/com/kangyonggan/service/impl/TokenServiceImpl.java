@@ -7,8 +7,10 @@ import com.kangyonggan.util.Digests;
 import com.kangyonggan.util.Encodes;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -42,6 +44,20 @@ public class TokenServiceImpl extends BaseService<Token> implements TokenService
         token.setCode(code);
 
         return super.selectOne(token);
+    }
+
+    @Override
+    public Token findTokenByEmailAndType(Long userId, String type) {
+        Example example = new Example(Token.class);
+        example.createCriteria().andEqualTo("isDeleted", 0)
+                .andEqualTo("userId", userId).andEqualTo("type", type)
+                .andLessThan("expireTime", new Date(new Date().getTime() + 24 * 60 * 60 * 1000));
+
+        List<Token> tokens = super.selectByExample(example);
+        if (tokens.isEmpty()) {
+            return null;
+        }
+        return tokens.get(0);
     }
 
     @Override

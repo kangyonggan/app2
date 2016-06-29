@@ -1,11 +1,11 @@
-<#assign title="重置密码">
+<#assign title="${header}">
 
 <@override name="content">
 <div class="widget-box no-border">
     <div class="widget-body">
         <div class="widget-main">
             <h4 class="header skin-color lighter bigger">
-                <i class="ace-icon fa fa-key"></i>
+                <i class="ace-icon fa fa-leaf"></i>
             ${message}
             </h4>
 
@@ -32,6 +32,16 @@
                         <p class="alert alert-info">${message}。</p>
                     </#if>
                 </div>
+
+                <#if !status??>
+                    <div class="col-xs-12">
+                        <div class="space-20"></div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <a id="resend" href="${ctx}resend?code=${code}" class="btn skin-btn width-100">重新发送邮件</a>
+                    </div>
+                </#if>
             </div>
         </div>
     </div>
@@ -39,7 +49,7 @@
 </@override>
 
 <@override name="script">
-<script src="${ctx}static/app/js/web/password-reset.js"></script>
+<script src="${ctx}static/app/js/web/email-result.js"></script>
 </@override>
 
 <@extends name="auth-layout.ftl"/>

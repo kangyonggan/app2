@@ -12,6 +12,7 @@ public interface TokenService {
 
     Token findTokenByCode(String code);
 
-    void updateToken(Token token);
+    Token findTokenByEmailAndType(Long userId, String type);
 
+    void updateToken(Token token);
 }
