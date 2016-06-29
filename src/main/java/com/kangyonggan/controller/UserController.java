@@ -151,4 +151,13 @@ public class UserController {
         return res;
     }
 
+    @RequestMapping(value = "password/update", method = RequestMethod.POST)
+    public String password(@RequestParam("id") Long id, @RequestParam("password") String password) {
+        User user = userService.getUser(id);
+        user.setPassword(password);
+        userService.updateUserPassword(user);
+
+        return "redirect:/login";
+    }
+
 }

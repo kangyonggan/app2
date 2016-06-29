@@ -27,19 +27,45 @@ public class ValidatorController {
     private UserService userService;
 
     @RequestMapping(value = "email/{code}", method = RequestMethod.GET)
-    public String activeEmail(@PathVariable String code, Model model){
+    public String email(@PathVariable String code, Model model) {
         Token token = tokenService.findTokenByCode(code);
 
-        if(token == null){
+        if (token == null) {
             model.addAttribute("message", "验证码不合法");
-        }else if(token.getExpireTime().before(new Date())) {
+        } else if (token.getExpireTime().before(new Date())) {
             model.addAttribute("message", "验证地址已过期");
+        } else if (token.getIsDeleted() == 1) {
+            model.addAttribute("message", "验证码已失效");
+        } else {
+            userService.updateUserEmailVerified(token);
+            model.addAttribute("message", "邮箱验证成功");
         }
 
-        userService.updateUserEmailVerified(token);
-        model.addAttribute("message", "邮箱验证成功");
+        token.setIsDeleted((byte) 1);
+        tokenService.updateToken(token);
 
-        return "web/email-result";
+        return "web/email-verify";
+    }
+
+    @RequestMapping(value = "reset/{code}", method = RequestMethod.GET)
+    public String reset(@PathVariable String code, Model model) {
+        Token token = tokenService.findTokenByCode(code);
+
+        if (token == null) {
+            model.addAttribute("message", "验证码不合法");
+        } else if (token.getExpireTime().before(new Date())) {
+            model.addAttribute("message", "验证码已过期");
+        } else if (token.getIsDeleted() == 1) {
+            model.addAttribute("message", "验证码已失效, 请重新申请密码找回!");
+        } else {
+            model.addAttribute("userId", token.getUserId());
+            model.addAttribute("message", "重置密码");
+        }
+
+        token.setIsDeleted((byte) 1);
+        tokenService.updateToken(token);
+
+        return "web/password-reset";
     }
 
 }

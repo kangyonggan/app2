@@ -12,4 +12,6 @@ public interface TokenService {
 
     Token findTokenByCode(String code);
 
+    void updateToken(Token token);
+
 }

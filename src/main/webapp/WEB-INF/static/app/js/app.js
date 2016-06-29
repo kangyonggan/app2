@@ -25,6 +25,7 @@ $(function () {
 
     //配置jQuery.validator默认的处理方法
     jQuery.validator.setDefaults({
+        focusInvalid: false,
         onkeyup: function (element) {
             validElement(this, element);
         },

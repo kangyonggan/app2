@@ -88,11 +88,6 @@ public class MyShiroRealm extends AuthorizingRealm {
             // 锁定超过30分钟后, 再次登录将解锁
             if (new Date().getTime() - user.getErrorPasswordTime().getTime() < 30 * 60 * 1000) {
                 throw new LockedAccountException();
-            } else {
-                user.setIsLocked((byte) 0);
-                user.setErrorPasswordCount(0);
-                user.setLoginTime(new Date());
-                userService.updateUser(user);
             }
         }
 

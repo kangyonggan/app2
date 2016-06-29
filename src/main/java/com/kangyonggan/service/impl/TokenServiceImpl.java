@@ -44,6 +44,12 @@ public class TokenServiceImpl extends BaseService<Token> implements TokenService
         return super.selectOne(token);
     }
 
+    @Override
+    public void updateToken(Token token) {
+        token.setUpdatedTime(new Date());
+        super.updateByPrimaryKeySelective(token);
+    }
+
     private String genTokenCode() {
         byte[] hashKey = Digests.sha1(Digests.generateSalt(ShiroConstants.SALT_SIZE));
         return Encodes.encodeHex(hashKey);

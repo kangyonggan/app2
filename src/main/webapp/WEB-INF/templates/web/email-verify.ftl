@@ -12,7 +12,6 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p class="alert alert-info">${message}。</p>
-                    <p class="text-info"></p>
                 </div>
             </div>
         </div>

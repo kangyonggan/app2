@@ -10,4 +10,5 @@ public interface MailService {
 
     void sendVerifyMail(User user, String callbackUrl);
 
+    void sendResetMail(User user, String callbackUrl);
 }

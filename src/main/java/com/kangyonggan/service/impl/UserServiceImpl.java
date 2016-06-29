@@ -119,6 +119,12 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
     }
 
     @Override
+    public void updateUserPassword(User user) {
+        entryptPassword(user);
+        updateUser(user);
+    }
+
+    @Override
     public User findUserByMobile(String mobile) {
         User user = new User();
         user.setMobile(mobile);

@@ -4,7 +4,9 @@ import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.exception.EmailNotVerifiedException;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.service.MailService;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.IPUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -46,6 +48,9 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MailService mailService;
 
     /**
      * 登录界面
@@ -106,10 +111,10 @@ public class LoginController {
             }
             return res;
         } catch (LockedAccountException lae) {
-            res.setMessage("账号已锁定，请联系管理员！");
+            res.setMessage("账号已锁定，请等待三十分钟或联系管理员！");
             return res;
         } catch (EmailNotVerifiedException enve) {
-            res.setMessage("账号未激活，请前往邮箱激活！");
+            res.setMessage("账号未激活，请前往邮箱激活或联系管理员！");
             return res;
         } catch (Exception e) {
             res.setMessage("未知错误，请联系管理员！");
@@ -120,6 +125,8 @@ public class LoginController {
         user = userService.findUserByEmail(user.getEmail());
         // 更新最近登录时间
         user.setLoginTime(new Date());
+        user.setIsLocked((byte) 0);
+        user.setErrorPasswordCount(0);
         userService.updateUser(user);
 
         SavedRequest savedRequest = WebUtils.getSavedRequest(request);
@@ -176,8 +183,14 @@ public class LoginController {
 //            return res;
 //        }
 
-        // TODO 发送邮件
-        log.info(email);
+        User user = userService.findUserByEmail(email);
+        if (user == null) {
+            res.setStatus(AppConstants.FAIL);
+            res.setMessage("没有此邮箱的注册信息");
+            return res;
+        }
+
+        mailService.sendResetMail(user, IPUtil.getServerHost(request) + "/validator/reset/");
         return res;
     }
 

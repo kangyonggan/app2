@@ -65,6 +65,26 @@ public class MailServiceImpl implements MailService {
         sendMail(user.getEmail(), "邮箱激活", text, true);
     }
 
+    @Override
+    public void sendResetMail(User user, String callbackUrl) {
+        String code = tokenService.saveToken("email-verify", user.getId());
+        Map<String, Object> map = new HashMap();
+        map.put("title", "请点击下面的链接重置密码。");
+        map.put("url", callbackUrl + code);
+        map.put("appName", prop.get(0));
+        map.put("author", prop.get(2));
+
+        String text;
+        try {
+            text = getString(map, "email.ftl");
+        } catch (Exception e) {
+            log.error("重置密码模板出错！", e);
+            return;
+        }
+
+        sendMail(user.getEmail(), "重置密码", text, true);
+    }
+
     private void sendMail(String to, String title, String text, boolean isHtml) {
         MimeMessage msg = javaMailSender.createMimeMessage();
         try {
@@ -79,8 +99,11 @@ public class MailServiceImpl implements MailService {
             return;
         }
 
-        javaMailSender.send(msg);
-        log.info("邮件发送成功...");
+        new Thread(() -> {
+            log.info("正在给{}发邮件...", to);
+            javaMailSender.send(msg);
+            log.info("邮件发送成功...");
+        }).start();
     }
 
     private String getString(Map body, String templatePath) throws IOException, TemplateException {

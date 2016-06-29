@@ -33,4 +33,6 @@ public interface UserService {
     void deleteUser(Long id);
 
     void updateUserEmailVerified(Token token);
+
+    void updateUserPassword(User user);
 }
