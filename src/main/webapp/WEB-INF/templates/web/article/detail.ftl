@@ -39,10 +39,8 @@
                     <div class="space-10"></div>
 
                     <div class="row">
-                        摘要:
-
                         <div class="row well">
-                        ${article.summary}
+                            摘要: ${article.summary}
                         </div>
                     </div>
                 </#if>
@@ -78,13 +76,15 @@
                 <#list replies as reply>
                     <div class="profile-activity clearfix">
                         <div>
+                            <a href="${ctx}user?id=${reply.userId}">
                             <#if reply.smallAvatar == ''>
                                 <img class="pull-left user-avator"
                                      src="${ctx}static/ace/dist/avatars/avatar5.png"/>
                             <#else>
                                 <img class="pull-left user-avator" src="${ctx}${reply.smallAvatar}"/>
                             </#if>
-                            <a class="user" href="#"> ${reply.realname} </a>
+                            </a>
+                            <a class="user" href="${ctx}user?id=${reply.userId}"> ${reply.realname} </a>
                         ${reply_index + 1} / F
 
                             <div class="time">
