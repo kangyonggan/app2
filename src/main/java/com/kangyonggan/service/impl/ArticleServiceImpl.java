@@ -122,7 +122,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         article.setUserId(userService.getShiroUser().getId());
 
         super.insertSelective(article);
-        attachmentService.saveAttachments(article.getId(), files);
+        if (!files.isEmpty()) {
+            attachmentService.saveAttachments(article.getId(), files);
+        }
     }
 
     @Override
