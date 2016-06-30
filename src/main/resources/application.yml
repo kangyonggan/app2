@@ -3,8 +3,8 @@ server:
   context-path: /
 
 multipart:
-  maxFileSize: 2048KB
-  maxRequestSize: 2048KB
+  maxFileSize: 10485760KB
+  maxRequestSize: 10485760KB
 
 spring:
   datasource:

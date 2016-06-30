@@ -60,7 +60,7 @@
                 <div class="space-8"></div>
 
                 <div class="col-xs-12 clearfix">
-                    <button class="btn btn-sm width-100 skin-btn">登录</button>
+                    <button class="btn btn-sm width-100 skin-btn" data-loading-text="正在提交...">登录</button>
                 </div>
             </form>
         </div>

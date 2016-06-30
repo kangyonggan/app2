@@ -48,7 +48,7 @@
                     <div class="space-14"></div>
 
                     <div class="col-xs-4 col-xs-offset-8">
-                        <button class="btn btn-sm width-100 skin-btn">发送</button>
+                        <button class="btn btn-sm width-100 skin-btn" data-loading-text="正在提交...">发送</button>
                     </div>
                 </form>
             </div>

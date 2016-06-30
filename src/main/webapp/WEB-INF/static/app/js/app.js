@@ -104,3 +104,8 @@ var Notify = {
     }
 };
 
+$(document).on('click', 'button[data-loading-text]', function(e) {
+    if ($(this).parents("form").validate().form()) {
+        $(this).button('loading');
+    }
+});

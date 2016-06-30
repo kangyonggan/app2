@@ -21,7 +21,7 @@ $(function () {
             //specify ace file input plugin's options here
             btn_choose: '选择头像',
             droppable: true,
-            maxSize: 110000,//~100Kb
+            maxSize: 2097152,//~100Kb
 
             //and a few extra ones here
             name: 'avatar',//put the field name here as well, will be used inside the custom plugin

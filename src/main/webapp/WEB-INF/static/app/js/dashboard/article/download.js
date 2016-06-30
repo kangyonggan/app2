@@ -9,6 +9,10 @@ $(function () {
         submitHandler: function (form) {
             if ("" == $("input[type=file]").val()) {
                 Notify.warning("请选择文件");
+                setTimeout(function () {
+                    $("button[data-loading-text]").button('reset');
+                }, 1000);
+
                 return false;
             }
             form.submit();

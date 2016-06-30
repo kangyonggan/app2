@@ -89,7 +89,7 @@
                 <div class="space-4"></div>
 
                 <div class="col-xs-12 clearfix">
-                    <button class="btn btn-sm width-100 skin-btn">注册</button>
+                    <button class="btn btn-sm width-100 skin-btn" data-loading-text="正在提交...">注册</button>
                 </div>
             </form>
         </div>
