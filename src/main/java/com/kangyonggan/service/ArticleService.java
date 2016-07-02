@@ -23,6 +23,12 @@ public interface ArticleService {
 
     Article findArticleById(Long id);
 
+    Article findTotalArticleByUserId(Long userId);
+
+    Article findTotalArticleByUserIdWithGroup(Long userId, String group);
+
+    boolean updateArticleActions(Long id, String action);
+
     void saveArticle(Article article);
 
     void saveArticle(Article article, List<Attachment> files);
@@ -32,6 +38,4 @@ public interface ArticleService {
     void deleteArticleWithLogic(Article article);
 
     void updateArticle(Article article);
-
-    boolean updateArticleActions(Long id, String action);
 }

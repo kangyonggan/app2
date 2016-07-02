@@ -26,8 +26,8 @@
 
         <result column="realname" jdbcType="VARCHAR" property="realname"/>
         <result column="sign" jdbcType="VARCHAR" property="sign"/>
+        <result column="total" jdbcType="INTEGER" property="total"/>
         <result column="small_avatar" jdbcType="VARCHAR" property="smallAvatar"/>
-
     </resultMap>
 
     <select id="selectArticlesByCategoryCode" resultMap="BaseResultMap">
@@ -114,6 +114,28 @@
                 #{articleId}
             </foreach>
         </where>
+    </select>
+
+    <select id="selectTotalArticleByUserId" parameterType="Long" resultMap="BaseResultMap">
+        SELECT
+        COUNT(*) AS total, SUM(top) AS top, SUM(low) AS low
+        FROM
+        article a
+        <where>
+             a.user_id = #{userId}
+        </where>
+    </select>
+
+    <select id="selectTotalArticleByUserIdWithGroup" resultMap="BaseResultMap">
+        SELECT
+        COUNT(*) AS total, category_code
+        FROM
+        article a
+        <where>
+            a.user_id = #{userId}
+            AND category_code = #{group}
+        </where>
+        GROUP BY category_code
     </select>
 
 </mapper>

@@ -115,4 +115,7 @@ public class Article {
 
     @Transient
     private String smallAvatar;
+
+    @Transient
+    private Integer total;
 }

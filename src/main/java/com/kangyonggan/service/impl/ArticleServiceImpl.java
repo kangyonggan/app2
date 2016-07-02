@@ -107,6 +107,16 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
+    public Article findTotalArticleByUserId(Long userId) {
+        return articleMapper.selectTotalArticleByUserId(userId);
+    }
+
+    @Override
+    public Article findTotalArticleByUserIdWithGroup(Long userId, String group) {
+        return articleMapper.selectTotalArticleByUserIdWithGroup(userId, group);
+    }
+
+    @Override
     public void saveArticle(Article article) {
         article.setCreatedTime(new Date());
         article.setUpdatedTime(new Date());

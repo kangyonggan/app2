@@ -19,10 +19,13 @@ public interface ArticleMapper extends MyMapper<Article> {
 
     Article selectArticleById(Long id);
 
+    Article selectTotalArticleByUserId(Long userId);
+
+    Article selectTotalArticleByUserIdWithGroup(@Param("userId") Long userId, @Param("group") String group);
+
     int selectArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
 
     void insertArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
 
     void deleteArticleUser(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("type") String type);
-
 }

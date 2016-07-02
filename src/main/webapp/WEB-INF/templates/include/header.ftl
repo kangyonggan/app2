@@ -34,7 +34,7 @@
                             <a href="${ctx}user?id=${user.id}" class="user-title-label skin-inverse">
                                 <i class="ace-icon fa fa-circle green"></i>
                                 &nbsp;
-                                ${user.realname}
+                            ${user.realname}
                             </a>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-9">
-                <div class="space-6"></div>
+                <div class="space-16"></div>
 
                 <div class="alert alert-block alert-success">
                     <button type="button" class="close" data-dismiss="alert">
@@ -56,73 +56,52 @@
                     </strong>
                 </div>
 
+                <div class="space-16"></div>
+
                 <div class="left">
                     <span class="btn btn-app btn-sm btn-light no-hover">
-                        <span class="line-height-1 bigger-170 blue"> 1411 </span>
-
-                        <br>
-                        <span class="line-height-1 smaller-90"> 访问总量 </span>
-                    </span>
-
-                    <span class="btn btn-app btn-sm btn-yellow no-hover">
-                        <span class="line-height-1 bigger-170"> 32 </span>
-
-                        <br>
-                        <span class="line-height-1 smaller-90"> 关注我的 </span>
-                    </span>
-
-                    <span class="btn btn-app btn-sm btn-pink no-hover">
-                        <span class="line-height-1 bigger-170"> 4 </span>
-
-                        <br>
-                        <span class="line-height-1 smaller-90"> 我关注的 </span>
-                    </span>
-
-                    <span class="btn btn-app btn-sm btn-grey no-hover">
-                        <span class="line-height-1 bigger-170"> 23 </span>
-
-                        <br>
-                        <span class="line-height-1 smaller-90"> 今日访客 </span>
-                    </span>
-
-                    <span class="btn btn-app btn-sm btn-success no-hover">
-                        <span class="line-height-1 bigger-170"> 7 </span>
+                        <span class="line-height-1 bigger-170 blue"> ${map_header.picture_header.total} </span>
 
                         <br>
                         <span class="line-height-1 smaller-90"> 相册 </span>
                     </span>
 
-                    <span class="btn btn-app btn-sm btn-primary no-hover">
-                        <span class="line-height-1 bigger-170"> 55 </span>
+                    <span class="btn btn-app btn-sm btn-yellow no-hover">
+                        <span class="line-height-1 bigger-170"> ${map_header.music_header.total} </span>
 
                         <br>
-                        <span class="line-height-1 smaller-90"> 好友 </span>
+                        <span class="line-height-1 smaller-90"> 歌曲 </span>
+                    </span>
+
+                    <span class="btn btn-app btn-sm btn-pink no-hover">
+                        <span class="line-height-1 bigger-170"> ${map_header.video_header.total} </span>
+
+                        <br>
+                        <span class="line-height-1 smaller-90"> 视频 </span>
+                    </span>
+
+                    <span class="btn btn-app btn-sm btn-grey no-hover">
+                        <span class="line-height-1 bigger-170"> ${map_header.article_header.total - map_header.video_header.total - map_header.music_header.total - map_header.picture_header.total} </span>
+
+                        <br>
+                        <span class="line-height-1 smaller-90"> 其他 </span>
+                    </span>
+
+                    <span class="btn btn-app btn-sm btn-success no-hover">
+                        <span class="line-height-1 bigger-170"> ${map_header.article_header.top} </span>
+
+                        <br>
+                        <span class="line-height-1 smaller-90"> 顶 </span>
+                    </span>
+
+                    <span class="btn btn-app btn-sm btn-primary no-hover">
+                        <span class="line-height-1 bigger-170"> ${map_header.article_header.low} </span>
+
+                        <br>
+                        <span class="line-height-1 smaller-90"> 踩 </span>
                     </span>
                 </div>
 
-                <div class="space-10"></div>
-
-                <div class="left">
-                    <a href="#" class="btn btn-link">
-                        <i class="ace-icon fa fa-plus-circle bigger-120 green"></i>
-                        加为好友
-                    </a>
-
-                    <a href="#" class="btn btn-link">
-                        <i class="ace-icon fa fa-heart bigger-120 red"></i>
-                        添加关注
-                    </a>
-
-                    <a href="#" class="btn btn-link">
-                        <i class="ace-icon fa fa-envelope bigger-120 pink"></i>
-                        发送消息
-                    </a>
-
-                    <a href="#" class="btn btn-link">
-                        <i class="ace-icon fa fa-globe bigger-120 blue"></i>
-                        Ta的主页
-                    </a>
-                </div>
             </div>
         </div>
     </div>
