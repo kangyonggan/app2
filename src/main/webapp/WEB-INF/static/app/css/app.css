@@ -58,6 +58,10 @@ input.app-date-input {
     border: 0;
 }
 
+#md-prev-content {
+    min-height: 223px;
+}
+
 /*通用样式 结尾*/
 
 /*边栏样式 开头*/

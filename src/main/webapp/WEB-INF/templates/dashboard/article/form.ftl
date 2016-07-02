@@ -28,6 +28,8 @@
             <#include "music.ftl"/>
         <#elseif category.code=="video">
             <#include "video.ftl"/>
+        <#elseif category.code=="note" || category.code=="share" || category.code=="course">
+            <#include "markdown.ftl"/>
         <#else>
             <#include "default.ftl"/>
         </#if>
@@ -49,6 +51,9 @@
     <script src="${ctx}static/app/js/dashboard/article/music.js"></script>
     <#elseif category.code=="video">
     <script src="${ctx}static/app/js/dashboard/article/video.js"></script>
+    <#elseif category.code=="note" || category.code=="share" || category.code=="course">
+    <script src="${ctx}static/ace/dist/js/markdown/markdown.min.js"></script>
+    <script src="${ctx}static/app/js/dashboard/article/markdown.js"></script>
     <#elseif category.code=="picture">
     <script src="${ctx}static/ace/dist/js/dropzone.min.js"></script>
     <script src="${ctx}static/app/js/dashboard/article/picture.js"></script>
