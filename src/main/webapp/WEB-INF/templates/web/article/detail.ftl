@@ -79,6 +79,24 @@
                 </div>
             </#if>
 
+            <#if article.categoryCode=="music">
+                <div class="space-10"></div>
+                <div class="row">
+                    <#list attachments as attachment>
+                        <div class="col-xs-12">
+                            <audio class="col-xs-6" controls="controls" loop>
+                                <source src="${ctx}${attachment.path}" type="audio/mpeg">
+                            </audio>
+                            <div class="col-xs-5 text-center">${attachment.createdTime?datetime}</div>
+                            <div class="col-xs-1">
+                                <a href="${ctx}${attachment.path}" target="_blank"><i class="fa fa-download bigger-120 skin-color"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 space-10"></div>
+                    </#list>
+                </div>
+            </#if>
+
             <div class="space-10"></div>
 
             <div class="row">

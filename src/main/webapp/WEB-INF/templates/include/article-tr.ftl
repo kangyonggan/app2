@@ -25,19 +25,19 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <p class="text-article">
-            <#if article.categoryCode=="word">
-                <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.body}</a></h4>
-            <#else>
-                <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
-            </#if>
+        <p class="text-article">
+        <#if article.categoryCode=="word">
+            <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.body}</a></h4>
+        <#else>
+            <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
+        </#if>
             </p>
             <div class="space-16"></div>
         </div>
 
         <div class="article-action">
             <div class="article-buttons">
-                <#include "article-buttons.ftl"/>
+            <#include "article-buttons.ftl"/>
             </div>
         </div>
     </div>

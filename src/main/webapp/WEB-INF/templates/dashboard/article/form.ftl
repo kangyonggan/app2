@@ -24,6 +24,8 @@
             <#include "word.ftl"/>
         <#elseif category.code=="download">
             <#include "download.ftl"/>
+        <#elseif category.code=="music">
+            <#include "music.ftl"/>
         <#else>
             <#include "default.ftl"/>
         </#if>
@@ -41,6 +43,8 @@
     <script src="${ctx}static/app/js/dashboard/article/word.js"></script>
     <#elseif category.code=="download">
     <script src="${ctx}static/app/js/dashboard/article/download.js"></script>
+    <#elseif category.code=="music">
+    <script src="${ctx}static/app/js/dashboard/article/music.js"></script>
     <#elseif category.code=="picture">
     <script src="${ctx}static/ace/dist/js/dropzone.min.js"></script>
     <script src="${ctx}static/app/js/dashboard/article/picture.js"></script>
