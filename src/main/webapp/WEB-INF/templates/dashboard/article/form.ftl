@@ -26,6 +26,8 @@
             <#include "download.ftl"/>
         <#elseif category.code=="music">
             <#include "music.ftl"/>
+        <#elseif category.code=="video">
+            <#include "video.ftl"/>
         <#else>
             <#include "default.ftl"/>
         </#if>
@@ -45,6 +47,8 @@
     <script src="${ctx}static/app/js/dashboard/article/download.js"></script>
     <#elseif category.code=="music">
     <script src="${ctx}static/app/js/dashboard/article/music.js"></script>
+    <#elseif category.code=="video">
+    <script src="${ctx}static/app/js/dashboard/article/video.js"></script>
     <#elseif category.code=="picture">
     <script src="${ctx}static/ace/dist/js/dropzone.min.js"></script>
     <script src="${ctx}static/app/js/dashboard/article/picture.js"></script>

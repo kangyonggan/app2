@@ -8,7 +8,7 @@ $(function () {
         },
         submitHandler: function (form) {
             if ("" == $("input[type=file]").val()) {
-                Notify.warning("请选择音乐");
+                Notify.warning("请选择视频");
                 setTimeout(function () {
                     $("button[data-loading-text]").button('reset');
                 }, 1000);
@@ -20,13 +20,12 @@ $(function () {
     });
 
     var err = function(event, info) {
-        if(info.error_count['ext'] || info.error_count['mime']) Notify.warning('不合法的文件类型。');
+        if(info.error_count['ext']) Notify.warning('不合法的文件类型。');
         event.preventDefault();
     };
 
     var filter = {
-        allowExt: ["mp3"],
-        allowMime: ["audio/mp3"]
+        allowExt: ["mp4", "ogg", "avi", "flv"]
     };
 
     var file_input = $('input[type=file]').ace_file_input(filter)

@@ -87,10 +87,24 @@
                             <audio class="col-xs-6" controls="controls" loop>
                                 <source src="${ctx}${attachment.path}" type="audio/mpeg">
                             </audio>
-                            <div class="col-xs-5 text-center">${attachment.createdTime?datetime}</div>
+                            <div class="col-xs-5 text-right">${attachment.name}</div>
                             <div class="col-xs-1">
                                 <a href="${ctx}${attachment.path}" target="_blank"><i class="fa fa-download bigger-120 skin-color"></i></a>
                             </div>
+                        </div>
+                        <div class="col-xs-12 space-10"></div>
+                    </#list>
+                </div>
+            </#if>
+
+            <#if article.categoryCode=="video">
+                <div class="space-10"></div>
+                <div class="row">
+                    <#list attachments as attachment>
+                        <div class="col-xs-12">
+                            <video class="width-100" controls="controls" loop>
+                                <source src="${ctx}${attachment.path}" type="video/mp4">
+                            </video>
                         </div>
                         <div class="col-xs-12 space-10"></div>
                     </#list>
