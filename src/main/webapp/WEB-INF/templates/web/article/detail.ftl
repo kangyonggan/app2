@@ -62,11 +62,20 @@
                                 <div class="col-xs-6">${attachment.createdTime?datetime}</div>
                                 <div class="col-xs-5">${attachment.name}</div>
                                 <div class="col-xs-1 text-center">
-                                    <a href="${ctx}${attachment.path}"><i class="fa fa-download bigger-120 skin-color"></i></a>
+                                    <a href="${ctx}${attachment.path}" target="_blank"><i class="fa fa-download bigger-120 skin-color"></i></a>
                                 </div>
                             </li>
                         </#list>
                     </ul>
+                </div>
+            </#if>
+
+            <#if article.categoryCode=="picture">
+                <div class="space-10"></div>
+                <div class="row">
+                    <#list attachments as attachment>
+                        <img src="${ctx}${attachment.path}" style="max-width: 100%;"/>
+                    </#list>
                 </div>
             </#if>
 

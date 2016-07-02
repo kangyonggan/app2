@@ -295,7 +295,7 @@ CREATE TABLE attachment
 (
   id           BIGINT(20) PRIMARY KEY  AUTO_INCREMENT NOT NULL
   COMMENT '主键, 自增',
-  article_id   BIGINT(20)                             NOT NULL
+  article_id   BIGINT(20)                             NOT NULL         DEFAULT 0
   COMMENT '附件所属的文章ID',
   name         VARCHAR(500)                           NOT NULL         DEFAULT ''
   COMMENT '附件名称',

@@ -25,4 +25,11 @@
         </foreach>
     </insert>
 
+    <update id="updateAttachments">
+        UPDATE attachment SET article_id = #{articleId} WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
 </mapper>

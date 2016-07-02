@@ -59,7 +59,7 @@ public class DashboardArticleController {
      * @return
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String create(@RequestParam(value = "attachment[]", required = false) List<MultipartFile> attachments,
+    public String save(@RequestParam(value = "attachment[]", required = false) List<MultipartFile> attachments,
                          @ModelAttribute("article") @Valid Article article, BindingResult result) throws Exception {
 
         if (!result.hasErrors()) {
@@ -76,6 +76,22 @@ public class DashboardArticleController {
                 }
             }
             articleService.saveArticle(article, files);
+        }
+
+        return String.format("redirect:/dashboard/category/list?code=%s", article.getCategoryCode());
+    }
+
+    /**
+     * 保存相册
+     *
+     * @return
+     */
+    @RequestMapping(value = "save/pics", method = RequestMethod.POST)
+    public String savePics(@RequestParam(value = "ids", required = false, defaultValue = "") String ids,
+                         @ModelAttribute("article") @Valid Article article, BindingResult result) throws Exception {
+
+        if (!result.hasErrors()) {
+            articleService.saveArticle(article, ids);
         }
 
         return String.format("redirect:/dashboard/category/list?code=%s", article.getCategoryCode());

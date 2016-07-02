@@ -34,6 +34,21 @@ public class AttachmentServiceImpl extends BaseService<Attachment> implements At
     }
 
     @Override
+    public void saveAttachment(Attachment attachment) {
+        ShiroUser user = userService.getShiroUser();
+
+        attachment.setUserId(user.getId());
+        attachment.setCreatedTime(new Date());
+        attachment.setUpdatedTime(new Date());
+        super.insertSelective(attachment);
+    }
+
+    @Override
+    public void updateAttachments(String ids, Long articleId) {
+        attachmentMapper.updateAttachments(ids.split(","), articleId);
+    }
+
+    @Override
     public List<Attachment> findAttachmentsByArticleId(Long articleId) {
         Attachment attachment = new Attachment();
         attachment.setIsDeleted((byte) 0);

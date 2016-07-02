@@ -10,8 +10,11 @@ import java.util.List;
  */
 public interface AttachmentService {
 
-    void saveAttachments(Long articleId, List<Attachment> files);
-
     List<Attachment> findAttachmentsByArticleId(Long articleId);
 
+    void saveAttachments(Long articleId, List<Attachment> files);
+
+    void saveAttachment(Attachment attachment);
+
+    void updateAttachments(String ids, Long articleId);
 }

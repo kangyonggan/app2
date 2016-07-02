@@ -128,6 +128,13 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
+    public void saveArticle(Article article, String ids) {
+        this.saveArticle(article);
+
+        attachmentService.updateAttachments(ids, article.getId());
+    }
+
+    @Override
     public void deleteArticleWithLogic(Article article) {
         article.setIsDeleted((byte) 1);
         article.setUpdatedTime(new Date());

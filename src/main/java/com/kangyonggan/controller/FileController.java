@@ -1,7 +1,9 @@
 package com.kangyonggan.controller;
 
 import com.kangyonggan.constants.AppConstants;
+import com.kangyonggan.model.Attachment;
 import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.FileUpload;
 import lombok.extern.log4j.Log4j2;
@@ -29,6 +31,9 @@ public class FileController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AttachmentService attachmentService;
 
     /**
      * 编辑器文件、图片上传
@@ -70,16 +75,21 @@ public class FileController {
     @ResponseBody
     public ValidationResponse upload(@RequestParam(value = "file", required = false) MultipartFile file) {
         ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+
         try {
             String fileName = FileUpload.upload(file);
-            res.setMessage(fileName);
+
+            Attachment attachment = new Attachment();
+            attachment.setName(file.getOriginalFilename());
+            attachment.setPath(fileName);
+            attachmentService.saveAttachment(attachment);
+            res.setMessage(attachment.getId() + "");
         } catch (Exception e) {
             log.error("文件上传失败", e);
             res.setStatus(AppConstants.FAIL);
-            res.setMessage("文件上传失败");
         }
+
         return res;
     }
-
 
 }
