@@ -145,12 +145,35 @@ public class ArticleController {
         ShiroUser user = userService.getShiroUser();
         Reply reply = replyService.getReply(id);
 
-        if (!user.getId().equals(reply.getUserId())) {
+        if (user == null || !user.getId().equals(reply.getUserId())) {
             res.setStatus(AppConstants.FAIL);
             return res;
         }
 
         replyService.deleteArticleReplyById(id);
+        return res;
+    }
+
+    /**
+     * 删除附件
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "attachment/delete", method = RequestMethod.GET)
+    @ResponseBody
+    public ValidationResponse attachmentDelete(@RequestParam("id") Long id) {
+        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+        ShiroUser user = userService.getShiroUser();
+        Attachment attachment = attachmentService.getAttachment(id);
+
+        if (user == null || !user.getId().equals(attachment.getUserId())) {
+            res.setStatus(AppConstants.FAIL);
+            return res;
+        }
+
+        attachment.setIsDeleted((byte) 1);
+        attachmentService.updateAttachment(attachment);
         return res;
     }
 

@@ -2,11 +2,9 @@ package com.kangyonggan.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.kangyonggan.constants.AppConstants;
-import com.kangyonggan.model.Article;
-import com.kangyonggan.model.Category;
-import com.kangyonggan.model.User;
-import com.kangyonggan.model.ValidationResponse;
+import com.kangyonggan.model.*;
 import com.kangyonggan.service.ArticleService;
+import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.service.CategoryService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.FileUpload;
@@ -43,6 +41,9 @@ public class UserController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private AttachmentService attachmentService;
+
     /**
      * Ta的主页
      *
@@ -55,8 +56,11 @@ public class UserController {
         if (user == null) {
             return "redirect:/404";
         }
+        List<Attachment> attachments = attachmentService.findAttachmentsByUserIdAndType(pageNum, 12, user.getId(), "picture");
+        PageInfo<Attachment> page = new PageInfo(attachments);
 
         model.addAttribute("user", user);
+        model.addAttribute("page", page);
         return PATH_INDEX;
     }
 

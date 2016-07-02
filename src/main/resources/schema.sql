@@ -184,12 +184,9 @@ CREATE UNIQUE INDEX code_UNIQUE ON category (code);
 
 INSERT INTO category (id, code, name, pid, sort, icon, is_need_approval, is_deleted, created_time, updated_time)
 VALUES (1, 'root', '根栏目', 0, 1, 'ace-icon fa fa-leaf', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
-
-  (10, 'rss', '我订阅的', 1, 1, 'ace-icon fa fa-rss', 0, 0, '2016-06-24 21:12:51',
+  (10, 'star', '我收藏的', 1, 2, 'ace-icon fa fa-star-o', 0, 0, '2016-06-24 21:12:51',
    '2016-06-24 21:12:53'),
-  (11, 'star', '我收藏的', 1, 2, 'ace-icon fa fa-star-o', 0, 0, '2016-06-24 21:12:51',
-   '2016-06-24 21:12:53'),
-  (12, 'bell', '我参与的', 1, 3, 'ace-icon fa fa-bell', 0, 0, '2016-06-24 21:12:51',
+  (11, 'bell', '我参与的', 1, 3, 'ace-icon fa fa-bell', 0, 0, '2016-06-24 21:12:51',
    '2016-06-24 21:12:53'),
 
   (13, 'pancil', '随笔', 1, 4, 'ace-icon fa fa-pencil', 0, 0, '2016-06-24 21:12:51', '2016-06-24 21:12:53'),
@@ -301,6 +298,8 @@ CREATE TABLE attachment
   COMMENT '附件名称',
   path         VARCHAR(500)                           NOT NULL         DEFAULT ''
   COMMENT '附件路径',
+  type         VARCHAR(32)                            NOT NULL         DEFAULT ''
+  COMMENT '附件类型',
   user_id      BIGINT(20)                             NOT NULL         DEFAULT 0
   COMMENT '上传人ID',
   is_deleted   TINYINT                                NOT NULL         DEFAULT 0

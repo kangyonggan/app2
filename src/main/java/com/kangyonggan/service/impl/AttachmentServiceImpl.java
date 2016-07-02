@@ -1,5 +1,6 @@
 package com.kangyonggan.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kangyonggan.mapper.AttachmentMapper;
 import com.kangyonggan.model.Attachment;
 import com.kangyonggan.model.ShiroUser;
@@ -49,11 +50,33 @@ public class AttachmentServiceImpl extends BaseService<Attachment> implements At
     }
 
     @Override
+    public void updateAttachment(Attachment attachment) {
+        attachment.setUpdatedTime(new Date());
+        super.updateByPrimaryKeySelective(attachment);
+    }
+
+    @Override
     public List<Attachment> findAttachmentsByArticleId(Long articleId) {
         Attachment attachment = new Attachment();
         attachment.setIsDeleted((byte) 0);
         attachment.setArticleId(articleId);
 
         return super.select(attachment);
+    }
+
+    @Override
+    public List<Attachment> findAttachmentsByUserIdAndType(int pageNum, int pageSize, Long userId, String type) {
+        Attachment attachment = new Attachment();
+        attachment.setIsDeleted((byte) 0);
+        attachment.setUserId(userId);
+        attachment.setType(type);
+
+        PageHelper.startPage(pageNum, pageSize);
+        return super.select(attachment);
+    }
+
+    @Override
+    public Attachment getAttachment(Long id) {
+        return super.selectByPrimaryKey(id);
     }
 }

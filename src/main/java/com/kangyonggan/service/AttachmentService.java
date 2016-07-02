@@ -12,9 +12,15 @@ public interface AttachmentService {
 
     List<Attachment> findAttachmentsByArticleId(Long articleId);
 
+    List<Attachment> findAttachmentsByUserIdAndType(int pageNum, int pageSize, Long userId, String type);
+
+    Attachment getAttachment(Long id);
+
     void saveAttachments(Long articleId, List<Attachment> files);
 
     void saveAttachment(Attachment attachment);
 
     void updateAttachments(String ids, Long articleId);
+
+    void updateAttachment(Attachment attachment);
 }

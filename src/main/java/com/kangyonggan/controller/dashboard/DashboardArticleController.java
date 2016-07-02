@@ -70,6 +70,7 @@ public class DashboardArticleController {
 
                     Attachment attachment = new Attachment();
                     attachment.setName(file.getOriginalFilename());
+                    attachment.setType(article.getCategoryCode());
                     attachment.setPath(path);
 
                     files.add(attachment);

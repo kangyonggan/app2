@@ -1,6 +1,10 @@
 <#assign no_right="">
 <#assign title="${article.title}">
 
+<@override name="style">
+<link rel="stylesheet" href="${ctx}static/ace/dist/css/colorbox.min.css"/>
+</@override>
+
 <@override name="content">
 <div class="widget-box transparent">
     <div class="widget-header">
@@ -72,11 +76,8 @@
 
             <#if article.categoryCode=="picture">
                 <div class="space-10"></div>
-                <div class="row">
-                    <#list attachments as attachment>
-                        <img src="${ctx}${attachment.path}" style="max-width: 100%;"/>
-                    </#list>
-                </div>
+                <#assign pic_size=200/>
+                <#include "../../include/pictures.ftl">
             </#if>
 
             <#if article.categoryCode=="music">
@@ -186,6 +187,7 @@
 <@override name="script">
 <script src="${ctx}static/libs/kindeditor/kindeditor-min.js"></script>
 <script src="${ctx}static/libs/kindeditor/lang/zh_CN.js"></script>
+<script src="${ctx}static/ace/dist/js/jquery.colorbox.min.js"></script>
 <script src="${ctx}static/app/js/web/article/detail.js"></script>
 </@override>
 

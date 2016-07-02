@@ -82,6 +82,7 @@ public class FileController {
             Attachment attachment = new Attachment();
             attachment.setName(file.getOriginalFilename());
             attachment.setPath(fileName);
+            attachment.setType("picture");
             attachmentService.saveAttachment(attachment);
             res.setMessage(attachment.getId() + "");
         } catch (Exception e) {

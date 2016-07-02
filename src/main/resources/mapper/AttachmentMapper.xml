@@ -9,6 +9,7 @@
         <result column="article_id" jdbcType="BIGINT" property="articleId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
         <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
@@ -18,10 +19,10 @@
     <insert id="insertAttachments">
         INSERT INTO
         attachment
-        (article_id, name, path, user_id, created_time, updated_time)
+        (article_id, name, path, type, user_id, created_time, updated_time)
         VALUES
         <foreach collection="files" item="file" separator=",">
-            (#{articleId}, #{file.name}, #{file.path}, #{userId}, #{now}, #{now})
+            (#{articleId}, #{file.name}, #{file.path}, #{file.type}, #{userId}, #{now}, #{now})
         </foreach>
     </insert>
 

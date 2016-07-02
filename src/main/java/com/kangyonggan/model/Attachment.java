@@ -30,6 +30,11 @@ public class Attachment {
     private String path;
 
     /**
+     * 附件类型
+     */
+    private String type;
+
+    /**
      * 上传人ID
      */
     @Column(name = "user_id")
