@@ -77,4 +77,9 @@ $(function () {
         return false;
     });
 
+    if (isMd) {
+        var body = $("#article-body").html();
+        body = window.markdown.toHTML(body);
+        $("#article-body").html(body);
+    }
 });

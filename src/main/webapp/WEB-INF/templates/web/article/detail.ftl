@@ -53,7 +53,7 @@
 
             </#if>
 
-            <div class="row">
+            <div class="row" id="article-body">
             ${article.body}
             </div>
 
@@ -66,7 +66,8 @@
                                 <div class="col-xs-6">${attachment.createdTime?datetime}</div>
                                 <div class="col-xs-5">${attachment.name}</div>
                                 <div class="col-xs-1 text-center">
-                                    <a href="${ctx}${attachment.path}" target="_blank"><i class="fa fa-download bigger-120 skin-color"></i></a>
+                                    <a href="${ctx}${attachment.path}" target="_blank"><i
+                                            class="fa fa-download bigger-120 skin-color"></i></a>
                                 </div>
                             </li>
                         </#list>
@@ -90,7 +91,8 @@
                             </audio>
                             <div class="col-xs-5 text-right">${attachment.name}</div>
                             <div class="col-xs-1">
-                                <a href="${ctx}${attachment.path}" target="_blank"><i class="fa fa-download bigger-120 skin-color"></i></a>
+                                <a href="${ctx}${attachment.path}" target="_blank"><i
+                                        class="fa fa-download bigger-120 skin-color"></i></a>
                             </div>
                         </div>
                         <div class="col-xs-12 space-10"></div>
@@ -119,12 +121,12 @@
                     <div class="profile-activity clearfix">
                         <div>
                             <a href="${ctx}user?id=${reply.userId}">
-                            <#if reply.smallAvatar == ''>
-                                <img class="pull-left user-avator"
-                                     src="${ctx}static/ace/dist/avatars/avatar5.png"/>
-                            <#else>
-                                <img class="pull-left user-avator" src="${ctx}${reply.smallAvatar}"/>
-                            </#if>
+                                <#if reply.smallAvatar == ''>
+                                    <img class="pull-left user-avator"
+                                         src="${ctx}static/ace/dist/avatars/avatar5.png"/>
+                                <#else>
+                                    <img class="pull-left user-avator" src="${ctx}${reply.smallAvatar}"/>
+                                </#if>
                             </a>
                             <a class="user" href="${ctx}user?id=${reply.userId}"> ${reply.realname} </a>
                         ${reply_index + 1} / F
@@ -188,6 +190,14 @@
 <script src="${ctx}static/libs/kindeditor/kindeditor-min.js"></script>
 <script src="${ctx}static/libs/kindeditor/lang/zh_CN.js"></script>
 <script src="${ctx}static/ace/dist/js/jquery.colorbox.min.js"></script>
+<script src="${ctx}static/ace/dist/js/markdown/markdown.min.js"></script>
+<script>
+        <#if article.categoryCode=="note" || article.categoryCode=="share" || article.categoryCode=="course">
+        var isMd = true;
+        <#else>
+        var isMd = false;
+        </#if>
+</script>
 <script src="${ctx}static/app/js/web/article/detail.js"></script>
 </@override>
 

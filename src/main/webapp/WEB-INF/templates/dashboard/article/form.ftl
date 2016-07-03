@@ -4,6 +4,8 @@
 <@override name="style">
     <#if category.code=="picture">
     <link rel="stylesheet" href="${ctx}static/ace/dist/css/dropzone.min.css"/>
+    <#elseif category.code=="note" || category.code=="share" || category.code=="course">
+    <link rel="stylesheet" href="${ctx}static/ace/dist/css/bootstrap-markdown.min.css"/>
     </#if>
 </@override>
 
@@ -52,7 +54,7 @@
     <#elseif category.code=="video">
     <script src="${ctx}static/app/js/dashboard/article/video.js"></script>
     <#elseif category.code=="note" || category.code=="share" || category.code=="course">
-    <script src="${ctx}static/ace/dist/js/markdown/markdown.min.js"></script>
+    <script src="${ctx}static/ace/dist/js/markdown/bootstrap-markdown.min.js"></script>
     <script src="${ctx}static/app/js/dashboard/article/markdown.js"></script>
     <#elseif category.code=="picture">
     <script src="${ctx}static/ace/dist/js/dropzone.min.js"></script>
