@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface ArticleService {
 
+    List<Article> searchAllArticles(int pageNum, int pageSize, String categoryCode, String title, String startTime, String endTime) throws Exception;
+
     List<Article> searchArticles(int pageNum, int pageSize, String code, String title, String startTime, String endTime) throws Exception;
 
     List<Article> findArticesByCategoryCode(int pageNum, int pageSize, String categoryCode);

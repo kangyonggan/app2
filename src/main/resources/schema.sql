@@ -128,6 +128,8 @@ VALUES (1, 'root', '根菜单', '0', 'root', 1, '', '2016-06-21 15:14:35', '2016
   (30, 'pits-category', '栏目管理', 3, 'pits/category/list', 1, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
   (31, 'pits-page', '页面管理', 3, 'pits/page/list', 2, 'ace-icon fa fa-file', '2016-06-21 15:14:35',
+   '2016-06-21 15:14:38'),
+  (32, 'pits-article', '文章管理', 3, 'pits/article/list', 3, 'ace-icon fa fa-desktop', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38');
 
 CREATE TABLE user_role

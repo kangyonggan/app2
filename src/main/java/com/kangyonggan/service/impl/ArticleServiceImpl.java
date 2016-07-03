@@ -41,6 +41,32 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     private AttachmentService attachmentService;
 
     @Override
+    public List<Article> searchAllArticles(int pageNum, int pageSize, String categoryCode, String title, String startTime, String endTime) throws Exception {
+        Example example = new Example(Article.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        if (!"root".equals(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+        if (StringUtil.isNotEmpty(title)) {
+            criteria.andLike("title", StringUtil.bothPercent(title));
+        }
+        if (StringUtil.isNotEmpty(startTime)) {
+            Date start = DateUtil.parse(startTime);
+            criteria.andGreaterThanOrEqualTo("createdTime", start);
+        }
+        if (StringUtil.isNotEmpty(endTime)) {
+            Date end = DateUtil.next(endTime);
+            criteria.andLessThanOrEqualTo("createdTime", end);
+        }
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, pageSize);
+        return super.selectByExample(example);
+    }
+
+    @Override
     public List<Article> searchArticles(int pageNum, int pageSize, String code, String title, String startTime, String endTime) throws Exception {
         Example example = new Example(Article.class);
         Example.Criteria criteria = example.createCriteria();
