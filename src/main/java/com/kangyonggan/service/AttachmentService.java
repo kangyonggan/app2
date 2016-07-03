@@ -14,6 +14,8 @@ public interface AttachmentService {
 
     List<Attachment> findAttachmentsByUserIdAndType(int pageNum, int pageSize, Long userId, String type);
 
+    List<Attachment> findAttachmentsByType(int pageNum, int pageSize, String type);
+
     Attachment getAttachment(Long id);
 
     void saveAttachments(Long articleId, List<Attachment> files);

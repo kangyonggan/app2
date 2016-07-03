@@ -1,8 +1,14 @@
 package com.kangyonggan.controller;
 
+import com.kangyonggan.model.Attachment;
+import com.kangyonggan.service.AttachmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * 网站首页

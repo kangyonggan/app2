@@ -76,6 +76,16 @@ public class AttachmentServiceImpl extends BaseService<Attachment> implements At
     }
 
     @Override
+    public List<Attachment> findAttachmentsByType(int pageNum, int pageSize, String type) {
+        Attachment attachment = new Attachment();
+        attachment.setIsDeleted((byte) 0);
+        attachment.setType(type);
+
+        PageHelper.startPage(pageNum, pageSize);
+        return super.select(attachment);
+    }
+
+    @Override
     public Attachment getAttachment(Long id) {
         return super.selectByPrimaryKey(id);
     }
