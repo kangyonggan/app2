@@ -126,6 +126,8 @@ VALUES (1, 'root', '根菜单', '0', 'root', 1, '', '2016-06-21 15:14:35', '2016
 
   (3, 'pits', '维护', 1, 'pits/manage', 2, 'ace-icon fa fa-wrench', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),
   (30, 'pits-category', '栏目管理', 3, 'pits/category/list', 1, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
+   '2016-06-21 15:14:38'),
+  (31, 'pits-page', '页面管理', 3, 'pits/page/list', 2, 'ace-icon fa fa-file', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38');
 
 CREATE TABLE user_role
@@ -154,6 +156,12 @@ INSERT INTO role_menu (role_id, menu_id) SELECT
                                            1,
                                            id
                                          FROM menu;
+
+INSERT INTO role_menu (role_id, menu_id)
+VALUES
+  (2, 1),
+  (2, 3),
+  (2, 31);
 
 CREATE TABLE category
 (
@@ -334,3 +342,50 @@ CREATE TABLE token
   COMMENT '记号表';
 CREATE UNIQUE INDEX id_UNIQUE ON token (id);
 CREATE UNIQUE INDEX code_UNIQUE ON token (code);
+
+CREATE TABLE page
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  name         VARCHAR(128)                          NOT NULL
+  COMMENT '页面名称',
+  url          VARCHAR(128)                          NOT NULL
+  COMMENT '页面URL',
+  sort         INT(11)                               NOT NULL         DEFAULT 1
+  COMMENT '页面排序(从1开始)',
+  icon         VARCHAR(128)                          NOT NULL         DEFAULT 'ace-icon fa fa-bookmark-o'
+  COMMENT '页面图标的样式',
+  type         VARCHAR(500)                          NOT NULL         DEFAULT 'nav'
+  COMMENT '页面类型',
+  user_id      BIGINT(20)                            NOT NULL         DEFAULT 0
+  COMMENT '用户ID',
+  is_deleted   TINYINT                               NOT NULL         DEFAULT 0
+  COMMENT '是否删除 {0:未删除, 1:已删除}',
+  created_time DATETIME                              NOT NULL
+  COMMENT '创建时间',
+  updated_time DATETIME                              NOT NULL
+  COMMENT '最后更新时间'
+)
+  COMMENT '页面表';
+CREATE UNIQUE INDEX id_UNIQUE ON page (id);
+
+INSERT INTO page (name, url, sort, icon, type, user_id, created_time, updated_time) VALUES
+  ('项目托管', 'https://github.com', 1, 'ace-icon fa fa-bookmark', 'nav', 0, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('菜鸟教程', 'http://www.w3school.com.cn', 2, 'ace-icon fa fa-bookmark', 'nav', 0, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('Bootstrap中文网', 'http://v3.bootcss.com', 3, 'ace-icon fa fa-bookmark', 'nav', 0, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('小说', 'http://top.qidian.com', 4, 'ace-icon fa fa-bookmark', 'nav', 0, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('京东', 'http://www.jd.com', 5, 'ace-icon fa fa-bookmark', 'nav', 0, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('淘宝', 'https://www.taobao.com', 6, 'ace-icon fa fa-bookmark', 'nav', 0, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('百度地图', 'http://map.baidu.com', 7, 'ace-icon fa fa-bookmark', 'nav', 0, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+
+  ('我的VPN', 'https://vpnso.com/account', 1, 'ace-icon fa fa-bookmark-o', 'nav', 1, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('谷歌邮箱', 'https://mail.google.com/mail/u/0/#inbox', 2, 'ace-icon fa fa-bookmark-o', 'nav', 1, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('公司邮箱', 'https://outlook.office.com/owa', 3, 'ace-icon fa fa-bookmark-o', 'nav', 1, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('住房公积金', 'https://persons.shgjj.com', 4, 'ace-icon fa fa-bookmark-o', 'nav', 1, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('公司首页', 'https://auth.pactera.com', 5, 'ace-icon fa fa-bookmark-o', 'nav', 1, '2016-07-03 14:50:07',
+   '2016-07-03 14:50:10'),
+  ('application-properties',
+   'http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html', 6,
+   'ace-icon fa fa-bookmark-o', 'nav', 1, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
+  ('异世灵武天下', 'http://www.biquku.com/2/2731/1392191.html', 7, 'ace-icon fa fa-bookmark-o', 'nav', 1,
+   '2016-07-03 14:50:07', '2016-07-03 14:50:10');

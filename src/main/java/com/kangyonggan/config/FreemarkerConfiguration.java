@@ -2,6 +2,7 @@ package com.kangyonggan.config;
 
 import com.kangyonggan.config.directive.CategoryDirective;
 import com.kangyonggan.config.directive.MenuDirective;
+import com.kangyonggan.config.directive.PageDirective;
 import com.kangyonggan.config.directive.UserDirective;
 import com.kangyonggan.config.freemarker.BlockDirective;
 import com.kangyonggan.config.freemarker.ExtendsDirective;
@@ -44,6 +45,9 @@ public class FreemarkerConfiguration extends FreeMarkerAutoConfiguration.FreeMar
     @Autowired
     private CategoryDirective categoryDirective;
 
+    @Autowired
+    private PageDirective pageDirective;
+
     @Override
     public FreeMarkerConfigurer freeMarkerConfigurer() {
         FreeMarkerConfigurer configurer = super.freeMarkerConfigurer();
@@ -57,6 +61,7 @@ public class FreemarkerConfiguration extends FreeMarkerAutoConfiguration.FreeMar
         sharedVariables.put("current_user", userDirective);
         sharedVariables.put("app_menu", menuDirective);
         sharedVariables.put("app_category", categoryDirective);
+        sharedVariables.put("app_page", pageDirective);
         sharedVariables.put("block", new BlockDirective());
         sharedVariables.put("extends", new ExtendsDirective());
         sharedVariables.put("override", new OverrideDirective());

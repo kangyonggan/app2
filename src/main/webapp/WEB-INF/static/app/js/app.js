@@ -105,7 +105,7 @@ var Notify = {
 };
 
 $(document).on('click', 'button[data-loading-text]', function(e) {
-    if ($(this).parents("form").validate().form()) {
+    if ($(this).parents("form").validate() && $(this).parents("form").validate().form()) {
         $(this).button('loading');
     }
 });
