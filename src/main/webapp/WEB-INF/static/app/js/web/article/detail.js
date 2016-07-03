@@ -84,4 +84,6 @@ $(function () {
 
         $("#article-body").html(body);
     }
+
+    $(".markdown a").prop("target", "_blank");
 });

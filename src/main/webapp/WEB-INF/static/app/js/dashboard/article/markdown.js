@@ -20,4 +20,7 @@ $(function () {
 
     $("#md-body").markdown();
 
+    $('.markdown').on('click', '[data-handler=bootstrap-markdown-cmdPreview]', function () {
+        $(".markdown a").prop("target", "_blank");
+    });
 });

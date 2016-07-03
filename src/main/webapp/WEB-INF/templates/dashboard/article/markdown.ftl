@@ -6,7 +6,7 @@
         内容<span class="red">&nbsp;*</span>
     </label>
 
-    <div class="col-xs-10 col-xs-offset-1 ">
+    <div class="col-xs-10 col-xs-offset-1 markdown">
         <span class="block input-icon input-icon-right">
             <textarea name="body" id="md-body" rows="10" data-provide="markdown" class="form-control">${article.body!''}</textarea>
             <label class="error hide" for="md-body"></label>

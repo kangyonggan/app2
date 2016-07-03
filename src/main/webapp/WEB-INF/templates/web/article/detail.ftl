@@ -53,7 +53,7 @@
 
             </#if>
 
-            <div class="row" id="article-body">${article.body}</div>
+            <div class="row markdown" id="article-body">${article.body}</div>
 
             <#if article.categoryCode=="download">
                 <div class="space-10"></div>
