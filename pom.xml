@@ -7,7 +7,7 @@
     <groupId>com.kangyonggan</groupId>
     <artifactId>app</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>懒人快乐</name>
 
