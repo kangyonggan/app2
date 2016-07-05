@@ -42,4 +42,9 @@ public class IndexController {
     public String error405() {
         return "error/405";
     }
+
+    @RequestMapping(value = "400", method = RequestMethod.GET)
+    public String error400() {
+        return "error/400";
+    }
 }

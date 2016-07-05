@@ -16,6 +16,7 @@ public class ServerCustomization extends ServerProperties {
         super.customize(container);
         container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"));
         container.addErrorPages(new ErrorPage(HttpStatus.METHOD_NOT_ALLOWED, "/405"));
+        container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/400"));
     }
 
 }

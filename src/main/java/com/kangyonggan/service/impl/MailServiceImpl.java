@@ -90,8 +90,12 @@ public class MailServiceImpl implements MailService {
 
         new Thread(() -> {
             log.info("正在给{}发邮件...", to);
-            javaMailSender.send(msg);
-            log.info("邮件发送成功...");
+            try {
+                javaMailSender.send(msg);
+                log.info("邮件发送成功...");
+            } catch (Exception e) {
+                log.error("邮件发送失败：{}", e.getMessage());
+            }
         }).start();
     }
 
