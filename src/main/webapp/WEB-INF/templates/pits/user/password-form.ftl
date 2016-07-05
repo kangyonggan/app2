@@ -4,8 +4,8 @@
 <@override name="content">
 <form action="${ctx}pits/user/password/update" class="form-horizontal" role="form" id="form" method="post">
     <input type="hidden" name="id" value="${item.id}"/>
-    <@c.input id="password" label="新密码" empty="请输入新密码..."/>
-    <@c.input id="rePassword" label="确认密码" empty="请再次输入密码..."/>
+    <@c.password id="password" label="新密码" empty="请输入新密码..."/>
+    <@c.password id="rePassword" label="确认密码" empty="请再次输入密码..."/>
 
     <div class="clearfix form-actions">
         <div class="center">
