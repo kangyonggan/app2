@@ -110,6 +110,7 @@ public class SysUserController {
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
 
         if (!result.hasErrors()) {
+            user.setIsVerified((byte) 1);
             userService.saveUserAndRole(user);
             res.setStatus(AppConstants.SUCCESS);
         }
