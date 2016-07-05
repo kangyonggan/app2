@@ -55,7 +55,7 @@ public class MailServiceImpl implements MailService {
         } else if ("password-reset".equals(type)) {
             callbackUrl += "/validator/reset/";
             map.put("title", "请点击下面的链接重置密码");
-        } else if ("".equals(type)) {
+        } else if ("email-verify".equals(type)) {
             callbackUrl += "/validator/email/";
             map.put("title", "请点击下面的链接完成邮箱激活");
         }
