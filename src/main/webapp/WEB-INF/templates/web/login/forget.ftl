@@ -33,7 +33,7 @@
                         <label class="col-xs-12 control-label no-padding-right">验证码</label>
                         <div class="col-xs-7">
                         <span class="block input-icon input-icon-right">
-                            <input value="开发阶段先不验" type="text" id="captcha" name="captcha" class="form-control"
+                            <input value="" type="text" id="captcha" name="captcha" class="form-control"
                                    placeholder="请输入图片中的数字"/>
                             <i class="ace-icon fa fa-times-circle hide"></i>
                             <label class="error hide" for="captcha"></label>

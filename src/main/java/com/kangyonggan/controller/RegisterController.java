@@ -61,10 +61,10 @@ public class RegisterController {
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
         String realCaptcha = (String) request.getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
 
-//        if (!captcha.equalsIgnoreCase(realCaptcha)) {
-//            res.setMessage("验证码错误，请重新输入!");
-//            return res;
-//        }
+        if (!captcha.equalsIgnoreCase(realCaptcha)) {
+            res.setMessage("验证码错误，请重新输入!");
+            return res;
+        }
 
         res.setMessage("注册失败, 请稍后重试!");
 

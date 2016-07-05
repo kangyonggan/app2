@@ -125,11 +125,15 @@ VALUES (1, 'root', '根菜单', '0', 'root', 1, '', '2016-06-21 15:14:35', '2016
    '2016-06-21 15:14:38'),
 
   (3, 'pits', '维护', 1, 'pits/manage', 2, 'ace-icon fa fa-wrench', '2016-06-21 15:14:35', '2016-06-21 15:14:38'),
-  (30, 'pits-category', '栏目管理', 3, 'pits/category/list', 1, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
+  (30, 'pits-page', '页面管理', 3, 'pits/page/list', 1, 'ace-icon fa fa-file', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (31, 'pits-page', '页面管理', 3, 'pits/page/list', 2, 'ace-icon fa fa-file', '2016-06-21 15:14:35',
+  (31, 'pits-user-edit', '资料修改', 3, 'pits/user/edit', 2, 'ace-icon fa fa-exclamation-circle', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38'),
-  (32, 'pits-article', '文章管理', 3, 'pits/article/list', 3, 'ace-icon fa fa-desktop', '2016-06-21 15:14:35',
+  (32, 'pits-user-password', '更新密码', 3, 'pits/user/password', 3, 'ace-icon fa fa-key', '2016-06-21 15:14:35',
+   '2016-06-21 15:14:38'),
+  (33, 'pits-category', '栏目管理', 3, 'pits/category/list', 4, 'ace-icon fa fa-th', '2016-06-21 15:14:35',
+   '2016-06-21 15:14:38'),
+  (34, 'pits-article', '文章管理', 3, 'pits/article/list', 5, 'ace-icon fa fa-desktop', '2016-06-21 15:14:35',
    '2016-06-21 15:14:38');
 
 CREATE TABLE user_role
@@ -163,7 +167,9 @@ INSERT INTO role_menu (role_id, menu_id)
 VALUES
   (2, 1),
   (2, 3),
-  (2, 31);
+  (2, 30),
+  (2, 31),
+  (2, 32);
 
 CREATE TABLE category
 (

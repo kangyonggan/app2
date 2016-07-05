@@ -87,12 +87,14 @@ $(function () {
                 success: function (response) {
                     if (response.status == 'fail') {
                         Notify.error(response.message);
+                        $("button[data-loading-text]").button('reset');
                     } else {
                         window.location.href = "register/success";
                     }
                 },
                 error: function () {
                     Notify.error("服务器内部错误，请稍后再试。");
+                    $("button[data-loading-text]").button('reset');
                 }
             });
         }

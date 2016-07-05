@@ -94,10 +94,10 @@ public class LoginController {
         HttpSession session = request.getSession();
         String realCaptcha = (String) session.getAttribute(CaptchaController.KEY_CAPTCHA);
 
-//        if (!captcha.equalsIgnoreCase(realCaptcha)) {
-//            res.setMessage("验证码错误，请重新输入!");
-//            return res;
-//        }
+        if (!captcha.equalsIgnoreCase(realCaptcha)) {
+            res.setMessage("验证码错误，请重新输入!");
+            return res;
+        }
 
         UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), user.getPassword());
         final Subject subject = SecurityUtils.getSubject();
@@ -182,11 +182,11 @@ public class LoginController {
         ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
         String realCaptcha = (String) request.getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
 
-//        if (!captcha.equalsIgnoreCase(realCaptcha)) {
-//            res.setMessage("验证码错误，请重新输入!");
-//            res.setStatus(AppConstants.FAIL);
-//            return res;
-//        }
+        if (!captcha.equalsIgnoreCase(realCaptcha)) {
+            res.setMessage("验证码错误，请重新输入!");
+            res.setStatus(AppConstants.FAIL);
+            return res;
+        }
 
         User user = userService.findUserByEmail(email);
         if (user == null) {
