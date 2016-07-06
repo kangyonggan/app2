@@ -175,3 +175,6 @@ input.app-date-input {
 .markdown ol {
     list-style-type: decimal;
 }
+.markdown {
+    font-size: 130%;
+}
