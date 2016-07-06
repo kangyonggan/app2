@@ -47,7 +47,13 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendMail(User user, String type, String callbackUrl) {
+        log.info("邮件收件人：{}", user.getEmail());
+        log.info("邮件类型：{}", type);
+        log.info("邮件回调地址：{}", callbackUrl);
+
         String code = tokenService.saveToken(type, user.getId());
+        log.info("发邮件的消息码code：{}", code);
+
         Map<String, Object> map = new HashMap();
         if ("user-locked".equals(type)) {
             callbackUrl += "/validator/locked/";
@@ -72,16 +78,19 @@ public class MailServiceImpl implements MailService {
         }
 
         send(user.getEmail(), text, true);
+
     }
 
     private void send(String to, String text, boolean isHtml) {
         MimeMessage msg = javaMailSender.createMimeMessage();
         try {
+            log.info("发件人：{}", prop.get(7));
             MimeMessageHelper helper = new MimeMessageHelper(msg, true);
             helper.setFrom(prop.get(7), prop.get(0));
             helper.setTo(to);
             helper.setSubject(prop.get(0));
 
+            log.info("邮件内容：{}", text);
             helper.setText(text, isHtml);
         } catch (Exception e) {
             log.error("邮件发送失败！" + to, e);

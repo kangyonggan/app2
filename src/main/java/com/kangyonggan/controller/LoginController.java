@@ -89,15 +89,20 @@ public class LoginController {
     @ResponseBody
     public ValidationResponse login(@RequestParam(value = "captcha", required = true) String captcha,
                                     User user, HttpServletRequest request) {
+        log.info("登录的Email：{}", user.getEmail());
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
 
         HttpSession session = request.getSession();
         String realCaptcha = (String) session.getAttribute(CaptchaController.KEY_CAPTCHA);
+        log.info("session中的验证码为：{}", realCaptcha);
+        log.info("用户上送的验证码为：{}", captcha);
 
         if (!captcha.equalsIgnoreCase(realCaptcha)) {
             res.setMessage("验证码错误，请重新输入!");
+            log.info(res.getMessage());
             return res;
         }
+        log.info("验证码正确");
 
         UsernamePasswordToken token = new UsernamePasswordToken(user.getEmail(), user.getPassword());
         final Subject subject = SecurityUtils.getSubject();
@@ -107,6 +112,7 @@ public class LoginController {
             subject.login(token);
         } catch (UnknownAccountException uae) {
             res.setMessage("该电子邮箱不存在！");
+            log.info(res.getMessage());
             return res;
         } catch (IncorrectCredentialsException ice) {
             int count = doErrorPassword(request, user.getEmail());
@@ -114,12 +120,15 @@ public class LoginController {
             if (count >= PASSWORD_ERROR_COUNT) {
                 res.setMessage(String.format("密码错误%d次，账户已锁定, 请在三十分钟后重试或前往邮箱激活！", count));
             }
+            log.info(res.getMessage());
             return res;
         } catch (LockedAccountException lae) {
             res.setMessage("账号已锁定，请等待三十分钟或联系管理员！");
+            log.info(res.getMessage());
             return res;
         } catch (EmailNotVerifiedException enve) {
             res.setMessage("账号未激活，请前往邮箱激活或联系管理员！");
+            log.info(res.getMessage());
             return res;
         } catch (Exception e) {
             res.setMessage("未知错误，请联系管理员！");
@@ -142,6 +151,7 @@ public class LoginController {
             return res;
         }
         res.setMessage(String.format("%s", savedRequest.getRequestUrl()));
+        log.info("登录成功， 重定向到：{}", res.getMessage());
         return res;
     }
 
@@ -179,23 +189,30 @@ public class LoginController {
     @RequestMapping(value = "reset", method = RequestMethod.POST)
     @ResponseBody
     public ValidationResponse reset(String email, String captcha, HttpServletRequest request) {
+        log.info("找回密码的电子邮箱：{}", email);
+        log.info("找回密码的验证码：{}", captcha);
         ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
         String realCaptcha = (String) request.getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
+        log.info("session中的验证码：{}", realCaptcha);
 
         if (!captcha.equalsIgnoreCase(realCaptcha)) {
             res.setMessage("验证码错误，请重新输入!");
             res.setStatus(AppConstants.FAIL);
+            log.info(res.getMessage());
             return res;
         }
+        log.info("找回密码的验证码正确");
 
         User user = userService.findUserByEmail(email);
         if (user == null) {
             res.setStatus(AppConstants.FAIL);
             res.setMessage("没有此邮箱的注册信息");
+            log.info(res.getMessage());
             return res;
         }
 
         mailService.sendMail(user, "password-reset", IPUtil.getServerHost(request));
+
         return res;
     }
 

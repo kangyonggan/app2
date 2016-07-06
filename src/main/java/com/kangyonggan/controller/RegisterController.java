@@ -58,13 +58,18 @@ public class RegisterController {
     @ResponseBody
     public ValidationResponse register(User user, String captcha,
                                        HttpServletRequest request) {
+        log.info("用户注册email:{}", user.getEmail());
         ValidationResponse res = new ValidationResponse(AppConstants.FAIL);
         String realCaptcha = (String) request.getSession().getAttribute(CaptchaController.KEY_CAPTCHA);
+        log.info("session中的验证码为：{}", realCaptcha);
+        log.info("用户上送的验证码为：{}", captcha);
 
         if (!captcha.equalsIgnoreCase(realCaptcha)) {
             res.setMessage("验证码错误，请重新输入!");
+            log.info(res.getMessage());
             return res;
         }
+        log.info("验证码正确");
 
         res.setMessage("注册失败, 请稍后重试!");
 
@@ -72,6 +77,7 @@ public class RegisterController {
             userService.saveUserAndRole(user);
             res.setStatus(AppConstants.SUCCESS);
 
+            log.info("注册成功， 正在发送激活邮件");
             mailService.sendMail(user, "email-verify", IPUtil.getServerHost(request));
         } catch (Exception e) {
             log.error(e.getMessage());
