@@ -56,6 +56,8 @@ input.app-date-input {
 
 .reply-content img {
     border: 0;
+    border-radius: 0;
+    max-width: 100%;
 }
 
 
