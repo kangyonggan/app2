@@ -32,16 +32,6 @@
                         <p class="alert alert-info">${message}。</p>
                     </#if>
                 </div>
-
-                <#if !status??>
-                    <div class="col-xs-12">
-                        <div class="space-20"></div>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <a id="resend" href="${ctx}resend?code=${code}" class="btn skin-btn width-100">重新发送邮件</a>
-                    </div>
-                </#if>
             </div>
         </div>
     </div>

@@ -8,19 +8,10 @@ $(function () {
         }
     }
 
-    var $form = $("#login-form");
+    var $form = $("#resend-form");
 
     $form.validate({
         rules: {
-            email: {
-                required: true,
-                email: true,
-                maxlength: 64
-            },
-            password: {
-                required: true,
-                isPassword: true
-            },
             captcha: {
                 required: true
             }
@@ -51,8 +42,6 @@ $(function () {
                         Notify.error(response.message);
                         $("button[data-loading-text]").button('reset');
                     } else if (response.status == "success") {
-                        window.location.href = response.message;
-                    } else if (response.status == "notify") {
                         window.location.href = response.message;
                     }
                 },

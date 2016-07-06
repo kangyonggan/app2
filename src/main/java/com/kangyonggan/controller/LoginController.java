@@ -2,7 +2,6 @@ package com.kangyonggan.controller;
 
 import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.exception.EmailNotVerifiedException;
-import com.kangyonggan.model.Token;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.MailService;
@@ -20,6 +19,7 @@ import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,6 +47,9 @@ public class LoginController {
     private static final String PATH_AJAX_MODAL = PATH_ROOT + "/ajax-modal";
     private static final String PATH_FORGET = PATH_ROOT + "/forget";
     private static final String PATH_RESET_RESULT = PATH_ROOT + "/reset-result";
+    private static final String PATH_NOTIFY = PATH_ROOT + "/notify";
+    private static final String PATH_RESEND = PATH_ROOT + "/resend";
+    private static final String PATH_RESEND_SUCCESS = PATH_ROOT + "/resend-success";
 
     @Autowired
     private UserService userService;
@@ -127,7 +130,8 @@ public class LoginController {
             log.info(res.getMessage());
             return res;
         } catch (EmailNotVerifiedException enve) {
-            res.setMessage("账号未激活，请前往邮箱激活或联系管理员！");
+            res.setMessage("/notify?email=" + user.getEmail());
+            res.setStatus("notify");
             log.info(res.getMessage());
             return res;
         } catch (Exception e) {
@@ -227,28 +231,75 @@ public class LoginController {
     }
 
     /**
-     * 重新发送邮件
+     * 提示未激活邮箱界面
      *
-     * @param code
-     * @param request
+     * @param email
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "notify", method = RequestMethod.GET)
+    public String notifyVerify(@RequestParam("email") String email, Model model) {
+        model.addAttribute("email", email);
+        return PATH_NOTIFY;
+    }
+
+    /**
+     * 重发邮件界面
+     *
+     * @param email
+     * @param model
      * @return
      */
     @RequestMapping(value = "resend", method = RequestMethod.GET)
-    @ResponseBody
-    public ValidationResponse resend(@RequestParam("code") String code, HttpServletRequest request) {
-        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
-        Token token = tokenService.findTokenByCode(code);
-        User user = userService.getUser(token.getUserId());
-        Token t = tokenService.findTokenByEmailAndType(user.getId(), token.getType());
-        if (t == null) {
-            mailService.sendMail(user, token.getType(), IPUtil.getServerHost(request));
-        } else {
-            res.setStatus(AppConstants.FAIL);
-            res.setMessage("不可重复发送， 请前往邮箱查看");
-        }
+    public String resend(@RequestParam("email") String email, Model model) {
+        model.addAttribute("email", email);
+        return PATH_RESEND;
+    }
 
+    /**
+     * 重发邮件
+     *
+     * @param captcha
+     * @param email
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "resend", method = RequestMethod.POST)
+    @ResponseBody
+    public ValidationResponse resendEmail(@RequestParam(value = "captcha", required = true) String captcha,
+                              String email, HttpServletRequest request) {
+        log.info("重发邮件的Email：{}", email);
+        ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
+
+        HttpSession session = request.getSession();
+        String realCaptcha = (String) session.getAttribute(CaptchaController.KEY_CAPTCHA);
+        log.info("session中的验证码为：{}", realCaptcha);
+        log.info("用户上送的验证码为：{}", captcha);
+
+        if (!captcha.equalsIgnoreCase(realCaptcha)) {
+            res.setStatus(AppConstants.FAIL);
+            res.setMessage("验证码错误，请重新输入!");
+            log.info(res.getMessage());
+            return res;
+        }
+        log.info("验证码正确");
+        res.setMessage("/resend-success");
+
+        User user = userService.findUserByEmail(email);
+        mailService.sendMail(user, "email-verify", IPUtil.getServerHost(request));
         return res;
     }
+
+    /**
+     * 重发邮件成功界面
+     *
+     * @return
+     */
+    @RequestMapping(value = "resend-success", method = RequestMethod.GET)
+    public String success() {
+        return PATH_RESEND_SUCCESS;
+    }
+
 
     /**
      * 处理密码错误, 防止暴力破解

@@ -42,7 +42,6 @@ public class ValidatorController {
         } else {
             userService.updateUserEmailVerified(token);
             model.addAttribute("message", "邮箱验证成功");
-            model.addAttribute("status", "success");
         }
 
         token.setIsDeleted((byte) 1);
@@ -66,7 +65,6 @@ public class ValidatorController {
         } else {
             model.addAttribute("userId", token.getUserId());
             model.addAttribute("message", "重置密码");
-            model.addAttribute("status", "success");
         }
 
         token.setIsDeleted((byte) 1);
@@ -94,7 +92,6 @@ public class ValidatorController {
             userService.updateUser(user);
 
             model.addAttribute("message", "已解除锁定， 请重新登录， 如果记不得密码， 可以点击“忘记密码”。");
-            model.addAttribute("status", "success");
         }
 
         token.setIsDeleted((byte) 1);
