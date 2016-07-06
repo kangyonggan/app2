@@ -9,6 +9,8 @@
         <#if !item.id??>
             <@c.password id="password" label="密码" required="true"/>
             <@c.password id="rePassword" label="确认密码" required="true"/>
+        <#else>
+            <input type="hidden" name="id" value="${item.id}"/>
         </#if>
         <@c.input id="mobile" label="手机号" val="${item.mobile!''}"/>
         <@c.input id="sign" label="签名" val="${item.sign!''}"/>
