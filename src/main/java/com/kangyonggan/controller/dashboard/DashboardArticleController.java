@@ -131,14 +131,14 @@ public class DashboardArticleController {
     }
 
     /**
-     * 删除文章(逻辑删除)
+     * 删除文章
      *
      * @param id
      * @return
      */
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     @ResponseBody
-    public ValidationResponse logicDelete(@RequestParam("id") Long id) {
+    public ValidationResponse delete(@RequestParam("id") Long id) {
         ValidationResponse res = new ValidationResponse(AppConstants.SUCCESS);
 
         ShiroUser user = userService.getShiroUser();
@@ -147,7 +147,7 @@ public class DashboardArticleController {
         if (!article.getUserId().equals(user.getId())) {
             res.setStatus(AppConstants.FAIL);
         } else {
-            articleService.deleteArticleWithLogic(article);
+            articleService.deleteArticle(id);
         }
 
         return res;

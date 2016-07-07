@@ -173,12 +173,8 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
-    public void deleteArticleWithLogic(Article article) {
-        article.setIsDeleted((byte) 1);
-        article.setUpdatedTime(new Date());
-        log.info("删除文章：id={}, isDeleted={}", article.getId(), article.getIsDeleted());
-
-        super.updateByPrimaryKeySelective(article);
+    public void deleteArticle(Long id) {
+        super.deleteByPrimaryKey(id);
     }
 
     @Override

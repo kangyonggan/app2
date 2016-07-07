@@ -79,7 +79,7 @@ public class PitsArticleController {
     @RequiresPermissions("pits-article")
     public ValidationResponse delete(@RequestParam("id") Long id) {
         log.info("删除文章id:" + id);
-        articleService.deleteArticleWithLogic(articleService.getArticle(id));
+        articleService.deleteArticle(id);
         log.info("文章删除成功");
         return new ValidationResponse(AppConstants.SUCCESS);
     }

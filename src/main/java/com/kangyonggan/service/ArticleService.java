@@ -37,7 +37,7 @@ public interface ArticleService {
 
     void saveArticle(Article article, String ids);
 
-    void deleteArticleWithLogic(Article article);
+    void deleteArticle(Long id);
 
     void updateArticle(Article article);
 }
