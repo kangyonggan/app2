@@ -2,7 +2,6 @@
     <td>${item.id}</td>
     <td title="${item.title}"><@c.substring str="${item.title}" len=25/></td>
     <td>${item.top}/${item.low}/${item.star}</td>
-    <td>${(item.isDeleted==0)?string('未删除', '已删除')}</td>
     <td>${item.createdTime?datetime}</td>
     <td>
         <div class="btn-group">
