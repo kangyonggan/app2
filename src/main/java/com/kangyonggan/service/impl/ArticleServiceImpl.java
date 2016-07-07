@@ -13,6 +13,7 @@ import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.Collections3;
 import com.kangyonggan.util.DateUtil;
 import com.kangyonggan.util.StringUtil;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,7 @@ import java.util.*;
  */
 @Service
 @Transactional
+@Log4j2
 public class ArticleServiceImpl extends BaseService<Article> implements ArticleService {
 
     @Autowired
@@ -174,6 +176,8 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     public void deleteArticleWithLogic(Article article) {
         article.setIsDeleted((byte) 1);
         article.setUpdatedTime(new Date());
+        log.info("删除文章：");
+        log.info(article);
 
         super.updateByPrimaryKeySelective(article);
     }

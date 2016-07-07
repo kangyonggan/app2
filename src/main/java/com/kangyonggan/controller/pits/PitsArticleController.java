@@ -7,6 +7,7 @@ import com.kangyonggan.model.Category;
 import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.CategoryService;
+import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("pits/article")
+@Log4j2
 public class PitsArticleController {
 
     private static final String PATH_ROOT = "pits/article/";
@@ -76,7 +78,9 @@ public class PitsArticleController {
     @ResponseBody
     @RequiresPermissions("pits-article")
     public ValidationResponse delete(@RequestParam("id") Long id) {
+        log.info("删除文章id:" + id);
         articleService.deleteArticleWithLogic(articleService.getArticle(id));
+        log.info("文章删除成功");
         return new ValidationResponse(AppConstants.SUCCESS);
     }
 }
