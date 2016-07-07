@@ -183,3 +183,7 @@ input.app-date-input {
 .markdown {
     line-height: 1.75;
 }
+
+.body-img img {
+    max-width: 100%;
+}

@@ -1,7 +1,7 @@
 <tr id="article-${item.id}">
     <td>${item.id}</td>
 <#if category.code=="word">
-    <td>${item.body}</td>
+    <td class="body-img">${item.body}</td>
 <#else>
     <td title="${item.title}"><@c.substring str="${item.title}" len=25/></td>
 </#if>
