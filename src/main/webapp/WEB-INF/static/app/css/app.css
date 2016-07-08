@@ -39,6 +39,18 @@ ul {
     word-spacing: 3px;
 }
 
+.max-height-300 {
+    display: inline-block;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.max-height-100 {
+    display: inline-block;
+    max-height: 100px;
+    overflow: hidden;
+}
+
 .text-article-body {
     max-height: 160px;
     overflow: hidden;
