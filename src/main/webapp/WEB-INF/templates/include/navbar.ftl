@@ -26,7 +26,6 @@
             </button>
         </div>
 
-    <@shiro.user>
         <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
 
             <ul class="nav navbar-nav">
@@ -39,22 +38,23 @@
                         <i class="ace-icon fa fa-angle-down bigger-140 skin-inverse"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
-                        <#list app_category.childrens as category>
-                            <#assign hasChildren=category.childrens?size gt 0>
-                            <#if hasChildren>
-                                <#list category.childrens as c>
-                                    <li>
-                                        <a href="${ctx}category/list?code=${c.code}">
-                                            <i class="${c.icon} bigger-120"></i>
-                                        ${c.name}
-                                        </a>
-                                    </li>
-                                </#list>
-                            </#if>
-                        </#list>
+                    <#list app_category.childrens as category>
+                        <#assign hasChildren=category.childrens?size gt 0>
+                        <#if hasChildren>
+                            <#list category.childrens as c>
+                                <li>
+                                    <a href="${ctx}category/list?code=${c.code}">
+                                        <i class="${c.icon} bigger-120"></i>
+                                    ${c.name}
+                                    </a>
+                                </li>
+                            </#list>
+                        </#if>
+                    </#list>
                     </ul>
                 </li>
 
+            <@shiro.user>
                 <#list app_category.childrens as category>
                     <#if category.childrens?size gt 0>
                         <li>
@@ -106,9 +106,9 @@
                         </#list>
                     </#if>
                 </@app_menu>
+            </@shiro.user>
             </ul>
         </nav>
-    </@shiro.user>
 
         <nav role="navigation" class="navbar-menu pull-right collapse navbar-collapse">
             <ul class="nav navbar-nav">
