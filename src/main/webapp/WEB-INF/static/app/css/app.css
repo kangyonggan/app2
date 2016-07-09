@@ -44,6 +44,7 @@ ul {
     max-height: 300px;
     overflow: hidden;
     border: 0;
+    line-height: 1.5;
 }
 
 .max-height-100 {
