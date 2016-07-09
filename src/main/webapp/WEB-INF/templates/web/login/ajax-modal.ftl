@@ -8,7 +8,7 @@
         <label class="col-xs-10 col-xs-offset-1 pull-left">验证码<span class="red">*</span></label>
         <div class="col-xs-6 col-xs-offset-1 ">
             <span class="block input-icon input-icon-right">
-                <input value="开发阶段先不验" type="text" id="captcha" name="captcha" class="form-control"
+                <input type="text" id="captcha" name="captcha" class="form-control"
                        placeholder="请输入图片中的数字"/>
                 <i class="ace-icon fa fa-times-circle hide"></i>
                 <label class="error hide" for="captcha"></label>
