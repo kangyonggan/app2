@@ -39,9 +39,9 @@ ul {
     word-spacing: 3px;
 }
 
-.max-height-300 {
+.max-height-450 {
     display: inline-block;
-    max-height: 300px;
+    max-height: 450px;
     overflow: hidden;
     border: 0;
     line-height: 1.5;
@@ -52,6 +52,10 @@ ul {
     max-height: 100px;
     overflow: hidden;
     border: 0;
+}
+
+.max-height-100 img {
+    display: none;
 }
 
 .text-article-body {
