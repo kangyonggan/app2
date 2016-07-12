@@ -56,6 +56,14 @@ public class AttachmentServiceImpl extends BaseService<Attachment> implements At
     }
 
     @Override
+    public void deleteAttachmentsByArticleId(Long articleId) {
+        Attachment attachment = new Attachment();
+        attachment.setArticleId(articleId);
+
+        super.delete(attachment);
+    }
+
+    @Override
     public List<Attachment> findAttachmentsByArticleId(Long articleId) {
         Attachment attachment = new Attachment();
         attachment.setIsDeleted((byte) 0);

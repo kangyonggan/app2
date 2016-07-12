@@ -25,4 +25,6 @@ public interface AttachmentService {
     void updateAttachments(String ids, Long articleId);
 
     void updateAttachment(Attachment attachment);
+
+    void deleteAttachmentsByArticleId(Long articleId);
 }

@@ -175,6 +175,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     @Override
     public void deleteArticle(Long id) {
         super.deleteByPrimaryKey(id);
+        attachmentService.deleteAttachmentsByArticleId(id);
     }
 
     @Override

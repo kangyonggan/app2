@@ -4,7 +4,6 @@ import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.Attachment;
 import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.AttachmentService;
-import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.FileUpload;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ import java.util.Map;
 @RequestMapping("file")
 @Log4j2
 public class FileController {
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private AttachmentService attachmentService;
