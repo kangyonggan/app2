@@ -1,9 +1,9 @@
 <tr id="article-${item.id}">
     <td>${item.id}</td>
 <#if category.code=="word">
-    <td class="body-img max-height-100">${item.body}</td>
+    <td class="body-img hidden-img">${item.body}</td>
 <#else>
-    <td class="max-height-100" title="${item.title}"><@c.substring str="${item.title}" len=25/></td>
+    <td title="${item.title}"><@c.substring str="${item.title}" len=25/></td>
 </#if>
     <td>${item.top}/${item.low}/${item.star}</td>
     <td>${item.createdTime?datetime}</td>
