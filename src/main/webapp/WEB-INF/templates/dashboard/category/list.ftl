@@ -50,9 +50,9 @@
     <tr>
         <th>ID</th>
         <#if category.code=="word">
-            <th>内容</th>
+            <th style="min-width: 50%;">内容</th>
         <#else>
-            <th>标题</th>
+            <th style="min-width: 50%;">标题</th>
         </#if>
         <th>顶/踩/收藏</th>
         <th>创建时间</th>
