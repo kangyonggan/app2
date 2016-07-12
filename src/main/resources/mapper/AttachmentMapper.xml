@@ -33,4 +33,12 @@
         </foreach>
     </update>
 
+    <delete id="deleteAttachmentsOfInvalid">
+        DELETE FROM attachment
+        <where>
+            article_id NOT IN
+            (SELECT id FROM article)
+        </where>
+    </delete>
+
 </mapper>

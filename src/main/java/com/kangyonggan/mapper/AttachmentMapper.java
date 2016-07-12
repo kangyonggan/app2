@@ -14,4 +14,7 @@ public interface AttachmentMapper extends MyMapper<Attachment> {
     void insertAttachments(@Param("articleId") Long articleId, @Param("userId") Long userId, @Param("now") Date now, @Param("files") List<Attachment> files);
 
     void updateAttachments(@Param("ids") String[] ids, @Param("articleId") Long articleId);
+
+    void deleteAttachmentsOfInvalid();
+
 }
