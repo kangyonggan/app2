@@ -95,6 +95,22 @@ public class StringUtil {
     }
 
     /**
+     * 判断str是否在arr中/ignore
+     *
+     * @param str
+     * @param arr
+     * @return
+     */
+    public static boolean inIgnore(String str, String... arr) {
+        for (String s : arr) {
+            if (s.equalsIgnoreCase(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 过滤空数据
      *
      * @param str

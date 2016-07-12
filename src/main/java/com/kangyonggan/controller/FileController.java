@@ -5,7 +5,9 @@ import com.kangyonggan.model.Attachment;
 import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.util.FileUpload;
+import com.kangyonggan.util.StringUtil;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +53,14 @@ public class FileController {
         int error = 0;
         try {
             fileName = FileUpload.upload(file);
+
+            if (StringUtil.inIgnore(FilenameUtils.getExtension(fileName), "png", "gif", "jpg", "jpeg")) {
+                Attachment attachment = new Attachment();
+                attachment.setName(file.getOriginalFilename());
+                attachment.setPath(fileName);
+                attachment.setType("picture");
+                attachmentService.saveAttachment(attachment);
+            }
         } catch (Exception e) {
             log.error("编辑器上传失败", e);
             error = -1;
