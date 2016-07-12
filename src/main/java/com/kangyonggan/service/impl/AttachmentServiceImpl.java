@@ -9,6 +9,7 @@ import com.kangyonggan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.List;
@@ -79,13 +80,13 @@ public class AttachmentServiceImpl extends BaseService<Attachment> implements At
 
     @Override
     public List<Attachment> findAttachmentsByUserIdAndType(int pageNum, int pageSize, Long userId, String type) {
-        Attachment attachment = new Attachment();
-        attachment.setIsDeleted((byte) 0);
-        attachment.setUserId(userId);
-        attachment.setType(type);
+        Example example = new Example(Attachment.class);
+        example.createCriteria().andEqualTo("isDeleted", 0).andEqualTo("userId", userId).andEqualTo("type", type);
+
+        example.setOrderByClause("id desc");
 
         PageHelper.startPage(pageNum, pageSize);
-        return super.select(attachment);
+        return super.selectByExample(example);
     }
 
     @Override
