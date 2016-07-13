@@ -61,7 +61,7 @@
                 <div class="left">
                     <a href="${ctx}category/list?code=picture&userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-light no-hover">
-                            <span class="line-height-1 bigger-170 blue"> ${map_header.picture_header.total} </span>
+                            <span class="line-height-1 bigger-170 blue" id="picture_header"></span>
 
                             <br>
                             <span class="line-height-1 smaller-90"> 相册 </span>
@@ -70,7 +70,7 @@
 
                     <a href="${ctx}category/list?code=music&userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-yellow no-hover">
-                            <span class="line-height-1 bigger-170"> ${map_header.music_header.total} </span>
+                            <span class="line-height-1 bigger-170" id="music_header"></span>
 
                             <br>
                             <span class="line-height-1 smaller-90"> 歌曲 </span>
@@ -79,7 +79,7 @@
 
                     <a href="${ctx}category/list?code=video&userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-pink no-hover">
-                            <span class="line-height-1 bigger-170"> ${map_header.video_header.total} </span>
+                            <span class="line-height-1 bigger-170" id="video_header"></span>
 
                             <br>
                             <span class="line-height-1 smaller-90"> 视频 </span>
@@ -89,7 +89,7 @@
 
                     <a href="${ctx}category/list?userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-grey no-hover">
-                            <span class="line-height-1 bigger-170"> ${map_header.article_header.total - map_header.video_header.total - map_header.music_header.total - map_header.picture_header.total} </span>
+                            <span class="line-height-1 bigger-170" id="other_header"></span>
 
                             <br>
                             <span class="line-height-1 smaller-90"> 其他 </span>
@@ -97,14 +97,14 @@
                     </a>
 
                     <span class="btn btn-app btn-sm btn-success no-hover">
-                        <span class="line-height-1 bigger-170"> ${map_header.article_header.top} </span>
+                        <span class="line-height-1 bigger-170" id="top_header"></span>
 
                         <br>
                         <span class="line-height-1 smaller-90"> 顶 </span>
                     </span>
 
                     <span class="btn btn-app btn-sm btn-primary no-hover">
-                        <span class="line-height-1 bigger-170"> ${map_header.article_header.low} </span>
+                        <span class="line-height-1 bigger-170" id="low_header"></span>
 
                         <br>
                         <span class="line-height-1 smaller-90"> 踩 </span>

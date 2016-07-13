@@ -4,6 +4,15 @@ var cancelUpload = function () {
     $(".editable-container").empty();
 };
 $(function () {
+    $.get(ctx + "user/header?id=" + headerUserId, function (result) {
+        $("#picture_header").text(result.picture_header.total);
+        $("#video_header").text(result.video_header.total);
+        $("#music_header").text(result.music_header.total);
+        $("#other_header").text(result.article_header.total - result.music_header.total - result.video_header.total - result.picture_header.total);
+        $("#top_header").text(result.article_header.top);
+        $("#low_header").text(result.article_header.low);
+    });
+
     if (app_who != "1") {
         return;
     }

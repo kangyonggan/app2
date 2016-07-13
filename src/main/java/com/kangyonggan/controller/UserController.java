@@ -17,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author kangyonggan
@@ -162,6 +164,46 @@ public class UserController {
         userService.updateUserPassword(user);
 
         return "redirect:/login";
+    }
+
+    /**
+     * 获取header信息
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "header", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getHeaderArticleMap(@RequestParam("id") Long id) {
+        Article article_header = articleService.findTotalArticleByUserId(id);
+        Article video_header = articleService.findTotalArticleByUserIdWithGroup(id, "video");
+        Article music_header = articleService.findTotalArticleByUserIdWithGroup(id, "music");
+        Article picture_header = articleService.findTotalArticleByUserIdWithGroup(id, "picture");
+        if (article_header.getTop() == null) {
+            article_header.setTop(0);
+        }
+        if (article_header.getLow() == null) {
+            article_header.setLow(0);
+        }
+        if (video_header == null) {
+            video_header = new Article();
+            video_header.setTotal(0);
+        }
+        if (music_header == null) {
+            music_header = new Article();
+            music_header.setTotal(0);
+        }
+        if (picture_header == null) {
+            picture_header = new Article();
+            picture_header.setTotal(0);
+        }
+
+        Map<String, Object> map = new HashMap();
+        map.put("article_header", article_header);
+        map.put("video_header", video_header);
+        map.put("music_header", music_header);
+        map.put("picture_header", picture_header);
+        return map;
     }
 
 }

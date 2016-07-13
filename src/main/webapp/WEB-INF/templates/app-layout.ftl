@@ -41,6 +41,7 @@
 <@override name="app-script">
 <script>
     var app_who = "${app_who}";
+    var headerUserId = '${user.id}';
 </script>
 <script src="${ctx}static/ace/dist/js/x-editable/bootstrap-editable.min.js"></script>
 <script src="${ctx}static/ace/dist/js/x-editable/ace-editable.min.js"></script>
