@@ -10,7 +10,7 @@
 <div class="widget-box transparent">
     <div class="widget-header">
         <div class="article-buttons pull-left">
-            <a href="${ctx}category/list?code=${article.categoryCode}" class="skin-color">
+            <a href="javascript:history.back(-1);" class="skin-color">
                 <i class="ace-icon fa fa-arrow-left"></i>
                 返回
             </a>
