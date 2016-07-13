@@ -77,12 +77,10 @@ $(function () {
         return false;
     });
 
-    if (isMd) {
-        var body = $("#article-body").html();
-
-        body = window.markdown.toHTML(body);
-
-        $("#article-body").html(body);
+    if (articleId != undefined) {
+        $.get(ctx + "article/body?id=" + articleId, function(result) {
+            $("#article-body").html(marked(result));
+        });
     }
 
     $(".markdown a").prop("target", "_blank");

@@ -8,7 +8,7 @@
 
     <div class="col-xs-10 col-xs-offset-1 markdown">
         <span class="block input-icon input-icon-right">
-            <textarea name="body" id="md-body" rows="10" data-provide="markdown" class="form-control">${article.body!''}</textarea>
+            <textarea name="body" id="md-body" rows="10" class="form-control">${article.body!''}</textarea>
             <label class="error hide" for="md-body"></label>
         </span>
     </div>

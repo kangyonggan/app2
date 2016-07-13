@@ -54,7 +54,7 @@
     <#elseif category.code=="video">
     <script src="${ctx}static/app/js/dashboard/article/video.js"></script>
     <#elseif category.code=="note" || category.code=="share" || category.code=="course">
-    <script src="${ctx}static/ace/dist/js/markdown/markdown.min.js"></script>
+    <script src="${ctx}static/ace/dist/js/markdown/marked.min.js"></script>
     <script src="${ctx}static/ace/dist/js/markdown/bootstrap-markdown.min.js"></script>
     <script src="${ctx}static/app/js/dashboard/article/markdown.js"></script>
     <#elseif category.code=="picture">

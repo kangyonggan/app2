@@ -188,13 +188,11 @@
 <script src="${ctx}static/libs/kindeditor/kindeditor-min.js"></script>
 <script src="${ctx}static/libs/kindeditor/lang/zh_CN.js"></script>
 <script src="${ctx}static/ace/dist/js/jquery.colorbox.min.js"></script>
-<script src="${ctx}static/ace/dist/js/markdown/markdown.min.js"></script>
+<script src="${ctx}static/ace/dist/js/markdown/marked.min.js"></script>
 <script>
-        <#if article.categoryCode=="note" || article.categoryCode=="share" || article.categoryCode=="course">
-        var isMd = true;
-        <#else>
-        var isMd = false;
-        </#if>
+    <#if article.categoryCode=="note" || article.categoryCode=="share" || article.categoryCode=="course">
+        var articleId = '${article.id}';
+    </#if>
 </script>
 <script src="${ctx}static/app/js/web/article/detail.js"></script>
 </@override>

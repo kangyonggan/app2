@@ -58,6 +58,20 @@ public class ArticleController {
     }
 
     /**
+     * 文章内容
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "body", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String body(@RequestParam("id") Long id) {
+        Article article = articleService.findArticleById(id);
+
+        return article.getBody();
+    }
+
+    /**
      * 顶/踩
      *
      * @param id

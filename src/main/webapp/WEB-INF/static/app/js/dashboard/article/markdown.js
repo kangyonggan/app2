@@ -18,7 +18,7 @@ $(function () {
         }
     });
 
-    $("#md-body").markdown();
+    $("#md-body").markdown({resize: 'vertical'});
 
     $('.markdown').on('click', '[data-handler=bootstrap-markdown-cmdPreview]', function () {
         $(".markdown a").prop("target", "_blank");
