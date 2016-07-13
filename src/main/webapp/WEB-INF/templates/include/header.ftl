@@ -59,33 +59,42 @@
                 <div class="space-16"></div>
 
                 <div class="left">
-                    <span class="btn btn-app btn-sm btn-light no-hover">
-                        <span class="line-height-1 bigger-170 blue"> ${map_header.picture_header.total} </span>
+                    <a href="${ctx}category/list?code=picture">
+                        <span class="btn btn-app btn-sm btn-light no-hover">
+                            <span class="line-height-1 bigger-170 blue"> ${map_header.picture_header.total} </span>
 
-                        <br>
-                        <span class="line-height-1 smaller-90"> 相册 </span>
-                    </span>
+                            <br>
+                            <span class="line-height-1 smaller-90"> 相册 </span>
+                        </span>
+                    </a>
 
-                    <span class="btn btn-app btn-sm btn-yellow no-hover">
-                        <span class="line-height-1 bigger-170"> ${map_header.music_header.total} </span>
+                    <a href="${ctx}category/list?code=music">
+                        <span class="btn btn-app btn-sm btn-yellow no-hover">
+                            <span class="line-height-1 bigger-170"> ${map_header.music_header.total} </span>
 
-                        <br>
-                        <span class="line-height-1 smaller-90"> 歌曲 </span>
-                    </span>
+                            <br>
+                            <span class="line-height-1 smaller-90"> 歌曲 </span>
+                        </span>
+                    </a>
 
-                    <span class="btn btn-app btn-sm btn-pink no-hover">
-                        <span class="line-height-1 bigger-170"> ${map_header.video_header.total} </span>
+                    <a href="${ctx}category/list?code=video">
+                        <span class="btn btn-app btn-sm btn-pink no-hover">
+                            <span class="line-height-1 bigger-170"> ${map_header.video_header.total} </span>
 
-                        <br>
-                        <span class="line-height-1 smaller-90"> 视频 </span>
-                    </span>
+                            <br>
+                            <span class="line-height-1 smaller-90"> 视频 </span>
+                        </span>
+                    </a>
 
-                    <span class="btn btn-app btn-sm btn-grey no-hover">
-                        <span class="line-height-1 bigger-170"> ${map_header.article_header.total - map_header.video_header.total - map_header.music_header.total - map_header.picture_header.total} </span>
 
-                        <br>
-                        <span class="line-height-1 smaller-90"> 其他 </span>
-                    </span>
+                    <a href="${ctx}category/list">
+                        <span class="btn btn-app btn-sm btn-grey no-hover">
+                            <span class="line-height-1 bigger-170"> ${map_header.article_header.total - map_header.video_header.total - map_header.music_header.total - map_header.picture_header.total} </span>
+
+                            <br>
+                            <span class="line-height-1 smaller-90"> 其他 </span>
+                        </span>
+                    </a>
 
                     <span class="btn btn-app btn-sm btn-success no-hover">
                         <span class="line-height-1 bigger-170"> ${map_header.article_header.top} </span>

@@ -38,6 +38,12 @@
                         <i class="ace-icon fa fa-angle-down bigger-140 skin-inverse"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                        <li>
+                            <a href="${ctx}category/list">
+                                <i class="ace-icon fa fa-th bigger-120"></i>
+                                全部栏目
+                            </a>
+                        </li>
                     <#list app_category.childrens as category>
                         <#assign hasChildren=category.childrens?size gt 0>
                         <#if hasChildren>
