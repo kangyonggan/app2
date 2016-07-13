@@ -1,4 +1,5 @@
 <#assign no_right="">
+<#assign no_left="">
 <#assign title="${article.title}">
 
 <@override name="style">
