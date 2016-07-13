@@ -38,7 +38,7 @@ public class ValidatorController {
         } else if (token.getExpireTime().before(new Date())) {
             model.addAttribute("message", "验证地址已过期");
         } else if (token.getIsDeleted() == 1) {
-            model.addAttribute("message", "验证码已失效, 点击下面的按钮重新发送邮件");
+            model.addAttribute("message", "验证码已失效");
         } else {
             userService.updateUserEmailVerified(token);
             model.addAttribute("message", "邮箱验证成功");
@@ -61,7 +61,7 @@ public class ValidatorController {
         } else if (token.getExpireTime().before(new Date())) {
             model.addAttribute("message", "验证码已过期");
         } else if (token.getIsDeleted() == 1) {
-            model.addAttribute("message", "验证码已失效, 点击下面的按钮重新发送邮件");
+            model.addAttribute("message", "验证码已失效");
         } else {
             model.addAttribute("userId", token.getUserId());
             model.addAttribute("message", "重置密码");
@@ -84,7 +84,7 @@ public class ValidatorController {
         } else if (token.getExpireTime().before(new Date())) {
             model.addAttribute("message", "验证码已过期");
         } else if (token.getIsDeleted() == 1) {
-            model.addAttribute("message", "验证码已失效, 点击下面的按钮重新发送邮件");
+            model.addAttribute("message", "验证码已失效");
         } else {
             User user = userService.getUser(token.getUserId());
             user.setIsLocked((byte) 0);

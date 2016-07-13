@@ -30,7 +30,7 @@
         <result column="small_avatar" jdbcType="VARCHAR" property="smallAvatar"/>
     </resultMap>
 
-    <select id="selectArticlesByCategoryCode" resultMap="BaseResultMap">
+    <select id="selectArticlesByCategoryCodeAndUserId" resultMap="BaseResultMap">
         SELECT
         a.*, u.realname, u.sign, u.small_avatar
         FROM
@@ -40,6 +40,9 @@
             AND a.is_deleted = 0
             <if test="categoryCode != null and categoryCode != ''">
                 AND a.category_code = #{categoryCode}
+            </if>
+            <if test="userId != null and userId != 0">
+                AND a.user_id = #{userId}
             </if>
         </where>
         ORDER BY

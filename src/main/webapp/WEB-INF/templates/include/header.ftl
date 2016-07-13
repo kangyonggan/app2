@@ -59,7 +59,7 @@
                 <div class="space-16"></div>
 
                 <div class="left">
-                    <a href="${ctx}category/list?code=picture">
+                    <a href="${ctx}category/list?code=picture&userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-light no-hover">
                             <span class="line-height-1 bigger-170 blue"> ${map_header.picture_header.total} </span>
 
@@ -68,7 +68,7 @@
                         </span>
                     </a>
 
-                    <a href="${ctx}category/list?code=music">
+                    <a href="${ctx}category/list?code=music&userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-yellow no-hover">
                             <span class="line-height-1 bigger-170"> ${map_header.music_header.total} </span>
 
@@ -77,7 +77,7 @@
                         </span>
                     </a>
 
-                    <a href="${ctx}category/list?code=video">
+                    <a href="${ctx}category/list?code=video&userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-pink no-hover">
                             <span class="line-height-1 bigger-170"> ${map_header.video_header.total} </span>
 
@@ -87,7 +87,7 @@
                     </a>
 
 
-                    <a href="${ctx}category/list">
+                    <a href="${ctx}category/list?userId=${user.id}">
                         <span class="btn btn-app btn-sm btn-grey no-hover">
                             <span class="line-height-1 bigger-170"> ${map_header.article_header.total - map_header.video_header.total - map_header.music_header.total - map_header.picture_header.total} </span>
 

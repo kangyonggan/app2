@@ -11,7 +11,7 @@ import java.util.Map;
 @Repository
 public interface ArticleMapper extends MyMapper<Article> {
 
-    List<Article> selectArticlesByCategoryCode(@Param("categoryCode") String categoryCode);
+    List<Article> selectArticlesByCategoryCodeAndUserId(@Param("categoryCode") String categoryCode, @Param("userId") Long userId);
 
     List<Article> selectStarArticles(Long userId);
 

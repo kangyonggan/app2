@@ -97,9 +97,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
-    public List<Article> findArticesByCategoryCode(int pageNum, int pageSize, String categoryCode) {
+    public List<Article> findArticesByCategoryCodeAndUserId(int pageNum, int pageSize, String categoryCode, Long userId) {
         PageHelper.startPage(pageNum, pageSize);
-        return articleMapper.selectArticlesByCategoryCode(categoryCode);
+        return articleMapper.selectArticlesByCategoryCodeAndUserId(categoryCode, userId);
     }
 
     @Override

@@ -35,13 +35,16 @@ public class CategoryController {
     /**
      * 按栏目查看所有的文章
      *
+     * @param pageNum
      * @param code
+     * @param userId
      * @param model
      * @return
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String list(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
                           @RequestParam(value = "code", required = false, defaultValue = "") String code,
+                          @RequestParam(value = "userId", required = false, defaultValue = "0") Long userId,
                           Model model) {
         Category category = categoryService.findCategoryByCode(code);
         if (category == null) {
@@ -49,7 +52,7 @@ public class CategoryController {
             category.setName("全部栏目");
             category.setCode("");
         }
-        List<Article> articles = articleService.findArticesByCategoryCode(pageNum, AppConstants.PAGE_SIZE, code);
+        List<Article> articles = articleService.findArticesByCategoryCodeAndUserId(pageNum, AppConstants.PAGE_SIZE, code, userId);
         PageInfo<Article> page = new PageInfo(articles);
 
         model.addAttribute("category", category);

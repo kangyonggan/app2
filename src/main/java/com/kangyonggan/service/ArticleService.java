@@ -15,7 +15,7 @@ public interface ArticleService {
 
     List<Article> searchArticles(int pageNum, int pageSize, String code, String title, String startTime, String endTime) throws Exception;
 
-    List<Article> findArticesByCategoryCode(int pageNum, int pageSize, String categoryCode);
+    List<Article> findArticesByCategoryCodeAndUserId(int pageNum, int pageSize, String categoryCode, Long userId);
 
     List<Article> findStarArticles(int pageNum, int pageSize);
 
