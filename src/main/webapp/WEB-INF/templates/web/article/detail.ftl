@@ -1,5 +1,7 @@
 <#assign no_right="">
-<#assign no_left="">
+<#if article.categoryCode=="note" || article.categoryCode=="share" || article.categoryCode=="course">
+    <#assign no_left="">
+</#if>
 <#assign title="${article.title}">
 
 <@override name="style">
