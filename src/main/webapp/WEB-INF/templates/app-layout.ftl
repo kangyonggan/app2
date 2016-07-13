@@ -11,7 +11,7 @@
 <div class="row">
     <#if no_right??>
         <#if no_left??>
-            <div class="col-xs-10 col-xs-offset-1">
+            <div class="col-lg-10 col-md-10 col-xs-12 col-lg-offset-1 col-md-offset-1">
                 <@block name="content"/>
             </div>
         <#else>
