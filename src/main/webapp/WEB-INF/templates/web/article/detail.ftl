@@ -56,7 +56,11 @@
 
             </#if>
 
-            <div class="row markdown body-img" id="article-body">${article.body}</div>
+            <div class="row markdown body-img" id="article-body">
+            <#if article.categoryCode!="note" && article.categoryCode!="share" && article.categoryCode!="course">
+                ${article.body}
+            </#if>
+            </div>
 
             <#if article.categoryCode=="download">
                 <div class="space-10"></div>
