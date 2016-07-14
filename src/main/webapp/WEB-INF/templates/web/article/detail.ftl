@@ -1,4 +1,4 @@
-<#if article.categoryCode!="note" && article.categoryCode!="share" && article.categoryCode!="course">
+<#if article.categoryCode=="note" || article.categoryCode=="share" || article.categoryCode=="course">
     <#assign isMarkdown=true/>
 </#if>
 
