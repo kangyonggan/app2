@@ -25,7 +25,7 @@ $(function () {
     };
 
     var filter = {
-        allowExt: ["mp4", "ogg", "avi", "flv"]
+        allowExt: ["mp4", "ogg", "avi", "flv", "mov"]
     };
 
     var file_input = $('input[type=file]').ace_file_input(filter)
