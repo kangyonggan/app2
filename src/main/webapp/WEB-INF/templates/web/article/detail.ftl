@@ -64,7 +64,7 @@
             </#if>
 
             <div class="row markdown body-img" id="article-body">
-            <#if isMarkdown??>
+            <#if !isMarkdown??>
                 ${article.body}
             </#if>
             </div>
