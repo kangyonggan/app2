@@ -1,8 +1,15 @@
-<#assign no_right="">
-<#if article.categoryCode=="note" || article.categoryCode=="share" || article.categoryCode=="course">
-    <#assign no_left="">
+<#if article.categoryCode!="note" && article.categoryCode!="share" && article.categoryCode!="course">
+    <#assign isMarkdown=true/>
 </#if>
-<#assign title="${article.title}">
+
+<#assign no_right="">
+
+<#if isMarkdown??>
+    <#assign no_left="">
+    <#assign title="${article.body}">
+<#else>
+    <#assign title="${article.title}">
+</#if>
 
 <@override name="style">
 <link rel="stylesheet" href="${ctx}static/ace/dist/css/colorbox.min.css"/>
@@ -57,7 +64,7 @@
             </#if>
 
             <div class="row markdown body-img" id="article-body">
-            <#if article.categoryCode!="note" && article.categoryCode!="share" && article.categoryCode!="course">
+            <#if isMarkdown??>
                 ${article.body}
             </#if>
             </div>
@@ -197,7 +204,7 @@
 <script src="${ctx}static/ace/dist/js/jquery.colorbox.min.js"></script>
 <script src="${ctx}static/ace/dist/js/markdown/marked.min.js"></script>
 <script>
-    <#if article.categoryCode=="note" || article.categoryCode=="share" || article.categoryCode=="course">
+    <#if isMarkdown??>
         var articleId = '${article.id}';
     </#if>
 </script>
