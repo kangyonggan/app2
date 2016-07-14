@@ -6,7 +6,7 @@
 
 <#if isMarkdown??>
     <#assign no_left="">
-    <#assign title="${article.body}">
+    <#assign title="${category.name}">
 <#else>
     <#assign title="${article.title}">
 </#if>
