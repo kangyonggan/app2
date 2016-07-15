@@ -77,11 +77,9 @@ $(function () {
         return false;
     });
 
-    if (articleId != undefined) {
-        $.get(ctx + "article/body?id=" + articleId, function(result) {
-            $("#article-body").html(marked(result));
-        });
-    }
+    $.get(ctx + "article/body?id=" + articleId, function(result) {
+        $("#article-body").html(marked(result));
+    });
 
     $(".markdown a").prop("target", "_blank");
 });

@@ -204,9 +204,7 @@
 <script src="${ctx}static/ace/dist/js/jquery.colorbox.min.js"></script>
 <script src="${ctx}static/ace/dist/js/markdown/marked.min.js"></script>
 <script>
-    <#if isMarkdown??>
-        var articleId = '${article.id}';
-    </#if>
+    var articleId = '${article.id}';
 </script>
 <script src="${ctx}static/app/js/web/article/detail.js"></script>
 </@override>
