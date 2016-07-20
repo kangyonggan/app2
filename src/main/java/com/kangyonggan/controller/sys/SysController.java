@@ -1,9 +1,7 @@
 package com.kangyonggan.controller.sys;
 
-import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.util.Shell;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,9 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("sys")
 public class SysController {
-
-    @Autowired
-    private AttachmentService attachmentService;
 
     /**
      * 执行shell命令
