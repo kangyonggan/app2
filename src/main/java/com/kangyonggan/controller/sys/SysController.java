@@ -1,6 +1,5 @@
 package com.kangyonggan.controller.sys;
 
-import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.util.Shell;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -15,23 +14,11 @@ import java.util.List;
  * @since 16/7/12
  */
 @RestController
-@RequestMapping("sys/help")
-public class SysHelpController {
+@RequestMapping("sys")
+public class SysController {
 
     @Autowired
     private AttachmentService attachmentService;
-
-    /**
-     * 清除已无效的附件
-     *
-     * @return
-     */
-    @RequestMapping(value = "clean", method = RequestMethod.GET)
-    @RequiresPermissions("sys")
-    public String cleanInvalidAttachments() {
-        attachmentService.deleteAttachmentsOfInvalid();
-        return AppConstants.SUCCESS;
-    }
 
     /**
      * 执行shell命令
@@ -41,10 +28,10 @@ public class SysHelpController {
     @RequestMapping(value = "shell", method = RequestMethod.GET)
     @RequiresPermissions("sys")
     @ResponseBody
-    public List shell(@RequestParam("shell") String shell) {
+    public List shell(@RequestParam("cmd") String cmd) {
         List list = new ArrayList();
         try {
-            list = Shell.run(shell);
+            list = Shell.run(cmd);
         } catch (Exception e) {
             e.printStackTrace();
             list.add("命令执行异常: " + e.getMessage());
