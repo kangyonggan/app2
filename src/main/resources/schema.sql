@@ -397,3 +397,13 @@ INSERT INTO page (name, url, sort, icon, type, user_id, created_time, updated_ti
    'ace-icon fa fa-bookmark-o', 'nav', 1, '2016-07-03 14:50:07', '2016-07-03 14:50:10'),
   ('异世灵武天下', 'http://www.biquku.com/2/2731/1392191.html', 7, 'ace-icon fa fa-bookmark-o', 'nav', 1,
    '2016-07-03 14:50:07', '2016-07-03 14:50:10');
+
+ALTER TABLE article ENGINE = MyISAM;
+
+ALTER TABLE article ADD column title_py LONGTEXT;
+ALTER TABLE article ADD column summary_py LONGTEXT;
+ALTER TABLE article ADD column body_py LONGTEXT;
+ALTER TABLE article ADD column category_name_py LONGTEXT;
+
+ALTER TABLE `article` ADD FULLTEXT index(`title_py`, `summary_py`, `body_py`, `category_name_py`);
+repair table article quick;
