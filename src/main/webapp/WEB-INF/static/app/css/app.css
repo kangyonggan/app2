@@ -39,14 +39,6 @@ ul {
     word-spacing: 3px;
 }
 
-.max-height-450 {
-    display: inline-block;
-    max-height: 450px;
-    overflow: hidden;
-    border: 0;
-    line-height: 1.5;
-}
-
 .hidden-img img {
     display: none;
 }
@@ -197,5 +189,7 @@ input.app-date-input {
 }
 
 .body-img img {
-    max-width: 100%;
+    max-width: 99%;
+    margin-right: 1%;
+    float: left;
 }

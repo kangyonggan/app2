@@ -26,9 +26,9 @@
     <div class="row">
         <div class="col-xs-12 text-article">
         <#if article.categoryCode=="word">
-            <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration body-img max-height-450">${article.body}</a></h4>
+            <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration body-img">${article.body}</a></h4>
         <#else>
-            <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration max-height-450">${article.title}</a></h4>
+            <h4><a href="${ctx}article?id=${article.id}" class="dark no-text-decoration">${article.title}</a></h4>
         </#if>
             <div class="space-16"></div>
         </div>
