@@ -17,6 +17,8 @@ public interface ArticleMapper extends MyMapper<Article> {
 
     List<Article> selectArticlesInIds(Map<String, Object> param);
 
+    List<Article> findArticesByKey(String key);
+
     Article selectArticleById(Long id);
 
     Article selectTotalArticleByUserId(Long userId);

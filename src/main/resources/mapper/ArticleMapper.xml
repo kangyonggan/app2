@@ -125,7 +125,7 @@
         FROM
         article a
         <where>
-             a.user_id = #{userId}
+            a.user_id = #{userId}
         </where>
     </select>
 
@@ -139,6 +139,25 @@
             AND category_code = #{group}
         </where>
         GROUP BY category_code
+    </select>
+
+    <select id="findArticesByKey" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        a.*, u.realname, u.sign, u.small_avatar
+        FROM
+        article a, user u
+        <where>
+            a.user_id = u.id
+            AND a.is_deleted = 0
+            AND a.id IN
+            (
+            SELECT ai.id
+            FROM article_index ai
+            WHERE match(ai.title, ai.summary, ai.body, ai.category_name) against(#{key} IN BOOLEAN MODE)
+            )
+        </where>
+        ORDER BY
+        a.sticky desc, a.sticky_time desc, a.id desc
     </select>
 
 </mapper>

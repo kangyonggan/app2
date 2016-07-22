@@ -125,6 +125,12 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     }
 
     @Override
+    public List<Article> findArticesByKey(int pageNum, int pageSize, String key) {
+        PageHelper.startPage(pageNum, pageSize);
+        return articleMapper.findArticesByKey(key);
+    }
+
+    @Override
     public Article getArticle(Long id) {
         return super.selectByPrimaryKey(id);
     }

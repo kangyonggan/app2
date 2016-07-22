@@ -398,12 +398,28 @@ INSERT INTO page (name, url, sort, icon, type, user_id, created_time, updated_ti
   ('异世灵武天下', 'http://www.biquku.com/2/2731/1392191.html', 7, 'ace-icon fa fa-bookmark-o', 'nav', 1,
    '2016-07-03 14:50:07', '2016-07-03 14:50:10');
 
-ALTER TABLE article ENGINE = MyISAM;
+CREATE TABLE article_index
+(
+  id            BIGINT(20) PRIMARY KEY  NOT NULL
+  COMMENT '主键, 和文章表的主键一致',
+  title         LONGTEXT                NOT NULL
+  COMMENT '文章标题',
+  summary       LONGTEXT                NOT NULL
+  COMMENT '文章摘要',
+  body          LONGTEXT                NOT NULL
+  COMMENT '文章内容',
+  category_name LONGTEXT                NOT NULL
+  COMMENT '栏目名称',
+  is_deleted    TINYINT                 NOT NULL         DEFAULT 0
+  COMMENT '是否删除 {0:未删除, 1:已删除}',
+  created_time  DATETIME                NOT NULL
+  COMMENT '创建时间',
+  updated_time  DATETIME                NOT NULL
+  COMMENT '最后更新时间'
+)
+  COMMENT '文章检索表';
+CREATE UNIQUE INDEX id_UNIQUE ON article_index (id);
+ALTER TABLE `article_index` ADD FULLTEXT INDEX (`title`, `summary`, `body`, `category_name`);
 
-ALTER TABLE article ADD column title_py LONGTEXT;
-ALTER TABLE article ADD column summary_py LONGTEXT;
-ALTER TABLE article ADD column body_py LONGTEXT;
-ALTER TABLE article ADD column category_name_py LONGTEXT;
-
-ALTER TABLE `article` ADD FULLTEXT index(`title_py`, `summary_py`, `body_py`, `category_name_py`);
-repair table article quick;
+ALTER TABLE article_index ENGINE = MyISAM;
+REPAIR TABLE article_index QUICK;

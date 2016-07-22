@@ -21,6 +21,8 @@ public interface ArticleService {
 
     List<Article> findBellArticles(int pageNum, int pageSize);
 
+    List<Article> findArticesByKey(int pageNum, int pageSize, String key);
+
     Article getArticle(Long id);
 
     Article findArticleById(Long id);

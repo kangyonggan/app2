@@ -24,6 +24,11 @@
 
                 <span class="icon-bar"></span>
             </button>
+
+            <form class="pull-right hidden-lg hidden-md" style="margin-top: 8px" action="${ctx}article/search">
+                <input type="text" style="height: 26px;width: 153px;" value="${key!''}" name="key" placeholder="搜一搜...">
+            </form>
+        </div>
         </div>
 
         <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
@@ -145,5 +150,11 @@
             </@shiro.guest>
             </ul>
         </nav>
+
+        <form class="navbar-form pull-right visible-lg visible-md" role="search" action="${ctx}article/search">
+            <div class="form-group">
+                <input type="text" name="key" value="${key!''}" placeholder="搜一搜...">
+            </div>
+        </form>
     </div>
 </div>

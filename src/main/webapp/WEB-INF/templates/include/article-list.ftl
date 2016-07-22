@@ -2,14 +2,19 @@
     <div class="widget-box skin-border">
         <div class="widget-header widget-header-flat skin-bg">
             <h4 class="widget-title smaller skin-inverse">
-            <#if category.icon??>
-                <i class="${category.icon}"></i>
+            <#if key??>
+                <i class="ace-icon fa fa-search"></i>
+                ${key}
             <#else>
-                <i class="ace-icon fa fa-th"></i>
+                <#if category.icon??>
+                    <i class="${category.icon}"></i>
+                <#else>
+                    <i class="ace-icon fa fa-th"></i>
+                </#if>
+                ${category.name}
             </#if>
-            ${category.name}
             </h4>
-            <#if category.code != ''>
+            <#if category?? && category.code != ''>
                 <div class="widget-toolbar no-border">
                     <a href="${ctx}dashboard/article/create?code=${category.code}" class="skin-inverse">
                         <i class="ace-icon fa fa-edit"></i>

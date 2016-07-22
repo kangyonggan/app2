@@ -1,11 +1,13 @@
 package com.kangyonggan.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.kangyonggan.constants.AppConstants;
 import com.kangyonggan.model.*;
 import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.service.ReplyService;
 import com.kangyonggan.service.UserService;
+import com.kangyonggan.util.FenCi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class ArticleController {
 
     private static final String PATH_ROOT = "web/article/";
     private static final String PATH_DETAIL = PATH_ROOT + "detail";
+    private static final String PATH_LIST = PATH_ROOT + "list";
     private static final String PATH_REPLY_MODAL = PATH_ROOT + "reply-modal";
 
     @Autowired
@@ -190,6 +193,26 @@ public class ArticleController {
         attachment.setIsDeleted((byte) 1);
         attachmentService.updateAttachment(attachment);
         return res;
+    }
+
+    /**
+     * 全文检索文章
+     *
+     * @param pageNum
+     * @param key
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public String search(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
+                         @RequestParam(value = "key", required = false, defaultValue = "") String key,
+                         Model model) {
+        key = FenCi.process(key.trim());
+        List<Article> articles = articleService.findArticesByKey(pageNum, AppConstants.PAGE_SIZE, key);
+        PageInfo<Article> page = new PageInfo(articles);
+
+        model.addAttribute("page", page);
+        return PATH_LIST;
     }
 
 }
