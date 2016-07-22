@@ -38,7 +38,7 @@
         </javaClientGenerator>
 
         <!--table name-->
-        <table tableName="page">
+        <table tableName="article_index">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>
