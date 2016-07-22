@@ -191,5 +191,6 @@ input.app-date-input {
 .body-img img {
     max-width: 99%;
     margin-right: 1%;
+    margin-bottom: 1%;
     float: left;
 }
