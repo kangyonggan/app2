@@ -33,7 +33,7 @@ public class FenCiTest {
         PreparedStatement ps = conn.prepareStatement("SELECT id, title, summary, body, category_name FROM article WHERE id >= 50");
         ResultSet rs = ps.executeQuery();
 
-        StringBuilder sql = new StringBuilder("insert into article_index \n\t(id, title, summary, body, category_name, is_deleted, created_time, updated_time) \nvalues ");
+        StringBuilder sql = new StringBuilder("insert into article_index \n\t(article_id, title, summary, body, category_name, is_deleted, created_time, updated_time) \nvalues ");
         while (rs.next()) {
             sql.append("\n\t('").append(FenCi.process(rs.getString(1))).append("','").append(FenCi.process(rs.getString(2))).append("','").append(FenCi.process(rs.getString(3))).append("','").append(FenCi.process(rs.getString(4))).append("','").append(FenCi.process(rs.getString(5))).append("',0,now(),now()),");
         }

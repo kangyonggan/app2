@@ -400,26 +400,29 @@ INSERT INTO page (name, url, sort, icon, type, user_id, created_time, updated_ti
 
 CREATE TABLE article_index
 (
-  id            BIGINT(20) PRIMARY KEY  NOT NULL
-  COMMENT '主键, 和文章表的主键一致',
-  title         LONGTEXT                NOT NULL
+  id            BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  article_id    BIGINT(20)                            NOT NULL
+  COMMENT '文章ID',
+  title         LONGTEXT                              NOT NULL
   COMMENT '文章标题',
-  summary       LONGTEXT                NOT NULL
+  summary       LONGTEXT                              NOT NULL
   COMMENT '文章摘要',
-  body          LONGTEXT                NOT NULL
+  body          LONGTEXT                              NOT NULL
   COMMENT '文章内容',
-  category_name LONGTEXT                NOT NULL
+  category_name LONGTEXT                              NOT NULL
   COMMENT '栏目名称',
-  is_deleted    TINYINT                 NOT NULL         DEFAULT 0
+  is_deleted    TINYINT                               NOT NULL         DEFAULT 0
   COMMENT '是否删除 {0:未删除, 1:已删除}',
-  created_time  DATETIME                NOT NULL
+  created_time  DATETIME                              NOT NULL
   COMMENT '创建时间',
-  updated_time  DATETIME                NOT NULL
+  updated_time  DATETIME                              NOT NULL
   COMMENT '最后更新时间'
 )
   COMMENT '文章检索表';
 CREATE UNIQUE INDEX id_UNIQUE ON article_index (id);
-ALTER TABLE `article_index` ADD FULLTEXT INDEX (`title`, `summary`, `body`, `category_name`);
-
+CREATE UNIQUE INDEX article_id_UNIQUE ON article_index (article_id);
 ALTER TABLE article_index ENGINE = MyISAM;
+
+ALTER TABLE `article_index` ADD FULLTEXT INDEX (`title`, `summary`, `body`, `category_name`);
 REPAIR TABLE article_index QUICK;

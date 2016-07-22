@@ -151,7 +151,7 @@
             AND a.is_deleted = 0
             AND a.id IN
             (
-            SELECT ai.id
+            SELECT ai.article_id
             FROM article_index ai
             WHERE match(ai.title, ai.summary, ai.body, ai.category_name) against(#{key} IN BOOLEAN MODE)
             )

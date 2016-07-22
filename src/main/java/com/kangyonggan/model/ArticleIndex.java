@@ -1,19 +1,24 @@
 package com.kangyonggan.model;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.*;
+import lombok.Data;
 
 @Table(name = "article_index")
 @Data
 public class ArticleIndex {
     /**
-     * 主键, 和文章表的主键一致
+     * 主键, 自增
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    /**
+     * 文章ID
+     */
+    @Column(name = "article_id")
+    private Long articleId;
 
     /**
      * 是否删除 {0:未删除, 1:已删除}

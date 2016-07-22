@@ -170,7 +170,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     private void saveArticleIndex(Article article) {
         ArticleIndex articleIndex = new ArticleIndex();
 
-        articleIndex.setId(article.getId());
+        articleIndex.setArticleId(article.getId());
         articleIndex.setBody(FenCi.process(article.getBody()));
         articleIndex.setCategoryName(FenCi.process(article.getCategoryName()));
         articleIndex.setTitle(FenCi.process(article.getTitle()));
@@ -188,8 +188,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
      */
     private void updateArticleIndex(Article article) {
         ArticleIndex articleIndex = new ArticleIndex();
+        articleIndex.setArticleId(article.getId());
+        articleIndex = articleIndexMapper.selectOne(articleIndex);
 
-        articleIndex.setId(article.getId());
         articleIndex.setBody(FenCi.process(article.getBody()));
         articleIndex.setCategoryName(FenCi.process(article.getCategoryName()));
         articleIndex.setTitle(FenCi.process(article.getTitle()));
@@ -205,7 +206,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
      * @param id
      */
     private void deleteArticleIndex(Long id) {
-        articleIndexMapper.deleteByPrimaryKey(id);
+        ArticleIndex articleIndex = new ArticleIndex();
+        articleIndex.setArticleId(id);
+        articleIndexMapper.delete(articleIndex);
     }
 
     @Override
