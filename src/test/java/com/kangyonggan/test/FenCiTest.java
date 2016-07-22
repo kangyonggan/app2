@@ -20,7 +20,7 @@ public class FenCiTest {
 
     @Test
     public void testDemo() {
-        String str = FenCi.process("每日一句");
+        String str = FenCi.process("懒人快乐");
         log.info(str);
     }
 
