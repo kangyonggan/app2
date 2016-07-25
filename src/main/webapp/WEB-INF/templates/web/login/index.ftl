@@ -9,6 +9,9 @@
         <h4 class="widget-title smaller skin-inverse">
             <i class="ace-icon fa fa-leaf skin-inverse"></i>
             登录
+            <a href="${ctx}qq" class="pull-right" style="margin-right: 10px;">
+                <img src="${ctx}static/app/images/qq.png"/>
+            </a>
         </h4>
     </div>
 

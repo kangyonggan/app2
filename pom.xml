@@ -181,6 +181,12 @@
             <artifactId>jieba-analysis</artifactId>
             <version>${jieba.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.qq</groupId>
+            <artifactId>connect</artifactId>
+            <version>${qq.connect.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -266,5 +272,6 @@
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <jieba.version>1.0.2</jieba.version>
         <maven.test.version>2.18.1</maven.test.version>
+        <qq.connect.version>1.0.0.RELEASE</qq.connect.version>
     </properties>
 </project>

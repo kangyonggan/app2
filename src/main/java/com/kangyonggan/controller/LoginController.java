@@ -5,9 +5,9 @@ import com.kangyonggan.exception.EmailNotVerifiedException;
 import com.kangyonggan.model.User;
 import com.kangyonggan.model.ValidationResponse;
 import com.kangyonggan.service.MailService;
-import com.kangyonggan.service.TokenService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.IPUtil;
+import com.qq.connect.oauth.Oauth;
 import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
@@ -56,9 +57,6 @@ public class LoginController {
 
     @Autowired
     private MailService mailService;
-
-    @Autowired
-    private TokenService tokenService;
 
     /**
      * 登录界面
@@ -301,6 +299,19 @@ public class LoginController {
         return PATH_RESEND_SUCCESS;
     }
 
+    @RequestMapping(value = "qq", method = RequestMethod.GET)
+    public String qqLogin(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=utf-8");
+        String url = "/login";
+        try {
+            url = new Oauth().getAuthorizeURL(request);
+            log.info("QQ登录地址:{}", url);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("QQ登录报错, {}", e.getMessage());
+        }
+        return "redirect:" + url;
+    }
 
     /**
      * 处理密码错误, 防止暴力破解
