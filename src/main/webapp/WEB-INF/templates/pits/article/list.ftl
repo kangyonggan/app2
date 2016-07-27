@@ -51,6 +51,7 @@
         <th>ID</th>
         <th>标题</th>
         <th>顶/踩/收藏</th>
+        <th>密码</th>
         <th>创建时间</th>
         <th>操作</th>
     </tr>
