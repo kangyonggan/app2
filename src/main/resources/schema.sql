@@ -429,3 +429,6 @@ ALTER TABLE article_index ENGINE = MyISAM;
 
 ALTER TABLE `article_index` ADD FULLTEXT INDEX (`title`, `summary`, `body`, `category_name`);
 REPAIR TABLE article_index QUICK;
+
+# 文章保密
+ALTER TABLE article ADD COLUMN password VARCHAR(128) NOT NULL DEFAULT '';

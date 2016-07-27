@@ -77,7 +77,7 @@ $(function () {
         return false;
     });
 
-    $.get(ctx + "article/body?id=" + articleId, function(result) {
+    $.get(ctx + "article/body?id=" + articleId + "&password=" + password, function(result) {
         $("#article-body").html(marked(result));
     });
 

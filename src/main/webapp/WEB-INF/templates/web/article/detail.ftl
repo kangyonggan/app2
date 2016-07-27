@@ -14,6 +14,8 @@
     <#assign title="${article.title}">
 </#if>
 
+<#assign password = RequestParameters.password!'' />
+
 <@override name="style">
 <link rel="stylesheet" href="${ctx}static/ace/dist/css/colorbox.min.css"/>
 </@override>
@@ -47,6 +49,16 @@
                     <i class="ace-icon fa fa-leaf green"></i>
                 ${article.title}
                 </h2>
+
+                <#if article.password != '' && !article_password??>
+                    <div class="space-4"></div>
+                    <div class="row">
+                        <div class="row text-center small red">
+                            密码:${article.password}
+                        </div>
+                    </div>
+
+                </#if>
 
                 <div class="space-6"></div>
 
@@ -208,6 +220,7 @@
 <script src="${ctx}static/ace/dist/js/markdown/marked.min.js"></script>
 <script>
     var articleId = '${article.id}';
+    var password = '${password}';
 </script>
 <script src="${ctx}static/app/js/web/article/detail.js"></script>
 </@override>

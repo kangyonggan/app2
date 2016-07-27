@@ -23,6 +23,7 @@
         <result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
         <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
         <result column="body" jdbcType="LONGVARCHAR" property="body"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
 
         <result column="realname" jdbcType="VARCHAR" property="realname"/>
         <result column="sign" jdbcType="VARCHAR" property="sign"/>

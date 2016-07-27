@@ -8,6 +8,7 @@ import com.kangyonggan.service.AttachmentService;
 import com.kangyonggan.service.ReplyService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.FenCi;
+import com.kangyonggan.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,16 +48,30 @@ public class ArticleController {
      * 文章详情
      *
      * @param id
+     * @param password
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String detail(@RequestParam("id") Long id, Model model) {
+    public String detail(@RequestParam("id") Long id, @RequestParam(value = "password", required = false, defaultValue = "") String password,
+                         Model model) {
         Article article = articleService.findArticleById(id);
         List<Attachment> attachments = attachmentService.findAttachmentsByArticleId(article.getId());
         List<Reply> replies = replyService.findRepliesByArticleId(id);
 
+        if (StringUtil.isEmpty(article.getPassword()) || password.equals(article.getPassword())) {
+            model.addAttribute("attachments", attachments);
+        } else {
+            article.setBody("密码不正确!!!");
+
+            // 自己(已登录)可以查看到文章密码
+            ShiroUser user = userService.getShiroUser();
+            if (user == null || user.getId() - article.getUserId() != 0) {
+                model.addAttribute("article_password", "error");
+            } else {
+                model.addAttribute("attachments", attachments);
+            }
+        }
         model.addAttribute("article", article);
-        model.addAttribute("attachments", attachments);
         model.addAttribute("replies", replies);
         return PATH_DETAIL;
     }
@@ -65,14 +80,25 @@ public class ArticleController {
      * 文章内容
      *
      * @param id
+     * @param password
      * @return
      */
     @RequestMapping(value = "body", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String body(@RequestParam("id") Long id) {
+    public String body(@RequestParam("id") Long id, @RequestParam(value = "password", required = false, defaultValue = "") String password) {
         Article article = articleService.findArticleById(id);
 
-        return article.getBody();
+        if (StringUtil.isEmpty(article.getPassword()) || password.equals(article.getPassword())) {
+            return article.getBody();
+        }
+
+        // 自己(已登录)可以查看
+        ShiroUser user = userService.getShiroUser();
+        if (user != null && user.getId() - article.getUserId() == 0) {
+            return article.getBody();
+        }
+
+        return "密码不正确!!!";
     }
 
     /**

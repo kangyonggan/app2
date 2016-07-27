@@ -107,6 +107,11 @@ public class Article {
      */
     private String body;
 
+    /**
+     * 文章密码
+     */
+    private String password;
+
     @Transient
     private String realname;
 

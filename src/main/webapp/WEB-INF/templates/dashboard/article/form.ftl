@@ -36,6 +36,8 @@
             <#include "default.ftl"/>
         </#if>
 
+        <@c.input id="password" label="密码" val="${article.password!''}" empty="查看文章的密码"/>
+
         <#include "form-actions.ftl"/>
     </form>
     </#if>
