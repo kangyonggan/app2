@@ -10,7 +10,7 @@ $(function () {
     }
 
     $(".article-link").click(function () {
-        if ($(this).find(".need-password")) {
+        if ($(this).find(".need-password").length > 0) {
             var val = prompt("输入密码查看文章...");
             if (val == null) {
                 return false;
