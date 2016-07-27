@@ -77,6 +77,9 @@ $(function () {
         return false;
     });
 
+    var password = window.location.href;
+    password = password.substring(password.lastIndexOf("password") + 9);
+
     $.get(ctx + "article/body?id=" + articleId + "&password=" + password, function(result) {
         $("#article-body").html(marked(result));
     });

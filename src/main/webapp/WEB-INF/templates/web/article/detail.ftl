@@ -14,8 +14,6 @@
     <#assign title="${article.title}">
 </#if>
 
-<#assign password = RequestParameters.password!'' />
-
 <@override name="style">
 <link rel="stylesheet" href="${ctx}static/ace/dist/css/colorbox.min.css"/>
 </@override>
@@ -220,7 +218,6 @@
 <script src="${ctx}static/ace/dist/js/markdown/marked.min.js"></script>
 <script>
     var articleId = '${article.id}';
-    var password = '${password}';
 </script>
 <script src="${ctx}static/app/js/web/article/detail.js"></script>
 </@override>
