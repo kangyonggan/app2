@@ -12,7 +12,7 @@
             <a class="btn btn-xs skin-btn" href="${ctx}article?id=${item.id}">
                 <i class="ace-icon fa fa-eye bigger-120"></i>
             </a>
-        <#if item.categoryCode=="word" || item.categoryCode=="diary" || item.categoryCode=="note" || item.categoryCode=="course" || item.categoryCode=="share">
+        <#if item.categoryCode=="word" || item.categoryCode=="diary" || item.categoryCode=="note" || item.categoryCode=="course" || item.categoryCode=="share" || item.categoryCode=="document">
             <a class="btn btn-xs skin-btn" href="${ctx}dashboard/article/edit?id=${item.id}">
                 <i class="ace-icon fa fa-pencil bigger-120"></i>
             </a>
