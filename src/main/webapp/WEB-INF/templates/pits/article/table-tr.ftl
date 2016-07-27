@@ -1,6 +1,10 @@
 <tr id="article-${item.id}">
     <td>${item.id}</td>
-    <td title="${item.title}"><@c.substring str="${item.title}" len=25/></td>
+    <#if item.categoryCode=="word">
+        <td class="body-img hidden-img">${item.body}</td>
+    <#else>
+        <td title="${item.title}"><@c.substring str="${item.title}" len=25/></td>
+    </#if>
     <td>${item.top}/${item.low}/${item.star}</td>
     <td>${item.createdTime?datetime}</td>
     <td>
