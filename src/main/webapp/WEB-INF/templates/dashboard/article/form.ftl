@@ -4,7 +4,7 @@
 <@override name="style">
     <#if category.code=="picture">
     <link rel="stylesheet" href="${ctx}static/ace/dist/css/dropzone.min.css"/>
-    <#elseif category.code=="note" || category.code=="share" || category.code=="course">
+    <#elseif category.code=="note" || category.code=="share" || category.code=="course" || category.code=="document">
     <link rel="stylesheet" href="${ctx}static/ace/dist/css/bootstrap-markdown.min.css"/>
     </#if>
 </@override>
@@ -30,7 +30,7 @@
             <#include "music.ftl"/>
         <#elseif category.code=="video">
             <#include "video.ftl"/>
-        <#elseif category.code=="note" || category.code=="share" || category.code=="course">
+        <#elseif category.code=="note" || category.code=="share" || category.code=="course" || category.code=="document">
             <#include "markdown.ftl"/>
         <#else>
             <#include "default.ftl"/>
@@ -53,7 +53,7 @@
     <script src="${ctx}static/app/js/dashboard/article/music.js"></script>
     <#elseif category.code=="video">
     <script src="${ctx}static/app/js/dashboard/article/video.js"></script>
-    <#elseif category.code=="note" || category.code=="share" || category.code=="course">
+    <#elseif category.code=="note" || category.code=="share" || category.code=="course" || category.code=="document">
     <script src="${ctx}static/ace/dist/js/markdown/marked.min.js"></script>
     <script src="${ctx}static/ace/dist/js/markdown/bootstrap-markdown.min.js"></script>
     <script src="${ctx}static/app/js/dashboard/article/markdown.js"></script>
