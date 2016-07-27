@@ -11,6 +11,9 @@ $(function () {
             },
             body: {
                 required: true
+            },
+            password: {
+                maxlength: 20
             }
         },
         submitHandler: function (form) {

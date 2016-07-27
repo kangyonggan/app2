@@ -7,6 +7,9 @@ $(function () {
             },
             summary: {
                 maxlength: 200
+            },
+            password: {
+                maxlength: 20
             }
         },
         submitHandler: function (form) {

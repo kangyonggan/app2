@@ -4,6 +4,9 @@ $(function () {
             title: {
                 required: true,
                 maxlength: 100
+            },
+            password: {
+                maxlength: 20
             }
         },
         submitHandler: function (form) {
