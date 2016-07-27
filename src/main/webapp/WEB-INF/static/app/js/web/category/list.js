@@ -10,11 +10,13 @@ $(function () {
     }
 
     $(".article-link").click(function () {
-        var val = prompt("输入密码查看文章...");
-        if (val == null) {
-            return false;
+        if ($(this).find(".need-password")) {
+            var val = prompt("输入密码查看文章...");
+            if (val == null) {
+                return false;
+            }
+            $(this).attr("href", $(this).attr("href") + "&password=" + val);
         }
-        $(this).attr("href", $(this).attr("href") + "&password=" + val);
     });
 
 });

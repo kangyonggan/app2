@@ -27,17 +27,21 @@
         <div class="col-xs-12 text-article">
         <#if article.categoryCode=="word">
             <h4>
-                <#if article.password != ''>
-                    <i class="fa fa-lock bigger-120 skin-color"></i>
-                </#if>
-                <a href="${ctx}article?id=${article.id}" class="dark no-text-decoration body-img article-link">${article.body}</a>
+                <a href="${ctx}article?id=${article.id}" class="dark no-text-decoration body-img article-link">
+                    <#if article.password != ''>
+                        <i class="fa fa-lock bigger-120 need-password skin-color"></i>
+                    </#if>
+                ${article.body}
+                </a>
             </h4>
         <#else>
             <h4>
-                <#if article.password != ''>
-                    <i class="fa fa-lock bigger-120"></i>
-                </#if>
-                <a href="${ctx}article?id=${article.id}" class="dark no-text-decoration article-link">${article.title}</a>
+                <a href="${ctx}article?id=${article.id}" class="dark no-text-decoration article-link">
+                    <#if article.password != ''>
+                        <i class="fa fa-lock bigger-120 need-password skin-color"></i>
+                    </#if>
+                ${article.title}
+                </a>
             </h4>
         </#if>
             <div class="space-16"></div>
