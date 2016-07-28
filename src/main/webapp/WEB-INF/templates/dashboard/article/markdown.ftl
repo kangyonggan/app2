@@ -9,16 +9,18 @@
     <div class="col-xs-10 col-xs-offset-1 markdown">
         <span class="block input-icon input-icon-right">
             <#if article.body??>
-                <textarea name="body" id="md-body" rows="10" class="form-control">${article.body?replace('</textarea>', '&lt;textarea&gt;')}</textarea>
+                <textarea name="body" id="md-body" rows="10"
+                          class="form-control">${article.body?replace('</textarea>', '&lt;textarea&gt;')}</textarea>
             <#else>
                 <textarea name="body" id="md-body" rows="10" class="form-control"></textarea>
             </#if>
 
-            <label class="error hide" for="md-body"></label>
+                <label class="error hide" for="md-body"></label>
         </span>
     </div>
 </div>
 
+<#if !article.id??>
 <div class="hr hr-18 dotted"></div>
 
 <div class="form-group">
@@ -26,7 +28,7 @@
 
     <div class="col-xs-10 col-xs-offset-1">
         <div id="form-attachments">
-            <input type="file" name="attachment[]" />
+            <input type="file" name="attachment[]"/>
         </div>
     </div>
 </div>
@@ -37,3 +39,4 @@
         添加更多
     </button>
 </div>
+</#if>
