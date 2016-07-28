@@ -6,6 +6,7 @@ import com.kangyonggan.service.ArticleService;
 import com.kangyonggan.service.CategoryService;
 import com.kangyonggan.service.UserService;
 import com.kangyonggan.util.FileUpload;
+import com.kangyonggan.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,14 +67,16 @@ public class DashboardArticleController {
             List<Attachment> files = new ArrayList();
             if (attachments != null && !attachments.isEmpty()) {
                 for (MultipartFile file : attachments) {
-                    String path = FileUpload.upload(file);
+                    if (StringUtil.isNotEmpty(file.getOriginalFilename())) {
+                        String path = FileUpload.upload(file);
 
-                    Attachment attachment = new Attachment();
-                    attachment.setName(file.getOriginalFilename());
-                    attachment.setType(article.getCategoryCode());
-                    attachment.setPath(path);
+                        Attachment attachment = new Attachment();
+                        attachment.setName(file.getOriginalFilename());
+                        attachment.setType(article.getCategoryCode());
+                        attachment.setPath(path);
 
-                    files.add(attachment);
+                        files.add(attachment);
+                    }
                 }
             }
             articleService.saveArticle(article, files);
