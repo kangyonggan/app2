@@ -15,6 +15,7 @@
 <div class="row">
     <form action="${ctx}dashboard/article/save/pics" class="form-horizontal" role="form" id="form" method="post">
     <@c.input id="title" label="标题" empty="描述一下相册吧" required="true"/>
+    <@c.input id="password" label="密码" val="${article.password!''}" empty="查看文章的密码"/>
         <input type="hidden" name="ids" id="ids" value=""/>
         <input type="hidden" name="body" value=""/>
         <input type="hidden" name="categoryCode" value="${category.code}"/>

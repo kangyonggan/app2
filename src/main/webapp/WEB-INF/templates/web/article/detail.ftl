@@ -82,7 +82,7 @@
             </#if>
             </div>
 
-            <#if article.categoryCode=="download">
+            <#if article.categoryCode=="download" || isMarkdown??>
                 <div class="space-10"></div>
                 <div class="row">
                     <ul class="attachments">
