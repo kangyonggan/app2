@@ -52,7 +52,7 @@
                     <div class="space-4"></div>
                     <div class="row">
                         <div class="row text-center small red">
-                            密码:${article.password}
+                            查看密码:${article.password}
                         </div>
                     </div>
 
