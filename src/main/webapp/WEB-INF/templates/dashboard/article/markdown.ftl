@@ -24,7 +24,7 @@
 <div class="hr hr-18 dotted"></div>
 
 <div class="form-group">
-    <label class="col-xs-10 col-xs-offset-1 pull-left">文件<span class="red">*</span></label>
+    <label class="col-xs-10 col-xs-offset-1 pull-left">文件</label>
 
     <div class="col-xs-10 col-xs-offset-1">
         <div id="form-attachments">
