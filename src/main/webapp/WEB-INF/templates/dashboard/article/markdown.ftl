@@ -18,3 +18,22 @@
         </span>
     </div>
 </div>
+
+<div class="hr hr-18 dotted"></div>
+
+<div class="form-group">
+    <label class="col-xs-10 col-xs-offset-1 pull-left">文件<span class="red">*</span></label>
+
+    <div class="col-xs-10 col-xs-offset-1">
+        <div id="form-attachments">
+            <input type="file" name="attachment[]" />
+        </div>
+    </div>
+</div>
+
+<div class="align-right">
+    <button id="id-add-attachment" type="button" class="btn btn-sm btn-danger">
+        <i class="ace-icon fa fa-paperclip bigger-140"></i>
+        添加更多
+    </button>
+</div>
