@@ -61,7 +61,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         }
         if (StringUtil.isNotEmpty(endTime)) {
             Date end = DateUtil.next(endTime);
-            criteria.andLessThanOrEqualTo("createdTime", end);
+            criteria.andLessThanOrEqualTo("endTime", end);
         }
 
         example.setOrderByClause("id desc");
